@@ -14,7 +14,7 @@
 
 %Modeling of root water and solute uptake by plant roots is an important tool to predict the actual transpiration as it takes into account the transport of water and solute towards the roots in the soil profile together with the soil parameters that affects this movement. 
 
-In this work, a numerical solution for the equation of convection-dispersion is proposed, assuming a soil concentration dependent solute uptake as the boundary condition at root surface given by the Michaelis-Menten equation. The proposed model is compared with a no solute uptake (de Jong van Lier et al. [11]) and a constant solute uptake (de Willigen and de Noordwijk [2]) numerical models, as well as with an analytical model which uses steady-state condition for water content (CUSHMAN, 1979)XXX. The numerical models consider a transient water flow, based on the work of de Jong van Lier et al. [10]. There are several numerical (Nye and Marriot (1979), Simunek and Hoppmans (2009) [3] XXX) and analytical (Roose and Fowler (2001), Cushman (1979), de Willigen (1994) [5] XXX) models that describe water and solute uptake by the roots, each one with their own particularities, such as steady-state water flux solutions and different boundaries conditions at root surface. Feddes and Raats (2004), and Raats (2007) and XXXX (XXX) give reviews of soil water uptake modeling including effects of salinity.
+In this work, a numerical solution for the equation of convection--dispersion is proposed, assuming a soil concentration dependent solute uptake as the boundary condition at root surface given by the Michaelis-Menten equation. The proposed model is compared with a no solute uptake \citeonline[liersolute] and a constant solute uptake \citeonline[willigen1] numerical models, as well as with an analytical model which uses steady-state condition for water content \citeonline[cushman]. The numerical models consider a transient water flow, based on the work of \citeonline[lierwater]. There are several numerical (\cite[nye], \cite[simunek]) and analytical (\cite[roose], \cite[cushman], \cite[willigen1]) models that describe water and solute uptake by the roots, each one with their own particularities, such as steady-state water flux solutions and different boundaries conditions at root surface. \cite[feddes] and \cite[raats] give reviews of soil water uptake modeling including effects of salinity.
 
 %EXPLAIN THE ABILITY OF THE MODEL TO CALCULATE ACTIVE AND PASSIVE UPTAKES
 %EXPLAIN THE REASON TO USE MM EQUATION
@@ -42,37 +42,48 @@ In this work, a numerical solution for the equation of convection-dispersion is 
 %•	See 21.pdf for limitations in measurement of MM parameters
 
 
+\def\clim{$C_{lim}$}
+\def\c2{$C_2$}
+\def\im{$I_m$}
+\def\km{$K_m$}
+
 \cleardoublepage
 \chap METHODOLOGY
 
 \sec Michaelis-Menten equation
 
-The solute flux density at root surface ($q_{s0}$) can be related to the MM equation as the following:
+The solute flux density at root surface ($q_{s0}$) can be related to the Michaelis-Menten (MM) equation as the following:
 \label[eq_solute]
 $$
 q_{s0} = -D {dC \over dr} + q_0 C \simeq {I_m C_0 \over K_m + C_0} + q_0 C_0 \eqmark
 $$
 %
-where $D$ (m$^2$ s$^{-1}$) is the effective diffusion-dispersion coefficient; $q_0$ (m$^2$ s$^{-1}$) is the water flux density at the root surface; $I_m$ (mol m$^2$ s$^{-1}$) and $K_m$ (mol m$^{-3}$) are the Michaelis-Menten parameters that represent the maximum solute uptake rate and the affinity of the plant to the solute type, respectively; and $C_0$ (mol m$^{-3}$) is the solute concentration in the soil solution at root surface.
+where $D$ (m$^2$ s$^{-1}$) is the effective diffusion-dispersion coefficient; $q_0$ (m$^2$ s$^{-1}$) is the water flux density at the root surface; $I_m$ (mol m$^2$ s$^{-1}$) and $K_m$ (mol m$^{-3}$) are the MM parameters that represent the maximum solute uptake rate and the affinity of the plant to the solute type, respectively; and $C_0$ (mol m$^{-3}$) is the solute concentration in the soil solution at root surface.
 
 
 %Ions and water move into the plant independently, reflecting entirely different physical-chemical forces; nevertheless, the water moving to the root carries ions in it. A portion of these ions is taken up by the plant by an independent mechanism. The remainder is left behind at the root surface or on the soil particles in the vicinity of the root where they represent a subsequent source of supply. 81.pdf, pg. 98
 %This can explain the analysis of diffusion and convection (active and passive) separately.
 
-We assume that the diffusive and convective parts of the original equation is similar to the active and passive uptakes of the MM equation, respectively. It is shown in Figure 0[a] the proposed partitioning of active and passive uptakes, for a constant water flux density.
+We assume that the diffusive and convective parts of the original equation is similar to the active and passive uptakes of the MM equation, respectively, at root suurface. It is shown in Figure 0 XXX the two proposed partitioning of active and passive uptakes, for a constant water flux density. Figure 0a is linear, which is a simplification of MM equation to facilitate its use in the numerical solution. Figura 0a is the MM equation itself.
+
+\medskip
+\label[fig_MM]
+\picw=10cm \cinspic I_and_Linear.pdf
+\caption/f {Uptake (influx) rate as a function of concentration in soil water for [a] nonlinear case and [b] linear case }
+\medskip
 
 %EXPLAIN ACTIVE AND PASSIVE
  
 %Figure 0. Uptake rate (influx rate) as a function of concentration in soil water for [a] nonlinear case and [b] linear case
 
-In the linearized equation (Figure 0b), the slope β of the total uptake line (continuous line), for concentration values smaller than Clim, can be found by the relation Im/Clim, since the line starts at the origin. According to the MM equation, for values below Clim, the solute uptake is concentration dependent and the uptake is smaller than Im. For values greater than C2 the uptake is also concentration dependent but due to transport of mass by water flow only, i.e, active uptake is zero and the overall uptake is passive.
+In the linearized equation (Figure 0b), the slope $\beta$ of the total uptake line (continuous line), for concentration values smaller than $C_{lim}$, can be found by the relation $I_m/C{lim}$, since the line starts at the origin. According to the MM equation, for values smaller than $C_{lim}$, the solute uptake is concentration dependent and the uptake is smaller than $I_m$. For values greater than $C_2$ the uptake is also concentration dependent but due to transport of mass by water flow only, i.e, active uptake is zero and the overall uptake is passive.
 
-To find Clim, we set the solute flux density to Im:
+To find \clim, we set the solute flux density to \im:
 $$
-I_m = {I_m C \over K_m + C} + q C \,\,.
+I_m = {I_m C_0 \over K_m + C_0} + q_0 C_0 \,\,.
 $$
 
-Solving for $C$, we find $C_{lim}$ as the positive value of:
+Solving for $C$, we find \clim as the positive value of:
 $$
 C_{lim} = -{K_m \pm \left( {K_m}^2 + 4{I_m K_m / q_0} \right)^{1/2} \over 2 }
 $$
@@ -106,12 +117,12 @@ $$
 
 The equation \ref[eq_linear] is, therefore, the linearization of equation \ref[eq_solute] for values of concentration smaller than $C_{lim}$ and greater than $C_2$.
 
-Other authors also makes a separation of active and passive as the diffusive and convective part of eq. \ref[eq_solute], such as Silberbush, Ben-Asher and Ephrath (2005) \cite[silberbush] 102.pdf on calcium uptake in a soilless culture, Schröder et al. (2012) \cite[schroder] 48.pdf, Ungs, Boersma and Akratanakul (1982) \cite[ungs] 11.pdf, Raij et al. (2013) 43.pdf \cite[raij] and Simunek and Hopmans (2009) \cite[simunek] 68.pdf just to cite some.
+%Other authors also makes a separation of active and passive as the diffusive and convective part of eq. \ref[eq_solute], such as Silberbush, Ben-Asher and Ephrath (2005) \cite[silberbush] 102.pdf on calcium uptake in a soilless culture, Schröder et al. (2012) \cite[schroder] 48.pdf, Ungs, Boersma and Akratanakul (1982) \cite[ungs] 11.pdf, Raij et al. (2013) 43.pdf \cite[raij] and Simunek and Hopmans (2009) \cite[simunek] 68.pdf just to cite some.
 
 \sec Water and solute transport equations
 
 The water and solute differential equations for one-dimensional axisymetric flow were solved numerically and simulated iteratively as described in the following.
-The algorithm was based on the solution proposed by de Jong van Lier et al. \cite[lierwater] and \cite [liersolute].
+The algorithm was based on the solution proposed by \citeonline[lierwater] and \citeonline[liersolute].
 
 The Richards equation for one-dimensional axisymetric flow, assuming no sink or source and no gravitational component, can be written as:
 \label[partial_water]
@@ -119,7 +130,7 @@ $$
 {\partial \theta \over \partial H} {\partial H \over \partial t} = {1 \over r}{\partial \over \partial r} \left( r K {\partial H \over \partial r} \right) \eqmark
 $$
 %
-where $\theta$ (m$^3$ m$^{-3}$) is the water content, $h$ (m) is the pressure head, $t$ (s) is the time, $r$ (m) is the distance from the axial center and $K$ (m s$^{-1}$) is the hydraulic conductivity.
+where $\theta$ (m$^3$ m$^{-3}$) is the water content, $H$ (m) is the sum of pressure ($h$) and osmotic ($h_\pi$) heads, $t$ (s) is the time, $r$ (m) is the distance from the axial center and $K$ (m s$^{-1}$) is the hydraulic conductivity.
 
 Relations between $K$, $\theta$ and $h$ are described by the van Genuchten equation system:
 $$
@@ -138,28 +149,37 @@ $$
 %
 where $C$ (mol m$^{-3}$) is the solute concentration in the soil solution, $q$ (m s$^{-1}$) is the water flux density and $D$ (m$^2$ s$^{-1}$) is the effective diffusion-dispersion coefficient.
 
-The solute flux density at the outermost compartment (half distance between roots, i.e., $r = r_m$) is set to zero. The boundary conditions at innermost compartment (root surface, i.e, $r=r_0$) are set according to the model type, which are: no solute uptake model (de Jong van Lier, 2009), constant uptake model (de Willigen, 1994) and concentration-dependent model (proposed).
+The solute flux density at the outermost compartment (half distance between roots, i.e., $r = r_m$) is set to zero. 
+The boundary conditions at innermost compartment (root surface, i.e, $r=r_0$) are set according to the model type, which are: 
+no solute uptake model (de Jong van Lier, 2009), constant uptake model (de Willigen, 1994) and linear and nonlinear concentration--dependent model (proposed).
+For short, let us call them NU, CU, LU and NLU models, respectivelly.
 
-For no solute uptake model type: the solute flux density is set to zero
+{\bf For no solute uptake (NU) model type}: the solute flux density is set to zero
 $$
 q_{s0} = -D {dC \over dr} + q_0C = 0
 $$
 
-For constant solute uptake model type: the solute flux density is set to the maximum and constant solute uptake rate $I_m$. For cylindrical coordinates, the solute flux density of each root is
+{\bf For constant solute uptake (CU) model type}: the solute flux density is set to the maximum and constant solute uptake rate $I_m$. For cylindrical coordinates, the solute flux density of each root is
 $$
 q_{s0} = -D {dC \over dr} + q_0C = -{I_m \over 2 \pi r_0  L}
 $$
 %
 where $L$ (m) is the root length, $r_0$ (m) is the root radius and $I_m$ has units of mol s$^{-1}$.
 
-For concentration-dependent uptake model type: the solute flux density is set to the linearized piecewise MM equation
+{\bf For linear concentration--dependent uptake (LU) model type}: the solute flux density is set to the linearized piecewise MM equation
 $$
 q_{s0} = -D {dC \over dr} + q_0C = -(\alpha + q_0) C_0 
+$$
+
+{\bf For nonlinear concentration--dependent uptake (NLU) model type}: the solute flux density is set to the MM equation
+$$
+q_{s0} = -D {dC \over dr} + q_0C = -\left({I_m \over K_m + C_0} + q_0 \right) C_0
 $$
 
 \sec Implicit numerical solution
 
 The combined water and salt movement is simulated iteratively. In a first step, the water movement toward the root is simulated, assuming salt concentrations from the previous time step. In a second step, the salt contents per segment are updated and new values for the osmotic head in all segments are calculated. The first step is then repeated with updated values for the osmotic heads. This process is repeated until the pressure head values and osmotic head values between iterations converge.
+Two flowcharts with the algorithm procedures to solve water and solute iterative equations can be found in the Appendix.
 
 \sec Water
 
@@ -169,7 +189,7 @@ The implicit numerical discretization and the solution for the Eq. \ref[partial_
 * there is no sink (the only water exit is the root surface located at the inner side of the first compartment)
 * water flux density at the outermost compartment is set to zero
 * water flux density at the innermost compartment (at root surface) is set equal to water flux density entering the root, which is determined by transpiration rate and total root area
-* if the pressure head in the innermost compartment drops below a critical value $h_{lim}$ (in this study $h_{lim}=-150$ m), pressure head is fixed to this critical value and the water flux density adjusted to that
+%* if the pressure head in the innermost compartment drops below a critical value $h_{lim}$ (in this study $h_{lim}=-150$ m), pressure head is fixed to this critical value and the water flux density adjusted to that
 \enditems
 
 \sec Solute
