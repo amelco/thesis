@@ -1,0 +1,81 @@
+% The documentation of the usage of TeXSALQ -- the template for
+% typessetting thesis by plain\TeX at ESALQ - USP
+% ---------------------------------------------------------------------
+% Luciano R Silveira  Jun.-Jul. 2014
+% lrsilveira@gmail.com
+%
+% Based on ctustyle-doc.tex by Petr Olsak
+
+\input macros/texsalq   % The template is included here.
+
+\worktype [D/EN] % Type: M = master, D = Ph.D., O = other
+                 % / the language: PT = Portuguese, EN = English
+
+\title    {Mechanistic numerical modeling of solute uptake by plant roots}
+\author     {Andre Herman Freire Bezerra}
+\authorinfo {Engenheiro Agronômo}
+\city       {Piracicaba}
+\date       {2014}
+\supervisor {Prof. Dr. \bf\uppercase{Quirijn de Jong van Lier}}  % One or more supervisors
+\workname   {} % Used only if \worktype [O/*] (Other)
+
+            % Title / Subtitle in minor language:
+\titlePT      {Modelagem numérica de extração de solutos pelas raízes}
+\titarea    {Ciências}
+\concarea   {Engenharia de Sistemas Agrícolas}
+\concareaEN {Agricultural Systems Engineering}
+\pagetwo    {}  % The text printed on the page 2 at the bottom.
+\dedication {      %  Optional. Use main language here
+     Ao passado, \par\vskip 0.3cm
+    ao presente e \par\vskip 0.3cm
+    ao futuro \par\vskip 1.3cm
+    Com amor, \bfit DEDICO\par
+}
+\thanks     {      %  Optional. Use main language here
+
+    }
+\epigraph   {       %  Optional. Use main language here
+   {\sl
+   }
+
+}
+\abstractEN {%
+   
+}
+\abstractPT {%
+   
+}
+
+\keywordsEN {%
+
+}
+\keywordsPT {%
+
+}
+
+
+%%%%% <--   % The place for your own macros is here.
+\def\emph#1{{\it #1}}
+\def\ttb{\tt\char`\\} %  sequence control printing of Tables
+\def\asp#1{``#1''} % facilitates the use of quotation marks
+
+%\draft     % Uncomment this if the version of your document is working only.
+%\linespacing=1.7  % uncomment this if you need more spaces between lines
+                   % Warning: this works only when \draft is activated!
+%\savetoner        % Turns off the lightBlue or lightGrey backround of
+                   % verbatims, only for \draft version.
+%\blackwhite       % Use this if you need really Black+White thesis.
+
+\makefront  % Mandatory command. Makes title page, acknowledgment, contents etc.
+
+% Files where the source of the document is prepared.
+% Full name is: body.tex, appendicies.tex, the suffix can be omitted.
+
+%\input epsf % Works onty if pdfoutput = 0
+\input body
+
+{\makebib{mybib}}
+
+%\input appendicies
+
+\bye
