@@ -1,4 +1,5 @@
 \def\clim{$C_{lim}$}
+\def\hlim{$h_{lim}$}
 \def\c2{$C_2$}
 \def\im{$I_m$}
 \def\km{$K_m$}
@@ -36,12 +37,12 @@ In the linearized equation (Figure 0b), the slope $\beta$ of the total uptake li
 
 To find \clim, we set the solute flux density to \im:
 $$
-I_m = {I_m C_0 \over K_m + C_0} + q_0 C_0 \,\,.
+I_m = {I_m C_0 \over K_m + C_0} + q_0 C_0 \,\,. \eqmark
 $$
 
 Solving for $C$, we find \clim as the positive value of:
 $$
-C_{lim} = -{K_m \pm \left( {K_m}^2 + 4{I_m K_m / q_0} \right)^{1/2} \over 2 }
+C_{lim} = -{K_m \pm \left( {K_m}^2 + 4{I_m K_m / q_0} \right)^{1/2} \over 2 } \eqmark
 $$
 
 Finally, $\beta$ can be defined as the positive value of:
@@ -52,12 +53,12 @@ $$
 
 At concentration values greater than $C_2$, the solute uptake is driven only by mass flow of water and the active uptake is zero. Thus, $C_2$ can be found as:
 $$
-C_2 = {-I_m \over q_0}
+C_2 = {-I_m \over q_0} \eqmark
 $$
 
 %WRITE IN RADIAL COORDINATES??
 %$$
-%C_2 = {-I_m \over 2 \pi L r_0 q_0}
+%C_2 = {-I_m \over 2 \pi L r_0 q_0} \eqmark
 %$$
 
 The partitioning between active ($\alpha$) and passive uptake ($q_0$) is done by difference, as the values of total uptake and passive uptake is always known:
@@ -65,7 +66,7 @@ $$
 \eqalignno{
 &q_{s0} = (\hbox{active slope} + \hbox{passive slope})\,C_0 = \beta\,C_0 \cr
 &\hbox{passive slope} = q_0 \cr
-&\hbox{active slope} = \beta - q_0 = \alpha\cr
+&\hbox{active slope} = \beta - q_0 = \alpha \cr
 \label[eq_linear]
 &q_{s0} = (\alpha + q_0)\,C_0 & \eqmark
 }
@@ -91,8 +92,8 @@ where $\theta$ (m$^3$ m$^{-3}$) is the water content, $H$ (m) is the sum of pres
 Relations between $K$, $\theta$ and $h$ are described by the van Genuchten equation system:
 $$
 \eqalignno{
-\Theta &= [1+|\alpha h|^n]^{(1/n)-1} = {(\theta - \theta_r) \over (\theta_s - \theta_r)} \cr
-K &= K_{s} \Theta^\lambda [1-(1-\Theta^{n/(n-1)})^{(1-(1/n)})]^2
+\Theta &= [1+|\alpha h|^n]^{(1/n)-1} = {(\theta - \theta_r) \over (\theta_s - \theta_r)}  & \eqmark \cr 
+K &= K_{s} \Theta^\lambda [1-(1-\Theta^{n/(n-1)})^{(1-(1/n)})]^2 & \eqmark
 }
 $$
 where $\theta_r$ and $\theta_s$ (m$^3$ m$^{-3}$) are residual water content and saturated water content, respectively; $\alpha$ (m$^{-1}$), $n$ and $\lambda$ are empirical parameters.
@@ -112,24 +113,24 @@ For short, let us call them NU, CU, LU and NLU models, respectivelly.
 
 {\bf For no solute uptake (NU) model type}: the solute flux density is set to zero
 $$
-q_{s0} = -D {dC \over dr} + q_0C = 0
+q_{s0} = -D {dC \over dr} + q_0C = 0 \eqmark
 $$
 
 {\bf For constant solute uptake (CU) model type}: the solute flux density is set to the maximum and constant solute uptake rate $I_m$. For cylindrical coordinates, the solute flux density of each root is
 $$
-q_{s0} = -D {dC \over dr} + q_0C = -{I_m \over 2 \pi r_0  L}
+q_{s0} = -D {dC \over dr} + q_0C = -{I_m \over 2 \pi r_0  L} \eqmark
 $$
 %
 where $L$ (m) is the root length, $r_0$ (m) is the root radius and $I_m$ has units of mol s$^{-1}$.
 
 {\bf For linear concentration--dependent uptake (LU) model type}: the solute flux density is set to the linearized piecewise MM equation
 $$
-q_{s0} = -D {dC \over dr} + q_0C = -(\alpha + q_0) C_0 
+q_{s0} = -D {dC \over dr} + q_0C = -(\alpha + q_0) C_0  \eqmark
 $$
 
 {\bf For nonlinear concentration--dependent uptake (NLU) model type}: the solute flux density is set to the MM equation
 $$
-q_{s0} = -D {dC \over dr} + q_0C = -\left({I_m \over K_m + C_0} + q_0 \right) C_0
+q_{s0} = -D {dC \over dr} + q_0C = -\left({I_m \over 2 \pi r_0 L (K_m + C_0)} + q_0 \right) C_0 \eqmark
 $$
 
 \sec Implicit numerical solution
@@ -154,7 +155,7 @@ Fully implicit numerical discretization of Eq. \ref[partial_eq] gives:
 $$
 \eqalignno{
 \label[main_eq]
-\theta^{j+1}_i C^{j+1}_i - \theta^j_i C^j_i &= {\Delta t \over 2 r_i \Delta r_i} \times \cr
+\theta^{j+1}_i &C^{j+1}_i - \theta^j_i C^j_i = {\Delta t \over 2 r_i \Delta r_i} \times \cr
 & \left\{ 
 {r_{i-1/2} \over r_i-r_{i-1}} \left[ q_{i-1/2}(C^{j+1}_{i-1}\Delta r_i + C^{j+1}_{i}\Delta r_{i-1}) - 2D^{j+1}_{i-1/2}(C^{j+1}_i-C^{j+1}_{i-1}) \right]\right. - & \eqmark \cr
 &\left. {r_{i+1/2} \over r_{i+1}-r_{i}} \left[ q_{i+1/2}(C^{j+1}_{i}\Delta r_{i+1} + C^{j+1}_{i+1}\Delta r_{i}) - 2D^{j+1}_{i+1/2}(C^{j+1}_{i+1}-C^{j+1}_{i}) \right] 
@@ -195,7 +196,7 @@ $$
 %
 with $f_i \hbox{(mol m$^{-2}$)}$ defined, unless specified otherwise, as
 $$
-f_i = r_i \theta^j_ i C^j_i
+f_i = r_i \theta^j_ i C^j_i \eqmark
 $$
 %
 and $a_i\, \hbox{(m)}$, $b_i\, \hbox{(m)}$ and $c_i\, \hbox{(m)}$ are defined according to the respective segments and model type as described in the following.
@@ -208,13 +209,13 @@ and $a_i\, \hbox{(m)}$, $b_i\, \hbox{(m)}$ and $c_i\, \hbox{(m)}$ are defined ac
 Rearrangement of Eq. \ref[main_eq] to eq. \ref[matrix] results in the coefficients:
 $$
 \eqalignno{
-a_i &= -{r_{i-1/2} (2D^{j+1}_{i-1/2} + q_{i-1/2} \Delta r_i)\Delta t \over 2(r_{i}-r_{i-1})\Delta r_i} \cr
+a_i &= -{r_{i-1/2} (2D^{j+1}_{i-1/2} + q_{i-1/2} \Delta r_i)\Delta t \over 2(r_{i}-r_{i-1})\Delta r_i} & \eqmark \cr
 b_i &= r_i \theta^{j+1}_i + {\Delta t \over 2 \Delta r_i} 
 \left[
-{r_{i-1/2} \over (r_i-r_{i-1})} (2D^{j+1}_{i-1/2} - q_{i-1/2} \Delta r_{i-1}) +
-{r_{i+1/2} \over (r_{i+1}-r_{i})} (2D^{j+1}_{i+1/2} + q_{i+1/2} \Delta r_{i+1}) 
-\right] \cr
-c_i &= -{r_{i+1/2} \Delta t \over 2 \Delta r_i (r_{i+1}-r_i)} (2D^{j+1}_{i+1/2} - q_{i+1/2} \Delta r_i) \cr
+{r_{i-1/2} \over (r_i-r_{i-1})} (2D^{j+1}_{i-1/2} - q_{i-1/2} \Delta r_{i-1}) + \right. \cr
+&\left.{r_{i+1/2} \over (r_{i+1}-r_{i})} (2D^{j+1}_{i+1/2} + q_{i+1/2} \Delta r_{i+1}) 
+\right] & \eqmark \cr
+c_i &= -{r_{i+1/2} \Delta t \over 2 \Delta r_i (r_{i+1}-r_i)} (2D^{j+1}_{i+1/2} - q_{i+1/2} \Delta r_i) & \eqmark \cr
 }
 $$
 
@@ -224,9 +225,9 @@ Applying boundary condition of zero solute flux, the third and forth term from t
 $$
 \eqalignno{
 \label[outer]
-\theta^{j+1}_n C^{j+1}_n - \theta^j_n C^j_n &= {\Delta t \over 2 r_n \Delta r_n} \times \cr
+\theta^{j+1}_n &C^{j+1}_n - \theta^j_n C^j_n = {\Delta t \over 2 r_n \Delta r_n} \times \cr
 & \left\{ 
-{r_{n-1/2} \over r_n-r_{n-1}} \left[ q_{n-1/2}(C^{j+1}_{n-1}\Delta r_n + C^{j+1}_{n}\Delta r_{n-1}) - 2D^{j+1}_{n-1/2}(C^{j+1}_n-C^{j+1}_{n-1}) \right]
+{r_{n-1/2} \over r_n-r_{n-1}} \left[ q_{n-1/2}(C^{j+1}_{n-1}\Delta r_n + C^{j+1}_{n}\Delta r_{n-1}) -  2D^{j+1}_{n-1/2}(C^{j+1}_n-C^{j+1}_{n-1}) \right]
 \right\} & \eqmark
 }
 $$
@@ -234,11 +235,11 @@ $$
 Rearrangement of Eq. \ref[outer] to Eq. \ref[matrix] results in the coefficients:
 $$
 \eqalignno{
-a_n &= -{r_{n-1/2} (2D^{j+1}_{n-1/2} + q_{n-1/2} \Delta r_n)\Delta t \over 2(r_{n}-r_{n-1})\Delta r_n} \cr
+a_n &= -{r_{n-1/2} (2D^{j+1}_{n-1/2} + q_{n-1/2} \Delta r_n)\Delta t \over 2(r_{n}-r_{n-1})\Delta r_n} & \eqmark \cr
 b_n &= r_n \theta^{j+1}_n + {\Delta t \over 2 \Delta r_n} 
 \left[
 {r_{n-1/2} \over (r_n-r_{n-1})} (2D^{j+1}_{n-1/2} + q_{n-1/2} \Delta r_{n-1})
-\right]
+\right] & \eqmark
 }
 $$
 
@@ -247,13 +248,13 @@ $$
 \begitems
 \style a
 
-* {\bf Zero uptake model (de Jong van Lier)}
+* {\bf Zero (no) uptake model (NU)}
 
 Applying boundary condition of zero solute flux, the first and second term of the right-hand side of Eq. \ref[main_eq] are equal to zero:
 $$
 \eqalignno{
 \label[lier]
-\theta^{j+1}_1 C^{j+1}_1 - \theta^j_1 C^j_1 &= {\Delta t \over 2 r_1 \Delta r_1} \times \cr
+\theta^{j+1}_1 &C^{j+1}_1 - \theta^j_1 C^j_1 = {\Delta t \over 2 r_1 \Delta r_1} \times \cr
 & \left\{ 
 {r_{1+1/2} \over r_{2}-r_{1}} \left[ -q_{1+1/2}(C^{j+1}_{1}\Delta r_{2} + C^{j+1}_{2}\Delta r_{1}) + 2D^{j+1}_{1+1/2}(C^{j+1}_{2}-C^{j+1}_{1}) \right] 
 \right\} & \eqmark
@@ -263,12 +264,12 @@ $$
 Rearrangement of Eq. \ref[lier] to Eq. \ref[matrix] results in the following coefficients:
 $$
 \eqalignno{
-b_1 &= r_1 \theta^{j+1}_1 + {\Delta t \over 2 \Delta r_1} \left[ {r_{1+1/2} \over (r_2-r_1)} (2D^{j+1}_{1+1/2} + q_{1+1/2} \Delta r_2) \right] \cr
-c_1 &= -{r_{1+1/2} \Delta t \over 2 \Delta r_1 (r_2-r_1)} (2D^{j+1}_{1+1/2} - q_{1+1/2} \Delta r_1) \cr
+b_1 &= r_1 \theta^{j+1}_1 + {\Delta t \over 2 \Delta r_1} \left[ {r_{1+1/2} \over (r_2-r_1)} (2D^{j+1}_{1+1/2} + q_{1+1/2} \Delta r_2) \right] & \eqmark \cr
+c_1 &= -{r_{1+1/2} \Delta t \over 2 \Delta r_1 (r_2-r_1)} (2D^{j+1}_{1+1/2} - q_{1+1/2} \Delta r_1) & \eqmark \cr
 }
 $$
 
-* {\bf Constant uptake model (de Willigen)}
+* {\bf Constant uptake model (CU)}
 
 Applying boundary conditions of constant solute flux, the first and second term of the right-hand side of Eq. \ref[main_eq] are equal to $-{I_m \over 2 \pi r_0 L}\Delta r_1$ while $C > 0$:
 $$
@@ -276,8 +277,9 @@ $$
 \label[will]
 \theta^{j+1}_1 &C^{j+1}_1 - \theta^j_1 C^j_1 = {\Delta t \over 2 r_1 \Delta r_1} \times \cr
 & \left\{  
-{r_{1-1/2} \over r_{1}-r_{0}} \left(-{I_m \over 2 \pi r_0 L}\right) \Delta r_1 - { r_{1+1/2} \over r_{2}-r_{1}} \left[ q_{1+1/2}(C^{j+1}_{1}\Delta r_{2} + C^{j+1}_{2}\Delta r_{1}) - 2D^{j+1}_{1+1/2}(C^{j+1}_{2}-C^{j+1}_{1}) \right] 
-\right\} & \eqmark
+{r_{1-1/2} \over r_{1}-r_{0}} \left(-{I_m \over 2 \pi r_0 L}\right) \Delta r_1 - \right. & \eqmark \cr 
+& \left. { r_{1+1/2} \over r_{2}-r_{1}} \left[ q_{1+1/2}(C^{j+1}_{1}\Delta r_{2} + C^{j+1}_{2}\Delta r_{1}) - 2D^{j+1}_{1+1/2}(C^{j+1}_{2}-C^{j+1}_{1}) \right] 
+\right\} & 
 }
 $$
 
@@ -285,37 +287,63 @@ When $C = 0$ the maximum solute flux ($I_m$) is set to zero and the equation bec
 Rearrangement of Eq. \ref[will] to Eq. \ref[matrix] results in the following coefficients:
 $$
 \eqalignno{
-b_1 &= r_1 \theta^{j+1}_1 + {\Delta t \over 2 \Delta r_1} \left[ {r_{1+1/2} \over (r_2-r_1)} (2D^{j+1}_{1+1/2} + q_{1+1/2} \Delta r_2) \right] \cr
-c_1 &= -{r_{1+1/2} \Delta t \over 2 \Delta r_1 (r_2-r_1)} (2D^{j+1}_{1+1/2} - q_{1+1/2} \Delta r_1) \cr
-f_1 &= r_1 \theta^j_1 C^j_1 - {r_{1-1/2} \over r_{1}-r_{0}} I_m {\Delta t \over 4 \pi r_0 L}
+b_1 &= r_1 \theta^{j+1}_1 + {\Delta t \over 2 \Delta r_1} \left[ {r_{1+1/2} \over (r_2-r_1)} (2D^{j+1}_{1+1/2} + q_{1+1/2} \Delta r_2) \right] & \eqmark \cr
+c_1 &= -{r_{1+1/2} \Delta t \over 2 \Delta r_1 (r_2-r_1)} (2D^{j+1}_{1+1/2} - q_{1+1/2} \Delta r_1) & \eqmark \cr
+f_1 &= r_1 \theta^j_1 C^j_1 - {r_{1-1/2} \over r_{1}-r_{0}} I_m {\Delta t \over 4 \pi r_0 L} & \eqmark
 }
 $$
 
-* {\bf Concentration dependent model (proposed)}
+* {\bf Linear concentration dependent model (LU)}
 
-Applying boundary conditions of concentration dependent solute flux, the first and second term of the right-hand side of Eq. \ref[main_eq] are equal to $-(\alpha + q_0)C^{j+1}_1 \Delta r_1$ while $C < C_{lim}$ and $C > C_2$:
+Applying boundary conditions of linear concentration dependent solute flux, the first and second term of the right-hand side of Eq. \ref[main_eq] are equal to $-(\alpha + q_0)C^{j+1}_1 \Delta r_1$ while $C < C_{lim}$ and $C > C_2$:
 $$
 \eqalignno{
-\label[prop]
-\theta^{j+1}_1 C^{j+1}_1 - \theta^j_1 C^j_1 &= {\Delta t \over 2 r_1 \Delta r_1} \times \cr
+\label[LU]
+\theta^{j+1}_1 &C^{j+1}_1 - \theta^j_1 C^j_1 = {\Delta t \over 2 r_1 \Delta r_1} \times \cr
 & \left\{  
-{r_{1-1/2} \over r_{1}-r_{0}} \left[-(\alpha + q_0)\right] C^{j+1}_1 \Delta r_1 \right. - \cr
+{r_{1-1/2} \over r_{1}-r_{0}} \left[-(\alpha + q_0)\right] C^{j+1}_1 \Delta r_1 \right. - & \eqmark \cr
 & \left. { r_{1+1/2} \over r_{2}-r_{1}} \left[ q_{1+1/2}(C^{j+1}_{1}\Delta r_{2} + C^{j+1}_{2}\Delta r_{1}) - 2D^{j+1}_{1+1/2}(C^{j+1}_{2}-C^{j+1}_{1}) \right] 
-\right\} & \eqmark
+\right\} &
 }
 $$
 
 When $C=0$ the solute flux is set to zero and the equation is equal to Eq. \ref[lier]. While $C_{lim}~\leq~C~\leq~C_2$, the solute flux density is constant and the equation is equal to Eq. \ref[will].
-Rearrangement of Eq. \ref[prop] to Eq. \ref[matrix] results in the following coefficients:
+Rearrangement of Eq. \ref[LU] to Eq. \ref[matrix] results in the following coefficients:
 $$
 \eqalignno{
-b_1 &= r_1 \theta^{j+1}_1 + {\Delta t \over 2 \Delta r_1} \left[ {r_{1+1/2} \over (r_2-r_1)} (2D^{j+1}_{1+1/2} + q_{i+1/2} \Delta r_2) -{r_{1-1/2} \over r_{1}-r_{0}}\left(\alpha + q_0 \right) \Delta r_1\right] \cr
-c_1 &= -{r_{1+1/2} \Delta t \over 2 \Delta r_1 (r_2-r_1)} (2D^{j+1}_{1+1/2} - q_{1+1/2} \Delta r_1)
+b_1 &= r_1 \theta^{j+1}_1 + {\Delta t \over 2 \Delta r_1} \left[ {r_{1+1/2} \over (r_2-r_1)} (2D^{j+1}_{1+1/2} + q_{i+1/2} \Delta r_2) -{r_{1-1/2} \over r_{1}-r_{0}}\left(\alpha + q_0 \right) \Delta r_1\right] & \eqmark \cr 
+c_1 &= -{r_{1+1/2} \Delta t \over 2 \Delta r_1 (r_2-r_1)} (2D^{j+1}_{1+1/2} - q_{1+1/2} \Delta r_1) & \eqmark
 }
 $$
 % bs(1) = dt/(2.*dr(1)) * ((Imm/c_lim*dr(1)+q(0)*dr(1))/(2.*PI*Lrv*z*r(0)) + rsup(1)/(r(2)-r(1)) * (2*D(1)+q(1)*dr(2)) )+ r(1)*theta(1)
+
+* {\bf Nonlinear concentration dependent model (NLU)}
+
+Applying boundary conditions of nonlinear concentration dependent solute flux, the first and second term of the right-hand side of Eq. \ref[main_eq] are equal to $-({I_m \over 2 \pi r_0 L(K_m +C^{j+1}_1)} + q_0)C^{j+1}_1 \Delta r_1$ while $C < C_{lim}$ and $C > C_2$:
+$$
+\eqalignno{
+\label[NLU]
+\theta^{j+1}_1 &C^{j+1}_1 - \theta^j_1 C^j_1 = {\Delta t \over 2 r_1 \Delta r_1} \times \cr
+& \left\{  
+{r_{1-1/2} \over r_{1}-r_{0}} \left[-(\alpha + q_0)\right] C^{j+1}_1 \Delta r_1 \right. - & \eqmark \cr
+& \left. { r_{1+1/2} \over r_{2}-r_{1}} \left[ q_{1+1/2}(C^{j+1}_{1}\Delta r_{2} + C^{j+1}_{2}\Delta r_{1}) - 2D^{j+1}_{1+1/2}(C^{j+1}_{2}-C^{j+1}_{1}) \right] 
+\right\} & 
+}
+$$
+
+Rearrangement of Eq. \ref[NLU] to Eq. \ref[matrix] results in the following coefficients:
+$$
+\eqalignno{
+\label[b1]
+b_1 &= r_1 \theta^{j+1}_1 + {\Delta t \over 2 \Delta r_1} \left[ {r_{1+1/2} \over (r_2-r_1)} (2D^{j+1}_{1+1/2} + q_{i+1/2} \Delta r_2) - \right. \cr
+& \left. {r_{1-1/2} \over r_{1}-r_{0}}\left({I_m \over 2 \pi r_0 L(K_m +C^{j+1}_1)} + q_0 \right) \Delta r_1\right] & \eqmark \cr
+c_1 &= -{r_{1+1/2} \Delta t \over 2 \Delta r_1 (r_2-r_1)} (2D^{j+1}_{1+1/2} - q_{1+1/2} \Delta r_1) & \eqmark
+}
+$$
+
 \enditems
 \enditems
+The value of $C^{j+1}_1$ in Equation \ref[b1] is found using the iterative Newton-Raphson method. Note that since this is a one-dimensional microscopic model, it is assumed that the root has the same characteristcs in all vertical soil profile (along its vertical axis), thus, water and solute transport from soil towards the roots and uptakes are occurring at the same rate in the vertical profile. It is possible to couple this model in another one that has discretized soil layers. For a 2D model (depth and radial distance), the solutions presented here are applied in each layer independently. For a 1D model (only depth), an average of water and solute content through the horizontal profile has to be computed.
 
 
 

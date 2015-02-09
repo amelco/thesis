@@ -1,0 +1,36 @@
+% Table with soil types
+
+% macro pmb to bold math symbols
+\long\def\pmb#1{\setbox0=\hbox{#1}\copy0\kern-\wd0%
+\kern0.02em\raise0.02ex\copy0\kern-\wd0\kern0.02em\box0}
+
+{\tenpoint
+\midinsert\medskip \label[general_param]
+\caption/t {System parameters used in simulations scenarios}
+\def\tabiteml{\hbox to 4pt{}}  % left material before each \table item
+\def\tabitemr{\hbox to 4pt{}}
+\ctable{lcccc}{
+\crl\hfil 
+{\bf Description}		& {\bf Symbol}	& {\bf Scenario}	& {\bf Value}	& {\bf Unit}	\cr 
+{\bf }				& {\bf }	& {\bf description}	& 		& 		\crl \tskip4pt
+Root radius			& $r_0$		& 		 	& 0.5		& mm 		\cr 
+Limiting root potential		& \hlim		& 		 	& -150		& m		\cr \tskip4pt
+				& 		& Low root density 	& 0.01		& 		\cr
+Root density			& $L$		& Medium root density 	& 0.1		& cm cm$^{-3}$	\cr
+				& 		& High root densit 	& 1		& 		\cr \tskip4pt
+				& 		& Low root density 	& 56.5 		& 		\cr
+Half distance between roots	& $r_m$		& Medium root density 	& 17.8 		& mm		\cr
+				& 		& High root densit 	& 5.65 		& 		\cr \tskip4pt
+Potential transpiration rate	& $T_p$		& Low 		 	& 6 		& mm d$^{-1}$	\cr
+				& 		& High 		 	& 3		& 		\cr \tskip4pt
+Initial salt content in soil water& $C_{ini}$	& Low			& 14 		& mol cm$^{-3}$	\cr
+				& 		& High			& 140		& 		\cr \tskip4pt
+Diffusoin coefficient in water	& $D_{m,w}$	& 		 	& 1.98 10$^{-9}$& m$^2$ s$^{-1}$\cr
+Dispersivity			& $\tau$	& 		 	& 0.0005	& m		\cr \tskip4pt
+				& 		& Sand		 	& 		& 		\cr
+Soil type			& 		& Clay		 	& Table \ref[soils]& 		\cr
+				& 		& Loam		 	& 		& 		\crl
+%{\tenpoint Source: \citeonline[wosten]} \hfill  & & & & & & & \cr
+}
+\endinsert
+}
