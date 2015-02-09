@@ -1,0 +1,321 @@
+\def\clim{$C_{lim}$}
+\def\c2{$C_2$}
+\def\im{$I_m$}
+\def\km{$K_m$}
+
+\cleardoublepage
+\chap METHODOLOGY
+
+\sec Michaelis-Menten equation
+
+The solute flux density at root surface ($q_{s0}$) can be related to the Michaelis-Menten (MM) equation as the following:
+\label[eq_solute]
+$$
+q_{s0} = -D {dC \over dr} + q_0 C \simeq {I_m C_0 \over K_m + C_0} + q_0 C_0 \eqmark
+$$
+%
+where $D$ (m$^2$ s$^{-1}$) is the effective diffusion-dispersion coefficient; $q_0$ (m$^2$ s$^{-1}$) is the water flux density at the root surface; $I_m$ (mol m$^2$ s$^{-1}$) and $K_m$ (mol m$^{-3}$) are the MM parameters that represent the maximum solute uptake rate and the affinity of the plant to the solute type, respectively; and $C_0$ (mol m$^{-3}$) is the solute concentration in the soil solution at root surface.
+
+
+%Ions and water move into the plant independently, reflecting entirely different physical-chemical forces; nevertheless, the water moving to the root carries ions in it. A portion of these ions is taken up by the plant by an independent mechanism. The remainder is left behind at the root surface or on the soil particles in the vicinity of the root where they represent a subsequent source of supply. 81.pdf, pg. 98
+%This can explain the analysis of diffusion and convection (active and passive) separately.
+
+We assume that the diffusive and convective parts of the original equation is similar to the active and passive uptakes of the MM equation, respectively, at root suurface. It is shown in Figure 0 XXX the two proposed partitioning of active and passive uptakes, for a constant water flux density. Figure 0a is linear, which is a simplification of MM equation to facilitate its use in the numerical solution. Figura 0a is the MM equation itself.
+
+\medskip
+\label[fig_MM]
+\picw=10cm \cinspic I_and_Linear.pdf
+\caption/f {Uptake (influx) rate as a function of concentration in soil water for [a] nonlinear case and [b] linear case }
+\medskip
+
+%EXPLAIN ACTIVE AND PASSIVE
+ 
+%Figure 0. Uptake rate (influx rate) as a function of concentration in soil water for [a] nonlinear case and [b] linear case
+
+In the linearized equation (Figure 0b), the slope $\beta$ of the total uptake line (continuous line), for concentration values smaller than $C_{lim}$, can be found by the relation $I_m/C{lim}$, since the line starts at the origin. According to the MM equation, for values smaller than $C_{lim}$, the solute uptake is concentration dependent and the uptake is smaller than $I_m$. For values greater than $C_2$ the uptake is also concentration dependent but due to transport of mass by water flow only, i.e, active uptake is zero and the overall uptake is passive.
+
+To find \clim, we set the solute flux density to \im:
+$$
+I_m = {I_m C_0 \over K_m + C_0} + q_0 C_0 \,\,.
+$$
+
+Solving for $C$, we find \clim as the positive value of:
+$$
+C_{lim} = -{K_m \pm \left( {K_m}^2 + 4{I_m K_m / q_0} \right)^{1/2} \over 2 }
+$$
+
+Finally, $\beta$ can be defined as the positive value of:
+\label[eq_beta]
+$$
+\beta = -{ I_m \over C_{lim} } = -{2 I_m \over K_m \pm \left( {K_m}^2 + 4{I_m K_m / q_0} \right)^{1/2}} \eqmark
+$$
+
+At concentration values greater than $C_2$, the solute uptake is driven only by mass flow of water and the active uptake is zero. Thus, $C_2$ can be found as:
+$$
+C_2 = {-I_m \over q_0}
+$$
+
+%WRITE IN RADIAL COORDINATES??
+%$$
+%C_2 = {-I_m \over 2 \pi L r_0 q_0}
+%$$
+
+The partitioning between active ($\alpha$) and passive uptake ($q_0$) is done by difference, as the values of total uptake and passive uptake is always known:
+$$
+\eqalignno{
+&q_{s0} = (\hbox{active slope} + \hbox{passive slope})\,C_0 = \beta\,C_0 \cr
+&\hbox{passive slope} = q_0 \cr
+&\hbox{active slope} = \beta - q_0 = \alpha\cr
+\label[eq_linear]
+&q_{s0} = (\alpha + q_0)\,C_0 & \eqmark
+}
+$$
+
+The equation \ref[eq_linear] is, therefore, the linearization of equation \ref[eq_solute] for values of concentration smaller than $C_{lim}$ and greater than $C_2$.
+
+%Other authors also makes a separation of active and passive as the diffusive and convective part of eq. \ref[eq_solute], such as Silberbush, Ben-Asher and Ephrath (2005) \cite[silberbush] 102.pdf on calcium uptake in a soilless culture, Schröder et al. (2012) \cite[schroder] 48.pdf, Ungs, Boersma and Akratanakul (1982) \cite[ungs] 11.pdf, Raij et al. (2013) 43.pdf \cite[raij] and Simunek and Hopmans (2009) \cite[simunek] 68.pdf just to cite some.
+
+\sec Water and solute transport equations
+
+The water and solute differential equations for one-dimensional axisymetric flow were solved numerically and simulated iteratively as described in the following.
+The algorithm was based on the solution proposed by \citeonline[lierwater] and \citeonline[liersolute].
+
+The Richards equation for one-dimensional axisymetric flow, assuming no sink or source and no gravitational component, can be written as:
+\label[partial_water]
+$$
+{\partial \theta \over \partial H} {\partial H \over \partial t} = {1 \over r}{\partial \over \partial r} \left( r K {\partial H \over \partial r} \right) \eqmark
+$$
+%
+where $\theta$ (m$^3$ m$^{-3}$) is the water content, $H$ (m) is the sum of pressure ($h$) and osmotic ($h_\pi$) heads, $t$ (s) is the time, $r$ (m) is the distance from the axial center and $K$ (m s$^{-1}$) is the hydraulic conductivity.
+
+Relations between $K$, $\theta$ and $h$ are described by the van Genuchten equation system:
+$$
+\eqalignno{
+\Theta &= [1+|\alpha h|^n]^{(1/n)-1} = {(\theta - \theta_r) \over (\theta_s - \theta_r)} \cr
+K &= K_{s} \Theta^\lambda [1-(1-\Theta^{n/(n-1)})^{(1-(1/n)})]^2
+}
+$$
+where $\theta_r$ and $\theta_s$ (m$^3$ m$^{-3}$) are residual water content and saturated water content, respectively; $\alpha$ (m$^{-1}$), $n$ and $\lambda$ are empirical parameters.
+
+The differential equation for convection-dispersion for transient one-dimensional axisymetric flow can be written as:
+\label[partial_eq]
+$$
+r {\partial(\theta C) \over \partial t} = -{\partial \over \partial r} \biggl(r q C \biggr) + {\partial  \over \partial r} \left( r D {\partial C \over \partial r} \right) \eqmark
+$$
+%
+where $C$ (mol m$^{-3}$) is the solute concentration in the soil solution, $q$ (m s$^{-1}$) is the water flux density and $D$ (m$^2$ s$^{-1}$) is the effective diffusion-dispersion coefficient.
+
+The solute flux density at the outermost compartment (half distance between roots, i.e., $r = r_m$) is set to zero. 
+The boundary conditions at innermost compartment (root surface, i.e, $r=r_0$) are set according to the model type, which are: 
+no solute uptake model (de Jong van Lier, 2009), constant uptake model (de Willigen, 1994) and linear and nonlinear concentration--dependent model (proposed).
+For short, let us call them NU, CU, LU and NLU models, respectivelly.
+
+{\bf For no solute uptake (NU) model type}: the solute flux density is set to zero
+$$
+q_{s0} = -D {dC \over dr} + q_0C = 0
+$$
+
+{\bf For constant solute uptake (CU) model type}: the solute flux density is set to the maximum and constant solute uptake rate $I_m$. For cylindrical coordinates, the solute flux density of each root is
+$$
+q_{s0} = -D {dC \over dr} + q_0C = -{I_m \over 2 \pi r_0  L}
+$$
+%
+where $L$ (m) is the root length, $r_0$ (m) is the root radius and $I_m$ has units of mol s$^{-1}$.
+
+{\bf For linear concentration--dependent uptake (LU) model type}: the solute flux density is set to the linearized piecewise MM equation
+$$
+q_{s0} = -D {dC \over dr} + q_0C = -(\alpha + q_0) C_0 
+$$
+
+{\bf For nonlinear concentration--dependent uptake (NLU) model type}: the solute flux density is set to the MM equation
+$$
+q_{s0} = -D {dC \over dr} + q_0C = -\left({I_m \over K_m + C_0} + q_0 \right) C_0
+$$
+
+\sec Implicit numerical solution
+
+The combined water and salt movement is simulated iteratively. In a first step, the water movement toward the root is simulated, assuming salt concentrations from the previous time step. In a second step, the salt contents per segment are updated and new values for the osmotic head in all segments are calculated. The first step is then repeated with updated values for the osmotic heads. This process is repeated until the pressure head values and osmotic head values between iterations converge.
+Two flowcharts with the algorithm procedures to solve water and solute iterative equations can be found in the Appendix.
+
+\sec Water
+
+The implicit numerical discretization and the solution for the Eq. \ref[partial_water] was made according to de Jong van Lier et al. (2006), which has the following criteria:
+\begitems
+\style i
+* there is no sink (the only water exit is the root surface located at the inner side of the first compartment)
+* water flux density at the outermost compartment is set to zero
+* water flux density at the innermost compartment (at root surface) is set equal to water flux density entering the root, which is determined by transpiration rate and total root area
+%* if the pressure head in the innermost compartment drops below a critical value $h_{lim}$ (in this study $h_{lim}=-150$ m), pressure head is fixed to this critical value and the water flux density adjusted to that
+\enditems
+
+\sec Solute
+
+Fully implicit numerical discretization of Eq. \ref[partial_eq] gives:
+$$
+\eqalignno{
+\label[main_eq]
+\theta^{j+1}_i C^{j+1}_i - \theta^j_i C^j_i &= {\Delta t \over 2 r_i \Delta r_i} \times \cr
+& \left\{ 
+{r_{i-1/2} \over r_i-r_{i-1}} \left[ q_{i-1/2}(C^{j+1}_{i-1}\Delta r_i + C^{j+1}_{i}\Delta r_{i-1}) - 2D^{j+1}_{i-1/2}(C^{j+1}_i-C^{j+1}_{i-1}) \right]\right. - & \eqmark \cr
+&\left. {r_{i+1/2} \over r_{i+1}-r_{i}} \left[ q_{i+1/2}(C^{j+1}_{i}\Delta r_{i+1} + C^{j+1}_{i+1}\Delta r_{i}) - 2D^{j+1}_{i+1/2}(C^{j+1}_{i+1}-C^{j+1}_{i}) \right] 
+\right\}
+}
+$$
+where $i\,(1 \leq i \leq n)$ is the segment number and $j$ is the time step.
+
+The boundary conditions at the root surface, for solutes, (inner boundary, $i=1$) will be of zero, constant and concentration dependent solute flux, according to the models of de Jong van Lier (2009), de Willigen (1984) and proposed model, respectively.
+
+The algorithm used in numerical simulations to solve Eq. \ref[main_eq] consist in finding $C^{j+1}_i$ for each segment, which can be done by solving the tridiagonal matrix as follows
+\label[matrix]
+$$
+\left [ \matrix{
+ b_1 & c_1 & & & &  \cr
+ a_2 & b_2 & c_2 & & &  \cr
+  & a_3 & b_3 & c_3 & &  \cr
+  &  & \ddots & \ddots & \ddots &  \cr
+  &  & & a_{n-1} & b_{n-1} & c_{n-1}  \cr
+  &  & & & a_{n} & b_{n}  \cr}  \right]
+\left [ \matrix{
+ C^{j+1}_1 \cr
+ C^{j+1}_2 \cr
+ C^{j+1}_3 \cr
+ \vdots \cr
+ C^{j+1}_{n-1} \cr
+ C^{j+1}_n \cr} \right ]
+=
+\left [ \matrix{
+ f_1 \cr
+ f_2 \cr
+ f_3 \cr
+ \vdots \cr
+ f_{n-1} \cr
+ f_n \cr} \right ]
+ \eqmark
+$$
+%
+with $f_i \hbox{(mol m$^{-2}$)}$ defined, unless specified otherwise, as
+$$
+f_i = r_i \theta^j_ i C^j_i
+$$
+%
+and $a_i\, \hbox{(m)}$, $b_i\, \hbox{(m)}$ and $c_i\, \hbox{(m)}$ are defined according to the respective segments and model type as described in the following.
+
+\begitems
+\style n
+
+* The intermediate nodes ($i = 2\hbox{ to }i = n-1$) are the same for all models
+
+Rearrangement of Eq. \ref[main_eq] to eq. \ref[matrix] results in the coefficients:
+$$
+\eqalignno{
+a_i &= -{r_{i-1/2} (2D^{j+1}_{i-1/2} + q_{i-1/2} \Delta r_i)\Delta t \over 2(r_{i}-r_{i-1})\Delta r_i} \cr
+b_i &= r_i \theta^{j+1}_i + {\Delta t \over 2 \Delta r_i} 
+\left[
+{r_{i-1/2} \over (r_i-r_{i-1})} (2D^{j+1}_{i-1/2} - q_{i-1/2} \Delta r_{i-1}) +
+{r_{i+1/2} \over (r_{i+1}-r_{i})} (2D^{j+1}_{i+1/2} + q_{i+1/2} \Delta r_{i+1}) 
+\right] \cr
+c_i &= -{r_{i+1/2} \Delta t \over 2 \Delta r_i (r_{i+1}-r_i)} (2D^{j+1}_{i+1/2} - q_{i+1/2} \Delta r_i) \cr
+}
+$$
+
+* The outer boundary ($i=n$) is also the same for all models, which is of zero solute flux
+
+Applying boundary condition of zero solute flux, the third and forth term from the right hand side of Eq. \ref[main_eq] are equal to zero. Thus, the solute balance for this segment is written as:
+$$
+\eqalignno{
+\label[outer]
+\theta^{j+1}_n C^{j+1}_n - \theta^j_n C^j_n &= {\Delta t \over 2 r_n \Delta r_n} \times \cr
+& \left\{ 
+{r_{n-1/2} \over r_n-r_{n-1}} \left[ q_{n-1/2}(C^{j+1}_{n-1}\Delta r_n + C^{j+1}_{n}\Delta r_{n-1}) - 2D^{j+1}_{n-1/2}(C^{j+1}_n-C^{j+1}_{n-1}) \right]
+\right\} & \eqmark
+}
+$$
+
+Rearrangement of Eq. \ref[outer] to Eq. \ref[matrix] results in the coefficients:
+$$
+\eqalignno{
+a_n &= -{r_{n-1/2} (2D^{j+1}_{n-1/2} + q_{n-1/2} \Delta r_n)\Delta t \over 2(r_{n}-r_{n-1})\Delta r_n} \cr
+b_n &= r_n \theta^{j+1}_n + {\Delta t \over 2 \Delta r_n} 
+\left[
+{r_{n-1/2} \over (r_n-r_{n-1})} (2D^{j+1}_{n-1/2} + q_{n-1/2} \Delta r_{n-1})
+\right]
+}
+$$
+
+* The inner boundary ($i=1$)
+
+\begitems
+\style a
+
+* {\bf Zero uptake model (de Jong van Lier)}
+
+Applying boundary condition of zero solute flux, the first and second term of the right-hand side of Eq. \ref[main_eq] are equal to zero:
+$$
+\eqalignno{
+\label[lier]
+\theta^{j+1}_1 C^{j+1}_1 - \theta^j_1 C^j_1 &= {\Delta t \over 2 r_1 \Delta r_1} \times \cr
+& \left\{ 
+{r_{1+1/2} \over r_{2}-r_{1}} \left[ -q_{1+1/2}(C^{j+1}_{1}\Delta r_{2} + C^{j+1}_{2}\Delta r_{1}) + 2D^{j+1}_{1+1/2}(C^{j+1}_{2}-C^{j+1}_{1}) \right] 
+\right\} & \eqmark
+}
+$$
+
+Rearrangement of Eq. \ref[lier] to Eq. \ref[matrix] results in the following coefficients:
+$$
+\eqalignno{
+b_1 &= r_1 \theta^{j+1}_1 + {\Delta t \over 2 \Delta r_1} \left[ {r_{1+1/2} \over (r_2-r_1)} (2D^{j+1}_{1+1/2} + q_{1+1/2} \Delta r_2) \right] \cr
+c_1 &= -{r_{1+1/2} \Delta t \over 2 \Delta r_1 (r_2-r_1)} (2D^{j+1}_{1+1/2} - q_{1+1/2} \Delta r_1) \cr
+}
+$$
+
+* {\bf Constant uptake model (de Willigen)}
+
+Applying boundary conditions of constant solute flux, the first and second term of the right-hand side of Eq. \ref[main_eq] are equal to $-{I_m \over 2 \pi r_0 L}\Delta r_1$ while $C > 0$:
+$$
+\eqalignno{
+\label[will]
+\theta^{j+1}_1 &C^{j+1}_1 - \theta^j_1 C^j_1 = {\Delta t \over 2 r_1 \Delta r_1} \times \cr
+& \left\{  
+{r_{1-1/2} \over r_{1}-r_{0}} \left(-{I_m \over 2 \pi r_0 L}\right) \Delta r_1 - { r_{1+1/2} \over r_{2}-r_{1}} \left[ q_{1+1/2}(C^{j+1}_{1}\Delta r_{2} + C^{j+1}_{2}\Delta r_{1}) - 2D^{j+1}_{1+1/2}(C^{j+1}_{2}-C^{j+1}_{1}) \right] 
+\right\} & \eqmark
+}
+$$
+
+When $C = 0$ the maximum solute flux ($I_m$) is set to zero and the equation becomes equal to Eq. \ref[lier].
+Rearrangement of Eq. \ref[will] to Eq. \ref[matrix] results in the following coefficients:
+$$
+\eqalignno{
+b_1 &= r_1 \theta^{j+1}_1 + {\Delta t \over 2 \Delta r_1} \left[ {r_{1+1/2} \over (r_2-r_1)} (2D^{j+1}_{1+1/2} + q_{1+1/2} \Delta r_2) \right] \cr
+c_1 &= -{r_{1+1/2} \Delta t \over 2 \Delta r_1 (r_2-r_1)} (2D^{j+1}_{1+1/2} - q_{1+1/2} \Delta r_1) \cr
+f_1 &= r_1 \theta^j_1 C^j_1 - {r_{1-1/2} \over r_{1}-r_{0}} I_m {\Delta t \over 4 \pi r_0 L}
+}
+$$
+
+* {\bf Concentration dependent model (proposed)}
+
+Applying boundary conditions of concentration dependent solute flux, the first and second term of the right-hand side of Eq. \ref[main_eq] are equal to $-(\alpha + q_0)C^{j+1}_1 \Delta r_1$ while $C < C_{lim}$ and $C > C_2$:
+$$
+\eqalignno{
+\label[prop]
+\theta^{j+1}_1 C^{j+1}_1 - \theta^j_1 C^j_1 &= {\Delta t \over 2 r_1 \Delta r_1} \times \cr
+& \left\{  
+{r_{1-1/2} \over r_{1}-r_{0}} \left[-(\alpha + q_0)\right] C^{j+1}_1 \Delta r_1 \right. - \cr
+& \left. { r_{1+1/2} \over r_{2}-r_{1}} \left[ q_{1+1/2}(C^{j+1}_{1}\Delta r_{2} + C^{j+1}_{2}\Delta r_{1}) - 2D^{j+1}_{1+1/2}(C^{j+1}_{2}-C^{j+1}_{1}) \right] 
+\right\} & \eqmark
+}
+$$
+
+When $C=0$ the solute flux is set to zero and the equation is equal to Eq. \ref[lier]. While $C_{lim}~\leq~C~\leq~C_2$, the solute flux density is constant and the equation is equal to Eq. \ref[will].
+Rearrangement of Eq. \ref[prop] to Eq. \ref[matrix] results in the following coefficients:
+$$
+\eqalignno{
+b_1 &= r_1 \theta^{j+1}_1 + {\Delta t \over 2 \Delta r_1} \left[ {r_{1+1/2} \over (r_2-r_1)} (2D^{j+1}_{1+1/2} + q_{i+1/2} \Delta r_2) -{r_{1-1/2} \over r_{1}-r_{0}}\left(\alpha + q_0 \right) \Delta r_1\right] \cr
+c_1 &= -{r_{1+1/2} \Delta t \over 2 \Delta r_1 (r_2-r_1)} (2D^{j+1}_{1+1/2} - q_{1+1/2} \Delta r_1)
+}
+$$
+% bs(1) = dt/(2.*dr(1)) * ((Imm/c_lim*dr(1)+q(0)*dr(1))/(2.*PI*Lrv*z*r(0)) + rsup(1)/(r(2)-r(1)) * (2*D(1)+q(1)*dr(2)) )+ r(1)*theta(1)
+\enditems
+\enditems
+
+
+
