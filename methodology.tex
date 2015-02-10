@@ -345,5 +345,14 @@ $$
 \enditems
 The value of $C^{j+1}_1$ in Equation \ref[b1] is found using the iterative Newton-Raphson method. Note that since this is a one-dimensional microscopic model, it is assumed that the root has the same characteristcs in all vertical soil profile (along its vertical axis), thus, water and solute transport from soil towards the roots and uptakes are occurring at the same rate in the vertical profile. It is possible to couple this model in another one that has discretized soil layers. For a 2D model (depth and radial distance), the solutions presented here are applied in each layer independently. For a 1D model (only depth), an average of water and solute content through the horizontal profile has to be computed.
 
+\sec Errors
 
+Cumulative relative error
+
+$$
+\label[error_rel]
+e_{rel} = {\sum_{t=1}^{t_{end}} |C\!L_t - C\!L\!U_t| \over \sum_{t=1}^{t_{end}} C\!L\!U_t} \eqmark
+$$
+%
+where $C\!L_t$ and $C\!L\!U_t$ are the solute concentration in soil water for LU and NLU, respectvely, at a given time $t$, and $t_{end}$ is the end time of the simulation.
 

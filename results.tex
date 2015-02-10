@@ -19,9 +19,39 @@ This section describes how linear (LU) and nonlinear (NLU) solutions simulate th
 * Scenario 4: Medium root length density, Low concentration and High potential transpiration (MrLcHt)
 \enditems
 
-In all simulated scenarios, the difference between LU and NLU appears only when the solute concentration ($C$) is below the threshold value \clim. This is expected because of the nature of the piecewise MM equation used in the model, as can be observed in the equations (19 to 26). For both cases (LU and NLU), when solute concentration values are above \c2, all the solute transport from soil to root is most driven by convection, therefore the uptake is passive only. In this case, active uptake is zero. With $C$ between the two threshold values (\c2 and \clim), the solute flux density is constant and only for values below \clim NLU and LU are different.
 
-In the detailed Figures (1b, 2b and 7b), it is possible to see the stability problem with the numerical solution for NLU. The changing from equation 21 to equation 25 (change of boundary condition from constant to nonlinear uptake rate) makes the numeric take some time to stabilize at the initial times. Many time and space steps combinations were used, trying to avoid this stabilization problem and was observed that the solution is very dependent on space and time discretization. Choosing a finer space discretization seems to decrease the stabilization problem but makes the simulation lasts longer. It needs to be found an optimal value for time and space step relation. Stabilization problems were not found in LU.
+In all simulated scenarios, the difference between LU and NLU occurs only at values of solute concentration in soil water ($C$) below the threshold value \clim. This is expected because of the nature of the piecewise MM equation used in the model.
+%{\bf (EXPLAIN THAT THE DIFFERENCE OCCURS ONLY FOR C<Clim IN METHODOLOGY)}
+For both cases (LU and NLU), when solute concentration values are above \c2, all the solute transport from soil to root is most driven by convection, therefore the uptake is passive only. In this case, active uptake is zero. With $C$ between the two threshold values (\c2 and \clim), the solute flux density is constant and only for values below \clim NLU and LU are different.
+
+Figures \ref[diff_t] and \ref[diff_r] show the differences between $C$ outputs of LU and NLU as a function of time and radial distance of axial center, respectively, for scenario 1.
+The difference was calculated as
+$$
+\label[eq_diff]
+d\!i\!f\!f\!.=C\!L\!U-C\!N\!L\!U \eqmark
+$$
+%
+where $C\!L\!U$ and $C\!N\!L\!U$ are the concentrations for LU and for NLU, respectively.
+
+When comparing differences in concentration between the two models, one has to be aware that $C\!N\!L\!U<C\!L\!U$ means that the uptake for NLU was greater than LU uptake since with a higher uptake, a higher amount of solute goes out from soil solution to inside the plant.
+Therefore, according to Equation \ref[eq_diff], if $d\!i\!f\!f\!.<0$ then $C\!N\!L\!U>C\!L\!U$ and LU uptake is greater; if $d\!i\!f\!f\!.>0$ then $C\!N\!L\!U<C\!L\!U$ and NLU uptake is greater. Said that, we can see in Figure \ref[diff_t] that the uptake for NLU was greater then LU uptake at times when $C<C_{lim}$. This reflects a change also in the concentration profile for the latter times. Figure \ref[diff_r] shows the concentration profile at day 5 and the difference between CLU and CNLU through the profile. The greater NLU uptake increased the concentration gradient causing a higher solute flux (most diffusive since water flux is very small) from soil towards the root, resulting in a slightly higher concentration for NLU at root surface ($d\!i\!f\!f\!.<0$).
+
+Nevertheless, the difference between LU and NLU is negiglibe when it is considered the cumulative uptake. EXPLAIN
+The results of the relative accumulated error, according to Equation \ref[error_rel], was of 0.023\% and 0.049\% over time and distance, respectively. For the other scenarios the differences were of XXX\% and XXX\%; XXX\% and XXX\%; and XXX\% and XXX\% for scenarios 2, 3 and 4, respectively.
+
+\medskip
+\label[diff_t]
+\picw=13cm \cinspic diffs_t.pdf
+\caption/f {Difference between the solute concentration in soil water ($C$) at root surface ($r_0$) output for LU and NLU and $C$ at $r_0$ as a function of time; and the relative error}
+\medskip
+
+\medskip
+\label[diff_r]
+\picw=13cm \cinspic diffs_r.pdf
+\caption/f {Difference between the solute concentration in soil water ($C$) output for LU and NLU and $C$ as a function of distance from axial center; and the relative error}
+\medskip
+
+In addition, some part of the differences was due to stability problems with the numerical solution for NLU. The changing from equation 21 to equation 25 (change of boundary condition, from constant to nonlinear uptake rate) makes the numeric solution take some time to stabilize at the initial times. Many time and space steps combinations were used as an attempt of minimize the problem. Choosing a finer space discretization seemed to decrease the stabilization problem but makes the simulation lasts longer. It needs to be found an optimal value for time and space step relation. Stabilization problems were not found in LU.
 
 \citeonline[roose2009] stated that, for numerical solutions of convection-dispersion equation, the convective part must use an explicit scheme because convection, unlike diffusion, occurs only in one direction thus the solution at the following time step depends only on the values within the domain of influence of the previous time step. This set bounds on time and space steps, with a condition of stability given by ${r_0 q_0 \Delta t \over D} < \Delta r$. As the proposed model uses a fully implicit scheme, that might be the cause of the stabilization problems.
 
@@ -30,6 +60,7 @@ No significant difference between LU and NLU was verified in all output files (w
 For low concentration (Figures 8 and 9a), it is noticeable that LU presents values of solute concentration higher than NLU. This is expected because in LE, solute uptake is always less than in NLU due to its linearization. Nevertheless, when the overall results are analyzed (Figure 9b), we can see that the difference is small and can be neglected. This conclusion (negligible difference) can be verified once more when analyzing the cumulative solute uptake (Figure 10). 
 
 The conclusion can be either to choose LU as it takes less time to run and has no stabilization problems, or to choose NLU except for the cases in which the stability problem is significantly high. Note that this is the conclusion for those specific scenarios as the results can be significantly different for different soil and solute types.
+
 
 \sec Solute uptake models comparison
 
