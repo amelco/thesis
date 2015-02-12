@@ -333,7 +333,7 @@ FUNCTION {no.space} { { "" } swap$ }
 FUNCTION {space.word} { " " swap$ * " " * }
 
 FUNCTION {bbl.and}
-{ abnt.and.type #0 = {" e "} 'skip$ if$
+{ abnt.and.type #0 = {" and "} 'skip$ if$
   abnt.and.type #1 = {" \& "} 'skip$ if$}
 FUNCTION {bbl.chapter} { "" } % Mudei para "" p poder editar segundo o idioma, era "cap."
 FUNCTION {bbl.colon} {": "}
