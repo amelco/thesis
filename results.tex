@@ -1,11 +1,13 @@
 \cleardoublepage
 \chap RESULTS AND DISCUSSION
 
-The simulations were performed using the hydraulic parameters from the Dutch Staring series \cite[wosten] for three typical top soils, as listed in Table 1. The general system parameters for the different scenarios are listed in Table 2. Values of root length density, salt content and relative transpiration were chosen to change, reflecting different possible scenarios that would occur in a practical situation. The chosen MM parameters were of NO$_3^-$ ion, according to \citeonline[roose2009].
+The simulations were performed using the hydraulic parameters from the Dutch Staring series \cite[wosten] for three typical top soils, as listed in Table \ref[soils]. The general system parameters for the different scenarios are listed in Table \ref[general_param] and values for the Michaelis-Menten parameters in Table \ref[MMparam]. Values of root length density, salt content and relative transpiration were chosen to change, reflecting different possible scenarios that would occur in a practical situation. The chosen MM parameters were of K$^+$ solute.
 
 \input tables/soils
 
 \input tables/general_param
+
+\input tables/MMparam
 
 \sec Linear versus nonlinear comparison
 
@@ -98,6 +100,30 @@ Figure 14 shows the relative transpiration as a function of time for the three m
 Figure 15 shows that CU, LU and NLU have a more negative pressure head value for the onset of limiting hydraulic condition when compared to NU due to solute uptake that causes a increase in osmotic head (becomes less negative) and, in turn, decreasing pressure head. Thus, the first falling rate phase of relative transpiration extends in time. The solute uptake at the beginning of the simulation (for concentrations greater than \c2) caused a greater accumulation of solute in the plant and also influenced the final solute profile, in which LU and NLU have less solute left in the soil profile (Figure 13).
 
 At the onset of the second falling rate phase ($C<C_{lim}$), water and solute fluxes decreases rapidly. In Figures 10 and 20 we can see that from day 4 to day 5, the fluxes are rapidly reduced, the water flux is near zero in the whole profile, meaning zero or really small convection. Thus, within this period, the transport of solute is made mainly by diffusion and the results of this diffusive transport can be visualized in Figures 17 and 18.
+
+\medskip
+\label[cxr]
+\picw=13cm \cinspic cxt.pdf
+\caption/f {Solute concentration in soil water at root surface as a function of time for no uptake (NU), constant (CU) and nonlinear (NLU) uptake models}
+\medskip
+
+\medskip
+\label[cxt]
+\picw=13cm \cinspic cxr.pdf
+\caption/f {Solute concentration in soil water as a function of distance from axial center for no uptake (NU), constant (CU) and nonlinear (NLU) uptake models}
+\medskip
+
+\medskip
+\label[fluxesxt]
+\picw=13cm \cinspic fluxesxt.pdf
+\caption/f {Solute and water fluxes at root surface as a function of time for no uptake (NU), constant (CU) and nonlinear (NLU) uptake models}
+\medskip
+
+\medskip
+\label[Trs]
+\picw=13cm \cinspic Trs.pdf
+\caption/f {Relative transpiration as a function of time and pressure head for no uptake (NU), constant (CU) and nonlinear (NLU) uptake models}
+\medskip
 
 
 
