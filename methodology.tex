@@ -347,9 +347,9 @@ $$
 \enditems
 The value of $C^{j+1}_1$ in Equation \ref[b1] is found using the iterative Newton-Raphson method. Note that since this is a one-dimensional microscopic model, it is assumed that the root has the same characteristcs in all vertical soil profile (along its vertical axis), thus, water and solute transport from soil towards the roots and uptakes are occurring at the same rate in the vertical profile. It is possible to couple this model in another one that has discretized soil layers. For a 2D model (depth and radial distance), the solutions presented here are applied in each layer independently. For a 1D model (only depth), an average of water and solute content through the horizontal profile has to be computed.
 
-\sec Differences
+\sec Linear and Nonlinear differences and statistics
 
-Absolute and relative cumulative differences
+To analyze the differences between the two proposed models (linear and nonlinear), the absolute and relative differences were calculated as follows:
 
 $$
 \eqalignno{
@@ -361,6 +361,10 @@ diff_{rel} &= {\sum_{t=1}^{t_{end}} |C\!L_t - C\!N\!L_t| \over \sum_{t=1}^{t_{en
 $$
 %
 where $C\!L_t$ and $C\!N\!L_t$ are the solute concentration in soil water for LU and NLU, respectvely, at a given time $t$, and $t_{end}$ is the end time of the simulation.
+
+The equations are the same of absolute and relative errors but since we are analyzing differences instead of errors (there is not a right or standard model), we called it differences.
+
+Also, the Mann--Whitney U test was made with two datasets (concentration and cumulative uptake) for the two models. The choice of this test is due to the fact that the distributions for both datasets are not normal, the pairs (concentration for LU and for NLU and cumulative uptake for LU and NLU) are distinct and do not affect each other. This test can decide whether each pair is identical without assuming them to follow the normal distribution (nonparametric test). The null hypothesis ($H_0$) is that both populations (model output data) are the same and the alternate hypothesis ($H_1$) is that one particular model (LU or NLU) has greater values than the other.
 
 %CONSIDERATIONS:
 %•	It is not considered root growth

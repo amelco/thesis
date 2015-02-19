@@ -62,6 +62,11 @@ Similar to Figures \ref[diff_t] and \ref[diff_r], the results of the relative ac
 
 %STATISTICS FOR U TEST HERE
 
+%IMPROVE, POLISH
+The Mann--Whitney U test results corroborates with the differences analysis. Assuming a confidence interval of 95\%, {\it p}-values below 0.05 indicates that the two models are different (one has greater values than the other), i.e. the hypothesis $H_0$ is rejected. Table \ref[Utest] shows that, for scenarios 2, 3 and 4, concentration $C_0$ is significantly different for LU and NLU, but when analysing the cumulative uptake (for the same period of time where $C<C_{lim}$) the difference is not significant.
+
+\input tables/Utest
+
 In addition, some part of the differences was due to stability problems with the numerical solution for NLU. The changing from equation 21 to equation 25 (change of boundary condition, from constant to nonlinear uptake rate) makes the numerical solution take some time to stabilize at the initial times. Many time and space steps combinations were used as an attempt to minimize the problem. Choosing a finer space discretization seems to decrease the stabilization problem but makes the simulation lasts longer. It needs to be found an optimal value for time and space step relation. Stabilization problems were not found in LU.
 
 Since the differences between LU and NLU occurs for low concentration values and low solute flux, changes in relative transpiration are also negligible. The oscillation in the results due to the stabilization problem of the numerical solution is more likely to be noticed than the difference between the models. Figure \ref[diff_tr] shows the relative transpiration as a function of time and details the part where the oscillation occurs for each scenario. The absolute and relative differences are all due to oscillation problem, since $T_r$ turns out to be the same after complete convergence.
