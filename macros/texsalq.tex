@@ -217,6 +217,7 @@
 %\mtdef {keywords}     {Keywords}          {Palavras-chave}   {}
 \mtdef {contents}     {CONTENTS}          {SUMÁRIO}          {}
 \mtdef {tables}       {LIST OF TABLES}    {LISTA DE TABELAS} {}
+\mtdef {symbols}      {LIST OF SYMBOLS}   {LISTA DE SÍMBOLOS} {}
 \mtdef {figures}      {LIST OF FIGURES}   {LISTA DE FIGURAS} {}
 \mtdef {supervisor}   {Supervisor}        {Orientador}       {}
 \mtdef {bibliography} {REFERENCES}        {REFERÊNCIAS}      {}
@@ -588,6 +589,16 @@
    \nonum\chap \mtext{tables}\par
    \bigskip
    \maketot
+   \par
+}
+\addto\makefront{%
+     \cleardoublepage\totpages \vfil\break %comentar essa linha se nao houver tabelas
+}
+\def\totpages{
+   \twelveonehalf%
+   \nonum\chap \mtext{symbols}\par
+   \bigskip
+   \input symbols.tex
    \par
 }
 \addto\makefront{%
