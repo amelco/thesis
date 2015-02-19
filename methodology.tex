@@ -41,6 +41,7 @@ I_m = {I_m C_0 \over K_m + C_0} + q_0 C_0 \,\,. \eqmark
 $$
 
 Solving for $C$, we find \clim as the positive value of:
+\label[eq_clim]
 $$
 C_{lim} = -{K_m \pm \left( {K_m}^2 + 4{I_m K_m / q_0} \right)^{1/2} \over 2 } \eqmark
 $$
@@ -52,6 +53,7 @@ $$
 $$
 
 At concentration values greater than $C_2$, the solute uptake is driven only by mass flow of water and the active uptake is zero. Thus, $C_2$ can be found as:
+\label[eq_c2]
 $$
 C_2 = {-I_m \over q_0} \eqmark
 $$
@@ -138,7 +140,7 @@ $$
 The combined water and salt movement is simulated iteratively. In a first step, the water movement toward the root is simulated, assuming salt concentrations from the previous time step. In a second step, the salt contents per segment are updated and new values for the osmotic head in all segments are calculated. The first step is then repeated with updated values for the osmotic heads. This process is repeated until the pressure head values and osmotic head values between iterations converge.
 Two flowcharts with the algorithm procedures to solve water and solute iterative equations can be found in the Appendix.
 
-\sec Water
+\secc Water
 
 The implicit numerical discretization and the solution for the Eq. \ref[partial_water] was made according to de Jong van Lier et al. (2006), which has the following criteria:
 \begitems
@@ -149,7 +151,7 @@ The implicit numerical discretization and the solution for the Eq. \ref[partial_
 %* if the pressure head in the innermost compartment drops below a critical value $h_{lim}$ (in this study $h_{lim}=-150$ m), pressure head is fixed to this critical value and the water flux density adjusted to that
 \enditems
 
-\sec Solute
+\secc Solute
 
 Fully implicit numerical discretization of Eq. \ref[partial_eq] gives:
 $$
@@ -345,16 +347,20 @@ $$
 \enditems
 The value of $C^{j+1}_1$ in Equation \ref[b1] is found using the iterative Newton-Raphson method. Note that since this is a one-dimensional microscopic model, it is assumed that the root has the same characteristcs in all vertical soil profile (along its vertical axis), thus, water and solute transport from soil towards the roots and uptakes are occurring at the same rate in the vertical profile. It is possible to couple this model in another one that has discretized soil layers. For a 2D model (depth and radial distance), the solutions presented here are applied in each layer independently. For a 1D model (only depth), an average of water and solute content through the horizontal profile has to be computed.
 
-\sec Errors
+\sec Differences
 
-Cumulative relative difference
+Absolute and relative cumulative differences
 
 $$
-\label[error_rel]
-diff_{rel} = {\sum_{t=1}^{t_{end}} |C\!L_t - C\!L\!U_t| \over \sum_{t=1}^{t_{end}} C\!L\!U_t} \eqmark
+\eqalignno{
+\label[error_abs]
+diff_{abs} &= \sum_{t=1}^{t_{end}} |C\!L_t - C\!N\!L_t|  & \eqmark \cr
+\label[error_rel] 
+diff_{rel} &= {\sum_{t=1}^{t_{end}} |C\!L_t - C\!N\!L_t| \over \sum_{t=1}^{t_{end}} C\!L_t} & \eqmark \cr
+}
 $$
 %
-where $C\!L_t$ and $C\!L\!U_t$ are the solute concentration in soil water for LU and NLU, respectvely, at a given time $t$, and $t_{end}$ is the end time of the simulation.
+where $C\!L_t$ and $C\!N\!L_t$ are the solute concentration in soil water for LU and NLU, respectvely, at a given time $t$, and $t_{end}$ is the end time of the simulation.
 
 %CONSIDERATIONS:
 %•	It is not considered root growth
