@@ -356,3 +356,13 @@ $$
 %
 where $C\!L_t$ and $C\!L\!U_t$ are the solute concentration in soil water for LU and NLU, respectvely, at a given time $t$, and $t_{end}$ is the end time of the simulation.
 
+%CONSIDERATIONS:
+%•	It is not considered root growth
+%•	It is not considered movement of solute inside the plant
+%•	There is no maximum uptake. The Im value is considered to be the plant demand. The maximum flux is dependent on water flux times concentration in soil solution at root surface
+%•	The model does not act like as an infinite sink (all solute that arrives the root is extracted)
+%•	The model does not include extraction by root hairs. In some cases (like extraction of P) it can contribute 60% to 90% of the uptake
+%•	It does not consider complementary ion effects
+%•	It does not consider soil buff power
+%•	See 21.pdf for limitations in measurement of MM parameters
+
