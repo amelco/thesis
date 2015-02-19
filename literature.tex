@@ -1,6 +1,21 @@
 \cleardoublepage
 \chap LITERATURE REVIEW
 
+%In this work, a numerical solution for the equation of convection--dispersion is proposed, assuming a soil concentration dependent solute uptake as the boundary condition at root surface given by the Michaelis-Menten equation. The proposed model is compared with a no solute uptake \citeonline[liersolute] and a constant solute uptake \citeonline[willigen1] numerical models, as well as with an analytical model which uses steady-state condition for water content \citeonline[cushman]. The numerical models consider a transient water flow, based on the work of \citeonline[lierwater]. There are several numerical (\cite[nye], \cite[simunek]) and analytical (\cite[roose], \cite[cushman], \cite[willigen1]) models that describe water and solute uptake by the roots, each one with their own particularities, such as steady-state water flux solutions and different boundaries conditions at root surface. \cite[feddes] and \cite[raats] give reviews of soil water uptake modeling including effects of salinity.
+
+%EXPLAIN THE ABILITY OF THE MODEL TO CALCULATE ACTIVE AND PASSIVE UPTAKES
+%EXPLAIN THE REASON TO USE MM EQUATION
+
+%Nyer and Marriot (1969): qs0=D dc/dr + qC ~ kC0/(1+kC0/Im) but they considered Im and K independent of q0. I just considered Im independent of q0, but k, alpha in my case, is depedent on concentration
+%Other authors also makes a separation of active and passive as the diffusive and convective part of eq. (1), such as Silberbush, Ben-Asher and Ephrath (2005) [7] 102.pdf on calcium uptake in a soilless culture, Schrder et al. (2012) [6] 48.pdf, Ungs, Boersma and Akratanakul (1982) [9] 11.pdf, Raij et al. (2013) 43.pdf [4] and Simunek and Hopmans (2009) [8] 68.pdf just to cite some.
+
+%The determination of water and salt stress in field crops is a major problem in agriculture. Stress of water is caused by a lower amount of water in the soil, which reduces the potential transpiration of the plant and leads to a yield decrease. Similarly, higher solute concentrations in the soil solution can lead to stress caused by salinity which, in turn, reduce the potential transpiration (osmotic effect) and interfere negatively in the plant metabolism (ionic stress or toxicity).
+%Works of Maas anf Hoffman (1977) XXX determines threshold values in which the plant cannot recover from saline stress by a reducion of yield. Some other works (Katerji et al, 2000) test their values and try to make a better approximation of its empirical values by taking into account other characteristics like water stress as well 
+%Modeling of water and solute extraction by plant roots can be used to predict the transpiration rates together with soil water and solute movement
+%One of the greatest problems in agriculture is to predict the actual transpiration rates in order to calculate the amount of water to be applied in the field crops. The determination of this variable depends on a great number of properties such as climatic data and parameters of soil and plant.
+
+%It needs to be clear that active and passive uptake only makes sense when it means movement of solute at the root surface. Then, active is the diffusive part and passive is the convective part. The whole transport in the soil profile is by convection and diffusion only.
+
 \sec WATER FLOW
 
 \sec SOLUTE FLOW
