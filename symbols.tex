@@ -1,7 +1,10 @@
 %List of symbols
 
-%\def\symb #1 #2{\ctpush{\hbox to 40pt{#1\hfill--\hfill}}#2}  % with dash
-\def\symb #1 #2{\ctpush{\hbox to 50pt{\hfill#1\hbox to 6pt{}--}}#2}
+%\def\symb #1 #2{\ctpush{\hbox to 40pt{#1\hfill--\hfill}}#2}  % with dash left justified
+%\def\symb #1 #2{\ctpush{\hbox to 50pt{\hfill#1\hbox to 6pt{}--}}#2} % with dash right justified
+
+\def\ctp #1{\leftskip 2cm \par\noindent\llap{#1\enspace}\ignorespaces}
+\def\symb #1 #2{\ctp{#1\enspace--}#2}
 
 {\twelvesingle
 %\twelveonehalf
@@ -9,8 +12,9 @@
 
 \symb $\alpha$ Description
 \symb $\beta$ A larger description
-\symb $C\!L\!U_t$ A larger description
-\symb $C\!N\!L\!U_t$ A larger description
+\symb $C\!L\!U_t$ A larger larger description
+\symb $C\!N\!L\!U_t$ A larger larger larger description
+
 
 %end of spacing
 }
