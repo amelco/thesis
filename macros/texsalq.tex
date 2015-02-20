@@ -222,7 +222,7 @@
 \mtdef {supervisor}   {Supervisor}        {Orientador}       {}
 \mtdef {bibliography} {REFERENCES}        {REFERÊNCIAS}      {}
 \mtdef {appendix}     {APPENDIX}          {APÊNDICE}         {}  
-\mtdef {appendixpl}   {APPENDIXES}        {APÊNDICES}        {}
+\mtdef {appendixpl}   {APPENDICES}        {APÊNDICES}        {}
 %\mtdef {gradem}       {Master}            {Mestre}           {}
 %\mtdef {graded}       {Ph.D.}             {Doutor}           {}
 
@@ -705,7 +705,7 @@
 
 \def\printapp#1{%
      \bgroup%\begitemstest\app%
-     \tenpoint\tensingle \noindent%
+     \vskip 10pt\twelvepoint\twelvesingle \noindent%
      \settowidth{\mylen}{\mtext{appendix}\ \theappnum\ -\enspace}%
      \leftskip=\mylen%
      \printcaption{\mtext{appendix}}{\theappnum}#1\par\nobreak\egroup%
