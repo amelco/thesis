@@ -1,19 +1,17 @@
 %List of symbols
 
-\def\asymb #1 #2{\ctpush{\hbox to 3em{#1}}#2}
+%\def\symb #1 #2{\ctpush{\hbox to 40pt{#1\hfill--\hfill}}#2}  % with dash
+\def\symb #1 #2{\ctpush{\hbox to 50pt{\hfill#1\hbox to 6pt{}--}}#2}
 
-\midinsert\medskip \label[symbol_list]
-%\def\tabiteml{\hbox to 4pt{}}  % left material before each \table item
-%\def\tabitemr{\hbox to 4pt{}}
-\table{ll}{
-\cr\hfil 
-$\alpha$	& Description	\cr
-$\beta$		& A larger description		\cr
-$\gamma$	& A even larger description	\cr
+{\twelvesingle
+%\twelveonehalf
+%\twelvedouble
+
+\symb $\alpha$ Description
+\symb $\beta$ A larger description
+\symb $C\!L\!U_t$ A larger description
+\symb $C\!N\!L\!U_t$ A larger description
+
+%end of spacing
 }
-\endinsert
 
-
-
-\asymb $\alpha$ Description
-\asymb $\beta$ A larger description
