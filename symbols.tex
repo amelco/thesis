@@ -1,12 +1,15 @@
 %List of symbols
-\def\test #1 #2{#1 \tocdotfill #2}
 
-
-$\alpha$ \tocdotfill Description
-
-$\beta$ \tocdotfill A larger description
-
-$I_m larger$ \tocdotfill A even larger description that can break line
-
-\test $\gamma$ Description test des dkjiuyt
+{\tenpoint
+\midinsert\medskip \label[symbol_list]
+%\def\tabiteml{\hbox to 4pt{}}  % left material before each \table item
+%\def\tabitemr{\hbox to 4pt{}}
+\table{ll}{
+\cr\hfil 
+$\alpha$	& Description	\cr
+$\beta$		& A larger description		\cr
+$\gamma$	& A even larger description	\cr
+}
+\endinsert
+}
 
