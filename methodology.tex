@@ -126,11 +126,13 @@ $$
 where $L$ (m) is the root length, $r_0$ (m) is the root radius and $I_m$ has units of mol s$^{-1}$.
 
 {\bf For linear concentration--dependent uptake (LU) model type}: the solute flux density is set to the linearized piecewise MM equation
+\label[qs_l]
 $$
 q_{s0} = -D {dC \over dr} + q_0C = -(\alpha + q_0) C_0  \eqmark
 $$
 
 {\bf For nonlinear concentration--dependent uptake (NLU) model type}: the solute flux density is set to the MM equation
+\label[qs_nl]
 $$
 q_{s0} = -D {dC \over dr} + q_0C = -\left({I_m \over 2 \pi r_0 L (K_m + C_0)} + q_0 \right) C_0 \eqmark
 $$

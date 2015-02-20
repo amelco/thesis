@@ -27,15 +27,15 @@ In all simulated scenarios, the difference between LU and NLU models occurs only
 For both models, when solute concentration values are higher than \c2, all solute transport from soil to root is mostly driven by convection, therefore the uptake is passive only and active uptake is zero. With values of $C$ between the two threshold values (\c2 and \clim), the solute flux density is constant and NLU and LU are different only for $C$ values lower than $C_{lim}$ .
 
 %Figures \ref[diff_t] and \ref[diff_r] show the differences between $C$ outputs of LU and NLU as a function of time and radial distance of axial center, respectively, for scenario 1.
-The difference between $C$ outputs of LU and NLU was calculated as
-$$
-\label[eq_diff]
-d\!i\!f\!f\!=C\!L\!U-C\!N\!L\!U \eqmark
-$$
-%
-where $C\!L\!U$ and $C\!N\!L\!U$ are the concentrations for LU and for NLU, respectively.
-When comparing differences in concentration between the two models, one has to be aware that $C\!N\!L\!U<C\!L\!U$ means that the uptake for NLU is greater than LU uptake since with a higher uptake, a higher amount of solute goes out from soil solution to inside the plant.
-Therefore, according to Equation \ref[eq_diff], if $d\!i\!f\!f\!<0$ then $C\!N\!L\!U>C\!L\!U$ and LU uptake is greater; if $d\!i\!f\!f\!>0$ then $C\!N\!L\!U<C\!L\!U$ and NLU uptake is greater. Said that, we can see in Figure \ref[diff_t] that the uptake for NLU is greater then LU uptake at times when $C<C_{lim}$. This reflects a change also in the concentration profile for the latter times. Figure \ref[diff_r] shows the concentration profile at day 5 and the difference between CLU and CNLU through the profile. The higher NLU uptake increases the concentration gradient causing a higher solute flux (most diffusive since water flux is very small) from soil towards the root, resulting in a slightly higher concentration for NLU close to root surface ($d\!i\!f\!f\!.<0$).
+The absolute difference between $C$ outputs of LU and NLU was calculated according to Equation \ref[error_abs].
+%$$
+%\label[eq_diff]
+%d\!i\!f\!f\!=C\!L-C\!N\!L \eqmark
+%$$
+%%
+%where $C\!L$ and $C\!N\!L$ are the concentrations for LU and for NLU, respectively.
+When comparing differences in concentration between the two models, one has to be aware that $C\!N\!L<C\!L$ means that the uptake for NLU is greater than LU uptake since with a higher uptake, a higher amount of solute goes out from soil solution to inside the plant.
+Therefore if $d\!i\!f\!f\!<0$ then $C\!N\!L>C\!L$ and LU uptake is greater; if $d\!i\!f\!f\!>0$ then $C\!N\!L<C\!L$ and NLU uptake is greater. Said that, we can see in Figure \ref[diff_t] that the uptake for NLU is greater then LU uptake at times when $C<C_{lim}$. This reflects a change also in the concentration profile for the latter times. Figure \ref[diff_r] shows the concentration profile at day 5 and the difference between $C\!L$ and $C\!N\!L$ through the profile. The higher NLU uptake increases the concentration gradient causing a higher solute flux (most diffusive since water flux is very small) from soil towards the root, resulting in a slightly higher concentration for NLU close to root surface ($d\!i\!f\!f\!.<0$).
 
 
 \medskip
@@ -50,9 +50,15 @@ Therefore, according to Equation \ref[eq_diff], if $d\!i\!f\!f\!<0$ then $C\!N\!
 \caption/f {Difference between the solute concentration in soil water ($C$) output for LU and NLU and $C$ as a function of distance from axial center; and the relative difference -- Scenario 1}
 \medskip
 
-Nevertheless, the difference between LU and NLU is negligible. A difference of 80.9\% of concentration over time (Figure \ref[diff_t]) corresponds to only 0.318\% in the final concentration profile (Figure \ref[diff_r]) because the uptake at times where $C<C_{lim}$ is really low. It can be seen at the cumulative uptake plot (Figure \ref[accumxt]) the insignificant effect of this difference (for both models, the cumulative solute uptake is nearly the same).
+% This is the actual discussion of U test
+The Mann--Whitney U test for (Table \ref[Utest]) shows that, for scenarios 1, 2 and 4, the differences between $C\!L$ and $C\!N\!L$ are significant for concentration values at times where $C<C_{lim}$ and, for scenario 3, both models have similar results. INCOMPLETE (in development)
+%Although the differences in concentration through time and radial distance are significant
 
-Similar to Figures \ref[diff_t] and \ref[diff_r], the results of the relative accumulated error, according to Equation \ref[error_rel], were of 64.975\% and 0.739\%; 121.3\% and 0.941\%; 36.144\% and 0.027\% over time and distance for scenarios 2, 3 and 4, respectively.
+\input tables/Utest
+
+Nevertheless, the difference between LU and NLU is negligible for cumulative uptake. A difference of 80.9\% of concentration over time (Figure \ref[diff_t]) corresponds to only 0.318\% in the final concentration profile (Figure \ref[diff_r]) because the uptake at times where $C<C_{lim}$ is really low. It can be seen at the cumulative uptake plot (Figure \ref[accumxt]) the insignificant effect of this difference (for both models, the cumulative solute uptake is nearly the same).
+
+Similar to Figures \ref[diff_t] and \ref[diff_r], the results of the relative accumulated error, according to Equation \ref[error_rel], were of 64.975\% and 0.739\%; 37.364.3\% and 0.041\%; 36.144\% and 0.027\% over time and distance for scenarios 2, 3 and 4, respectively.
 
 \medskip
 \label[accumxt]
@@ -63,9 +69,8 @@ Similar to Figures \ref[diff_t] and \ref[diff_r], the results of the relative ac
 %STATISTICS FOR U TEST HERE
 
 %IMPROVE, POLISH
-The Mann--Whitney U test results corroborates with the differences analysis. Assuming a confidence interval of 95\%, {\it p}-values below 0.05 indicates that the two models are different (one has greater values than the other), i.e. the hypothesis $H_0$ is rejected. Table \ref[Utest] shows that, for scenarios 2, 3 and 4, concentration $C_0$ is significantly different for LU and NLU, but when analysing the cumulative uptake (for the same period of time where $C<C_{lim}$) the difference is not significant.
+%The Mann--Whitney U test results corroborates with the differences analysis. Assuming a confidence interval of 95\%, {\it p}-values below 0.05 indicates that the two models are different (one has greater values than the other), i.e. the hypothesis $H_0$ is rejected. Table \ref[Utest] shows that, for scenarios 2, 3 and 4, concentration $C_0$ is significantly different for LU and NLU, but when analysing the cumulative uptake (for the same period of time where $C<C_{lim}$) the difference is not significant.
 
-\input tables/Utest
 
 In addition, some part of the differences was due to stability problems with the numerical solution for NLU. The changing from equation 21 to equation 25 (change of boundary condition, from constant to nonlinear uptake rate) makes the numerical solution take some time to stabilize at the initial times. Many time and space steps combinations were used as an attempt to minimize the problem. Choosing a finer space discretization seems to decrease the stabilization problem but makes the simulation lasts longer. It needs to be found an optimal value for time and space step relation. Stabilization problems were not found in LU.
 
