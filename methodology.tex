@@ -7,7 +7,47 @@
 \cleardoublepage
 \chap METHODOLOGY
 
-\sec Michaelis-Menten equation
+% General introduction
+The partial differential equations for water movement and solute transport in soil are solve numerically in a fully implicit way. Both water and solute flow are considered to have transient condition. 
+
+The water and solute differential equations for one-dimensional axisymetric flow were solved numerically and simulated iteratively as described in the following.
+The algorithm was based on the solution proposed by \citeonline[lierwater] and \citeonline[liersolute].
+
+\sec Water movement equation
+
+The Richards equation for one-dimensional axisymetric flow, assuming no sink or source and no gravitational component, can be written as:
+\label[partial_water]
+$$
+{\partial \theta \over \partial H} {\partial H \over \partial t} = {1 \over r}{\partial \over \partial r} \left( r K {\partial H \over \partial r} \right) \eqmark
+$$
+%
+where $\theta$ (m$^3$ m$^{-3}$) is the water content, $H$ (m) is the sum of pressure ($h$) and osmotic ($h_\pi$) heads, $t$ (s) is the time, $r$ (m) is the distance from the axial center and $K$ (m s$^{-1}$) is the hydraulic conductivity.
+
+Relations between $K$, $\theta$ and $h$ are described by the van Genuchten equation system:
+$$
+\eqalignno{
+\Theta &= [1+|\alpha h|^n]^{(1/n)-1} = {(\theta - \theta_r) \over (\theta_s - \theta_r)}  & \eqmark \cr 
+K &= K_{s} \Theta^\lambda [1-(1-\Theta^{n/(n-1)})^{(1-(1/n)})]^2 & \eqmark
+}
+$$
+where $\theta_r$ and $\theta_s$ (m$^3$ m$^{-3}$) are residual water content and saturated water content, respectively; $\alpha$ (m$^{-1}$), $n$ and $\lambda$ are empirical parameters.
+
+
+\secc Boundary conditions for water movement equation
+
+\sec Solute transport equation
+
+The differential equation for convection-dispersion for transient one-dimensional axisymetric flow can be written as:
+\label[partial_eq]
+$$
+r {\partial(\theta C) \over \partial t} = -{\partial \over \partial r} \biggl(r q C \biggr) + {\partial  \over \partial r} \left( r D {\partial C \over \partial r} \right) \eqmark
+$$
+%
+where $C$ (mol m$^{-3}$) is the solute concentration in the soil solution, $q$ (m s$^{-1}$) is the water flux density and $D$ (m$^2$ s$^{-1}$) is the effective diffusion-dispersion coefficient.
+
+
+
+\secc Michaelis-Menten equation
 
 The solute flux density at root surface ($q_{s0}$) can be related to the Michaelis-Menten (MM) equation as the following:
 \label[eq_solute]
@@ -78,35 +118,8 @@ The equation \ref[eq_linear] is, therefore, the linearization of equation \ref[e
 
 %Other authors also makes a separation of active and passive as the diffusive and convective part of eq. \ref[eq_solute], such as Silberbush, Ben-Asher and Ephrath (2005) \cite[silberbush] 102.pdf on calcium uptake in a soilless culture, Schröder et al. (2012) \cite[schroder] 48.pdf, Ungs, Boersma and Akratanakul (1982) \cite[ungs] 11.pdf, Raij et al. (2013) 43.pdf \cite[raij] and Simunek and Hopmans (2009) \cite[simunek] 68.pdf just to cite some.
 
-\sec Water and solute transport equations
 
-The water and solute differential equations for one-dimensional axisymetric flow were solved numerically and simulated iteratively as described in the following.
-The algorithm was based on the solution proposed by \citeonline[lierwater] and \citeonline[liersolute].
-
-The Richards equation for one-dimensional axisymetric flow, assuming no sink or source and no gravitational component, can be written as:
-\label[partial_water]
-$$
-{\partial \theta \over \partial H} {\partial H \over \partial t} = {1 \over r}{\partial \over \partial r} \left( r K {\partial H \over \partial r} \right) \eqmark
-$$
-%
-where $\theta$ (m$^3$ m$^{-3}$) is the water content, $H$ (m) is the sum of pressure ($h$) and osmotic ($h_\pi$) heads, $t$ (s) is the time, $r$ (m) is the distance from the axial center and $K$ (m s$^{-1}$) is the hydraulic conductivity.
-
-Relations between $K$, $\theta$ and $h$ are described by the van Genuchten equation system:
-$$
-\eqalignno{
-\Theta &= [1+|\alpha h|^n]^{(1/n)-1} = {(\theta - \theta_r) \over (\theta_s - \theta_r)}  & \eqmark \cr 
-K &= K_{s} \Theta^\lambda [1-(1-\Theta^{n/(n-1)})^{(1-(1/n)})]^2 & \eqmark
-}
-$$
-where $\theta_r$ and $\theta_s$ (m$^3$ m$^{-3}$) are residual water content and saturated water content, respectively; $\alpha$ (m$^{-1}$), $n$ and $\lambda$ are empirical parameters.
-
-The differential equation for convection-dispersion for transient one-dimensional axisymetric flow can be written as:
-\label[partial_eq]
-$$
-r {\partial(\theta C) \over \partial t} = -{\partial \over \partial r} \biggl(r q C \biggr) + {\partial  \over \partial r} \left( r D {\partial C \over \partial r} \right) \eqmark
-$$
-%
-where $C$ (mol m$^{-3}$) is the solute concentration in the soil solution, $q$ (m s$^{-1}$) is the water flux density and $D$ (m$^2$ s$^{-1}$) is the effective diffusion-dispersion coefficient.
+\secc Boundary conditions for solute transport equation
 
 The solute flux density at the outermost compartment (half distance between roots, i.e., $r = r_m$) is set to zero. 
 The boundary conditions at innermost compartment (root surface, i.e, $r=r_0$) are set according to the model type, which are: 
@@ -137,7 +150,8 @@ $$
 q_{s0} = -D {dC \over dr} + q_0C = -\left({I_m \over 2 \pi r_0 L (K_m + C_0)} + q_0 \right) C_0 \eqmark
 $$
 
-\sec Implicit numerical solution
+
+\sec Numerical solution
 
 The combined water and salt movement is simulated iteratively. In a first step, the water movement toward the root is simulated, assuming salt concentrations from the previous time step. In a second step, the salt contents per segment are updated and new values for the osmotic head in all segments are calculated. The first step is then repeated with updated values for the osmotic heads. This process is repeated until the pressure head values and osmotic head values between iterations converge.
 Two flowcharts with the algorithm procedures to solve water and solute iterative equations can be found in the Appendix.
@@ -349,7 +363,10 @@ $$
 \enditems
 The value of $C^{j+1}_1$ in Equation \ref[b1] is found using the iterative Newton-Raphson method. Note that since this is a one-dimensional microscopic model, it is assumed that the root has the same characteristcs in all vertical soil profile (along its vertical axis), thus, water and solute transport from soil towards the roots and uptakes are occurring at the same rate in the vertical profile. It is possible to couple this model in another one that has discretized soil layers. For a 2D model (depth and radial distance), the solutions presented here are applied in each layer independently. For a 1D model (only depth), an average of water and solute content through the horizontal profile has to be computed.
 
-\sec Linear and Nonlinear differences and statistics
+
+\sec Other models
+
+\sec Analysis of linear and nonlinear approaches
 
 To analyze the differences between the two proposed models (linear and nonlinear), the absolute and relative differences were calculated as follows:
 
@@ -366,11 +383,6 @@ where $C\!L_t$ and $C\!N\!L_t$ are the solute concentration in soil water for LU
 
 The equations are the same of absolute and relative errors but since we are analyzing differences instead of errors (there is not a right or standard model), we called it differences.
 
-Also, the Mann--Whitney U test was made with two datasets (concentration and cumulative uptake) for the two models. The choice of this test is due to the fact that the distributions for both datasets are not normal, the pairs (concentration for LU and for NLU and cumulative uptake for LU and NLU) are distinct and do not affect each other. This test can decide whether each pair is identical without assuming them to follow the normal distribution (nonparametric test). The null hypothesis ($H_0$) is that both populations (model output data) are the same and the alternate hypothesis ($H_1$) is that one particular model (LU or NLU) has greater values than the other.
-
-
-\sec Linear versus nonlinear comparison
-
 This section describes how the linear (LU) and nonlinear (NLU) solutions simulate the transport of water and solutes in the soil, plant and atmosphere system. The analysis of the results was made in order to choose one out of the two models in further simulations. The nonlinear solution uses the original MM equation but it takes longer to run due to an additional iterative process that has to be made. NLU is also more susceptible to stabilization problems in the results. The linear model is a simplified version of the MM equation in which the solute uptake rate for the situation $C<C_{lim}$ is smaller when compared to the original nonlinear equation, it has no stabilization problems and runs faster. Therefore, the objective of this section is to analyze the differences between the results of the two models and check if those differences are significant. For that, four different general scenarios were chosen (using the parameters listed in Table 2, with  loam soil) as listed below:
 
 \begitems
@@ -381,8 +393,12 @@ This section describes how the linear (LU) and nonlinear (NLU) solutions simulat
 * Scenario 4: Medium root length density, Low concentration and High potential transpiration
 \enditems
 
+\secc Statistical difference
 
-\sec Solute uptake models comparison
+Also, the Mann--Whitney U test was made with two datasets (concentration and cumulative uptake) for the two models. The choice of this test is due to the fact that the distributions for both datasets are not normal, the pairs (concentration for LU and for NLU and cumulative uptake for LU and NLU) are distinct and do not affect each other. This test can decide whether each pair is identical without assuming them to follow the normal distribution (nonparametric test). The null hypothesis ($H_0$) is that both populations (model output data) are the same and the alternate hypothesis ($H_1$) is that one particular model (LU or NLU) has greater values than the other.
+
+
+\sec Model comparissons
 
 The scenario of this simulation is of loam soil, medium root length density, high potential transpiration and high initial concentration (Table \ref[general_param]). We compare all model types (no solute uptake -- NU; constant -- CU; linear -- LU and nonlinear -- NLU concentration dependent uptake rates). All simulations were made until the value of relative transpiration was equal or less than 0.001. The time step is dynamical (depends on the number of iterations for water and solute equations) and was set to vary between 0.1 and 2 seconds. The simulation for NU ended within near 3 days; for CU, LU and NLU, about 5 days.
 
@@ -397,4 +413,3 @@ The scenario of this simulation is of loam soil, medium root length density, hig
 %•	It does not consider complementary ion effects
 %•	It does not consider soil buff power
 %•	See 21.pdf for limitations in measurement of MM parameters
-
