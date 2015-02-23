@@ -1,6 +1,7 @@
 # word documents
 *.doc
 *.docx
+correcoes/
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
