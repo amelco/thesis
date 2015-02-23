@@ -6,15 +6,70 @@
 \def\ctp #1{\leftskip 2cm \par\noindent\llap{#1\enspace}\ignorespaces}
 \def\symb #1 #2{\ctp{#1\enspace--}#2}
 
-{\twelvesingle
-%\twelveonehalf
+\def\uconc{(mol~cm$^{-3}$)}
+\def\udisp{(m$^2$~s$^{-1}$)}
+\def\uhead{(m)}
+\def\usolflux{(mol~m$^{-2}$~$s^{-1}$)}
+\def\uwatflux{(m~$s^{-1}$)}
+\def\uK{(m~s$^{-1}$)}
+\def\utime{(s)}
+\def\usol{(mol)}
+\def\uwc{(m$^3$ m$^{-3}$)}
+
+{
+%\twelvesingle
+\twelveonehalf
 %\twelvedouble
 
-\symb $\alpha$ Description
-\symb $\beta$ A larger description
-\symb $C\!L\!U_t$ A larger larger description
-\symb $C\!N\!L\!U_t$ A larger larger larger description
+\symb $a_i$ Tridiagonal matrix coefficient 
+\symb $b_i$ Tridiagonal matrix coefficient 
+\symb $c_i$ Tridiagonal matrix coefficient 
+\symb $f_i$ Tridiagonal matrix coefficient 
 
+\symb $C$	Solute concentration in soil water \uconc
+\symb $C_0$	Solute concentration in soil water at root surface \uconc
+\symb $C_{lim}$	Limiting solute concentration for potential solute uptake \uconc
+\symb $C_2$	Solute concentration threshold for active uptake \uconc
+\symb $C_{ini}$	Initial solute concentration in soil water \uconc
+\symb $C\!L$	Solute concentration in soil water for linear model \uconc
+\symb $C\!N\!L$	Solute concentration in soil water for nonlinear model \uconc
+\symb $D$	Effective diffusion-dispersion coefficient \udisp
+\symb $D_{m,w}$	Diffusion coefficient in water \udisp
+\symb $diff$	Difference between linear and nonlinear models for concentration \uconc \ and cumulative uptake \usol
+\symb $H$	Total head \uhead
+\symb $h$	Pressure head \uhead
+\symb $h_\pi$	Osmotic head \uhead
+\symb $h_{lim}$	Limiting pressure head \uhead
+\symb $I_m$	Coefficient of Michaelis-Menten equation (plant demand for solute) \usolflux
+\symb $K_m$	Coefficient of Michaelis-Menten equation (plant affinity to the solute type) \uconc
+\symb $K$	Hydraulic conductivity \uK
+\symb $K_s$	Saturated hydraulic conductivity \uK
+\symb $L$	Root length density \uhead
+\symb $n$	Empirical parameter of van Genuchten (1980) (--) equation or number of elements of the discretized domain (--)
+\symb $q$	Water flux density \uwatflux
+\symb $q_0$	Water flux density at root surface \uwatflux
+\symb $q_s$	Solute flux density \usolflux
+\symb $q_{s0}$	Solute flux density at root surface \usolflux
+\symb $r$	Distance from axial center \uhead
+\symb $r_0$	Root radius \uhead
+\symb $r_m$	Half distance between roots \uhead
+\symb $t$	Time \utime
+\symb $T_p$	Potential transpiration (--)
+\symb $T_r$	Relative transpiration (--)
+
+\vskip 10pt
+
+\symb $\alpha$		Empirical parameter of van Genuchten (1980) equation (m$^{-1}$)
+\symb $\beta$		Passive uptake slope \uwatflux
+\symb $\Delta r$	Space step \uhead
+\symb $\Delta t$	Time step \utime
+\symb $\theta$		Soil water content \uwc
+\symb $\Theta$		Effective saturation (--)
+\symb $\theta_r$	Residual water content \uwc
+\symb $\theta_s$	Saturated water content \uwc
+\symb $\lambda$		Empirical parameter of van Genuchten (1980) equation (--)
+\symb $\tau$		Solute dispersivity \uhead
+\symb $\psi$		Active uptake slope \uwatflux
 
 %end of spacing
 }
