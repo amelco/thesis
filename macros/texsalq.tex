@@ -217,6 +217,7 @@
 %\mtdef {keywords}     {Keywords}          {Palavras-chave}   {}
 \mtdef {contents}     {CONTENTS}          {SUMÁRIO}          {}
 \mtdef {tables}       {LIST OF TABLES}    {LISTA DE TABELAS} {}
+\mtdef {abreviations} {LIST OF ABREVIATIONS}   {LISTA DE ABREVIAÇÕES} {}
 \mtdef {symbols}      {LIST OF SYMBOLS}   {LISTA DE SÍMBOLOS} {}
 \mtdef {figures}      {LIST OF FIGURES}   {LISTA DE FIGURAS} {}
 \mtdef {supervisor}   {Supervisor}        {Orientador}       {}
@@ -594,6 +595,16 @@
 \addto\makefront{%
      \cleardoublepage\totpages \vfil\break %comentar essa linha se nao houver tabelas
 }
+\def\toapages{
+   \twelveonehalf%
+   \nonum\chap \mtext{abreviations}\par
+   \bigskip
+   \input abreviations.tex
+   \par
+}
+\addto\makefront{%
+     \cleardoublepage\toapages \vfil\break %comentar essa linha se nao houver abreviações
+}
 \def\tospages{
    \twelveonehalf%
    \nonum\chap \mtext{symbols}\par
@@ -602,7 +613,7 @@
    \par
 }
 \addto\makefront{%
-     \cleardoublepage\tospages \vfil\break %comentar essa linha se nao houver tabelas
+     \cleardoublepage\tospages \vfil\break %comentar essa linha se nao houver símbolos
 }
 
 %%% Typessetting of the document:
