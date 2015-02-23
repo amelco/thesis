@@ -1,7 +1,8 @@
 \cleardoublepage
 \chap RESULTS AND DISCUSSION
 
-The simulations were performed using the hydraulic parameters from the Dutch Staring series \cite[wosten] for three typical top soils, as listed in Table \ref[soils]. The general system parameters for the different scenarios are listed in Table \ref[general_param] and values for the Michaelis-Menten parameters in Table \ref[MMparam]. Values of root length density, salt content and relative transpiration were chosen to change, reflecting different possible scenarios that would occur in a practical situation. The chosen MM parameters were for K$^+$ solute.
+The simulations were performed using the hydraulic parameters from the Dutch Staring series \cite[wosten] for three typical top soils, as listed in Table \ref[soils]. 
+The general system parameters for the different scenarios are listed in Table \ref[general_param] and values for the Michaelis-Menten (MM) parameters in Table \ref[MMparam]. Values of root length density, salt content and relative transpiration were chosen to change, reflecting different possible scenarios that would occur in a practical situation. The chosen MM parameters were for K$^+$ solute.
 
 \input tables/soils
 
@@ -11,20 +12,9 @@ The simulations were performed using the hydraulic parameters from the Dutch Sta
 
 \sec Linear versus nonlinear comparison
 
-This section describes how the linear (LU) and nonlinear (NLU) solutions simulate the transport of water and solutes in the soil, plant and atmosphere system. The analysis of the results was made in order to choose one out of the two models in further simulations. The nonlinear solution uses the original MM equation but it takes longer to run due to an additional iterative process that has to be made. NLU is also more susceptible to stabilization problems in the results. The linear model is a simplified version of the MM equation in which the solute uptake rate for the situation $C<C_{lim}$ is smaller when compared to the original nonlinear equation, it has no stabilization problems and runs faster. Therefore, the objective of this section is to analyze the differences between the results of the two models and check if those differences are significant. For that, four different general scenarios were chosen (using the parameters listed in Table 2, with  loam soil) as listed below:
-
-\begitems
-%\style i
-* Scenario 1: Medium root length density, High concentration and High potential transpiration
-* Scenario 2: Medium root length density, High concentration and Low potential transpiration
-* Scenario 3: Low root length density, High concentration and High potential transpiration
-* Scenario 4: Medium root length density, Low concentration and High potential transpiration
-\enditems
-
-
 In all simulated scenarios, the difference between LU and NLU models occurs only at values of solute concentration in soil water ($C$) below the threshold value \clim. This is expected because of the nature of the piecewise MM equation used in the model.
 %{\bf (EXPLAIN THAT THE DIFFERENCE OCCURS ONLY FOR C<Clim IN METHODOLOGY)}
-For both models, when solute concentration values are higher than \c2, all solute transport from soil to root is mostly driven by convection, therefore the uptake is passive only and active uptake is zero. With values of $C$ between the two threshold values (\c2 and \clim), the solute flux density is constant and NLU and LU are different only for $C$ values lower than $C_{lim}$ .
+For both models, when solute concentration values are higher than \c2, solute transport from soil to root is mostly driven by convection, therefore the uptake is passive with active uptake equal to zero. For values of $C$ between the two threshold values (\c2 and \clim), the solute flux density is constant and NLU and LU are different only for $C$ values lower than $C_{lim}$ .
 
 %Figures \ref[diff_t] and \ref[diff_r] show the differences between $C$ outputs of LU and NLU as a function of time and radial distance of axial center, respectively, for scenario 1.
 The absolute difference between $C$ outputs of LU and NLU was calculated according to Equation \ref[error_abs].
@@ -90,10 +80,7 @@ Since the differences between LU and NLU occurs for low concentration values and
 
 The conclusion, since no significant difference between LU and NLU was found, can be either to choose LU as it takes less time to run and has no stabilization problems, or to choose NLU except for the cases in which the stability problem is significantly high. Note that this is the conclusion for those specific scenarios as the results can be significantly different for different soil and solute types.
 
-
 \sec Solute uptake models comparison
-
-The scenario of this simulation is of loam soil, medium root length density, high potential transpiration and high initial concentration (Table \ref[general_param]). We compare all model types (no solute uptake -- NU; constant -- CU; linear -- LU and nonlinear -- NLU concentration dependent uptake rates). All simulations were made until the value of relative transpiration was equal or less than 0.001. The time step is dynamical (depends on the number of iterations for water and solute equations) and was set to vary between 0.1 and 2 seconds. The simulation for NU ended within near 3 days; for CU, LU and NLU, about 5 days.
 
 In NU, salt is transported to the roots by convection, causing an accumulation of solutes at root surface. As water flux towards the root starts to decrease, salt is transported slower and carried away from the roots by diffusion (Figure \ref[cxt]). Because of the accumulation of salt in the root surface, the total head becomes limiting very fast and the transpiration is reduced faster than the other models (Figure \ref[Trs]).
 

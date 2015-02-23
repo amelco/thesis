@@ -1,17 +1,24 @@
 \cleardoublepage
 \chap INTRODUCTION
 
-Analytical models of transport of nutrients in soil towards plant roots usually consider steady-state conditions with respect to flow of water due to the high nonlinearity of hydraulic functions. 
-Several simplifications (assumptions) are made when solute uptake by the roots are taken into consideration, most of them also due to the nonlinearity of the influx rate function. 
-Consequently, the analytical models, although describe the processes involved in the transport and uptake of solutes, are capable to simulate water and solute flow just for specific cases (simplified scenarios that most of the time are far from what happens in the field) and using them for situations that they were not designed for, is a rough approximation.
-Moreover, the analytical solutions have to use, at some point, numerical algorithms to compute results of some special functions (bessels, airys or infinite series, for example) that are part of the generated analytical expressions. Thus, for the case of convection-diffusion equation, even the fully analytical solutions are limited to some numerical estimation although they have yet fast and reliable results.
+Analytical models of transport of nutrients in soil towards plant roots usually consider steady-state conditions with respect to water flow to deal with the high nonlinearity of soil hydraulic functions. 
+Several simplifications (assumptions) are made regarding the uptake of the solutes by the roots, most of them also imposed by the nonlinearity of the influx rate function. 
+Consequently, although the analytical models describe the processes involved in the transport and uptake of solutes, they are capable to simulate water and solute flow just for specific boundary conditions (simplified scenarios that most of the time  disagree with real field condition). Therefore, their use in situations that they were not designed for can be a rough approximation.
+Even being analytical solutions they include special functions (bessels, airys or infinite series, for example) that need, at some point, numerical algorithms to compute results.
+Thus, for the case of convection-diffusion equation, even the fully analytical solutions are restricted by numerical procedures although they have yet fast and reliable results.
 
 %IMPROVE
-Numerical modeling, in turn, has more flexibility when dealing with nonlinear equations, being an alternative to surpass this problem. The functions can be solved considering transient conditions for water and solute flow but with some pull-backs like a greater concern about stability and higher time demanded to calculations.
-In general, the numerical models use empirical functions in the determination of osmotic stress, related to the electric conductivity in the soil solution. The parameters of these empirical models depend on soil, plant and atmospheric conditions in a range covered by the experiments that were made to generate data for the model calibration. One must be aware that using those models for different scenarios can result in errors not considered by the model itself and, most of the time, new calibration of the parameters needs to be done.
+Numerical modeling, in turn, has more flexibility when dealing with nonlinear equations, being an alternative to avoid boundary condition problems. 
+The functions can be solved considering transient conditions for water and solute flow but with some pull-backs like a greater concern about stability and higher time demanded to calculations.
+In general, numerical models use empirical functions in the determination of osmotic stress, related to the electric conductivity in the soil solution. 
+The parameters of these empirical models depend on soil, plant and atmospheric conditions in a range covered by the experiments that were made to generate data for the model calibration. 
+One must be aware that the use of such models for different scenarios can result in prediction errors 
+%!!-improve
+not considered by the model itself and, most of the time, new calibration of the parameters needs to be done.
+%!!-improve
 A model that uses a mechanistic approach for the solute transport equations can describe the involved processes in a wider range of situations, since it is not dependent on experimental data, resulting in a more realistic solution.
 
-In this work, a numerical mechanistic solution for the equation of convection--dispersion is proposed, assuming a soil concentration dependent solute uptake function as the boundary condition at root surface. The proposed model is compared with a no solute uptake and a constant solute uptake numerical models, and with an analytical model which uses steady-state condition for water content. 
+In this thesis, a numerical mechanistic solution for the equation of convection--dispersion is developed, assuming a soil concentration dependent solute uptake function as the boundary condition at root surface. The proposed model is compared with a no solute uptake and a constant solute uptake numerical models, and with an analytical model which uses steady-state condition for water content. 
 
 %Modeling of root water and solute uptake by plant roots is an important tool to predict the actual transpiration as it takes into account the transport of water and solute towards the roots in the soil profile together with the soil parameters that affects this movement. 
 

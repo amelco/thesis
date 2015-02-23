@@ -368,6 +368,26 @@ The equations are the same of absolute and relative errors but since we are anal
 
 Also, the Mann--Whitney U test was made with two datasets (concentration and cumulative uptake) for the two models. The choice of this test is due to the fact that the distributions for both datasets are not normal, the pairs (concentration for LU and for NLU and cumulative uptake for LU and NLU) are distinct and do not affect each other. This test can decide whether each pair is identical without assuming them to follow the normal distribution (nonparametric test). The null hypothesis ($H_0$) is that both populations (model output data) are the same and the alternate hypothesis ($H_1$) is that one particular model (LU or NLU) has greater values than the other.
 
+
+\sec Linear versus nonlinear comparison
+
+This section describes how the linear (LU) and nonlinear (NLU) solutions simulate the transport of water and solutes in the soil, plant and atmosphere system. The analysis of the results was made in order to choose one out of the two models in further simulations. The nonlinear solution uses the original MM equation but it takes longer to run due to an additional iterative process that has to be made. NLU is also more susceptible to stabilization problems in the results. The linear model is a simplified version of the MM equation in which the solute uptake rate for the situation $C<C_{lim}$ is smaller when compared to the original nonlinear equation, it has no stabilization problems and runs faster. Therefore, the objective of this section is to analyze the differences between the results of the two models and check if those differences are significant. For that, four different general scenarios were chosen (using the parameters listed in Table 2, with  loam soil) as listed below:
+
+\begitems
+%\style i
+* Scenario 1: Medium root length density, High concentration and High potential transpiration
+* Scenario 2: Medium root length density, High concentration and Low potential transpiration
+* Scenario 3: Low root length density, High concentration and High potential transpiration
+* Scenario 4: Medium root length density, Low concentration and High potential transpiration
+\enditems
+
+
+\sec Solute uptake models comparison
+
+The scenario of this simulation is of loam soil, medium root length density, high potential transpiration and high initial concentration (Table \ref[general_param]). We compare all model types (no solute uptake -- NU; constant -- CU; linear -- LU and nonlinear -- NLU concentration dependent uptake rates). All simulations were made until the value of relative transpiration was equal or less than 0.001. The time step is dynamical (depends on the number of iterations for water and solute equations) and was set to vary between 0.1 and 2 seconds. The simulation for NU ended within near 3 days; for CU, LU and NLU, about 5 days.
+
+
+
 %CONSIDERATIONS:
 %•	It is not considered root growth
 %•	It is not considered movement of solute inside the plant
