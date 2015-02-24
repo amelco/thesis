@@ -16,12 +16,22 @@
 
 %It needs to be clear that active and passive uptake only makes sense when it means movement of solute at the root surface. Then, active is the diffusive part and passive is the convective part. The whole transport in the soil profile is by convection and diffusion only.
 
-Analytical solutions are possible only for a few very simple systems, tend to be complicated and often are not understood by who needs to use them. Numerical solutions have the advantage that hey are not restricted to simple boundary conditions and a numerical technique converts a differential equation into a set of algebraic expressions that are easier to solve \cite[campbell].
+%Analytical solutions are possible only for a few very simple systems, tend to be complicated and often are not understood by who needs to use them. Numerical solutions have the advantage that hey are not restricted to simple boundary conditions and a numerical technique converts a differential equation into a set of algebraic expressions that are easier to solve \cite[campbell].
 
 \sec Transport of solute in the soil-plant system
 
-Plants need to uptake water and nutrients from soil to
+%Plants need to uptake water and nutrients from soil to
 
+ \citeonline[epstein52] suggested that the rate of solute uptake by plant roots can be referred to be similar to that between enzyme and its substrate. They used the  Michaelis-Menten equation \cite[michaelis] to define the net influx of a solute and its concentration in external medium, for K$^+$ and Na$^+$ solutions in barley roots:
+$$
+I = {I_m C \over K_m+C}
+$$
+%
+where $I$ is net influx (rate of solute uptake), $I_m$ is the maximum uptake rate, $C$ is the solute concentration in external medium and $K_m$ the Michelis-Menten constant that represents the affinity of the plant for the solute. \citeonline[johnson] did a translation and a re-evaluation of the original MM paper, using modern computer techniques with the original data, and shows that the MM equation is indeed precise.
+
+The original MM equation describes well the solute uptake for low concentration in the external medium for many other solutes including anions \cite[epstein72,wang] and cations \cite[kelly,sadana,broadley,lux]. The uptake rate saturates with increasing external concentration, but experiments has shown that, for high concentrations, a linear relationship between uptake rate and external concentration is often found \cite[epstein72,borstlap,wang,vallejo,broadley].
+
+ACTIVE AND PASSIVE!!!
 
 
 %\secc Numerical and analytical models
