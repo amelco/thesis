@@ -44,4 +44,4 @@ set label "linear" at 175,160
 set label "component" at 175,140
 set label "saturable component" at 140,70
 
-plot [0:200][0:] I2(x) lt 1 lc -1 lw 2, I(x) lt 0 lc -1, k*(x-cmin) lc -1 lt 1
+plot [0:200][0:] I2(x) lt 1 lc -1 lw 3, I(x) lt 0 lc -1, k*(x-cmin) lc -1 lt 1
