@@ -22,8 +22,7 @@
 
 %Plants need to uptake water and nutrients from soil to
 
-The rate of solute uptake by plant roots can be referred to be similar to that between enzyme and its substrate. 
-\citeonline[epstein52] used the  Michaelis-Menten equation \cite[michaelis] to define the uptake of a solute and its concentration in external medium, for potassium and sodium solutions in barley roots. The most well-known form of the equation is the following:
+The rate of solute uptake by plant roots can be referred to be similar to that between enzyme and its substrate, described by the Michaelis-Menten (MM) equation \cite[michaelis]. The most well-known form of the equation is the following:
 \label[eq_MM]
 $$
 I = {I_m C \over K_m+C} \eqmark
@@ -39,20 +38,22 @@ $I_m$ is found experimentally and $K_m$ is adjusted as the concentration at whic
 \caption/f {Solute uptake rate as a function of external concentration following Michaelis-Menten kinetics with its more common parameters}
 \medskip
 
-It can be seen from Equation \ref[eq_MM] that, for very low concentration values ($C \ll K_m$), the uptake rate is proportional to concentration. MM equation describes well the solute uptake for both anions \cite[epstein72,siddiqi,wang] and cations \cite[kochian,kelly,sadana,broadley,lux] in the low concentration range. Several authors agree that for low concentration in external medium, the uptake is given by an active mechanism since the uptake goes against the root-soil gradient and this is called Epstein's mechanism I \cite[kochian,siddiqi]. Also some experiments have shown that a minimum concentration value ($C_{min}$) in which the uptake ceases to occur is often found \cite[mouat,dudal,machado]. Measuring $C_{min}$ is experimentally difficult \cite[seeling,lambers] due to occur in very low concentrations, being hard to be detected. \citeonline[seeling] shows that $C_{min}$ can be negleted for the cases of high $K_m$ values.
+\citeonline[epstein52] were the first to use the MM equation to represent the uptake of a solute and its concentration in external medium, for potassium and sodium solutions in barley roots. The equation shows that, for very low concentration values ($C \ll K_m$), the uptake rate is proportional to concentration. MM equation describes well the solute uptake for both anions \cite[epstein72,siddiqi,wang] and cations \cite[kochian,kelly,sadana,broadley,lux] in the low concentration range. Several authors agree that for low concentration in external medium, the uptake is given by an active mechanism since the uptake goes against the root-soil gradient and this is called Epstein's mechanism I \cite[kochian,siddiqi]. Also some experiments have shown that a minimum concentration value ($C_{min}$) in which the uptake ceases to occur is often found \cite[mouat,dudal,machado]. Measuring $C_{min}$ is experimentally difficult \cite[seeling,lambers] due to occur in very low concentrations, being hard to be detected. \citeonline[seeling] shows that $C_{min}$ can be negleted for the cases of high $K_m$ values.
 
-For ($C \gg K_m$) the rate is maximal and independent of concentration. Nevertheless, experiments have shown that the uptake rate can present a linear increase at high concentrations and a linear component must be added on MM equation \cite[epstein72,kochian,borstlap,wang,vallejo,broadley]. The solute can go inside the plant freely by diffusion and convection, so it is a passive mechanism called Epstein's mechanism II \cite[kochian,siddiqi].
+For $C \gg K_m$ the solute uptake rate is maximal and independent of concentration. Nevertheless, experiments have shown that the uptake rate can present a linear increase at high concentrations and a linear component must be added on MM equation \cite[epstein72,kochian,borstlap,wang,vallejo,broadley]. The solute can go inside the plant freely by diffusion and convection, so it is a passive mechanism called Epstein's mechanism II \cite[kochian,siddiqi].
+
+The MM equation modified by the addition of the other two terms of minimum concentration and the linear component, and used in many recent models is:
+\label[eq_MM_plus]
+$$
+I = {I_m (C-C_{min}) \over K_m+C-C_{min}} + k (C-C_{min}) \eqmark
+$$
 
 The separation active and passive is due to many physiological proccesses within the plant and is explained in more details in \cite[marschner].
-
-
-
-
 
 \medskip
 \label[MM_plus]
 \picw=13cm \cinspic MM_plus.pdf
-\caption/f {Solute uptake rate as a function of external concentration following Michaelis-Menten kinetics with its more common parameters}
+\caption/f {Solute uptake rate as a function of external concentration. The saturable component follows Eq. \ref[eq_MM], the linear component is $k (C-C_{min})$ and the total uptake follows Eq. \ref[eq_MM_plus]}
 \medskip
 
 
