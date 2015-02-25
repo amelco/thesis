@@ -22,24 +22,37 @@
 
 %Plants need to uptake water and nutrients from soil to
 
- \citeonline[epstein52] suggested that the rate of solute uptake by plant roots can be referred to be similar to that between enzyme and its substrate. They used the  Michaelis-Menten equation \cite[michaelis] to define the net influx of a solute and its concentration in external medium, for potassium and sodium solutions in barley roots. The most well-known form of their equation is the following:
+The rate of solute uptake by plant roots can be referred to be similar to that between enzyme and its substrate. 
+\citeonline[epstein52] used the  Michaelis-Menten equation \cite[michaelis] to define the uptake of a solute and its concentration in external medium, for potassium and sodium solutions in barley roots. The most well-known form of the equation is the following:
+\label[eq_MM]
 $$
-I = {I_m C \over K_m+C}
+I = {I_m C \over K_m+C} \eqmark
 $$
 %
-where $I$ is net influx (rate of solute uptake), $I_m$ is the maximum uptake rate, $C$ is the solute concentration in external medium and $K_m$ the Michelis-Menten constant. $I_m$ and $K_m$ are found experimentally, being $K_m$ the concentration value at which $I_m$ assumes half of its value and represents the affinity of the plant for the solute. The uptake rate following the MM kinetics is an asymptote which saturates with increasing external concentration (Figure \ref[orig_MM]).
+where $I$ the rate of solute uptake, $I_m$ is the maximum uptake rate, $C$ is the solute concentration in external medium and $K_m$ the Michelis-Menten constant. 
+$I_m$ is found experimentally and $K_m$ is adjusted as the concentration at which $I_m$ assumes half of its value, and represents the affinity of the plant for the solute. The uptake rate following the MM kinetics is an asymptote which saturates with increasing external concentration (Figure \ref[orig_MM]).
 \citeonline[johnson] revisited the original MM paper and, using modern computer techniques (inexistent by the time the equation was developed), they could get the same results as of the original paper---with no simplifying assumptions---showing how precise and careful was the measurements and equation development. They also showed that the constant found by Michaelis and Menten is $I_m/K_m$ rather than the widely referred $K_m$.
-
-The original MM equation also describes the solute uptake for other solutes including anions \cite[epstein72,wang] and cations \cite[kelly,sadana,broadley,lux]. 
-Experiments has shown that, for low concentration in the external medium, a minimum concentration value in which the uptake ceases is likely to occur \cite[mouat,dudal,machado] and for the high concentration range, a linear relationship between uptake rate and external concentration is often found \cite[epstein72,borstlap,wang,vallejo,broadley]. 
-The MM parameters depends on plant and solute species, plant age, pH and temperature, turnig them difficult to be measured... IMPROVE
-Finding the MM parameters are hard and has to be made with caution. Adding another parameter is a great limitation, even more because $C_lim$ value is hard to be measured \cite[seeling,lambers] and can be negleted for cases of high $K_m$ values \cite[seeling].
-Thus, a linear component and/or the minimum concentration value are commonly added to the MM equation in more recent solute uptake models \cite[barber,and,all,others].  
 
 \medskip
 \label[orig_MM]
 \picw=13cm \cinspic orig_MM.pdf
-\caption/f {Solute uptake rate as a function of external concentration by Michaelis-Menten kinetics}
+\caption/f {Solute uptake rate as a function of external concentration following Michaelis-Menten kinetics with its more common parameters}
+\medskip
+
+It can be seen from Equation \ref[eq_MM] that, for very low concentration values ($C \ll K_m$), the uptake rate is proportional to concentration. MM equation describes well the solute uptake for both anions \cite[epstein72,siddiqi,wang] and cations \cite[kochian,kelly,sadana,broadley,lux] in the low concentration range. Several authors agree that for low concentration in external medium, the uptake is given by an active mechanism since the uptake goes against the root-soil gradient and this is called Epstein's mechanism I \cite[kochian,siddiqi]. Also some experiments have shown that a minimum concentration value ($C_{min}$) in which the uptake ceases to occur is often found \cite[mouat,dudal,machado]. Measuring $C_{min}$ is experimentally difficult \cite[seeling,lambers] due to occur in very low concentrations, being hard to be detected. \citeonline[seeling] shows that $C_{min}$ can be negleted for the cases of high $K_m$ values.
+
+For ($C \gg K_m$) the rate is maximal and independent of concentration. Nevertheless, experiments have shown that the uptake rate can present a linear increase at high concentrations and a linear component must be added on MM equation \cite[epstein72,kochian,borstlap,wang,vallejo,broadley]. The solute can go inside the plant freely by diffusion and convection, so it is a passive mechanism called Epstein's mechanism II \cite[kochian,siddiqi].
+
+The separation active and passive is due to many physiological proccesses within the plant and is explained in more details in \cite[marschner].
+
+
+
+
+
+\medskip
+\label[MM_plus]
+\picw=13cm \cinspic MM_plus.pdf
+\caption/f {Solute uptake rate as a function of external concentration following Michaelis-Menten kinetics with its more common parameters}
 \medskip
 
 
