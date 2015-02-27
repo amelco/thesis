@@ -42,8 +42,9 @@ The uptake rate following the MM kinetics is an asymptote which saturates with i
 \citeonline[epstein52] were the first to use the MM equation to represent the uptake of a solute and its concentration in external medium (for potassium and sodium solutions in barley roots) and it has been frequently used since then. 
 It describes well the solute uptake for both anions \cite[epstein72,siddiqi,wang] and cations \cite[kochian,kelly,sadana,broadley,lux] in the low concentration range and, adding a linear component ($k$) to the equation, it can properly estimates the uptake rate also for high concentrations \cite[epstein72,kochian,borstlap,wang,vallejo,broadley].
 Many authors agree that for low concentration in external medium, the uptake is driven by an active mechanism of the plant, as it occurs against the solute gradient between root and soil, known as Epstein's mechanism~I. 
-For the high concentration range, solutes are freely transported from soil to roots by diffusion and occasional convection. This passive transport is known as Epstein's mechanism~II \cite[kochian,siddiqi]. Details of Epestein's mechanisms are found on \citeonline[epstein60].
+For the high concentration range, solutes are freely transported from soil to roots by diffusion and occasional convection. This passive transport is known as Epstein's mechanism~II \cite[kochian,siddiqi]. 
 Moreover, experiments have shown that a minimum concentration value ($C_{min}$) in which the uptake ceases to occur is often found \cite[mouat,dudal,machado].
+Details on Epestein's mechanisms and its physiological processes, and on active and passive uptake, are found on \citeonline[epstein60] and \citeonline[fried].
 
 % Limitiations of MM parameters measurements (21.pdf, pg. 163 - 2nd column)
 The values of MM parameters are strongly dependent on the experimental methods used and vary with plant species, plant age, plant nutritional status, soil temperature and pH \cite[barber,shi]. Therefore, they have to be determined for each particular experimental situation.
@@ -59,13 +60,19 @@ $$
 I = {I_m (C-C_{min}) \over K_m+C-C_{min}} + k (C-C_{min}) \eqmark
 $$
 
-The addition of the new parameters changes the solute uptake rate as shown in Figure \ref[MM_plus]. By the fact that the solute uptake rate acts in distinct ways for different solute concentration ranges of the external medium, the modified MM equation may be considered a stepwise function. In the process of the development of the nutrient uptake models, some authors have used the modified MM equation to estimate both passive and active uptake while others use the original equation to deal with active uptake only \cite[shi].
+The addition of the new parameters changes the solute uptake rate as shown in Figure \ref[MM_plus]. By the fact that the solute uptake rate acts in distinct ways for different solute concentration ranges, the modified MM equation may be considered a stepwise function. 
+
+Both the original and the modified MM equation have been used in numerical \cite[nye,silberbush,simunek,bechtold] and analytical \cite[barber,roose] solute uptake models.
+Authors do not agree on which cases one equation has to be chosen over the other, it all depends on the assumptions made for each particular model.  
+During the history of the development of nutrient uptake models---using MM equation---some authors have used the modified version to estimate both passive and active uptake while others have chosen the original one to deal with active uptake only \cite[shi].
 
 \medskip
 \label[MM_plus]
 \picw=13cm \cinspic MM_plus.pdf
 \caption/f {Solute uptake rate as a function of external concentration. The saturable component is the first term of the right-hand side of Eq. \ref[eq_MM_plus], the linear component is the second term and the total uptake is Eq. \ref[eq_MM_plus] itself}
 \medskip
+
+There are other alternatives to describe the solute uptake rate function apart from MM equation. \citeonline[dalton] proposed a physical-mathematical model that include active uptake, mass flow and diffusion, and express solute uptake as being proportional to root water uptake. \citeonline[bouldin] described the uptake from low and high concentrations solutions by two linear equations, simplifying the process of solute uptake at root surface to two diffusion components. (TINKER AND NYE as well) Nevertheless, MM equation is yet the mostly used equation in root solute uptake models for being physically grounded and for its good agreement with experimental data.
 
 
 %The separation active and passive is due to many physiological proccesses within the plant and is explained in more details in \cite[marschner].
