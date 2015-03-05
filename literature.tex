@@ -19,30 +19,48 @@
 %Analytical solutions are possible only for a few very simple systems, tend to be complicated and often are not understood by who needs to use them. Numerical solutions have the advantage that hey are not restricted to simple boundary conditions and a numerical technique converts a differential equation into a set of algebraic expressions that are easier to solve \cite[campbell].
 
 \sec Root water uptake in vadose zone
+%Describe the flow equation, its use in the continuity equation to form the Richards equation. Explain in details how each paameter affects the flux, how/with what they vary and how they are measured
 
 
 %Talk about micro and macroscopic models, compensation, reduction functions (FEDDES,Quirijn)...
 
-\sec Plant solute availability and transport in soil
+\sec Solute availability and transport in soil
+%Describe the flow equation, its use in the continuity equation to form the Convection-Difusion equation. Explain in details how each paameter affects the flux, how/with what they vary and how they are measured
 
 % Talk about diffusion and massflow in the solute differential equation, buffer power...
+% First, describe the availability and then, the transport
 
-Solute transport in soil is driven by processes of diffusion and convection.
-Similarly as with water, solute flow within the soil is driven by a gradient between the root and the surrounding soil proportional to the diffusivity that, in turn, varies basically with soil water content. 
-The diffusion coefficient determines the velocity of solute movement at a given gradient and is composed of the molecular diffusion and the mechanical dispersion coefficients. 
-The former can be estimated from diffusion coefficient in water and depends on the water content. The latter is related to water flow and a factor of soil tortuosity. At high water fluxes, the mechanical dispersion is more important to the dispersion than to the molecular diffusion (Nye and Tinker, 1968). SHOW FIGURE
-The convective transport occurs with dissolved solute carried by mass flow of water towards the root. It is highly dependent on transpiration rate, which is the drive force of the hydraulic gradient.
-The sum of both convective and diffusive transports determines the solute flow in soil.
+Solutes in the soil are diluted in soil water and adsorbed on the soil colloids. As the concentration in soil solution is diminished, due to its movement towards the roots, they are rapidly replenished by the adsorbed solute. 
+The rate of replenishment depends on the soil type and it is known as buffer capacity.
+Roots are only able to take up solutes that are within the soil solution although some authors believe that growing roots that eventually intercept adsorbed solutes on soil colloids can absorb them without water as a intermediate \cite[marschner].
 
-But there is an additional component that affects the transport of solute: the convection which is the solute transport by mass flow of water, driven by the transpiration rate. In that way, some cases could occur with different scenarios, for example, if there transpiration rate is zero (at night or in very dry conditions), the solute flow is due to diffusion only, from in the direction of the gradient. In the long term, the concentration in the soil profile will be equal. 
-In the case of the water flow is high, leading a convective transport higher than the plant demand for the solute, an accumulation at root surface will occur and, finally, in a situation of the plant demand is attended by convection and diffusion, a depletion of solute will occur at root surface.
+Solutes in the soil solution must be transported to the root surface to be taken up by the plants. The physic mechanisms involved in this process are diffusion and convection.
+Similarly as with water, the diffusive solute flow within the soil is driven by a gradient between the root and the surrounding soil proportional to the diffusivity.
+The soil water content, the interaction of nutrient with soil colloids and the distance the nutrients must overcome to reach the root surface are the main factors governing this transport mechanism \cite[wild].
+The additional convective component is driven by mass flow of water proportional to the solute concentration, and together with the plant transpiration rate, determines the quantity of ions transported through this mechanism \cite[barber74].
+The predominant mechanism for solute transport depends mainly on the interaction between water and solute uptake rates. 
+At high transpiration rates, mass flow is the major mechanism of transport. In a case of plant demand for solute is less than the solute flux towards the roots, solute would accumulate at root surface leading to a diffusion of solutes away from the roots (in the opposite direction to the mass flow) until an equilibrium is achieved. 
+In the opposite case, the convective flow towards the roots would be insufficient to achieve plant demand for solute and diffusion would become the complementary mechanism (or even more important than convection) of solute transport. 
+It is clear to perceive that diffusion and convection occurs simultaneously and, therefore, the solution for the governing equation of solute transport has to deal with both components as two synergic processes. 
 
-The soil has a buffer power capacity in which it delivers solute to the soil as ii is depleted. The rate of reposition depends on the soil water content and on a adsorption constant, which is different for each soil type. The solute that are available to the plant is the solute in the soil water.Depending of the buffer capacity, the soil can maintain the concentration constant even with the absorption by the roots.
+%The determination of each contribution is often calculated roughly by measuring an individual contribution and comparing it with the total solute uptake. 
+
+%The diffusion coefficient determines the velocity of solute movement at a given gradient and it is composed of molecular diffusion and mechanical dispersion coefficients.
+
+%The former can be estimated from diffusion coefficient in water and depends on the water content. The latter is related to water flow and a factor of soil tortuosity. At high water fluxes, the mechanical dispersion is more important to the dispersion than to the molecular diffusion (Nye and Tinker, 1968). SHOW FIGURE
+%The convective transport occurs with dissolved solute carried by mass flow of water towards the root. It is highly dependent on transpiration rate, which is the drive force of the hydraulic gradient.
+%The sum of both convective and diffusive transports determines the solute flow in soil.
+
+%But there is an additional component that affects the transport of solute: the convection which is the solute transport by mass flow of water, driven by the transpiration rate. In that way, some cases could occur with different scenarios, for example, if there transpiration rate is zero (at night or in very dry conditions), the solute flow is due to diffusion only, from in the direction of the gradient. In the long term, the concentration in the soil profile will be equal. 
+%In the case of the water flow is high, leading a convective transport higher than the plant demand for the solute, an accumulation at root surface will occur and, finally, in a situation of the plant demand is attended by convection and diffusion, a depletion of solute will occur at root surface.
+
+%The soil has a buffer power capacity in which it delivers solute to the soil as ii is depleted. The rate of reposition depends on the soil water content and on a adsorption constant, which is different for each soil type. The solute that are available to the plant is the solute in the soil water.Depending of the buffer capacity, the soil can maintain the concentration constant even with the absorption by the roots.
 
 \sec Nutrient uptake by plant roots
+%Explain MM equation and its use as a boundary condition. Describe how the parameters affects the flux, how they vary and how they are measured.
 
 %Plants need to uptake water and nutrients from soil to
-
+Once solutes are transported to the root surface, they are readily available to be taken up by the plants.
 The rate of solute uptake by plant roots can be referred to be similar to that between enzyme and its substrate, described by the Michaelis-Menten (MM) equation \cite[michaelis]. The most well-known form of the equation is the following:
 \label[eq_MM]
 $$
@@ -69,7 +87,7 @@ Details on Epestein's mechanisms and its physiological processes, and on active 
 
 % Limitiations of MM parameters measurements (21.pdf, pg. 163 - 2nd column)
 The values of MM parameters are strongly dependent on the experimental methods used and vary with plant species, plant age, plant nutritional status, soil temperature and pH \cite[barber,shi]. Therefore, they have to be determined for each particular experimental situation.
-Some types of experiments to determine the kinetic parameters $I_m$, $K_m$ and $C_{min}$ include hydroponically-grow plants \cite[barber] and the use of radioisotopes to estimate them directly from soil \cite[nye1977]. The latter is more realistic since there is a large difference between a stirred nutrient solution and the complex and dynamic soil medium.
+Some types of experiments to determine the kinetic parameters $I_m$, $K_m$ and $C_{min}$ include hydroponically-grow plants \cite[barber] and the use of radioisotopes to estimate them directly from soil \cite[nye77]. The latter is more realistic since there is a large difference between a stirred nutrient solution and the complex and dynamic soil medium.
 Measuring $C_{min}$ is particularly difficult \cite[seeling,lambers] because it occurs at very low concentration levels, being hard to be detected. \citeonline[seeling] shows that $C_{min}$ can be neglected for the cases of high $K_m$ values.
 
 %Nevertheless, experiments have shown that the uptake rate can present a linear increase at high concentrations and a linear component must be added on MM equation \cite[epstein72,kochian,borstlap,wang,vallejo,broadley]. The solute can go inside the plant freely by diffusion and convection, so it is a passive mechanism called Epstein's mechanism II \cite[kochian,siddiqi].
@@ -93,15 +111,16 @@ During the history of the development of nutrient uptake models---using MM equat
 \caption/f {Solute uptake rate as a function of external concentration. The saturable component is the first term of the right-hand side of Eq. \ref[eq_MM_plus], the linear component is the second term and the total uptake is Eq. \ref[eq_MM_plus] itself}
 \medskip
 
-There are other alternatives to describe the solute uptake rate function apart from MM equation. \citeonline[dalton] proposed a physical-mathematical model that include active uptake, mass flow and diffusion, and express solute uptake as being proportional to root water uptake. \citeonline[bouldin] described the uptake from low and high concentrations solutions by two linear equations, simplifying the process of solute uptake at root surface to two diffusion components. (TINKER AND NYE as well) Nevertheless, MM equation is yet the mostly used equation in root solute uptake models for being physically grounded and for its good agreement with experimental data.
+There are other alternatives to describe the solute uptake rate function apart from MM equation. \citeonline[dalton] proposed a physical-mathematical model that include active uptake, mass flow and diffusion, and express solute uptake as being proportional to root water uptake. \citeonline[bouldin] described the uptake from low and high concentrations solutions by two linear equations, simplifying the process of solute uptake at root surface to two diffusion components.
+\citeonline[nye77] determined the uptake rate as a linear component followed by a constant rate phase where the threshold value is dependent on solute concentration inside the plant.
+Nevertheless, MM equation is yet the mostly used equation in root solute uptake models for being physically grounded and for its good agreement with experimental data.
 
 
 %The separation active and passive is due to many physiological proccesses within the plant and is explained in more details in \cite[marschner].
 
+\sec Transpiration reduction functions for water and solute
+%Describe the reduction functions for water and solute
 
-%\secc Numerical and analytical models
-
-%\sec Solute transport
-
-%\secc Michaelis-Menten equation
+\sec Water and solute uptake models
+%Describe the 3 main models (NU,CU and Cushman) to be used in the comparisson and show their weaknesses
 
