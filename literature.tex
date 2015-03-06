@@ -30,12 +30,42 @@
 % Talk about diffusion and massflow in the solute differential equation, buffer power...
 % First, describe the availability and then, the transport
 
-Solutes in the soil are diluted in soil water and adsorbed on the soil colloids. As the concentration in soil solution is diminished, due to its movement towards the roots, they are rapidly replenished by the adsorbed solute. 
-The rate of replenishment depends on the soil type and it is known as buffer capacity.
+Solutes in the soil are diluted in soil water and adsorbed on the soil colloids. 
+In general, soils are predominantly negative charged but often also contains colloids with positively charged sites, resulting from a large range of cations and anions species that coexist in a natural soil solution. 
+As the concentration of ions in soil solution is diminished, due to root extraction or leaching, they are rapidly replenished by the ones that are adsorbed in soil colloids \cite[tinker]. 
+Concentration of ions in soil solution is more affected by soil water content than the concentration of adsorbed ions. In a soil with calcium as the predominant cation in the soil solution, for example, a reduction by half on water content practically double its concentration in soil solution. The concentration of calcium in the adsorbed part is slightly changed and it is usually neglected.
 Roots are only able to take up solutes that are within the soil solution although some authors believe that growing roots that eventually intercept adsorbed solutes on soil colloids can absorb them without water as a intermediate \cite[marschner].
+The relation between adsorbed and solution ion concentration is very important in determining the ability of the soil to maintain the solution concentration and its mobility.
 
 Solutes in the soil solution must be transported to the root surface to be taken up by the plants. The physic mechanisms involved in this process are diffusion and convection.
-Similarly as with water, the diffusive solute flow within the soil is driven by a gradient between the root and the surrounding soil proportional to the diffusivity.
+Similarly as with water, the diffusive solute flow ($F_d$) within the soil is driven by a gradient ($dC/dr$) between the root and the surrounding soil proportional to the solute diffusivity ($D_m$), as follows:
+$$
+F_d=-D_m {dC \over dr}
+$$
+%talk about diffusion coefficient
+The coefficient $D_m$ for the diffusive transport is most known as molecular diffusion as the diffusion process results from the random thermal motion of ions or molecules, and depends, logically, on temperature and on the components of the molecule, for water. As the process of diffusion is occurring in soil, some empirical models (BRESLER, 1973; PAPENDICK; CAMPBEL, 1973) can estimate it by relationing to the one of water, as proposed by Millington and Kirk (1961):
+$$
+D_m=\xi D^0 = {\theta^{10 \over 3} \over \theta^2_s} D^0
+$$
+
+The diffusion coefficient is also affected by the convective flow, thus, to the molecular diffusion, is added a mechanical dispersion coefficient ($D_s$) which varies with the water flux and soil micropore size. An examples of model of the dispersion coefficient (Bear, 1972):
+$$
+D_s=\tau {q \over \theta}
+$$
+
+Thus, for the overall diffusion processes, an effective diffusion coefficient is defined as being the sum of both molecular diffision and molecular dispersion in the general equation of solute flux
+$$
+D=D_m+D_s
+$$
+
+The mechanical dispersion becomes more important to diffusion as high is the water flux
+
+\medskip
+\label[fig_D]
+\picw=10cm \cinspic Ds.pdf
+\caption/f {Molecular diffusion and mechanical dispersion coefficients as a function of water flux}
+\medskip
+
 The soil water content, the interaction of nutrient with soil colloids and the distance the nutrients must overcome to reach the root surface are the main factors governing this transport mechanism \cite[wild].
 The additional convective component is driven by mass flow of water proportional to the solute concentration, and together with the plant transpiration rate, determines the quantity of ions transported through this mechanism \cite[barber74].
 The predominant mechanism for solute transport depends mainly on the interaction between water and solute uptake rates. 
