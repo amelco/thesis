@@ -18,8 +18,38 @@
 
 %Analytical solutions are possible only for a few very simple systems, tend to be complicated and often are not understood by who needs to use them. Numerical solutions have the advantage that hey are not restricted to simple boundary conditions and a numerical technique converts a differential equation into a set of algebraic expressions that are easier to solve \cite[campbell].
 
-\sec Root water uptake in vadose zone
+\sec Water movement in the soil
 %Describe the flow equation, its use in the continuity equation to form the Richards equation. Explain in details how each paameter affects the flux, how/with what they vary and how they are measured
+
+The flow equations that deal with the movement of water in the soil can be applied for saturated and non-saturated conditions. The structure of the soil is very complex, its pores forms tortuous paths and dead-ends for the water flow, turning impractical a microscopic study of its flow (A SHORT INTRODUCTION HERE)
+
+Henry Darcy, in the middle of the 19th century, realized a series of experiments to study the flow of water through a saturated soil within a vertical column, which resulted in the equation
+$$
+Q=K_s A {\Delta H \over L} \eqmark
+$$
+%
+known as Darcy's law. $Q$ [L$^3$T$^{-1}$] is the water flow, $A$ [L$^2$] is the cross-section area of the column, $\Delta H$ [L] is the difference in hydraulic potentials of the beginning and the end of the column with length $L$ [L] and $K_s$ [LT$^{-1}$] is a proportionality factor called saturated hydraulic conductivity \cite[hillel].
+The Darcy's law is valid for a homogeneous and isotropic soil with a constant cross-section area of the column through its length.
+Although it is an empirical equation, it can be derived through the relationship between Bernoulli and Poiseuille's laws. For this derivation, see \citeonline[warrick]. 
+
+The water flux density $q$ [LT$^{-1}$] (also called Darcian velocity) represents the volumetric water flow per unit area and can be generalized to represent the flow in the three spacial dimensions by its differential form \cite[hillel,warrick,libardi]:
+\label[water_flux]
+$$
+q = -K_s \nabla H = -K_s \left({\partial H \over \partial x}+{\partial H \over \partial y}+{\partial H \over \partial z}\right) \eqmark
+$$
+
+The negative sign arises to determine the direction of the flux, from high to low hydraulic potentials. 
+
+%Limitations of darcy's law
+The Darcy's law is valid only for laminar flow. At high fluxes (or velocities) $q$ the hydraulic gradient eventually becomes nonlinear (). 
+
+\medskip
+\label[fig_Re]
+\picw=10cm \cinspic Re1.pdf
+\caption/f {Darcy's law deviation at high flux. The continuous line is the actual flux and the dashed lines the Darcy's flux}
+\medskip
+{\tenpoint Source: \citeonline[hillel]}
+
 
 
 %Talk about micro and macroscopic models, compensation, reduction functions (FEDDES,Quirijn)...
