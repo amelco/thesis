@@ -21,37 +21,50 @@
 \sec Water movement in the soil
 %Describe the flow equation, its use in the continuity equation to form the Richards equation. Explain in details how each paameter affects the flux, how/with what they vary and how they are measured
 
-The flow equations that deal with the movement of water in the soil can be applied for saturated and non-saturated conditions. The structure of the soil is very complex, its pores forms tortuous paths and dead-ends for the water flow, turning impractical a microscopic study of its flow (A SHORT INTRODUCTION HERE)
+%The flow equations that deal with the movement of water in the soil can be applied for saturated and non-saturated conditions. The structure of the soil is very complex, its pores forms tortuous paths and dead-ends for the water flow, turning impractical a microscopic study of its flow 
+(A SHORT INTRODUCTION HERE)
 
 Henry Darcy, in the middle of the 19th century, realized a series of experiments to study the flow of water through a saturated soil within a vertical column, which resulted in the equation
 $$
 Q=K_s A {\Delta H \over L} \eqmark
 $$
 %
-known as Darcy's law. $Q$ [L$^3$T$^{-1}$] is the water flow, $A$ [L$^2$] is the cross-section area of the column, $\Delta H$ [L] is the difference in hydraulic potentials of the beginning and the end of the column with length $L$ [L] and $K_s$ [LT$^{-1}$] is a proportionality factor called saturated hydraulic conductivity \cite[hillel].
+known as Darcy's law. $Q$ [L$^3$T$^{-1}$] is the water flow, $A$ [L$^2$] is the cross-section area of the column, $\Delta H$ [L] is the difference between the hydraulic potentials at the beginning and the end of the column with length $L$ [L] and $K_s$ [LT$^{-1}$] is a proportionality factor called saturated hydraulic conductivity \cite[libardi2010].
 The Darcy's law is valid for a homogeneous and isotropic soil with a constant cross-section area of the column through its length.
-Although it is an empirical equation, it can be derived through the relationship between Bernoulli and Poiseuille's laws. For this derivation, see \citeonline[warrick]. 
+Although it is an empirical equation, it can be derived from the relationship between Bernoulli and Poiseuille's laws. For this derivation, see \citeonline[warrick]. 
 
-The water flux density $q$ [LT$^{-1}$] (also called Darcian velocity) represents the volumetric water flow per unit area and can be generalized to represent the flow in the three spacial dimensions by its differential form \cite[hillel,warrick,libardi]:
+The water flux density $q$ [LT$^{-1}$] (also called Darcian velocity) represents the volumetric water flow per unit area and can be generalized to represent the flow in the three spacial dimensions by its differential form \cite[hillel,warrick,libardi] (commonly used in macroscopic models). It also can represents the flow in radial coordinates (most used in microscopic models), as follows:
 \label[water_flux]
 $$
-q = -K_s \nabla H = -K_s \left({\partial H \over \partial x}+{\partial H \over \partial y}+{\partial H \over \partial z}\right) \eqmark
+%q = -K_s \nabla H = -K_s \left({\partial H \over \partial x}+{\partial H \over \partial y}+{\partial H \over \partial z}\right) \eqmark
+q = -K_s {dH \over dr} \eqmark
 $$
 
 The negative sign arises to determine the direction of the flux, from high to low hydraulic potentials. 
 
 %Limitations of darcy's law
-The Darcy's law is valid only for laminar flow. At high fluxes (or velocities) $q$ the hydraulic gradient eventually becomes nonlinear (). 
+The Darcy's law is valid only for laminar flow. The flux (or velocity) $q$ eventually becomes nonlinear as the hydraulic gradient is too high or too low (Figure \ref[fig_Re]). These deviations can be either attributed to turbulent flow, for high gradients, or to the non-Newtonian behavior of water, for low gradients \cite[hillel,warrick]. Notwithstanding the limitations of Darcy's law, it can be applied in the vast majority of cases referring to water flow in soils.
 
 \medskip
 \label[fig_Re]
 \picw=10cm \cinspic Re1.pdf
-\caption/f {Darcy's law deviation at high flux. The continuous line is the actual flux and the dashed lines the Darcy's flux}
+\caption/f {Darcy's law deviations at high and low fluxes. The continuous line is the actual flux and the dashed lines the Darcy's flux}
 \medskip
-{\tenpoint Source: \citeonline[hillel]}
+{\tenpoint Source: Adapted from \citeonline[hillel]}
 
+%Darcy's law for nonsaturated soils
 
+%K-O-h Relations
 
+%continuity equation
+$$
+{\partial\theta \over \partial t} = -{\partial q \over \partial r}
+$$
+
+%Richards equation
+$$
+{\partial\theta \over \partial t} = {\partial \over \partial r} \left(K(\theta){\partial h \over \partial r}\right)
+$$
 %Talk about micro and macroscopic models, compensation, reduction functions (FEDDES,Quirijn)...
 
 \sec Solute availability and transport in soil
