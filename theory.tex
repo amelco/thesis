@@ -6,73 +6,103 @@
 % * solute transport equations that will be used in the comparisons
 % * Michaelis-Menten equation
 
-This chapter focuses on the theoretical aspects used in the methodology (Chapter \ref[methodology]. 
-It briefly describes the Richards equation that is used in the water flow models and details the convection-dispersion equation for solute transport. Also, a short explanation about the Michaelis-Menten theory about nutrient uptake is given, which is fundamental to understand the work done in this thesis, since it is treated as a boundary condition for the convection-dispersion equation. For those who are familiarized with these equations (theories), this chapter does not provides particular information that can make the rest of this thesis non-understandable, and the reader can go direct to chapter \ref[methodology]. Equations that were presented in this section are properly referenced.
+This chapter focuses on the theoretical aspects used in the methodology. 
+It briefly describes the Richards equation that is applied in water flow models and details the convection-dispersion equation for solute transport. 
+Also, a short explanation about the Michaelis-Menten kinetics for nutrient uptake is given.
+%, which is fundamental to understand the work done in this thesis, since it is treated as a boundary condition for the convection-dispersion equation. 
+For those who are familiarized with these theories, the reading starting from Chapter \ref[methodology] is sufficient and this chapter may be skipped, since it does not provide any particular information that is different from what is already known from literature.
+Equations that were presented in this section, and are used further in this thesis, are properly referenced.
 
 \sec Water flow equation
 
-The equation for water flow for homogeneous and isotropic soil, in saturated and non-saturated conditions, and in radial coordinates, is given by the Richards equation:
+The equation for water flow for a homogeneous and isotropic soil, in saturated and non-saturated conditions, is given by the Richards equation. In radial coordinates it can be given as:
 
 \label[eq_Richards]
 $$
 r{\partial \theta \over \partial t} = -{\partial q \over \partial r} \eqmark
 $$
 %
-where $r$ \uhead is the distance from the axial center, $\theta$ \uwc is the water content in soil and $t$ \utime is the time. The water flux density $q$ \uwatflux is given by the Darcy-Buckingham equation:
+where $r$ \uhead is the distance from root the axial center, $\theta$ \uwc is the water content in soil and $t$ \utime is the time. The water flux density $q$ \uwatflux is given by the Darcy-Buckingham equation:
+
 \label[eq_watflux]
 $$
 q = -K(\theta) {dH \over dr} \eqmark
 $$
 %
-where $K$ \uK is the soil hydraulic conductivity and $H$ is the total soil hydraulic potential. This equation describes the water flux in (non)saturated soil in any direction of the Cartesian system.
+where $K$ \uK is the soil hydraulic conductivity and $H$ is the total soil hydraulic potential. This equation describes the laminar water flux for (non)saturated soil in any direction of the Cartesian system. The role of $K$ is detailed in Section \ref[soil_prop].
 
-Equation \ref[eq_Richards] is a second order partial differential equation and, thus, needs some initial and boundary conditions to result in a specific solution. 
-The most common initial condition is of constant water content or pressure head through the radial distance, although a function of water content profile can also be used. 
-In analytical solutions, is common to use steady-state condition to solve the equation due to the high non-linearity of the hydraulic functions (detailed in section \ref[soil_prop]). 
-In numerical solutions, it is easier to define a transient water flow condition, giving it a more realistic treatment. 
-Boundaries for both steady-state and transient solutions can be of constant pressure head or constant water flux, as shown in Equations \ref[wat_bc1] and \ref[wat_bc2] respectively:
+Equation \ref[eq_Richards] is a second order partial differential equation and, therefore, needs initial and boundary conditions to result in a specific solution. 
+The most common initial condition is of constant water content or pressure head along the radial distance, although a function of water content (or pressure head) over distance can also be used. 
+In analytical solutions, steady-state condition in relation to water flow is often used to solve the equation. The high non-linearity of the hydraulic functions (see Section \ref[soil_prop]) makes a transient solution rather complex and, sometimes, impractical.
+In numerical solutions, on the other hand, it is easier to define a transient water flow condition, which gives a more realistic treatment to the equation. 
+Boundaries for both steady-state and transient solutions can be either of prescribed pressure head or water flux, as shown in Equations \ref[wat_bc1] and \ref[wat_bc2] respectively:
+
 \label[wat_bc1]
 $$
-\theta(r_0,t) = f(r,t) \eqmark
+h(r_0,t) = f(t) \eqmark
 $$
+
 \label[wat_bc2]
 $$
-\left. K(\theta) {\partial\theta \over \partial r} \right|_{r=r_0} = f(r,t) \eqmark
+\left. K(\theta) {\partial h \over \partial r} \right|_{r=r_0} = g(t) \eqmark
 $$
+%
+where $f(t)$ and $g(t)$ can be either a constant or a time variable (but known, following a specific function) value of pressure head and water flux, respectively.
 
-In microscopic models, the boundary condition at root surface is of constant or variable water flux, equal to the plant transpiration rate.
-In macroscopic models, as they deal with the entire root zone, the boundary condition at the soil surface can be equal to the evaporation rate and of free drainage in the bottom (root depth). The water extraction by plant roots is equal to the plant transpiration encapsulated in a sink term in Richards equation.
+In most of microscopic (single root) models, the boundary conditions are of flux type, according to Equation \ref[wat_bc2]. At root surface (inner boundary) it is equal to the transpiration rate and at the end distance of the domain (outer boundary) it is often of zero flux --- meaning inter-root competition for water. Therefore, the only water exit is at root surface through the transpiration stream.
+In macroscopic models, as they deal with the entire root zone, the boundaries are located at the soil surface and at a given depth (usually, root depth). 
+Both boundary types are equally found, depending on the simulation scenario to consider (soil surface evaporation, irrigation or rain, presence of water table, drainage, water root uptake, etc). 
+A sink-source term is then added to Equation \ref[eq_Richards] to deal with such water inputs and outputs (as seen in the previous chapter).
+%can be equal to the evaporation rate and of free drainage in the bottom (root depth). The water extraction by plant roots is equal to the plant transpiration encapsulated in a sink term in Richards equation.
 
-When no solute is dealt in the solution of Richards equation, $H$ turns out to be pressure head $h$ and, occasionally, the sum of pressure head an gravitational component $h_g$, neglecting the osmotic head $h_\pi$. The link between water movement and solute transport in soil appears when $h_\pi$ is considered in the Richards equation. Researchers try to separate the mechanisms that deals with both transports although they occur sinergically in nature. The flow of water interferes in the solute flow and vice-versa and a link between them should exist. In section \ref[sol_transp] we deal with transport of solute in more details.
+The hydraulic potential $H$ is the sum of pressure ($h$) and elevation ($h_g$) heads in models that do not consider solute flow. 
+In order to deal with solutes, the osmotic head ($h_\pi$) must be added to $H$ and it will serve as a `link' to the solute transport equation, detailed in Section \ref[sol_transp]. 
+Moreover, $h_g$ can be neglected when this component is of minor relevance (as of in microscopic models).
+
+%When no solute is dealt in the solution of Richards equation, $H$ turns out to be pressure head $h$ and, occasionally, the sum of pressure head an gravitational component $h_g$, neglecting the osmotic head $h_\pi$. The link between water movement and solute transport in soil appears when $h_\pi$ is considered in the Richards equation. Researchers try to separate the mechanisms that deals with both transports although they occur sinergically in nature. The flow of water interferes in the solute flow and vice-versa and a link between them should exist. In Section \ref[sol_transp] we deal with transport of solute in more details.
 
 \label[soil_prop]
 \sec Soil hydraulic functions
 
-As mentioned in the previous section, $K$, $\theta$ and $h$ are inter-related soil properties. Their interdependence allows to infer one property in relation to the other two. A common practice is to measure $\theta$ for several $h$ values and make use of a model to know the so called characteristic soil curve or water retention curve. As the function of $K$ is dependent of $\theta$ or $h$, this relation is automatically obtained. Among several $K$--$\theta$--$h$ relationship models, the van Genuchten relations is one of the most used:
+The soil hydraulic properties $K$, $\theta$ and $h$ are interdependent and, as mentioned in the previous section, highly nonlinear. Equations \ref[eq_theta] and \ref[eq_K] show their interdependence and their noticeable nonlinearity. Among all models to describe the water retention curve mentioned in Chapter \ref[literature], the most used is the one of van Genuchten below:
+
+%As mentioned in the previous section, $K$, $\theta$ and $h$ are inter-related soil properties. Their interdependence allows to infer one property in relation to the other two. A common practice is to measure $\theta$ for several $h$ values and make use of a model to know the so called characteristic soil curve or water retention curve. As the function of $K$ is dependent of $\theta$ or $h$, this relation is automatically obtained. Among several $K$--$\theta$--$h$ relationship models, the van Genuchten relations is one of the most used:
+
+\label[eq_theta]
 $$
 \theta(h) = \theta_r + {\theta_s-\theta_r \over [1+|\alpha h|^n]^{1-(1/n)}} \eqmark
 $$
+
+\label[eq_K]
 $$
 K(\theta) = K_{s} \Theta^\lambda [1-(1-\Theta^{n/(n-1)})^{(1-(1/n)})]^2  \eqmark
 $$
 %
 where $\Theta$ (--) is the effective saturation defined by ${(\theta - \theta_r) \over (\theta_s-\theta_r)}$; $\theta_s$ \uwc and $\theta_r$ \uwc are the saturated and residual water contents, respectively; and $\alpha$ (m$^{-1}$), $\lambda$ (--) and $n$ (--) are empirical parameters.
 
+Luckily, the relationship between the hydraulic functions allows to determine a property as a function of another. Thus, by measuring two of them, it is possible to fit the parameters of Equations \ref[eq_theta] and \ref[eq_K]. A common practice is to measure $\theta$ at prescribed values of $h$ and fit the Equation \ref[eq_theta] parameters with the data, consequently obtaining the $K$ function.
+
 %BRIEF EXPLANATION OF THE PARAMETERS (one paragraph)
+
+%BRIEF EXPLANATION OF K(O)
 
 %BRIEF EXPLANATION ABOUT THE NONLINEARITY OF THE FUNCTIONS
 Experiments have shown that the relationship between $\theta$ and $h$ is extremely nonlinear. Besides that, there is hysteresis in the process that makes the function different for drying or wetting patterns.
 
+%TALK BRIEFLY ABOUT REDUCTION FUNCTIONS
+
 \label[sol_transp]
 \sec Solute transport
 
-The solute transport in soil occurs by diffusion and convection-dispersion and the equation that involves those mechanisms is the dispersion-diffusion equation. In radial coordinates:
+The solute transport in soil occurs by diffusion and convection. The equation that involves those mechanisms is the convection-diffusion equation. In radial coordinates, it can be written as:
+
 \label[eq_sol]
 $$
 r{\partial (\theta C) \over \partial t} = -{\partial q_s \over \partial r} \eqmark
 $$
 %
 where $C$ \uconc is the concentration of solute in soil solution. The solute flux density $q_s$ \usolflux is given by:
+
 \label[eq_solflux]
 $$
 q_s = -D(\theta) {dC \over dr} + qC \eqmark
@@ -81,14 +111,14 @@ $$
 where $D$ \udisp is the effective diffusion-dispersion coefficient. The convective part of the transport is accounted by the second term of the right-hand side of equation \ref[eq_solflux] and the diffusive-dispersive part by the left term. 
 
 %convection
-Transport by convection occurs due to movement of solute carried by the mass flow of water, following a gradient on water (by the diffusive movement of water, in other words). A gradient in water content must exist to satisfy this movement. This is the part dependent on the water flow equation \ref[eq_watflux].
+Transport by convection occurs due to movement of diluted solutes carried by mass flow of water, following a gradient on water (by the diffusive movement of water, in other words). A gradient in water content must exist to satisfy this movement. This is the part dependent on the water flow equation \ref[eq_watflux].
 
 %dispersion-diffusion
 By the same process, solute are diffused in soil solution due to a gradient in concentration, and it is proportional to a diffusion parameter $D$. This parameter depends on water content and characteristics of soil and solute itself.
 
 Simplifications can be made in the solutions for equation \ref[eq_sol], considering $D$ not dependent on $\theta$, for example.
 
-The boundary conditions are the same as of water, except that it is in respect to concentration, not water content. The common boundary is of a flux at root surface equal to the solute uptake rate of the plant. This is detailed in section \ref[sol_uptake].
+The boundary conditions are the same as of water, except that it is in respect to concentration, not water content. The common boundary is of a flux at root surface equal to the solute uptake rate of the plant. This is detailed in Section \ref[sol_uptake].
 
 \label[sol_uptake]
 \sec Solute uptake by plant roots
