@@ -29,9 +29,10 @@ $$
 q = -K(\theta) {dH \over dr} \eqmark
 $$
 %
-where $K$ \uK is the soil hydraulic conductivity and $H$ is the total soil hydraulic potential. This equation describes the laminar water flux for (non)saturated soil in any direction of the Cartesian system. The role of $K$ is detailed in Section \ref[soil_prop].
+where $K$ \uK is the soil hydraulic conductivity and $H$ is the total soil hydraulic potential. This equation describes the laminar water flux for (non)saturated soil in any direction of space. 
+%The role of $K$ is detailed in Section \ref[soil_prop].
 
-Equation \ref[eq_Richards] is a second order partial differential equation and, therefore, needs initial and boundary conditions to result in a specific solution. 
+Equation \ref[eq_Richards] is a second-order partial differential equation and, therefore, needs initial and boundary conditions to result in a particular solution. 
 The most common initial condition is of constant water content or pressure head along the radial distance, although a function of water content (or pressure head) over distance can also be used. 
 In analytical solutions, steady-state condition in relation to water flow is often used to solve the equation. The high non-linearity of the hydraulic functions (see Section \ref[soil_prop]) makes a transient solution rather complex and, sometimes, impractical.
 In numerical solutions, on the other hand, it is easier to define a transient water flow condition, which gives a more realistic treatment to the equation. 
@@ -39,19 +40,19 @@ Boundaries for both steady-state and transient solutions can be either of prescr
 
 \label[wat_bc1]
 $$
-h(r_0,t) = f(t) \eqmark
+h(r_i,t) = f(t) \eqmark
 $$
 
 \label[wat_bc2]
 $$
-\left. K(\theta) {\partial h \over \partial r} \right|_{r=r_0} = g(t) \eqmark
+\left. K(\theta) {\partial h \over \partial r} \right|_{r=r_i} = g(t) \eqmark
 $$
 %
-where $f(t)$ and $g(t)$ can be either a constant or a time variable (but known, following a specific function) value of pressure head and water flux, respectively.
+where $f(t)$ and $g(t)$ can be either a constant or a time variable function of pressure head and water flux, respectively; and $r_i$ is the distance from axial center to the specific boundary. In the case of microscopic (and usually radial) models, $r_i$ can assume values of the distances from axial center to root surface (inner boundary) and to the end of the domain (outer boundary). Macroscopic models use the Cartesian system and, for one-dimension, represents the domain along the $z$ axis (depth) instead of $r$. Thus, $z_i$ values would be of the distance from the soil surface (top boundary) to a certain depth, {\it e.g}. root depth (bottom boundary).
 
-In most of microscopic (single root) models, the boundary conditions are of flux type, according to Equation \ref[wat_bc2]. At root surface (inner boundary) it is equal to the transpiration rate and at the end distance of the domain (outer boundary) it is often of zero flux --- meaning inter-root competition for water. Therefore, the only water exit is at root surface through the transpiration stream.
+In most of microscopic (single root) models, the boundary conditions are of flux type, according to Equation \ref[wat_bc2]. At root surface, it is equal to the transpiration rate, and at the outer boundary, it is often of zero flux --- meaning inter-root competition for water. Therefore, the only water exit is at root surface through the transpiration stream.
 In macroscopic models, as they deal with the entire root zone, the boundaries are located at the soil surface and at a given depth (usually, root depth). 
-Both boundary types are equally found, depending on the simulation scenario to consider (soil surface evaporation, irrigation or rain, presence of water table, drainage, water root uptake, etc). 
+Both boundary types are equally found, depending on the simulation scenario to consider (soil surface evaporation, irrigation or rain, presence of water table, drainage, water root uptake, etc.). 
 A sink-source term is then added to Equation \ref[eq_Richards] to deal with such water inputs and outputs (as seen in the previous chapter).
 %can be equal to the evaporation rate and of free drainage in the bottom (root depth). The water extraction by plant roots is equal to the plant transpiration encapsulated in a sink term in Richards equation.
 
@@ -80,7 +81,7 @@ $$
 %
 where $\Theta$ (--) is the effective saturation defined by ${(\theta - \theta_r) \over (\theta_s-\theta_r)}$; $\theta_s$ \uwc and $\theta_r$ \uwc are the saturated and residual water contents, respectively; and $\alpha$ (m$^{-1}$), $\lambda$ (--) and $n$ (--) are empirical parameters.
 
-Luckily, the relationship between the hydraulic functions allows to determine a property as a function of another. Thus, by measuring two of them, it is possible to fit the parameters of Equations \ref[eq_theta] and \ref[eq_K]. A common practice is to measure $\theta$ at prescribed values of $h$ and fit the Equation \ref[eq_theta] parameters with the data, consequently obtaining the $K$ function.
+Luckily, the relationship between the hydraulic functions allows to determine a property as a function of another. Thus, by measuring two of them, it is possible to fit the parameters of Equations \ref[eq_theta] and \ref[eq_K]. A common practice is to measure $\theta$ at prescribed values of $h$ and adjust the Equation \ref[eq_theta] parameters with the data, consequently obtaining the $K$ function.
 
 %BRIEF EXPLANATION OF THE PARAMETERS (one paragraph)
 
@@ -108,19 +109,72 @@ $$
 q_s = -D(\theta) {dC \over dr} + qC \eqmark
 $$
 %
-where $D$ \udisp is the effective diffusion-dispersion coefficient. The convective part of the transport is accounted by the second term of the right-hand side of equation \ref[eq_solflux] and the diffusive-dispersive part by the left term. 
+where $D$ \udisp is the effective diffusion-dispersion coefficient. This equation describes the solute flux in the soil solution.
+The convective flux is accounted by the second term on the right-hand side of the equation \ref[eq_solflux] and the diffusive-dispersive flux by the first term. 
 
 %convection
-Transport by convection occurs due to movement of diluted solutes carried by mass flow of water, following a gradient on water (by the diffusive movement of water, in other words). A gradient in water content must exist to satisfy this movement. This is the part dependent on the water flow equation \ref[eq_watflux].
+Transport by convection occurs due to movement of diluted solutes carried by mass flow of water proportional to the solute concentration in soil solution. 
+It is noticeable that the convective contribution to solute flux reduces as water flux $q$ becomes small, therefore the convective flux is highly dependent on water content gradient and hydraulic conductivity. 
+Convection also affects the solute diffusivity due to a water velocity gradient originated in the micropore space of the soil. This microscale process is called mechanical dispersion and can be expressed by macroscopic variables as follows:
+
+$$
+D_s = \tau {q \over \theta} \eqmark
+$$
+%
+where $D_s$ \udisp is the mechanical dispersion coefficient, $\tau$ \uhead is the dispersivity and the relation $q/\theta$ \uwatflux accounts for the average pore water velocity.
 
 %dispersion-diffusion
-By the same process, solute are diffused in soil solution due to a gradient in concentration, and it is proportional to a diffusion parameter $D$. This parameter depends on water content and characteristics of soil and solute itself.
+Transport by diffusion is the movement of solutes caused by a concentration gradient in soil solution. It is proportional to the effective diffusion coefficient $D$ which is given by:
 
-Simplifications can be made in the solutions for equation \ref[eq_sol], considering $D$ not dependent on $\theta$, for example.
+$$
+D = D_m + D_s \eqmark
+$$
+%
+where $D_m$ \udisp is the molecular diffusion coefficient that, as $D_s$, is also a microscale process resulted from the averaged random motion of the molecules in the soil solution in response to the concentration gradient. It can be expressed by macroscopic variables as follows:
 
-The boundary conditions are the same as of water, except that it is in respect to concentration, not water content. The common boundary is of a flux at root surface equal to the solute uptake rate of the plant. This is detailed in Section \ref[sol_uptake].
+$$
+D_m=\xi D^0 = {\theta^{10 \over 3} \over \theta^2_s} D^0 \eqmark
+$$
+%
+where $\xi$ (--) is the tortuosity factor and $D^0$  \udisp is the diffusion coefficient in water. Values of $D^0$ for ions or molecules can be easily measured and analytically estimated in a free solution. Soil water content is often below its saturation point, thus, diffusion is often different from that of a free solution.
+
+
+%boundary conditions
+The boundary conditions are the same as of water, except that it is in respect to concentration instead of pressure head. 
+In microscopic models, common boundary conditions are of zero, constant or variable solute flux at root surface. 
+Choosing one over another depends on how the solute uptake by the plant will be considered in the model (details in Section \ref[sol_uptake]).
+The outer boundary depends on the distance in which it is considered. A zero solute flux condition works well to simulate inter-root competition for solutes while constant concentration --- equal to the initial concentration --- can be used in a situation that the boundary is `far enough' from root surface.
+In macroscopic models, a sink-source term is added to Equation \ref[eq_sol] to consider different inputs and outputs of solute in the system ({\it e.g.} plant uptake, mineralization, degradation, etc.), and the top and bottom boundaries are treated according to the scenario (similar to what is done with the water flow equation).
+
+%accumulation or depletion of solute at root surface dependent on chosen boundaries
+%Focusing in microscopic modelling, 
+Different boundary conditions result in distinct solutions for the partial differential equation and, consequently, different results. For a situation of zero solute flux at root surface, the solute would accumulate there due to the transport by convection. A consequent diffusion of solutes away from the roots would occur due to a difference of gradient until it achieves an equilibrium. On the other hand, considering a constant or a variable solute flux at root surface, an accumulation of solute would occur uniquely if the root uptake is less than the solute flux arriving at root surface. The opposite would cause a decrease in concentration at root surface until a zero concentration value. What differs from constant to variable solute flux boundary condition is the rate of solute uptake.
+
+%Explanation of the 3 models
+
+%Simplifications can be made in the solutions for equation \ref[eq_sol], considering $D$ not dependent on $\theta$, for example.
+
 
 \label[sol_uptake]
 \sec Solute uptake by plant roots
+%Describes zero, constant and variable solute uptake. Detail the three models.
+%In literature review, do a simple description and refer to here for more details.
+
+In this section, only boundary conditions at root surface for microscopic models will be treated. 
+More specifically, the boundaries of the models used in this thesis. They are of zero and constant solute flow. 
+The boundary of concentration dependent solute flow is also described and is one of the objectives of this thesis. 
+Its application is detailed in Chapter \ref[methodology].
+
+Writing the convection-diffusion equation in its full form, by substituting Equation \ref[eq_solflux] in Equation \ref[eq_sol], we have:
+
+$$
+r{\partial (\theta C) \over \partial t} = {\partial \over \partial r} \left( D(\theta) {\partial C \over \partial r} - qC\right) \eqmark
+$$
+
+Being $r_0$ \uhead the distance from root center to the root surface and knowing that solute flux is represented by Equation \ref[eq_solflux], the boundary condition at root surface can be written in the form:
+
+$$
+-D(\theta) {\partial C \over \partial r} + qC = F \eqmark
+$$
 
 
