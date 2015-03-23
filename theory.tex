@@ -121,6 +121,7 @@ Convection also affects the solute diffusivity due to a water velocity gradient 
 As solutes are carried with different velocities, a concentration gradient is originated, allowing a diffusive movement within this pore space.
 This microscale process is called mechanical dispersion and can be expressed by macroscopic variables as follows:
 
+\label[eq_Ds]
 $$
 D_s = \tau {q \over \theta} \eqmark
 $$
@@ -136,18 +137,21 @@ $$
 %
 where $D_m$ \udisp is the molecular diffusion coefficient that, as $D_s$, is also a microscale process resulted from the averaged random motion of the molecules in the soil solution in response to the concentration gradient. It can be expressed by macroscopic variables as follows:
 
+\label[eq_Dm]
 $$
 D_m=\xi D^0 = {\theta^{10 \over 3} \over \theta^2_s} D^0 \eqmark
 $$
 %
-where $\xi$ (--) is the tortuosity factor and $D^0$  \udisp is the diffusion coefficient in water. Values of $D^0$ for ions or molecules can be easily measured and analytically estimated in a free solution. Soil water content is often below its saturation point, thus, diffusion is often different from that of a free solution.
+where $\xi$ (--) is the tortuosity factor and $D^0$  \udisp is the diffusion coefficient in water. Values of $D^0$ for ions or molecules can be easily measured and estimated by analytical equations for free water. Soil water content is often below its saturation point, thus, diffusion is often different from that of free water. 
+Equations \ref [eq_Ds] to \ref[eq_Dm] are one of the several existing models to estimate the effective diffusion-dispersion coefficient. 
+Chapter \ref[literature] has a list of the available models.
 
 
 %boundary conditions
-The boundary conditions are the same as of water, except that they are in respect to concentration instead of pressure head. 
+The boundary conditions types are the same as of water, except that they are in respect to concentration instead of pressure head. 
 In microscopic models, common boundary conditions are of zero, constant or variable solute flux at root surface. 
 Choosing one over another depends on how the solute uptake by the plant will be considered in the model (details in Section \ref[sol_uptake]).
-The outer boundary depends on the distance in which it is considered. A zero solute flux condition works well to simulate inter-root competition for solutes while constant concentration --- equal to the initial concentration --- can be used in a situation that the boundary is `far enough' from root surface.
+The outer boundary depends on the distance in which it is considered. A zero solute flux condition works well to simulate inter-root competition for solutes in a distance ranging from XXX to xxx m while constant concentration --- equal to the initial concentration --- can be used in a situation that the boundary is `far enough' from root surface, {\it i.e.} there is no competition between neighbour roots.
 In macroscopic models, a sink-source term is added to Equation \ref[eq_sol] to consider different inputs and outputs of solute in the system ({\it e.g.} plant uptake, mineralization, degradation, etc.), and the top and bottom boundaries are treated according to the scenario (similar to what is done with the water flow equation).
 
 %accumulation or depletion of solute at root surface dependent on chosen boundaries
@@ -169,14 +173,16 @@ In macroscopic models, a sink-source term is added to Equation \ref[eq_sol] to c
 %Describes zero, constant and variable solute uptake. Detail the three models.
 %In literature review, do a simple description and refer to here for more details.
 
-The root-soil interface is the boundary that deals with solute uptake by the root.
-Different conditions in this boundary result in distinct solutions for the convection-dispersion equation and, consequently, lead to different results. 
+%The root-soil interface is the boundary that deals with solute uptake by the root.
+The transition from fluxes of water and solutes in the soil to physiological mechanisms of uptake by the plant is located at the root-soil interface.
+This boundary is of the outermost importance and a correct mathematical treatment here is crucial.
+Different conditions in this boundary result in distinct solutions of the convection-dispersion equation and, consequently, lead to different results. 
 %talk about concentration dependent boundary vs zero and constant uptak
 For a situation of zero solute flux at root surface, the solute would accumulate 
 %there 
 in that region
 due to the transport by convection. 
-A consequent diffusion of solutes away from the roots would occur due to the formed concentration gradient until an equilibrium between those fluxes is achieved. 
+A consequent diffusion of solutes away from the root would occur due to the formed concentration gradient until an equilibrium between those fluxes is achieved. 
 On the other hand, considering a constant or a variable solute flux at root surface, an accumulation of solute would occur uniquely if the root uptake is less than the solute flux arriving at root surface. 
 The opposite situation would cause a decrease in concentration at root surface until a zero (or limiting) concentration value. 
 %What differs from constant to variable solute flux boundary condition is the rate of solute uptake.
@@ -198,16 +204,36 @@ $$
 \left. -D(\theta) {\partial C \over \partial r} \right|_{r=r_0} + qC = F\;{\rm ,} \eqmark
 $$
 %
-all conditions of solute uptake rate can be represented by setting to $F$ the specific uptake function. A zero solute uptake condition would be $F = 0$, a constant uptake condition would be $F = k$ and a variable uptake function would be $F = \alpha k$, where $k$ \usolflux is a constant that represents the uptake rate and $\alpha$ (--) a function that modifies the constant $k$.
+all conditions of solute uptake rate can be represented by setting to $F$ a specific uptake function. A zero solute uptake condition would be $F = 0$, a constant uptake condition would be $F = k$ and a concentration dependent uptake function would be $F = \alpha(C) k$, where $k$ \usolflux is a constant that represents the uptake rate and $\alpha(C)$ (--) a shape function for the uptake. 
 
-The zero solute uptake condition is straightforward in the mathematics. 
-The condition of constant solute uptake assumes that the plant demand for solutes is constant. Considering the plant demand $I_m$ \usolflux, the uptake for an individual root, in cylindrical coordinates, would be as:
+The rate of solute uptake by plant roots can be referred to be similar to that between enzyme and its substrate, described by the Michaelis-Menten (MM) equation \cite[michaelis]. Thus the uptake shape function $\alpha(C)$ can follow the concentration dependent MM kinetics, and $k$ being equal to $I_m$ leads to the following:
 
 $$
-F = {I_m \over 2 \pi L_{rv} L r_0}
+\alpha(C) = {C \over K_m+C} \Rightarrow F = {C \over K_m+C}\, I_m \eqmark
 $$
 %
-where $L_{rv}$ m m$^{-3}$ is the root density and $L$ \uhead the root length.
+where $I_m$ is the maximum uptake rate, $C$ is the solute concentration in soil solution and $K_m$ the Michaelis-Menten constant. 
+$I_m$ is found experimentally and $K_m$ is adjusted as the concentration at which $I_m$ assumes half of its value, being interpreted as the affinity of the plant for the solute. 
+
+The uptake rate following the MM kinetics is an asymptote which saturates with increasing external concentration (Figure \ref[orig_MM]). The equation shows that, for very low concentration values ($C \ll K_m$), the uptake rate is proportional to concentration whereas, for $C \gg K_m$, the solute uptake rate is maximal and independent of concentration.
+
+\medskip
+\label[orig_MM]
+\picw=13cm \cinspic orig_MM.pdf
+\caption/f {Solute uptake rate as a function of external concentration following Michaelis-Menten kinetics with its more common parameters}
+\medskip
+
+The $K_m$ coefficient represents the affinity of the plant for the solute. For $K_m$ values higher than 50 ${\rm \mu M}$, it is considered that the plant has a low affinity for the solute whereas for values less than 10 ${\rm \mu M}$, the plant has a high-affinity for it.
+
+
+%The zero solute uptake condition is straightforward in the mathematics. 
+%The condition of constant solute uptake assumes that the plant demand for solutes is constant. Considering the plant demand $I_m$ \usolflux, the uptake for an individual root, in cylindrical coordinates, would be as:
+%
+%$$
+%F = {I_m \over 2 \pi L_{rv} L r_0}
+%$$
+%%
+%where $L_{rv}$ m m$^{-3}$ is the root density and $L$ \uhead the root length.
 
 
 
