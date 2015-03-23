@@ -3,6 +3,9 @@
 *.docx
 correcoes/
 
+# inkscape projects
+*.svg
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
