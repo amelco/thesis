@@ -9,12 +9,21 @@
 \chap METHODOLOGY
 
 %Description of the model
-The model here presented is microscopic with radial geometry, in a homogeneous and isotropic soil, with one ion only soil solution. The water and solute flow are axis-symmetric. The schematic representation of the discretized domain is shown in Figure \ref[fig_scheme]
+To get the desired results of solute concentration as a function of time and radial distance from the axial center, as well to compute the total amount of solute extracted by the plant in a prescribed time, a fully implicit numerical treatment was given to the Equations \ref[eq_Richards] and \ref[eq_sol], that accounts for water and solute flow, respectively. For any numerical solution, the pace and time domains must be discretized in order to calculate the results for each `piece of space and time'. Our system domain is a single root (microscopic model) that are competing for water and solute with its neighbours in a homogeneous and isotropic soil... (MORE ABOUT THE MODEL). Figure \ref[fig_scheme] shows a schematic representation of the domain considered in the simulations.
+
+The equations for water and solute flow (\ref[eq_Richards] and \ref[eq_sol], respectively) were solved using a fully implicit numerical scheme. 
+The model here presented is microscopic with radial geometry, in a homogeneous and isotropic soil, with one ion only soil solution. The water and solute flow are axis-symmetric. The schematic representation of the discretized domain is shown in Figure~\ref[fig_scheme]. 
 
 \medskip
 \label[fig_scheme]
-\picw=10cm \cinspic domain.pdf
+\picw=9.5cm \cinspic domain.pdf
 \caption/f {Schematic representation of the discretized domain considered in the model}
+\medskip
+
+\medskip
+\label[fig_rootzone]
+\picw=11cm \cinspic root_zone.pdf
+\caption/f {Schematic representation of the spatial distribution of roots in the root zone}
 \medskip
 
 
@@ -384,7 +393,7 @@ $$
 
 \enditems
 \enditems
-The value of $C^{j+1}_1$ in Equation \ref[b1] is found using the iterative Newton-Raphson method. Note that since this is a one-dimensional microscopic model, it is assumed that the root has the same characteristcs in all vertical soil profile (along its vertical axis), thus, water and solute transport from soil towards the roots and uptakes are occurring at the same rate in the vertical profile. It is possible to couple this model in another one that has discretized soil layers. For a 2D model (depth and radial distance), the solutions presented here are applied in each layer independently. For a 1D model (only depth), an average of water and solute content through the horizontal profile has to be computed.
+The value of $C^{j+1}_1$ in Equation \ref[b1] is found using the iterative Newton-Raphson method. Note that since this is a one-dimensional microscopic model, it is assumed that the root has the same characteristcs in all vertical soil profile (along its vertical axis), thus, water and solute transport from soil towards the roots and uptakes are occurring at the same rate in the vertical profile. It is possible to couple this model in another one that has discretized soil layers. For a 2D model (depth and radial distance), the solutions presented here are applied in each layer independently. For a 1D model (only depth), an average of water and solute content through the horizontal profile has to be determined.
 
 
 \sec Other models
@@ -424,8 +433,6 @@ Also, the Mann--Whitney U test was made with two datasets (concentration and cum
 \sec Model comparissons
 
 The scenario of this simulation is of loam soil, medium root length density, high potential transpiration and high initial concentration (Table \ref[general_param]). We compare all model types (no solute uptake -- NU; constant -- CU; linear -- LU and nonlinear -- NLU concentration dependent uptake rates). All simulations were made until the value of relative transpiration was equal or less than 0.001. The time step is dynamical (depends on the number of iterations for water and solute equations) and was set to vary between 0.1 and 2 seconds. The simulation for NU ended within near 3 days; for CU, LU and NLU, about 5 days.
-
-
 
 %CONSIDERATIONS:
 %•	It is not considered root growth
