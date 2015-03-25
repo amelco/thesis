@@ -6,12 +6,30 @@
 % * solute transport equations that will be used in the comparisons
 % * Michaelis-Menten equation
 
-This chapter focuses on the theoretical aspects used in the methodology. 
-It briefly describes the Richards equation that is applied in water flow models and details the convection-dispersion equation for solute transport. 
+This chapter focuses on the theoretical aspects used in the methodology.
+It briefly describes the Richards equation that is applied in water flow models and details the convection-dispersion equation for solute transport.
+Both flow models are detailed in terms of a microscopic approach.
 Also, a short explanation about the Michaelis-Menten kinetics for nutrient uptake is given.
 %, which is fundamental to understand the work done in this thesis, since it is treated as a boundary condition for the convection-dispersion equation. 
 For those who are familiarized with these theories, the reading starting from Chapter \ref[methodology] is sufficient and this chapter may be skipped, since it does not provide any particular information that is different from what is already known from literature.
 Equations that were presented in this section, and are used further in this thesis, are properly referenced.
+
+\sec Microscopic approach (modelling)
+
+As mentioned in the last section, the models for water and solute uptake can be divided in macroscopic and microscopic. Macroscopic models deal with flows in one, two or three spacial dimensions and the use a sink-source therm in the flow equations to deal with solute/water inputs and outputs in the domain. The domain is usually the root-zone but can also consider bigger regions. (maybe this is inside the literature review). According to the objective of this thesis, the developed model was inspired in a microscopic one and, thus, is also microscopic. So, detail in the microscopic approach for modelling water and solute uptakes are described.
+
+The single root considered in the microscopic model is a cylinder of radius $r_0$ with a extraction zone consistent of another cylinder of radius $r_m$, which is equal to the half-distance between roots. The height of both cylinders is $z$ and equals to the root depth.
+
+We have the basic relations between cylinder length, surface area and volume:
+$$
+V_r = \pi {r_0}^2 z \eqmark
+$$
+$$
+A_{sr} = 2 \pi r_0 z \eqmark
+$$
+$$
+V_r = A_{sr} {r_0 \over 2} \eqmark
+$$
 
 \sec Water flow equation
 
