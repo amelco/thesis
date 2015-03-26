@@ -16,32 +16,52 @@ Equations that were presented in this section, and are used further in this thes
 
 \sec Microscopic approach (modelling)
 
-As mentioned in the last section, the models for water and solute uptake can be divided in macroscopic and microscopic. Macroscopic models deal with flows in one, two or three spacial dimensions and the use a sink-source therm in the flow equations to deal with solute/water inputs and outputs in the domain. The domain is usually the root-zone but can also consider bigger regions. (maybe this is inside the literature review). According to the objective of this thesis, the developed model was inspired in a microscopic one and, thus, is also microscopic. So, detail in the microscopic approach for modelling water and solute uptakes are described.
+As mentioned in the last section, the models for water and solute uptake can be divided in macroscopic and microscopic. 
+Since the model developed in this thesis is microscopic, we will present the basic theory behind it.
 
-The single root considered in the microscopic model is a cylinder of radius $r_0$ with a extraction zone consistent of another cylinder of radius $r_m$, which is equal to the half-distance between roots. The height of both cylinders is $z$ and equals to the root depth.
+%Macroscopic models deal with flows in one, two or three spacial dimensions and the use a sink-source therm in the flow equations to deal with solute/water inputs and outputs in the domain. The domain is usually the root-zone but can also consider bigger regions. (maybe this is inside the literature review). According to the objective of this thesis, the developed model was inspired in a microscopic one and, thus, is also microscopic. So, detail in the microscopic approach for modelling water and solute uptakes are described.
 
-We have the basic relations between cylinder length, surface area and volume:
+Microscopic models consider a cylindrical root of radius $r_0$ \uhead with a extraction zone being represented by a concentric cylinder of radius $r_m$ (m) that bounds the the half-distance between roots. The height of both cylinders is $z$ \uhead and represents the rooted soil depth. 
+The basic assumptions of this type of model is that the root density does not change with depth and there is no difference in extraction power along the root surface. Water and solute flows are axis-symmetric.
+
+It is common to find in the literature values for the root length density $R$ (m m$^3$) and $r_0$. In this case, the equations used to find values for $r_m$ and root length $L$ \uhead are:
+\label[eq_rm]
 $$
-V_r = \pi {r_0}^2 z \eqmark
+r_m = {1 \over \sqrt{\pi R}} \eqmark
 $$
+\label[eq_L]
 $$
-A_{sr} = 2 \pi r_0 z \eqmark
+L = {A_p z \over \pi {r_m}^2} \eqmark
 $$
+%
+where $A_p$ (m$^2$) is the soil surface area occupied by the plant. For the case that there is no available data from literature, one can obtain the value of $L$ from relatively simple measurements of root and soil characteristics as soil mass ($m_s$, Kg) and density ($d_s$, Kg m$^{-3}$), and root average radius ($\overline{r_0}$, m)
+\label[eq_L2]
 $$
-V_r = A_{sr} {r_0 \over 2} \eqmark
+L = {d_s A_p z - m_s \over d_s \pi \overline{r_0}} \eqmark
 $$
+%
+then estimate $r_m$ and $R$ by
+\label[eq_rm2]
+$$
+r_m = \sqrt{A_p z \over \pi L} \eqmark
+$$
+\label[eq_R]
+$$
+R = {1 \over \pi {r_m}^2} \eqmark
+$$
+
+For a complete derivation of the Equations \ref[eq_rm] to \ref[eq_R], see Appendix \ref[ap_micro].
+
 
 \sec Water flow equation
 
-The equation for water flow for a homogeneous and isotropic soil, in saturated and non-saturated conditions, is given by the Richards equation. In radial coordinates, it can be written as:
-
+The equation for water flow for a homogeneous and isotropic soil, in saturated and non-saturated conditions, is given by the Richards equation. As microscopic models consider a radial geometry, it can be written as:
 \label[eq_Richards]
 $$
 r{\partial \theta \over \partial t} = -{\partial q \over \partial r} \eqmark
 $$
 %
 where $r$ \uhead is the distance from the root axial center, $\theta$ \uwc is the water content in soil and $t$ \utime is the time. The water flux density $q$ \uwatflux is given by the Darcy-Buckingham equation:
-
 \label[eq_watflux]
 $$
 q = -K(\theta) {dH \over dr} \eqmark
@@ -55,12 +75,10 @@ The most common initial condition is of constant water content or pressure head 
 In analytical solutions, steady-state condition in relation to water flow is often used to solve the equation. The high non-linearity of the hydraulic functions (see Section \ref[soil_prop]) makes a transient solution rather complex and, sometimes, impractical.
 In numerical solutions, on the other hand, it is easier to define a transient water flow condition, which gives a more realistic treatment to the equation. 
 Boundaries for both steady-state and transient solutions can be either of prescribed pressure head or water flux, as shown in Equations \ref[wat_bc1] and \ref[wat_bc2] respectively:
-
 \label[wat_bc1]
 $$
 h(r_i,t) = f(t) \eqmark
 $$
-
 \label[wat_bc2]
 $$
 \left. K(\theta) {\partial h \over \partial r} \right|_{r=r_i} = g(t) \eqmark
