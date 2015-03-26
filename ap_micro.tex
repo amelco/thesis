@@ -1,0 +1,65 @@
+\app Derivation of microscopic model root related equations
+
+The derivation of Equation \ref[eq_R], here repeated
+$$
+R = {1 \over \pi {r_m}^2} \hbox{ ,}
+$$
+%
+can be done by verifying that the root length density $R$ is the sum of all root lengths $z$ per volume of soil. Figure \ref[fig_rootzone] shows how the roots are placed in the theoretical arrangement. If we consider that we have $n$ roots in this arrangement, the root length $L$ is simply $z_1+z_2+...+z_n$. Similarly, the soil surface area occupied by the plant $A_p$ is the sum of the soil surface areas $A_s$ of the circles with radius $r_m$, or $A_p = A_{s_1}+A_{s_2}+...+A_{s_n}$. Therefore:
+\label[eq_devR]
+$$
+R = {L \over V_{soil}} = {L \over A_p z} = {z_1+z_2+...+z_n \over (A_{s_1}+A_{s_2}+...+A_{s_n})z}. \eqmark
+$$
+
+All the cylinders have the same depth and the same radius, then $z_1=z_2=...=z_n=z$ and $A_{s_1}=A_{s_2}=...=A_{s_n} = A_s$. Knowing that $A_s=\pi {r_m}^2$, Equation \ref[eq_devR] can be written as
+\label[eq_devR2]
+$$
+R = {n z \over n A_s z} = {1 \over A_s} \Rightarrow R = {1 \over \pi {r_m}^2} \,\,\,\,\,\,\,\,  \hbox{q.e.d.} \eqmark
+$$
+
+To derive the Equation \ref[eq_rm2], here repeated
+$$
+r_m = \sqrt{A_p z \over \pi L} \hbox{ ,}
+$$
+we start by solving Equation \ref[eq_devR2] for $r_m$ 
+\label[eq_devrm]
+$$
+{r_m}^2 = {1 \over \pi R} \eqmark
+$$
+%
+and using the relations between $R$, $L$, $z$ and $A_p$ from Equation \ref[eq_devR], we substitute it in \ref[eq_devrm]:
+\label[eq_devrm2]
+$$
+{r_m}^2 = {1 \over \pi {L \over z A_p}} = {z A_p \over \pi L} \Rightarrow r_m = \sqrt{A_p z \over \pi L} \,\,\,\,\,\,\,\, \hbox{q.e.d} \eqmark
+$$
+
+To derive Equation \ref[eq_L], we just solve Equation \ref[eq_devrm2] for $L$.
+
+The derivation of Equation \ref[eq_L2] is
+
+
+%
+
+%The total root surface area ($A_r$, m$^2$) and volume ($V_r$, m$^2$) are given by the basic cylinder equations:
+%$$
+%\eqalignno{
+%A_{r} &= 2 \pi r_0 L & \eqmark \cr
+%V_r &= \pi {r_0}^2 L & \eqmark
+%}
+%$$
+%
+%For their easier measurement, the root related input data for the models are $r_0$, $z$ and the root density $R$ (m m$^{-3}$). 
+%The other parameters can be estimated by finding proper relationships between the system variables. equations thus the equation for the determination of $r_m$ can be done knowing that the root density can be interpreted as 
+%\label[eq_R]
+%$$
+%%R = { \hbox{sum of root lengths of all roots within the soil volume} \over \hbox{soil volume}}
+%R = {L \over V_{soil}} = {L \over A_s L} = {1 \over A_s} = {1 \over \pi r_m^2} \eqmark
+%$$
+%%
+%where $L$ \uhead is the total rooted soil depth (sum of the root lengths of all roots within the soil volume), $V_{soil}$ (m$^3$) is the soil volume and $A_s$ (m$^2$) is the area of the cylinder of radius $r_m$. The development of Equation \ref[eq_R] results in a relationship between $R$ and $r_m$, thus $r_m$ can be written as a function of $R$ as follows:
+%\label[eq_rm]
+%$$
+%r_m = {1 \over \sqrt{\pi R}} \eqmark
+%$$
+%
+%
