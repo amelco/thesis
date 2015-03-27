@@ -5,40 +5,75 @@ $$
 R = {1 \over \pi {r_m}^2} \hbox{ ,}
 $$
 %
-can be done by verifying that the root length density $R$ is the sum of all root lengths $z$ per volume of soil. Figure \ref[fig_rootzone] shows how the roots are placed in the theoretical arrangement. If we consider that we have $n$ roots in this arrangement, the root length $L$ is simply $z_1+z_2+...+z_n$. Similarly, the soil surface area occupied by the plant $A_p$ is the sum of the soil surface areas $A_s$ of the circles with radius $r_m$, or $A_p = A_{s_1}+A_{s_2}+...+A_{s_n}$. Therefore:
+can be done by verifying that the root length density ($R$) is the sum of all root lengths ($z$) per volume of soil ($V_{soil}$). 
+If we consider that the arrangement showed in Figure \ref[fig_rootzone] has $n$ roots, the root length ($L$) is simply $z_1+z_2+...+z_n$. 
+Similarly, the soil surface area occupied by the plant ($A_p$) is the sum of the soil surface areas of the circles with radius $r_m$ ($A_s$), or $A_p = A_{s_1}+A_{s_2}+...+A_{s_n}$. 
+Therefore, mathematically:
 \label[eq_devR]
 $$
 R = {L \over V_{soil}} = {L \over A_p z} = {z_1+z_2+...+z_n \over (A_{s_1}+A_{s_2}+...+A_{s_n})z}. \eqmark
 $$
 
-All the cylinders have the same depth and the same radius, then $z_1=z_2=...=z_n=z$ and $A_{s_1}=A_{s_2}=...=A_{s_n} = A_s$. Knowing that $A_s=\pi {r_m}^2$, Equation \ref[eq_devR] can be written as
+All the cylinders have the same depth and the same radius, thus $z_1=z_2=...=z_n=z$ and $A_{s_1}=A_{s_2}=...=A_{s_n} = A_s$. 
+Knowing that $A_s=\pi {r_m}^2$, Equation \ref[eq_devR] can be written as
 \label[eq_devR2]
 $$
-R = {n z \over n A_s z} = {1 \over A_s} \Rightarrow R = {1 \over \pi {r_m}^2} \,\,\,\,\,\,\,\,  \hbox{q.e.d.} \eqmark
+R = {n z \over n A_s z} = {1 \over A_s} \Rightarrow R = {1 \over \pi {r_m}^2} \qed \eqmark
 $$
 
-To derive the Equation \ref[eq_rm2], here repeated
+To derive Equation \ref[eq_rm2]
 $$
 r_m = \sqrt{A_p z \over \pi L} \hbox{ ,}
 $$
 we start by solving Equation \ref[eq_devR2] for $r_m$ 
 \label[eq_devrm]
 $$
-{r_m}^2 = {1 \over \pi R} \eqmark
+{r_m}^2 = {1 \over \pi R}\, , \eqmark
 $$
 %
-and using the relations between $R$, $L$, $z$ and $A_p$ from Equation \ref[eq_devR], we substitute it in \ref[eq_devrm]:
+so that $r_m$ is a function of $R$.
+Analysing Equation \ref[eq_devrm], and with the help of Figure \ref[fig_rootzone], it is easy to notice that an increase in root length density implies that there are more roots in the same soil volume and, therefore, the space between the roots is diminished. 
+Hence, we can replace $R$ in Equation \ref[eq_devrm] by its relation between $L$, $z$ and $A_p$ from Equation \ref[eq_devR] to have:
 \label[eq_devrm2]
 $$
-{r_m}^2 = {1 \over \pi {L \over z A_p}} = {z A_p \over \pi L} \Rightarrow r_m = \sqrt{A_p z \over \pi L} \,\,\,\,\,\,\,\, \hbox{q.e.d} \eqmark
+{r_m}^2 
+= {1 \over \pi {L \over A_p z}} = {A_p z \over \pi L} \Rightarrow r_m = \sqrt{A_p z \over \pi L} \qed \eqmark
 $$
 
-To derive Equation \ref[eq_L], we just solve Equation \ref[eq_devrm2] for $L$.
+With Equations \ref[eq_devrm] and \ref[eq_devrm2] we have basic relationships that can be used to find the expression for any parameter that are present at those equations, since the values of the other parameters are not missing.
+Thus, for a known value of $R$, we can calculate $r_m$ and $L$ (Equations \ref[eq_rm] and \ref[eq_L]) using Equation \ref[eq_devrm] and by solving Equation \ref[eq_devrm2] for $L$, respectively. The later leads to:
+$$
+L = {A_p z \over \pi {r_m}^2} 
+$$
 
-The derivation of Equation \ref[eq_L2] is
-
-
+As mentioned in Section \ref[sec_micro], when there is no root length density data available (or other parameter that can lead to it), $L$ can be estimated by measuring some root and soil characteristics.
+Equation \ref[eq_L2] has all needed parameters to calculate $L$:
+$$
+L = {d_s A_p z - m_s \over d_s \pi \overline{r_0}^2}
+$$
 %
+where $d_s$ is the soil density, $m_s$ is the soil mass and $\overline{r_0}$ is the average root radius. 
+The total volume of a parcel is the sum of soil and root volumes. 
+It is easier to find the root volume by difference between total and soil volumes. 
+The first can be found by multiplying plant area by root depth and the later by the relation between volume, mass and density. 
+Hence, volume of roots can be calculated as follows:
+$$
+V_t = V_r+V_s \Rightarrow V_r = V_t-V_s = A_p z - {m_s \over d_s} \eqmark
+$$
+
+Also, root volume can be calculated as the cylindrical root volume:
+
+$$
+V_r = \pi \overline{r_0}^2 L \eqmark
+$$
+
+The unknow is $L$, all other parameters are measured. Relating the two $V_r$ equations we can solve for $L$:
+$$
+A_p z - {m_s \over d_s} = \pi \overline{r_0}^2 L \Rightarrow L=\left(A_pz-{m_s \over d_s}\right) {1 \over \pi \overline{r_0}^2} \Rightarrow L = {d_s A_p z - m_s \over d_s \pi \overline{r_0}^2}
+\qed \eqmark
+$$
+
+
 
 %The total root surface area ($A_r$, m$^2$) and volume ($V_r$, m$^2$) are given by the basic cylinder equations:
 %$$
