@@ -6,6 +6,8 @@ correcoes/
 # inkscape projects
 #*.svg
 
+texsalq-doc.pdf
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
