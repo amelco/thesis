@@ -15,7 +15,7 @@ R = {L \over V_{soil}} = {L \over A_p z} = {z_1+z_2+...+z_n \over (A_{s_1}+A_{s_
 $$
 
 All the cylinders have the same depth and the same radius, thus $z_1=z_2=...=z_n=z$ and $A_{s_1}=A_{s_2}=...=A_{s_n} = A_s$. 
-Knowing that $A_s=\pi {r_m}^2$, Equation \ref[eq_devR] can be written as
+Knowing that $A_s=\pi {r_m}^2$, Equation \ref[eq_devR] can be rewritten as
 \label[eq_devR2]
 $$
 R = {n z \over n A_s z} = {1 \over A_s} \Rightarrow R = {1 \over \pi {r_m}^2} \qed \eqmark
@@ -40,34 +40,48 @@ $$
 = {1 \over \pi {L \over A_p z}} = {A_p z \over \pi L} \Rightarrow r_m = \sqrt{A_p z \over \pi L} \qed \eqmark
 $$
 
-With Equations \ref[eq_devrm] and \ref[eq_devrm2] we have basic relationships that can be used to find the expression for any parameter that are present at those equations, since the values of the other parameters are not missing.
-Thus, for a known value of $R$, we can calculate $r_m$ and $L$ (Equations \ref[eq_rm] and \ref[eq_L]) using Equation \ref[eq_devrm] and by solving Equation \ref[eq_devrm2] for $L$, respectively. The later leads to:
+With Equations \ref[eq_devrm] and \ref[eq_devrm2] we have basic relationships of the parameters that can be arranged to find expressions for any of them, as long we have enough measured parameters.
+Thus, for a known value of $R$, $r_m$ can be calculated
+%(Equations \ref[eq_rm] and \ref[eq_L]) 
+using Equation \ref[eq_devrm], and $L$ by solving Equation \ref[eq_devrm2] for $L$. The former yields
 $$
-L = {A_p z \over \pi {r_m}^2} 
+r_m={1 \over \sqrt{\pi R}} \,,
 $$
+which is the Equation \ref[eq_rm], and the later yields
+$$
+L = {A_p z \over \pi {r_m}^2} \,,
+$$
+which is the Equation \ref[eq_L].
 
-As mentioned in Section \ref[sec_micro], when there is no root length density data available (or other parameter that can lead to it), $L$ can be estimated by measuring some root and soil characteristics.
-Equation \ref[eq_L2] has all needed parameters to calculate $L$:
+As mentioned in Section \ref[sec_micro], when there is no root length density data available (or other parameter that can lead to it),
+it is necessary to measure some root and soil characteristics of an experimental set to find parameters such as $L$, $r_m$ or $R$.
+By finding one of them, it is possible to have the others through the relations presented in the previous equations of this appendix.
+%$L$ can be estimated by measuring some root and soil characteristics. 
+%By finding $L$, it is possible to have the other desired parameters $r_m$ and $R$.
+%Equation \ref[eq_L2] is one of the possible ways to calculate $L$. 
+%Other methods can be used to calculate $L$ or other parameter such as $R$.
+Here, it is demonstrated the development of Equation \ref[eq_L2]:
 $$
 L = {d_s A_p z - m_s \over d_s \pi \overline{r_0}^2}
 $$
 %
 where $d_s$ is the soil density, $m_s$ is the soil mass and $\overline{r_0}$ is the average root radius. 
-The total volume of a parcel is the sum of soil and root volumes. 
-It is easier to find the root volume by difference between total and soil volumes. 
-The first can be found by multiplying plant area by root depth and the later by the relation between volume, mass and density. 
+All parameters are relatively easy to be measured. $\overline{r_0}$ can be troublesome but there are methodologies to measure it properly. $d_s$ and $m_s$ are routine in soil physics laboratories and $A_p$ is known. 
+The total volume of a one-plant experimental parcel is the sum of soil and root volumes. 
+Since it is difficult to measure the root volume, it can be estimated by difference between total and soil volumes. 
+The first can be found by multiplying plant area by root depth and the later by the relation between soil volume, mass and density. 
 Hence, volume of roots can be calculated as follows:
 $$
 V_t = V_r+V_s \Rightarrow V_r = V_t-V_s = A_p z - {m_s \over d_s} \eqmark
 $$
 
-Also, root volume can be calculated as the cylindrical root volume:
+Also, as roots are considered cylinders, their volume can be calculated as the volume of a cylinder:
 
 $$
 V_r = \pi \overline{r_0}^2 L \eqmark
 $$
 
-The unknow is $L$, all other parameters are measured. Relating the two $V_r$ equations we can solve for $L$:
+The unknown is $L$, all other parameters are measured. Relating the two $V_r$ equations, we can, thus, solve for $L$:
 $$
 A_p z - {m_s \over d_s} = \pi \overline{r_0}^2 L \Rightarrow L=\left(A_pz-{m_s \over d_s}\right) {1 \over \pi \overline{r_0}^2} \Rightarrow L = {d_s A_p z - m_s \over d_s \pi \overline{r_0}^2}
 \qed \eqmark
