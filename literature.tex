@@ -6,5 +6,42 @@
 %Solute flow in the soil is directly related to the water flow and uptake by the plants, and they are indissociable.
 %Therefore, studying water flow is a obligated requirement to understand solute flow, which makes pioneer works such as of GARDNER crucial to the further development of the theories. He described the processes of fluxes from soil to plant as a set of resistances that should be overpassed to the flow to happen
 
-Solute transport in soil and uptake by the plants are subjects that have extensively been studied in the last half century and, as a result, several simulation models have been developed to predict water and solute flows within the vadose zone. They are usually classified as being microscopic or macroscopic models, according to the scale that the processes are considered. The 
+Solute transport in soil and uptake by the plants are subjects that have extensively been studied in the last half century and, as a result, several simulation models have been developed to predict water and solute flows within the vadose zone. 
+They are usually classified as being microscopic or macroscopic models, according to the scale that the processes are considered \cite[feddes]. 
+Microscopic models \cite[barber74,cushman,willigen1,roose] consider a single cylindrical root, of uniform radius and absorption properties \cite[gardner], that extracts water and solute by an axis-symmetric flow according to the defined boundary condition at root surface.
+The water flow is described using the Richards equation and the solute flow using the convection-dispersion equation, both formulated in radial coordinates.
+The flow towards the root is driven by water and concentration gradients between the root and the surrounding soil, proportional to the hydraulic conductivity and solute diffusivity. 
+The main advantage of the microscopic approach is that it automatically allows water uptake compensation mechanism, as the computed local water potential gradients control the uptake for the whole root system \cite[simunek]. 
+Despite the more realistic simulation of soil-root interactions, microscopic models require a large computational effort for the simulations and, therefore, are limited to applications of relatively small scale of a single plant.
+Chapter \ref[theory] shows, in more details, the theory of microscopic models.
+
+Macroscopic models \cite[simunekHYDRUS,somma,vandam] consider the whole root zone as a single extraction component whereby the potential transpiration is distributed over the root zone and it is proportional to the root density. 
+This approach neglects the effects of root geometry and flow pathways around the roots, and considers water and solute uptakes as a sink term added to their respective mass balance equations. 
+
+
+Another classification, related to how the phenomena is considered, is of empirical and mechanistic models. 
+Empirical models \cite[chanter,ross,yerokun] are based on the response of experiments and attempt to describe the observed phenomena without hypothesizing how they happen. 
+Mechanistic models \cite[barber74,cushman,willigen1,roose,simunekHYDRUS,somma,vandam] seek to explain how the phenomena have happened, which requires a better understanding and mathematical description of the underlying processes. Good reviews of solute uptake models can be found in \citeonline[rengel] and in \citeonline[simunek].
+
+%limitations and advantages of empirical/mechanistic models
+The earlier solute transport and uptake models were simple since they tried to solve the CDE analytically, whith simple boundary conditions \cite[barber74,cushman]...
+Those models were good to understand the processes but they had very limited applications.
+Numerical solutions came in hand to put more complexity in the models, with the disadvantage of a great computer power requirement ...
+
+
+%Examples of macro and microscopic models, its individual limitations, advances and its applications
+
+%Talk about water flow together with the solute transport. Main water flow models, water retention curves...
+%PASTED FROM RENGEL. MODIFY!!
+A breakthrough in concepts of the plant-soil relationship was made by Bray (1954) who was the first to recognize that nutrients move toward the sorbing root surfaces. 
+The nutrient 'mobility' was later resolved into two main processes: 1) transpiration-driven mass flow of soil solution, and 2) ion diffusion that depends on the concentration gradient in the soil induced by depletion of nutrients due to their uptake at the root surface (Barber, 1962).
+
+%Talk about Solute extraction models (MM and others)
+%PASTED FROM RENGEL. MODIFY!!
+In some cases nutrient uptake can be described by the Michaelis-Menten equation (Barber, 1984; Barber and Cushman, 1981; Claassen and Barber, 1976; Claassen et al., 1986) according to which uptake increases with increasing nutrient concentration in a curvilinear fashion asymptotically approaching maximum uptake. 
+In such a case, necessary model parameters are Michaelis-Menten constant (Km), maximum nutrient uptake (Imax) and minimum solution concentration at which uptake ceases (Barber, 1984). 
+In contrast, Bouldin (1989) described nutrient uptake by two linear equations corresponding to uptake from solutions of low and high nutrient concentrations, thus over-simplifying the uptake process at the root surface to two diffusion components only.
+Kinetic parameters Imax and K~ vary with plant species, genotype, plant age, soil temperature, and nutritional status of the plant (Jungk and Claassen, 1989; Teo et al., 1992). 
+Therefore, these parameters would have to be determined separately for each experimental situation. 
+
 %\cite[rengel]
