@@ -94,7 +94,7 @@ Macroscopic models use the Cartesian system and, for one-dimension, represents t
 Thus, $z_i$ values would be of the distance from the soil surface (top boundary) to a certain depth, {\it e.g.} root depth (bottom boundary).
 
 In most microscopic models, the boundary conditions are of flux type, according to Equation \ref[wat_bc2]. 
-At root surface, it is equal to the transpiration rate, and at the outer boundary, it is often of zero flux --- meaning inter-root competition for water. 
+At root surface, it is equal to the transpiration rate, and at the outer boundary, it is often of zero flux -- meaning inter-root competition for water. 
 Therefore, the only water exit is at root surface through the transpiration stream.
 In macroscopic models, as they deal with the entire root zone, both 
 %boundaries are located at the soil surface and at a given depth (usually, root depth). 
@@ -196,7 +196,10 @@ Chapter \ref[literature] mentions other models that can be used for this purpose
 The boundary conditions types are the same as of water, except that they are in respect to concentration instead of pressure head. 
 In microscopic models, common boundary conditions are of zero, constant or variable solute flux at root surface. 
 Choosing one over another depends on how the solute uptake by the plant will be considered in the model (details in Section \ref[sol_uptake]).
-The outer boundary depends on the distance in which it is considered. A zero solute flux condition works well to simulate inter-root competition for solutes in a distance ranging from XXX to xxx m while constant concentration --- equal to the initial concentration --- can be used in a situation that the boundary is considered `far enough' from root surface, {\it i.e.} there is no competition between neighbour roots.
+% Improve that
+The outer boundary depends on the distance from root surface in which it is considered. 
+A zero solute flux condition works well to simulate inter-root competition for solutes in a distance ranging from XXX to xxx m (note: average roots distance is 1 cm) while constant concentration -- equal to the initial concentration -- can be used in a situation that the boundary is considered `far enough' from root surface, {\it i.e.} there is no competition between neighbour roots.
+%
 In macroscopic models, a sink-source term is added to Equation \ref[eq_sol] to consider different inputs and outputs of solute in the system ({\it e.g.} plant uptake, mineralization, degradation, etc.), and the top and bottom boundaries are treated according to the scenario (similar to what is done with the water flow equation).
 
 %accumulation or depletion of solute at root surface dependent on chosen boundaries
