@@ -31,26 +31,30 @@ Solute mobility in soil is described by two main processes:
 1) convective transport by water mass flow through the transpiration stream, and 
 2) movement driven by diffusion that depends on the solute concentration gradient in the soil caused by depletion of solutes due to root uptake \cite[barber62]. 
 The first to recognize that solutes move towards the root due to the uptake process was \citeonline[bray].
-Since then, the efforts to describe the solute movement in soils were directed to formulate analytical and, with the improvement of computational power, numerical models.
+Since then, the efforts to describe the solute movement in soils were directed to develop analytical and, with the improvement of computational power, numerical models.
 %
-Analytical solutions for the CDE were extensively formulated (citations) but their applications fall into a few set of scenarios. 
-Those models considers steady-state condition for water \cite[cushman,willigen1] or solute \cite[liersolute] and simplified boundary conditions as constant uptake by the roots \cite[willigen1] or non-competitive roots absorption \cite[cushman]. 
-Despite their limitations, analytical solutions have more flexibility to derive other functions as of total uptake and solute accumulation in the plant, time at which the concentration at root surface reaches a certain limiting value an so on.
-Numerical models can easier deal with the non-linearities of the processes %talk about water functions (cited) and also solutes
+The first analytical solutions for the CDE were formulated considering a steady-state condition to the water flow and solute uptake governed by concentration of the soil solution \cite[barber74,cushman,nye] or determined by a constant plant demand \cite[willigen81]. 
+The concentration limiting approach may overestimates the uptake in situations where solute supply to the root is not limiting \cite[barraclough] whilst the constant plant demand formulation may overestimate the uptake in situations of very dry soil conditions and low concentration at root surface, where the diffusive flow prevails (cite papers about MM experiments -- the difference between the constant uptake and MM equation at low concentrations). 
+Later, \citeonline[roosephd] formulated analytical solutions for different conditions of uptake, considering a so called `pseudo-steady-state' condition for water flow and the interference of root hairs and mycorrhizae in the uptake process, offering also an analytical solution to upscaling from the single root to a three-dimensional root architecture uptake model.
 
+%Numerical solutions
+
+%Talk about Solute extraction models (MM and others)
+Solute uptake can be described by the Michaelis-Menten (MM) equation \cite[barber,barber81,schroder,simunek]
+according to which uptake increases with increasing solute concentration asymptotically approaching maximum uptake (details in Section \ref[sol_uptake]). 
+%Change this. pasted from rengel!!!!!!!!!
+The necessary parameters are the MM constant ($K_m$), the maximum solute uptake ($I_m$) and the minimum solution concentration at which uptake ceases ($C_{min}$) \cite[barber]. 
+Kinetic parameters $I_m$ and $K_m$ vary with plant species, genotype, plant age, soil temperature, and nutritional status of the plant \cite[jungk,teo]. 
+Therefore, they would have to be determined for each experimental situation. 
+%my annotations about MM here
+
+
+
+
+In contrast, \citeonline[bouldin], and similarly \citeonline[tinker], described solute uptake by two linear equations corresponding to uptake from solutions of low and high solute concentrations, thus over-simplifying the uptake process at the root surface to two diffusion components only \cite[rengel].
+%Talk about other uptake functions
 
 %Talk about specific models: van Dam (water), quirijn (solute+water), cushman and willigen. All microscopic. Tell the limitations of them.
 
-%Talk about transpiration reduction functions (water, solute and water+solute)
+%Talk about transpiration reduction functions (water, solute and water+solute). Talk about the quirijn's no uptake model and how it affects the combined water and solute reduction function without assume an additive or multiplicative interaction
 
-
-
-%Talk about Solute extraction models (MM and others)
-%PASTED FROM RENGEL. MODIFY!!
-In some cases nutrient uptake can be described by the Michaelis-Menten equation (Barber, 1984; Barber and Cushman, 1981; Claassen and Barber, 1976; Claassen et al., 1986) according to which uptake increases with increasing nutrient concentration in a curvilinear fashion asymptotically approaching maximum uptake. 
-In such a case, necessary model parameters are Michaelis-Menten constant (Km), maximum nutrient uptake (Imax) and minimum solution concentration at which uptake ceases (Barber, 1984). 
-In contrast, Bouldin (1989) described nutrient uptake by two linear equations corresponding to uptake from solutions of low and high nutrient concentrations, thus over-simplifying the uptake process at the root surface to two diffusion components only.
-Kinetic parameters Imax and K~ vary with plant species, genotype, plant age, soil temperature, and nutritional status of the plant (Jungk and Claassen, 1989; Teo et al., 1992). 
-Therefore, these parameters would have to be determined separately for each experimental situation. 
-
-%\cite[rengel]
