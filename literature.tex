@@ -44,17 +44,45 @@ Solute uptake can be described by the Michaelis-Menten (MM) equation \cite[barbe
 according to which uptake increases with increasing solute concentration asymptotically approaching maximum uptake (details in Section \ref[sol_uptake]). 
 %Change this. pasted from rengel!!!!!!!!!
 The necessary parameters are the MM constant ($K_m$), the maximum solute uptake ($I_m$) and the minimum solution concentration at which uptake ceases ($C_{min}$) \cite[barber]. 
-Kinetic parameters $I_m$ and $K_m$ vary with plant species, genotype, plant age, soil temperature, and nutritional status of the plant \cite[jungk,teo]. 
-Therefore, they would have to be determined for each experimental situation. 
+%Kinetic parameters $I_m$ and $K_m$ vary with plant species, genotype, plant age, soil temperature, and nutritional status of the plant \cite[jungk,teo]. 
+%Therefore, they would have to be determined for each experimental situation. 
 %my annotations about MM here
+\citeonline[epstein52] were the first to use the MM equation to represent the uptake of a solute and its concentration in external medium (for potassium and sodium solutions in barley roots) and it has been frequently used since then. 
+It describes well the solute uptake for both anions \cite[epstein72,siddiqi,wang] and cations \cite[kochian,kelly,sadana,broadley,lux] in the low concentration range and, adding a linear component ($k$) to the equation, it can properly estimates the uptake rate also for high concentrations \cite[epstein72,kochian,borstlap,wang,vallejo,broadley].
+Many authors agree that for low concentration in external medium, the uptake is driven by an active mechanism of the plant, as it occurs against the solute gradient between root and soil (Epstein's mechanism~I). 
+For the high concentration range, solutes are freely transported from soil to roots by diffusion and occasional convection. This passive transport is known as Epstein's mechanism~II \cite[kochian,siddiqi]. 
+Moreover, experiments have shown that a minimum concentration value ($C_{min}$) in which the uptake ceases to occur is often found \cite[mouat,dudal,machado].
+Details on Epestein's mechanisms and its physiological processes, and on active and passive uptake, are found on \citeonline[epstein60] and \citeonline[fried].
 
+The values of MM parameters are strongly dependent on the experimental methods used and vary with plant species, plant age, plant nutritional status, soil temperature and pH \cite[barber,shi]. Therefore, they have to be determined for each particular experimental situation.
+Some types of experiments to determine the kinetic parameters $I_m$, $K_m$ and $C_{min}$ include hydroponically-grow plants \cite[barber] and the use of radioisotopes to estimate them directly from soil \cite[nye77]. 
+The latter is more realistic since there is a large difference between a stirred nutrient solution and the complex and dynamic soil medium.
+Measuring $C_{min}$ is particularly difficult \cite[seeling,lambers] because it occurs at very low concentration levels, being hard to be detected. \citeonline[seeling] shows that $C_{min}$ can be neglected for the cases of high $K_m$ values.
 
-
-
-In contrast, \citeonline[bouldin], and similarly \citeonline[tinker], described solute uptake by two linear equations corresponding to uptake from solutions of low and high solute concentrations, thus over-simplifying the uptake process at the root surface to two diffusion components only \cite[rengel].
 %Talk about other uptake functions
+There are other alternatives to describe the solute uptake rate function apart from MM equation. 
+\citeonline[dalton] proposed a physical-mathematical model that include active uptake, mass flow and diffusion, and express solute uptake as being proportional to root water uptake. 
+\citeonline[bouldin] described the uptake from low and high concentrations solutions by two linear equations, simplifying the process of solute uptake at root surface to two diffusion components \cite[rengel].
+\citeonline[tinker] determined the uptake rate as a linear component followed by a constant rate phase where the threshold value is dependent on solute concentration inside the plant.
+Nevertheless, MM equation is yet the mostly used equation in root solute uptake models for being physically grounded and for its good agreement with experimental data.
 
-%Talk about specific models: van Dam (water), quirijn (solute+water), cushman and willigen. All microscopic. Tell the limitations of them.
 
 %Talk about transpiration reduction functions (water, solute and water+solute). Talk about the quirijn's no uptake model and how it affects the combined water and solute reduction function without assume an additive or multiplicative interaction
+Combined water and solute uptake models compute averages or locals pressure and osmotic heads, being able to estimate plant water and osmotic stresses. 
+%\citeonline[feddes78] developed an empirical water stress model relating the actual transpiration to pressure head originating a transpiration reduction function. 
+\citeonline[feddes78] developed an empirical water stress model relating the actual transpiration to pressure head, originating a piecewise transpiration reduction function in which the potential transpiration is linearly reduced according to threshold values of pressure head that accounts for excess and shortage of water in soil.
+%It is a piecewise function in which the potential transpiration is linearly reduced according to threshold values of pressure head that accounts for excess and shortage of water in soil.
+As solute presence in soil solution contributes to reduce the total hydraulic head, decreasing root water uptake, the effect in transpiration reduction by water and osmotic stresses are commonly related to be either additive \cite[vangenuchten87] or multiplicative \cite[vangenuchten87] in many models. 
+However, crops seem to respond to water and osmotic heads differently. 
+John Doe found that corn plants reduce their transpiration more strongly at water stress than under an equivalent osmotic stress.
+They pointed that although osmotic head does affects the total hydraulic gradient, it does not affects hydraulic conductivity.
 
+%disadvantages of this
+
+In order to investigate the simultaneous impact of water and salinity on root water uptake, \cite[liersolute] developed a model...
+
+
+%reduced according to four threshold pressure heads values ($h_1$, $h_2$, $h_3$ and $h_4$). The actual transpiration reduces, linearly, between $h_3$ and $h_4$, and between $h_1$ and $h_2$ due to soil water shortage and soil oxygen shortage, respectively. For pressure heads values greater than $h_1$ and lower than $h_4$, the transpiration is zero, and between $h_2$ and $h_3$, the transpiration is potential.
+%Figura feddes
+
+%Talk about specific models: van Dam (water), quirijn (solute+water), cushman and willigen. All microscopic. Tell the limitations of them.
