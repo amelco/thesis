@@ -3,6 +3,7 @@
 *.docx
 correcoes/
 texsalq-doc.pdf
+plots/*.pdf
 
 # inkscape projects
 #*.svg
