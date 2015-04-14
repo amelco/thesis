@@ -68,18 +68,27 @@ Nevertheless, MM equation is yet the mostly used equation in root solute uptake 
 
 
 %Talk about transpiration reduction functions (water, solute and water+solute). Talk about the quirijn's no uptake model and how it affects the combined water and solute reduction function without assume an additive or multiplicative interaction
-Combined water and solute uptake models compute averages or locals pressure and osmotic heads, being able to estimate plant water and osmotic stresses. 
+Combined water and solute uptake models compute averages or locals pressure and osmotic heads, being able to estimate plant water and osmotic stress. 
 %\citeonline[feddes78] developed an empirical water stress model relating the actual transpiration to pressure head originating a transpiration reduction function. 
 \citeonline[feddes78] developed an empirical water stress model relating the actual transpiration to pressure head, originating a piecewise transpiration reduction function in which the potential transpiration is linearly reduced according to threshold values of pressure head that accounts for excess and shortage of water in soil.
 %It is a piecewise function in which the potential transpiration is linearly reduced according to threshold values of pressure head that accounts for excess and shortage of water in soil.
-As solute presence in soil solution contributes to reduce the total hydraulic head, decreasing root water uptake, the effect in transpiration reduction by water and osmotic stresses are commonly related to be either additive \cite[vangenuchten87] or multiplicative \cite[vangenuchten87] in many models. 
-However, crops seem to respond to water and osmotic heads differently. 
-John Doe found that corn plants reduce their transpiration more strongly at water stress than under an equivalent osmotic stress.
-They pointed that although osmotic head does affects the total hydraulic gradient, it does not affects hydraulic conductivity.
+As solute presence in soil solution contributes to reduce the total hydraulic head -- decreasing root water uptake -- the effect in transpiration reduction by water and salt stress are commonly related to be either additive \cite[vangenuchten87] or multiplicative \cite[vangenuchten87] in many models. 
+However, crops seem to respond to water and salt stress differently. 
+
+\citeonline[shalhevet] found that transpiration of cotton and pepper plants reduces more strongly under water stress then under an equivalent osmotic stress. 
+Similar results have already been found by \citeonline[sepaskhah] for wheat, and by \citeonline[parra] for beans.
+Thus, empirical weighting factors has been introduced in the transpiration reduction function to account for different response of a crop to osmotic and pressure heads.
+
+Some models treat the combined water and salt stress as being neither additive or multiplicative. \citeonline[homaee] developed a piecewise reduction function similar to the \citeonline[feddes78] and concluded that the function fitted his experimental data better than any additive or multiplicative models.
+\citeonline[liersolute] proposed a microscopic analytical model to estimate relative transpiration as a function of soil and plant parameters. 
+Their mechanistic approach reduces the need of empirical parameters an does not require any explicit assumption (additive or multiplicative) to derive the combined water and salt stress. 
+Despite the results are in good agreement with experimental data, it shows some discrepancies, especially under wet conditions. 
+Their model do not consider root solute uptake.
+As being mechanistic, considering it would lead to more realistic simulations and interfere in the solute concentration estimative, leading to different responses of the crop to the combined water and osmotic stress.
+%One of their conclusions was that the relative transpiration reduces more gradually with combined water and osmotic stress than in a scenario with water stress only
+
 
 %disadvantages of this
-
-In order to investigate the simultaneous impact of water and salinity on root water uptake, \cite[liersolute] developed a model...
 
 
 %reduced according to four threshold pressure heads values ($h_1$, $h_2$, $h_3$ and $h_4$). The actual transpiration reduces, linearly, between $h_3$ and $h_4$, and between $h_1$ and $h_2$ due to soil water shortage and soil oxygen shortage, respectively. For pressure heads values greater than $h_1$ and lower than $h_4$, the transpiration is zero, and between $h_2$ and $h_3$, the transpiration is potential.
