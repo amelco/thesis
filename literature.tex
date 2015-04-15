@@ -22,10 +22,10 @@ On the other hand, macroscopic models are able to simulate processes at plot or 
 Another classification, related to how the phenomena is addressed, is of empirical and mechanistic models. 
 Empirical models \cite[chanter,ross,yerokun] are based on the response of a set of experiments and attempt to describe the observed phenomena without hypothesizing how they happen. 
 They are usually stochastic and have the advantage of being relatively simple, allowing to predict the results of the processes with a good certainty. 
-The main disadvantage of this approach is that the resulting parameters from the model development has no physical, physiological or biological meaning, limiting its improvement possibilities. The application of those models are limited to the dataset of experiments/observations that they were designed, which may cause incorrect or inaccurate predictions in scenarios that were not considered.
+The main disadvantage of this approach is that the resulting parameters from the model development has no physical, physiological or biological meaning, limiting its improvement possibilities. Besides, the application of those models are limited to the dataset of experiments/observations that they were designed for, which may cause incorrect or inaccurate predictions in scenarios that were not considered.
 Mechanistic models \cite[barber74,cushman,willigen1,roose,simunekHYDRUS,somma,vandam] seek to explain how the phenomena have happened, which requires a better understanding and mathematical description of the underlying processes. 
 Although the parameters may have a difficult measurement, they have physical meaning -- they can be explained by the processes and their relationships -- and, therefore, can be adapted to be used in a broad variety of scenarios.
-Good reviews of solute uptake models can be found in \citeonline[rengel] and \citeonline[feddes].
+Good reviews of solute uptake models can be found in \citeonline[rengel], \citeonline[feddes] and \citeonline[silberbush2013].
 
 Solute mobility in soil is described by two main processes: 
 1) convective transport by water mass flow through the transpiration stream, and 
@@ -33,7 +33,7 @@ Solute mobility in soil is described by two main processes:
 The first to recognize that solutes move towards the root due to the uptake process was \citeonline[bray].
 Since then, the efforts to describe the solute movement in soils were directed to develop analytical and, with the improvement of computational power, numerical models.
 %
-The first analytical solutions for the CDE were formulated considering a steady-state condition to the water flow and solute uptake governed by concentration of the soil solution \cite[barber74,cushman,nye] or determined by a constant plant demand \cite[willigen81]. 
+The earlier analytical solutions for the CDE were formulated considering a steady-state condition to the water flow and solute uptake governed by concentration of the soil solution \cite[barber74,cushman,nye] or determined by a constant plant demand \cite[willigen81]. 
 The concentration limiting approach may overestimates the uptake in situations where solute supply to the root is not limiting \cite[barraclough] whilst the constant plant demand formulation may overestimate the uptake in situations of very dry soil conditions and low concentration at root surface, where the diffusive flow prevails (cite papers about MM experiments -- the difference between the constant uptake and MM equation at low concentrations). 
 Later, \citeonline[roosephd] formulated analytical solutions for different conditions of uptake, considering a so called `pseudo-steady-state' condition for water flow and the interference of root hairs and mycorrhizae in the uptake process, offering also an analytical solution to upscaling from the single root to a three-dimensional root architecture uptake model.
 
@@ -62,7 +62,7 @@ Measuring $C_{min}$ is particularly difficult \cite[seeling,lambers] because it 
 %Talk about other uptake functions
 There are other alternatives to describe the solute uptake rate function apart from MM equation. 
 \citeonline[dalton] proposed a physical-mathematical model that include active uptake, mass flow and diffusion, and express solute uptake as being proportional to root water uptake. 
-\citeonline[bouldin] described the uptake from low and high concentrations solutions by two linear equations, simplifying the process of solute uptake at root surface to two diffusion components \cite[rengel].
+\citeonline[bouldin] described the uptake from low and high concentrations solutions by two linear equations, thus simplifying the process of solute uptake at root surface to two diffusion components \cite[rengel].
 \citeonline[tinker] determined the uptake rate as a linear component followed by a constant rate phase where the threshold value is dependent on solute concentration inside the plant.
 Nevertheless, MM equation is yet the mostly used equation in root solute uptake models for being physically grounded and for its good agreement with experimental data.
 
