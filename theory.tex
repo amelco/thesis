@@ -17,7 +17,7 @@ Equations that were presented in this section, and are used further in this thes
 \label[sec_micro]
 \sec Microscopic approach
 
-As mentioned in the last section, the models for water and solute uptake can be divided in macroscopic and microscopic. 
+As mentioned in the previous chapter, the models for water and solute uptake can be divided in macroscopic and microscopic. 
 Considering that the model developed in this thesis is microscopic, we will present the basic theory behind it.
 
 %Macroscopic models deal with flows in one, two or three spacial dimensions and the use a sink-source therm in the flow equations to deal with solute/water inputs and outputs in the domain. The domain is usually the root-zone but can also consider bigger regions. (maybe this is inside the literature review). According to the objective of this thesis, the developed model was inspired in a microscopic one and, thus, is also microscopic. So, detail in the microscopic approach for modelling water and solute uptakes are described.
@@ -112,7 +112,9 @@ Moreover, $h_g$ is neglected in microscopic models due to its minor relevance.
 \label[soil_prop]
 \sec Soil hydraulic functions
 
-The soil hydraulic properties $K$, $\theta$ and $h$ are interdependent and, as mentioned in the previous section, highly nonlinear. Equations \ref[eq_theta] and \ref[eq_K] show their interdependence and their noticeable nonlinearity. Among all models to describe the water retention curve mentioned in Chapter \ref[literature], the most used is the one of van Genuchten:
+The soil hydraulic properties $K$, $\theta$ and $h$ are interdependent and, as mentioned in the previous section, highly nonlinear. Equations \ref[eq_theta] and \ref[eq_K] show their interdependence and their noticeable nonlinearity. Among all models to describe the water retention curve,
+%mentioned in Chapter \ref[literature]
+the most used is the one of van Genuchten:
 
 %As mentioned in the previous section, $K$, $\theta$ and $h$ are inter-related soil properties. Their interdependence allows to infer one property in relation to the other two. A common practice is to measure $\theta$ for several $h$ values and make use of a model to know the so called characteristic soil curve or water retention curve. As the function of $K$ is dependent of $\theta$ or $h$, this relation is automatically obtained. Among several $K$--$\theta$--$h$ relationship models, the van Genuchten relations is one of the most used:
 
@@ -189,7 +191,7 @@ $$
 %
 where $\xi$ (--) is the tortuosity factor and $D^0$  \udisp is the diffusion coefficient in water. Values of $D^0$ for ions or molecules can be easily measured and estimated by analytical equations for free water. Soil water content is often below its saturation point, thus, diffusion is often different from that of free water. 
 Equations \ref [eq_Ds] to \ref[eq_Dm] are one of the several existing models to estimate the effective diffusion-dispersion coefficient. 
-Chapter \ref[literature] mentions other models that can be used for this purpose.
+%Chapter \ref[literature] mentions other models that can be used for this purpose.
 
 
 %boundary conditions
@@ -198,7 +200,7 @@ In microscopic models, common boundary conditions are of zero, constant or varia
 Choosing one over another depends on how the solute uptake by the plant will be considered in the model (details in Section \ref[sol_uptake]).
 % Improve that
 The outer boundary depends on the distance from root surface in which it is considered. 
-A zero solute flux condition works well to simulate inter-root competition for solutes in a distance ranging from XXX to xxx m (note: average roots distance is 1 cm) while constant concentration -- equal to the initial concentration -- can be used in a situation that the boundary is considered `far enough' from root surface, {\it i.e.} there is no competition between neighbour roots.
+A zero solute flux condition works well to simulate inter-root competition for solutes since the average distance between roots is 1 cm, while constant concentration -- equal to the initial concentration -- can be used in a situation that the outer boundary is considered `far enough' from root surface, {\it i.e.} there is no competition between neighbour roots.
 %
 In macroscopic models, a sink-source term is added to Equation \ref[eq_sol] to consider different inputs and outputs of solute in the system ({\it e.g.} plant uptake, mineralization, degradation, etc.), and the top and bottom boundaries are treated according to the scenario (similar to what is done with the water flow equation).
 
@@ -272,7 +274,7 @@ The uptake rate following Equation \ref[eq_MM1] is an asymptote which saturates 
 \caption/f {Solute uptake rate as a function of external concentration following Michaelis-Menten kinetics with its more common parameters}
 \medskip
 
-An analytical to the Equation \ref[eq_solute_complete], using Equation \ref[eq_MM1] as a boundary at root surface and a zero flux at the outer boundary and considering a steady-state condition for water flow, is presented by \citeonline[cushman]. A solution for the same equation but considering a constant solute uptake as the boundary of root surface is presented by \citeonline[willigen1]. (THIS PART GOES TO LITERATURE REVIEW)
+%An analytical solution to the Equation \ref[eq_solute_complete], using Equation \ref[eq_MM1] as a boundary at root surface and a zero flux at the outer boundary and considering a steady-state condition for water flow, is presented by \citeonline[cushman]. A solution for the same equation but considering a constant solute uptake as the boundary of root surface is presented by \citeonline[willigen1]. (THIS PART GOES TO LITERATURE REVIEW)
 
 
 

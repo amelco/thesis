@@ -1,29 +1,26 @@
 \cleardoublepage
 \chap INTRODUCTION
 
-%IMPROVE!!!
-The use of experimental data to analyze the combined water and salt stress on relative transpiration and relative yield has been shown to be difficult to estimate the stress given all the possibilities that can be found in the field.
-Modeling has been shown to be a elucidative manner to analyze the processes involved, giving a new insight in how both stressors interact.
+Crop growth is directly related to plant transpiration, so that the closer the transpiration is from its potential amount, the higher is the crop yield. 
+Any stress that occurs during the crop development causes transpiration reduction, affecting the productivity. 
+Therefore, knowing how plants respond to abiotic stress such as of water and salt, and predicting and quantifying them, is important not only to improve the understanding of plant-soil mechanisms, but also to propose better crop management practices.
+The use of experimental data to analyze the combined water and salt stress on relative transpiration and relative yield has been shown to be difficult to examine due to the great range of possible interactions between the actors of the soil-plant-atmosphere (SPA) system.
+%that can be observed in the field.
+Modeling has been shown to be an elucidative manner to analyze the processes and mechanisms involved, giving a new insight in how water and salt stress interact.
 
 Analytical models of transport of nutrients in soil towards plant roots usually consider steady-state conditions with respect to water flow to deal with the high nonlinearity of soil hydraulic functions. 
-Several simplifications (assumptions) are made regarding the uptake of the solutes by the roots, most of them also imposed by the nonlinearity of the influx rate function. 
+Several simplifications (assumptions) are made regarding the uptake of solutes by the roots, most of them also imposed by the nonlinearity of the influx rate function. 
 Consequently, although the analytical models describe the processes involved in the transport and uptake of solutes, they are capable to simulate water and solute flow just for specific boundary conditions (simplified scenarios that most of the time  disagree with real field condition). Therefore, their use in situations that they were not designed for can be a rough approximation.
-Even being analytical solutions they include special functions (bessels, airys or infinite series, for example) that need, at some point, numerical algorithms to compute results.
-Thus, for the case of convection--diffusion equation, even the fully analytical solutions are restricted by numerical procedures although they have yet fast and reliable results.
+Even being analytical, those solutions include special functions (bessels, airys or infinite series, for example) that need, at some point, numerical algorithms to compute results.
+Thus, for the case of convection-diffusion equation, even the fully analytical solutions are restricted by numerical procedures although they have yet fast and reliable results.
 
-%IMPROVE
 Numerical modeling, in turn, has more flexibility when dealing with nonlinear equations, being an alternative to avoid boundary condition problems. 
 The functions can be solved considering transient conditions for water and solute flow but with some pull-backs like a greater concern about stability and higher time demanded to calculations.
 In general, numerical models use empirical functions in the determination of osmotic stress, related to the electric conductivity in the soil solution. 
 The parameters of these empirical models depend on soil, plant and atmospheric conditions in a range covered by the experiments that were made to generate data for the model calibration. 
-One must be aware that the use of such models for different scenarios can result in prediction errors 
-%!!-improve
-not considered by the model itself and, most of the time, new calibration of the parameters needs to be done.
-%!!-improve
-A model that uses a mechanistic approach for the solute transport equations can describe the involved processes in a wider range of situations since it is not dependent on experimental data, resulting in a more realistic solution.
+One must be aware that the use of such models for different scenarios can result in prediction errors not considered by the model itself and, most of the time, new calibration of the parameters needs to be done.
+A model that uses a mechanistic approach for the solute transport equations can describe the involved processes in a wider range of situations since it is less dependent on experimental data, resulting in a more realistic solution.
 
-In this thesis, a numerical mechanistic solution for the equation of convection--dispersion is developed, assuming a soil concentration dependent solute uptake function as the boundary condition at root surface. The proposed model is compared with a no solute uptake and a constant solute uptake numerical models, and with an analytical model that uses steady-state condition for water content. 
-
-%Modeling of root water and solute uptake by plant roots is an important tool to predict the actual transpiration as it takes into account the transport of water and solute towards the roots in the soil profile together with the soil parameters that affects this movement. 
-
-%Talk about the quirijn's model in which there is no solute uptake, only solute transport in soil, affecting the transpiration reduction function; and the objective of change this model, adding the solute uptake in it.
+In this thesis, the objective is to develop a numerical mechanistic solution for the equation of convection--dispersion, considering transient flow for water and solute and root competition, and assuming a soil concentration dependent solute uptake function as the boundary condition at root surface. 
+The proposed model is compared with a no solute uptake and a constant solute uptake numerical models, and with an analytical model that uses steady-state condition for water content. 
+It is also shown how the model can be upscaled to be used in macroscopic hydrological models and its advantage of partitioning active and passive uptakes.
