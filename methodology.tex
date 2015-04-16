@@ -9,12 +9,29 @@
 \chap METHODOLOGY
 
 %Description of the model
-To get the desired results of solute concentration as a function of time and radial distance from the axial center, as well to compute the total amount of solute extracted by the plant in a prescribed time, a fully implicit numerical treatment was given to the Equations \ref[eq_Richards] and \ref[eq_sol], that accounts for water and solute flow, respectively. For any numerical solution, the space and time domains must be discretized in order to calculate the results for each `piece of space and time'. Our system domain is a single root (microscopic model) that are competing for water and solute with its neighbours in a homogeneous and isotropic soil... (MORE ABOUT THE MODEL). Figure \ref[fig_scheme] shows a schematic representation of the domain considered in the simulations.
+%To get the desired results of solute concentration as a function of time and radial distance from the axial center, as well to compute the total amount of solute extracted by the plant in a prescribed time, 
+A fully implicit numerical treatment was given to the Equations \ref[eq_Richards] and \ref[eq_sol].
+%, that accounts for water and solute flow, respectively. 
+The geometry of the soil-root system considers an uniformly distributed parallel cylindrical roots of radius $r_0$ and length $z$. 
+To each root, a concentric cylinder of radius $r_m$ and length $z$ can be assigned to represent its extraction volume (Figure \ref[fig_rootzone]).
 
-The equations for water and solute flow 
-%(\ref[eq_Richards] and \ref[eq_sol], respectively) 
-were solved using a fully implicit numerical scheme. 
-The model here presented is microscopic with radial geometry, in a homogeneous and isotropic soil, with one ion only soil solution. The water and solute flow are axis-symmetric. The schematic representation of the discretized domain is shown in Figure~\ref[fig_scheme]. 
+\medskip
+\label[fig_rootzone]
+\picw=11cm \cinspic root_zone.pdf
+\caption/f {Schematic representation of the spatial distribution of roots in the root zone}
+\medskip
+
+The discretization needed for the numerical solution was made in the single root level. As the extraction properties of the root are considered uniform along its length, and assuming no vertical differences in root density and fluxes, the cylinder can be represented by a circle. 
+The extraction area was then subdivided into $n$ circular segments of size $\Delta_r$, small near the root and increasing with distance, according to the equation:
+\label[eq_disc]
+$$
+\Delta_r = \Delta r_{min}+(\Delta r_{max}-\Delta r_{min}) \left( {r-r_0 \over r_m-r_0} \right)^S \eqmark
+$$
+%
+where the subscripts in $\Delta_r$ indicate minimum and maximum sizes defined by the user and $S$ is the rate at which the segment size increase. 
+This approach for the discretization has the advantage of determine smaller segments in regions that need more precision in the calculations (in this case, closer to the root surface) due to the greater variation of the flux properties. 
+It is specially advantageous when dealing with numerical stabilization and convergence problems. 
+Figure~\ref[fig_scheme] shows the discretization resulted from Equation \ref[eq_disc].
 
 \medskip
 \label[fig_scheme]
@@ -22,11 +39,38 @@ The model here presented is microscopic with radial geometry, in a homogeneous a
 \caption/f {Schematic representation of the discretized domain considered in the model}
 \medskip
 
-\medskip
-\label[fig_rootzone]
-\picw=11cm \cinspic root_zone.pdf
-\caption/f {Schematic representation of the spatial distribution of roots in the root zone}
-\medskip
+The Richards equation \ref[eq_Richards] for one-dimensional axis-symetric flow can be writen as
+\label[eq_complete_richards]
+$$
+{\partial \theta \over \partial t} = {\partial \theta \over \partial H} {\partial H \over \partial t} = C_w(H) {\partial H \over \partial t} = {1 \over r}{\partial \over \partial r} \left( r K(H,\theta) {\partial H \over \partial r} \right) \eqmark
+$$
+%
+where the total hydraulic head ($H$) is the sum of pressure ($h$) and osmotic ($h_\pi$) heads and $C_w$ (m$^{-1}$) is the differential water capacity.
+Analogous to \citeonline[vandam_feddes], Equation \ref[eq_complete_richards] can be solved using an implicit scheme of finite differences with the Picard interactive process:
+$$
+\eqalignno{
+\label[eq_disc_water]
+C_i^{j+1,p-1} (H_i^{j+1,p}&-H_i^{j+1,p-1}) + \theta_i^{j+1,p-1}-\theta_i^j = {t^{j+1}-t^j \over r_i \Delta r_i} \cr
+&\left[ 
+r_{i-1/2}K_{i-1/2}^j {h_{i-1}^{j+1,p}-h_i^{j+1,p} \over r_i-r_{i-1}} 
+- 
+r_{i+1/2}K_{i+1/2}^j {h_{i}^{j+1,p}-h_{i+1}^{j+1,p} \over r_{i+1}-r_{i}} 
+\right] &\eqmark
+}
+$$
+%
+where $i$ ($1 \leq i \leq n$) refers to the segment number, $j$ is the time step and $p$ the iteration level. 
+The Picard's method is used to reduce inaccuracies in the implicit numerical solution for the $h$-based Equation \ref[eq_complete_richards] \cite[celia].
+
+The solution for Equation \ref[eq_disc_water] results in prediction of pressure head in soil as a function of time and distance from the root surface. 
+The boundary conditions considered were of flux density entering the root determined by the transpiration rate for the inner segment, and of zero flux for the outer segment.
+The computer algorithm that solves the equation and applied boundary conditions are found on Appendix \ref[ap_water].
+
+SOLUTE NUMERICAL EQUATION
+
+%MODIFY IT. Copyied from quirijn
+The combined water and salt movement is simulated iteratively. In a first step, the water movement toward the root is simulated, assuming salt concentrations from the previous time step. In a second step, the salt contents per segment are updated and new values for the osmotic head in all segments are calculated. The first step is then repeated with updated values for the osmotic heads. This process is repeated until the pressure head values and osmotic head values between iterations converge.
+
 
 
 OBSERVATIONS
