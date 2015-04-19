@@ -4,17 +4,9 @@
 \def\im{$I_m$}
 \def\km{$K_m$}
 
-% Sub number a equation
-% At the end of use, user must set \dsubnum=0
-\newcount\dsubnum
-\dsubnum=0
-\def\thedsubnum{(\the\dnum.\the\dsubnum)}
-\def\eqsubmark{
-  \ifnum\dsubnum=0 \global\advance\dnum by1 \fi
-  \global\advance\dsubnum by1
-  \ifinner\else\eqno \fi 
-  \wlabel\thedsubnum \thedsubnum
-}
+\input cases
+
+% Fancy fractions: \displaystyle
 
 \cleardoublepage
 \label[methodology]
@@ -118,18 +110,11 @@ Additionally, solute uptake by mass flow of water can be higher than the plant d
 The effects of solute concentration inside the plant in solute uptake and plant demand are not considered in the model.
 
 Therefore, a piecewise uptake function that considers the explicit assumptions was formulated:
-% Solve problem with alignment of equation numbers
-$$ 
-q_{s0} = 
-\cases{
-  \label[eq_MM_case]
-  {I_m C_0 \over K_m+C_0}+q_0 C 	&if $C_0 < C_{lim}$ \eqsubmark\cr 
-  I_m 					&if $C_{lim} \leq C \leq C_2$ \hfill\eqsubmark\cr
-  q_0 C 				&if $C > C_2$  \hfill\rlap\eqsubmark\cr
-}
-$$
-\dsubnum=0
-
+\numcases{q_{s0} =}
+{I_m C_0 \over K_m+C_0}+q_0 C 	&if $C_0 < C_{lim}$ \\
+I_m 				&if $C_{lim} \leq C \leq C_2$ \\
+q_0 C 				&if $C > C_2$ 
+\endnumcases
 
 A linearization of the MM equation was formulated... 
 
