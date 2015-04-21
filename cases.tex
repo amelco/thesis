@@ -58,8 +58,10 @@
 
 % Sub number a equation
 \newcount\dsubnum
+\newcount\dnumold
 \dsubnum=0
 \def\thedsubnum{(\the\dnum.\the\dsubnum)}
+\def\thednumold{(\the\dnumold)}
 \def\eqsubmark{%
 \ifnum\dsubnum=0 \global\advance\dnum by1 \fi
 \global\advance\dsubnum by1
@@ -74,7 +76,11 @@
 \def\@eqncr{& \eqsubmark\cr}
 \def\@@eqncr{& \eqsubmark\cr}
 \def\m@th{\mathsurround\z@}
-\def\numcases#1{$$%
+\def\numcases#1{%
+ \dnumold\dnum%
+ \global\advance\dnumold by1%
+ \wlabel\thednumold%
+ $$%
  \setbox\z@\hbox{ % local
   $\displaystyle {#1}\m@th\mskip\medmuskip$}%
 %\numc@setsub
