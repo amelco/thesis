@@ -1,7 +1,7 @@
 # word documents
 *.doc
 *.docx
-correcoes/
+#correcoes/
 texsalq-doc.pdf
 plots/*.pdf
 
