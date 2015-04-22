@@ -79,7 +79,7 @@ set xlabel "Concentration at root surface"
 
 set label "active contribution" at 60,0.2
 set label "passive contribution" at 60,0.55
-set label "total uptake\n      (q_{s0})" at 70,0.9
+set label "actual uptake\n      (q_{s0})" at 70,0.9
 set label "plant demand" at 10,0.9
 set label "potential active uptake\n (original MM equation)" at 74,0.7
 set arrow from 17,0.88 to clim/2, Im lt 1 lc -1
