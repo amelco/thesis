@@ -100,41 +100,74 @@ described by MM equation \ref[eq_MM1], with the following assumptions:
 \begitems
 \style n
 %* Solute flux is governed by plant demand (which is constant)
-* There is a soil solution concentration value (\clim) that the solute flux limits the uptake;
-* Solute uptake by mass flow of water is not controlled by the plant by other means but transpiration;
+* Solute uptake by mass flow of water is not controlled by the plant by other means but transpiration, thus the uptake by convection is passive;
+* Plant regulates active uptake, thus the uptake by diffusion is plant regulated;
+%* Uptake by convection is considered to be passive, and by diffusion, active;
 * Plant demand is equal to the $I_m$ parameter from MM equation.
+* There is a soil solution concentration value (\clim) that the solute flux limits the uptake;
 \enditems
 
-We assume that the plant demand for solute is constant, but not the uptake, in a way that solute uptake can be either greater or lesser than the demand, depending on the concentration in the soil solution at root surface. 
+We assume that the plant demand for solute is constant, but not the uptake, in a way that solute uptake can be either greater or lesser than the demand, depending on the concentration in the soil solution at root surface (Figure \ref[fig_MM_mod]). 
 If the concentration is bellow a certain limiting value (\clim), the uptake is limited by the solute flux, {\it i.e.} solute flux can not attend plant demand even with potential values of active uptake.
 Additionally, solute uptake by mass flow of water can be higher than the plant demand in situations of high transpiration rate and/or for high soil water content. 
 %IMPROVE
 In that case, we assume that active uptake is zero and all uptake is done by passive process. A concentration \c2 for this situation is calculated.
 %--
+When the concentration is between \clim{} and \c2, the uptake is equal to the plant demand as a result of the sum of active and passive contributions to the uptake.
+%IMPROVE
+Assumption 1 states that passive uptake is not regulated by physiological plant mechanisms and, in order to save metabolic energy, the plant regulates active uptake as a complementary mechanism of extraction to achieve plant demand, making the active contribution to uptake be less than its potential value. 
+%--
 The effects of solute concentration inside the plant in solute uptake and plant demand are not considered in the model.
-Hence, a situation where the plant demand is diminished due to an excess of solute is not considered, which can lead to overestimation of the uptake.
+Hence, a situation where the demand is diminished due to an excess of solute inside the plant is not considered, which can lead to overestimation of the uptake.
 
-A piecewise uptake function that considers the explicit assumptions was, then, formulated:
+A piecewise uptake function that considers the explicit assumptions was, then, formulated
 \label[eq_MM_mod]
 \numcases{q_{s0} =}
-{I_m C_0 \over K_m+C_0}+q_0 C 	&if $C_0 < C_{lim}$, \\
+\label[eq_case1]
+{I_m C_0 \over K_m+C_0}+q_0 C_0,&if $C_0 < C_{lim}$ \\
 \label[eq_case2]
-I_m 				&if $C_{lim} \leq C \leq C_2$, \\
+I_m, 				&if $C_{lim} \leq C \leq C_2$ \\
 \label[eq_case3]
-q_0 C 				&if $C > C_2$.
+q_0 C, 				&if $C > C_2$
 \endnumcases
-
-A linearization of the MM equation was formulated... \ref[eq_case2], \ref[eq_case3]
-
+%
+with \clim{} calculated by
+\label[eq_clim]
+$$
+C_{lim} = -{K_m \pm \left( {K_m}^2 + 4{I_m K_m / q_0} \right)^{1/2} \over 2 }, \eqmark
+$$
+%
+and \c2 by
+\label[eq_c2]
+$$
+C_2 = {I_m \over q_0}{\rm .} \eqmark
+$$
 
 \medskip
 \label[fig_MM_mod]
 \picw=13cm \cinspic MM_c.pdf
 %\caption/f {Solute uptake piecewise equation \reff_MM_mod after assumptions made over original MM equation \ref[eq_MM1].}
-\caption/f {Solute uptake piecewise equation \ref[eq_MM_mod] after assumptions made over original MM equation \ref[eq_MM1].}
+\caption/f {Solute uptake piecewise equation \ref[eq_MM_mod] after assumptions made over original MM equation \ref[eq_MM1]. The thicker line is the actual uptake, the thiner lines represent active and passive contributions to the actual uptake, and the dotted lines are the plant demand and the potential active uptake}
 \medskip
 
+%IMPROVE IT AND EXPLAIN MORE
+Due to the difficulty of implement a numerical algorithm to the non-linear Equation \ref[eq_case1], a linearization was made, resulting in:
+\label[eq_MM_linear]
+$$
+q_{s0} = (\alpha + q_0)\,C_0,\,\,\,\,{\rm if }\, C_0 < C_{lim}  \eqmark
+$$
+%
+where $\alpha$ is the active contribution for the solute uptake slope $(\alpha+q_0)$.
+The derivation of Equations \ref[eq_clim] to \ref[eq_MM_linear] can be found in Appendix \ref[ap_clim].
 
+Finally, the boundary condition at root surface can be writen in a implicit numerical scheme as:
+
+
+
+
+
+%IMPROVE
+It is important to notice that, for concentrations values between \clim{} and \c2, active uptake it is not at its potential value because the passive contribution to the uptake already fills a portion of the plant demand. The plant will conserve this additional energy.
 
 %MODIFY IT. Copyied from quirijn
 The combined water and salt movement is simulated iteratively. In a first step, the water movement towards the root is simulated, assuming salt concentrations from the previous time step. In a second step, the salt contents per segment are updated and new values for the osmotic head in all segments are calculated. The first step is then repeated with updated values for the osmotic heads. This process is repeated until the pressure head values and osmotic head values between iterations converge.
@@ -230,7 +263,7 @@ I_m = {I_m C_0 \over K_m + C_0} + q_0 C_0 \,\,. \eqmark
 $$
 
 Solving for $C$, we find \clim as the positive value of:
-\label[eq_clim]
+%\label[eq_clim]
 $$
 C_{lim} = -{K_m \pm \left( {K_m}^2 + 4{I_m K_m / q_0} \right)^{1/2} \over 2 } \eqmark
 $$
