@@ -75,7 +75,8 @@ print clim
 print c2
 set xtics ("0" 0, "C_{lim}" clim, "C_2" c2) nomirror
 set ytics ("0" 0, "I_m" Im) nomirror
-set xlabel "Concentration at root surface"
+set xlabel "Concentration at root surface (mol)"
+set ylabel "Solute uptake rate (mol m^{-2} s^{-1})"
 
 set label "active contribution" at 60,0.2
 set label "passive contribution" at 60,0.55
