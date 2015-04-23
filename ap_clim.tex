@@ -1,0 +1,58 @@
+\app Finding \clim{}, \c2 and linearizing MM equation
+
+We assume that the diffusive and convective parts of the original equation is similar to the active and passive uptakes of the MM equation, respectively, at root suurface. It is shown in Figure 0 XXX the two proposed partitioning of active and passive uptakes, for a constant water flux density. Figure 0a is linear, which is a simplification of MM equation to facilitate its use in the numerical solution. Figura 0a is the MM equation itself.
+
+\medskip
+\label[fig_MM]
+\picw=10cm \cinspic I_and_Linear.pdf
+\caption/f {Uptake (influx) rate as a function of concentration in soil water for [a] nonlinear case and [b] linear case }
+\medskip
+
+%EXPLAIN ACTIVE AND PASSIVE
+ 
+%Figure 0. Uptake rate (influx rate) as a function of concentration in soil water for [a] nonlinear case and [b] linear case
+
+In the linearized equation (Figure 0b), the slope $\beta$ of the total uptake line (continuous line), for concentration values smaller than $C_{lim}$, can be found by the relation $I_m/C{lim}$, since the line starts at the origin. According to the MM equation, for values smaller than $C_{lim}$, the solute uptake is concentration dependent and the uptake is smaller than $I_m$. For values greater than $C_2$ the uptake is also concentration dependent but due to transport of mass by water flow only, i.e, active uptake is zero and the overall uptake is passive.
+
+To find \clim, we set the solute flux density to \im:
+$$
+I_m = {I_m C_0 \over K_m + C_0} + q_0 C_0 \,\,. \eqmark
+$$
+
+Solving for $C$, we find \clim{} as the positive value of:
+%\label[eq_clim]
+$$
+C_{lim} = -{K_m \pm \left( {K_m}^2 + 4{I_m K_m / q_0} \right)^{1/2} \over 2 } \eqmark
+$$
+
+Finally, $\beta$ can be defined as the positive value of:
+\label[eq_beta]
+$$
+\beta = -{ I_m \over C_{lim} } = -{2 I_m \over K_m \pm \left( {K_m}^2 + 4{I_m K_m / q_0} \right)^{1/2}} \eqmark
+$$
+
+At concentration values greater than $C_2$, the solute uptake is driven only by mass flow of water and the active uptake is zero. Thus, $C_2$ can be found as:
+\label[eq_c2]
+$$
+C_2 = {-I_m \over q_0} \eqmark
+$$
+
+%WRITE IN RADIAL COORDINATES??
+%$$
+%C_2 = {-I_m \over 2 \pi L r_0 q_0} \eqmark
+%$$
+
+The partitioning between active ($\alpha$) and passive uptake ($q_0$) is done by difference, as the values of total uptake and passive uptake is always known:
+$$
+\eqalignno{
+&q_{s0} = (\hbox{active slope} + \hbox{passive slope})\,C_0 = \beta\,C_0 \cr
+&\hbox{passive slope} = q_0 \cr
+&\hbox{active slope} = \beta - q_0 = \alpha \cr
+\label[eq_linear]
+&q_{s0} = (\alpha + q_0)\,C_0 & \eqmark
+}
+$$
+
+The equation \ref[eq_linear] is, therefore, the linearization of equation \ref[eq_solute] for values of concentration smaller than $C_{lim}$ and greater than $C_2$.
+
+
