@@ -12,9 +12,18 @@
 \label[methodology]
 \chap METHODOLOGY
 
+In this thesis, we will compare the proposed model with the original one \cite[liersolute], and  with analytical models of constant \cite[willigen1] and concentration dependent (MM) \cite[cushman] uptake, both considering steady-state condition with respect to water flow. 
+A numerical implementation of the constant uptake was developed, therefore, the numerical solutions for the concentration dependent, zero uptake and constant uptake models are shown.
+
+First, we will show the mathematical equations formulated to represent the physical phenomena of transport and uptake of water and solutes by the root (Section~\ref[model_description]) and its numerical development (Section~\ref[numerical_implementation]). 
+Later, we present Section \ref[analytical_models] that shows the analytical models that has been chosen to compare with the proposed model, followed by the description of the simulated scenarios (Section~\ref[scenarios]), a comparative analysis of the linear and non-linear aproaches (Section~\ref[lu_nlu_comp]) and of the other numerical models (Section~\ref[model_comp]) and, finally, the methodology of the sensitivity analysis (Section~\ref[sensitivity]).
+
+\label[model_description]
+\sec General model description
+
 %Description of the model
 %To get the desired results of solute concentration as a function of time and radial distance from the axial center, as well to compute the total amount of solute extracted by the plant in a prescribed time, 
-A fully implicit numerical treatment was given to the Equations \ref[eq_Richards] and \ref[eq_sol].
+A fully implicit numerical treatment was given to the water and solute balance equations \ref[eq_Richards] and \ref[eq_sol].
 %, that accounts for water and solute flow, respectively. 
 The geometry of the soil-root system considers an uniformly distributed parallel cylindrical roots of radius $r_0$ and length $z$. 
 To each root, a concentric cylinder of radius $r_m$ and length $z$ can be assigned to represent its extraction volume (Figure \ref[fig_rootzone]).
@@ -25,22 +34,26 @@ To each root, a concentric cylinder of radius $r_m$ and length $z$ can be assign
 \caption/f {Schematic representation of the spatial distribution of roots in the root zone}
 \medskip
 
-The discretization needed for the numerical solution was made in the single root level. As the extraction properties of the root are considered uniform along its length, and assuming no vertical differences in root density and fluxes, the cylinder can be represented by a circle. 
-The extraction area was then subdivided into $n$ circular segments of size $\Delta_r$~(m), small near the root and increasing with distance, according to the equation \cite[liersolute]:
+The discretization needed for the numerical solution was made in the single root scale. 
+As the extraction properties of the root are considered uniform along its length, and assuming no vertical differences in root density and fluxes, the cylinder can be represented by a circle. 
+The extraction area was then subdivided into $n$ circular segments of variable size $\Delta_r$~(m), small near the root and increasing with distance, according to the equation \cite[liersolute]:
 \label[eq_disc]
 $$
 \Delta_r = \Delta r_{min}+(\Delta r_{max}-\Delta r_{min}) \left( {r-r_0 \over r_m-r_0} \right)^S \eqmark
 $$
 %
-where the subscripts in $\Delta_r$ indicate minimum and maximum sizes defined by the user and $S$ gives the shape of the rate at which the segment size increase. 
-This approach for the discretization has the advantage of determine smaller segments in regions that need more precision in the calculations (in this case, closer to the root surface) due to the greater variation of the flux properties. 
-It is specially advantageous when dealing with numerical stabilization and convergence problems. 
+where the subscripts 
+in $\Delta_r$ 
+indicate the minimum and maximum segment sizes defined by the user, and $S$ gives the shape of the rate at which the segment size increases. 
+The parameters $r_0$ (m) is the root radius, and $r_m$ (m) is the root extraction zone, equal to the half-distance between roots, which relates to the root density $R$ (m m$^{-3}$) according to equation \ref[eq_rm].
+This approach for the discretization has the advantage of determine smaller segments in regions that need more precision in the calculations (root soil interface) due to the greater variation of the flux properties. 
+%It is specially advantageous when dealing with numerical stabilization and convergence problems. 
 Figure~\ref[fig_scheme] shows the discretization resulted from Equation \ref[eq_disc].
 
 \medskip
 \label[fig_scheme]
 \picw=9.5cm \cinspic domain.pdf
-\caption/f {Schematic representation of the discretized domain considered in the model}
+\caption/f {Schematic representation of the discretized domain considered in the model. $\Delta r$ is the variable segment size, increasing with the distance from the root surface ($r_0$) to the half-distance between roots ($r_m$), and $n$ is the number of segments}
 \medskip
 
 The Richards equation \ref[eq_Richards] for one-dimensional axis-symetric flow can be writen as
@@ -101,17 +114,15 @@ described by MM equation \ref[eq_MM1], with the following assumptions:
 We assume that the plant demand for solute is constant, but not the uptake, in a way that solute uptake can be either greater or lesser than the demand, depending on the concentration in the soil solution at root surface (Figure \ref[fig_MM_mod]). 
 If the concentration is bellow a certain limiting value (\clim), the uptake is limited by the solute flux, {\it i.e.} solute flux can not attend plant demand even with potential values of active uptake.
 Additionally, solute uptake by mass flow of water can be higher than the plant demand in situations of high transpiration rate and/or for high soil water content. 
-%IMPROVE
-In that case, we assume that active uptake is zero and all uptake is done by passive process. A concentration \c2 (mol) for this situation is calculated.
-%--
+In that case, we assume that active uptake is zero and all uptake is done by the passive process. A concentration \c2 (mol) for this situation is calculated.
 When the concentration is between \clim{} and \c2, the uptake is equal to the plant demand as a result of the sum of active and passive contributions to the uptake.
-%IMPROVE
-Assumption 1 states that passive uptake is not regulated by physiological plant mechanisms and, in order to save metabolic energy, the plant regulates active uptake as a complementary mechanism of extraction to achieve plant demand, making the active contribution to uptake be less than its potential value. 
+Assumption 1 states that passive uptake is not regulated by any physiological plant mechanisms and, in order to save metabolic energy, active uptake is regulated such that it works as a complementary mechanism of extraction to achieve plant demand, 
+resulting in a lower active uptake contribution than that of its potential value.
 %--IMPORTANT TO IMPROVE ASSUMPTIONS
 %Ions and water move into the plant independently, reflecting entirely different physical-chemical forces; nevertheless, the water moving to the root carries ions in it. A portion of these ions is taken up by the plant by an independent mechanism. The remainder is left behind at the root surface or on the soil particles in the vicinity of the root where they represent a subsequent source of supply. 81.pdf, pg. 98
 %This can explain the analysis of diffusion and convection (active and passive) separately.
-The effects of solute concentration inside the plant in solute uptake and plant demand are not considered in the model.
-Hence, a situation where the demand is diminished due to an excess of solute inside the plant is not considered, which can lead to overestimated predictions of the uptake.
+Nevertheless, the effects of solute concentration inside the plant in solute uptake and plant demand are not considered in the model.
+Consequently, a situation where the demand is diminished due to an excess of solute inside the plant is not considered, which can lead to overestimated predictions of the uptake.
 
 A piecewise uptake function that considers the explicit assumptions was, then, formulated
 \label[eq_MM_mod]
@@ -124,7 +135,7 @@ I_m, 				&if $C_{lim} \leq C \leq C_2$ \\
 q_0 C, 				&if $C > C_2$
 \endnumcases
 %
-with \clim{} calculated by
+with \clim{} determined by the positive root of
 \label[eq_clim]
 $$
 C_{lim} = -{K_m \pm \left( {K_m}^2 + 4{I_m K_m / q_0} \right)^{1/2} \over 2 }, \eqmark
@@ -144,20 +155,22 @@ $$
 \medskip
 
 %IMPROVE IT AND EXPLAIN MORE
-Due to the difficulty of implement a numerical algorithm to the non-linear Equation \ref[eq_case1], a linearization was made, resulting in:
+The non-linear part of the uptake function resides in Equation \ref[eq_case1]. As implicit numerical implementations of non-linear functions may result in solutions with stabilization issues, a linearization of Equation \ref[eq_case1] was made, which yields:
+%Due to the difficulty of implement a numerical algorithm to the non-linear Equation \ref[eq_case1], a linearization was made, resulting in:
 \label[eq_MM_linear]
 $$
 q_{s0} = (\alpha + q_0)\,C_0,\,\,\,\,{\rm if }\, C_0 < C_{lim}  \eqmark
 $$
 %
-where $\alpha$ is the active contribution for the solute uptake slope $(\alpha+q_0)$.
+where $\alpha$ (m s$^{-1}$) and $q_0$ (m s$^{-1}$) are the active and passive contributions for the solute uptake slope $(\alpha+q_0)$.
 %IMPROVE
-The linearization proposed in the model is very similar to that of Tinker and Nye (pg.116), but does not considers concentration inside the plant.
+This linearization is very similar to the one proposed by \citeonline[tinker], but does not considers concentration inside the plant.
 The derivation of Equations \ref[eq_clim] to \ref[eq_MM_linear] can be found in Appendix \ref[ap_clim].
 
-Finally, the boundary condition at the inner segment is that of concentration dependent solute flux at the root surface ($q_{s0}$) according to Equation \ref[eq_MM_mod] and \ref[eq_MM_linear] for non-linear and linear case, respectively
+Finally, the boundary condition at the inner segment is that of concentration dependent solute flux at the root surface ($q_{s0}$) according to Equation \ref[eq_MM_mod] and \ref[eq_MM_linear] for non-linear and linear case, respectively:
+\label[eq_inner_bound]
 $$
--D(\theta) {\partial C \over \partial r} + q_0 C_0 = q_{s0}, \eqmark,
+-D(\theta) {\partial C \over \partial r} + q_0 C_0 = q_{s0}, \eqmark
 %= {I_m C_0 \over K_m+C_0}+q_0 C_0\;{\rm ,} \quad t>0,\; r=r_0 \eqmark
 $$
 %
@@ -166,17 +179,24 @@ $$
 C = C_{ini}\;, \quad t=0,\; r=r_i,\; 1 \leq i \leq n. \eqmark
 $$
 
+\label[numerical_implementation]
 \sec Numerical implementations of convection-dispersion equation
 
-Here, we present the numerical discretization and the applied boundary conditions, together with the algorithm to find the solution for Equation \ref[eq_complete_solute].
+Here, we present the numerical discretization and the applied boundary conditions, together with the algorithm to find the solution of Equation \ref[eq_complete_solute] for both linear and non-linear cases.
 %find a better place to put it
-Both water and solute flow are considered to have transient condition. 
+The mass balance equations are considered to have transient condition in respect to water and solute.
+
+%IMPROVE
+As mentioned in the introduction of this chapter, besides the development of the proposed model (concentration dependent solute uptake), we also developed a numerical solution for a constant uptake model \cite[willigen1], using the same discretization detailed in the previous section. 
+Additionally, we present the numerical solution for the zero uptake model (developed by \citeonline[liersolute]), in which we are proposing modifications. 
+Thus, from now on -- to avoid lengthy texts -- we will abbreviate zero uptake model, constant uptake model, linear concentrations dependent model and non-linear concentration dependent model as ZU, CU, LU, and NLU, respectively. 
+
 %--
-In this thesis, we will compare the proposed model with the original one \cite[liersolute], and  with the analytical models of constant uptake \cite[willigen1] and concentration dependent (MM) uptake \cite[cushman], both considering steady-state condition with respect to water flow. 
-A numerical implementation of the constant uptake was made, therefore, the numerical solutions for the concentration dependent, zero uptake and constant uptake models are shown.
+%In this thesis, we will compare the proposed model with the original one \cite[liersolute], and  with analytical models of constant \cite[willigen1] and concentration dependent (MM) \cite[cushman] uptake, both considering steady-state condition with respect to water flow. 
+%A numerical implementation of the constant uptake was developed, therefore, the numerical solutions for the concentration dependent, zero uptake and constant uptake models are shown.
 
 %MODIFY IT. Copyied from quirijn
-The combined water and salt movement is simulated iteratively. In a first step, the water movement towards the root is simulated, assuming salt concentrations from the previous time step. In a second step, the salt contents per segment are updated and new values for the osmotic head in all segments are calculated. The first step is then repeated with updated values for the osmotic heads. This process is repeated until the pressure head values and osmotic head values between iterations converge. Flowcharts containing the algorithm logic is shown in the Appendix \ref[ap_flowchart].
+In the numerical solutions, the combined water and solute movement is simulated iteratively. In a first step, the water movement towards the root is simulated, assuming salt concentrations from the previous time step. In a second step, the salt contents per segment are updated and new values for the osmotic head in all segments are calculated. The first step is then repeated with updated values for the osmotic heads. This process is repeated until the pressure head values and osmotic head values between iterations converge. Flowcharts containing the algorithm's logic is shown in the Appendix \ref[ap_flowchart].
 
 \secc Concentration dependent solution (proposed model)
 
@@ -327,10 +347,16 @@ $$
 
 \enditems
 
-The value of $C^{j+1}_1$ in Equation \ref[b1] is found using the iterative Newton-Raphson method. Note that since this is a one-dimensional microscopic model, it is assumed that the root has the same characteristcs in all vertical soil profile (along its vertical axis), thus, water and solute transport from soil towards the roots and uptakes are occurring at the same rate in the vertical profile. It is possible to couple this model in another one that has discretized soil layers. For a 2D model (depth and radial distance), the solutions presented here are applied in each layer independently. For a 1D model (only depth), an average of water and solute content through the horizontal profile has to be determined.
+The value of $C^{j+1}_1$ in Equation \ref[b1] is found using the iterative Newton-Raphson method. 
+%Note that since this is a one-dimensional microscopic model, it is assumed that the root has the same characteristcs in all vertical soil profile (along its vertical axis), thus, water and solute transport from soil towards the roots and uptakes are occurring at the same rate in the vertical profile. It is possible to couple this model in another one that has discretized soil layers. For a 2D model (depth and radial distance), the solutions presented here are applied in each layer independently. For a 1D model (only depth), an average of water and solute content through the horizontal profile has to be determined.
 \secc Zero uptake solution (ZU)
 
-The zero uptake solution is the original model presented by \citeonline[liersolute]. The numerical discretization is according to Equation \ref[eq_disc_sol] and the intermediate nodes are analogous to Equations \ref[eq_int_nodes1] to \ref[eq_int_nodes3]. The only difference is the boundary at root surface.
+The zero uptake solution is the original model presented by \citeonline[liersolute]. The numerical discretization is according to Equation \ref[eq_disc_sol] and the intermediate nodes are analogous to Equations \ref[eq_int_nodes1] to \ref[eq_int_nodes3]. The only difference is the boundary at root surface, which is of zero solute flux.
+
+The solute flux at the inner boundary (Equation \ref[eq_inner_bound]) is then:
+$$
+q_{s0}=0. \eqmark
+$$
 
 \seccc The inner boundary ($i=1$)
 
@@ -355,7 +381,12 @@ $$
 
 \secc Constant uptake solution (CU)
 
-The constant uptake solution is was proposed by \citeonline[willigen1]. The numerical discretization is according to Equation \ref[eq_disc_sol] and the intermediate nodes are analogous to Equations \ref[eq_int_nodes1] to \ref[eq_int_nodes3]. The only difference is the boundary at root surface.
+The constant uptake solution is was proposed by \citeonline[willigen1]. The numerical discretization is according to Equation \ref[eq_disc_sol] and the intermediate nodes are analogous to Equations \ref[eq_int_nodes1] to \ref[eq_int_nodes3]. The only difference is the boundary at root surface, which is of constant solute flux.
+
+The solute flux at the inner boundary (Equation \ref[eq_inner_bound]) is then:
+$$
+q_{s0}=I_m. \eqmark
+$$
 
 \seccc The inner boundary ($i=1$)
 
@@ -384,19 +415,23 @@ $$
 
 
 
-
-\sec Analytical implementations of convection-dispersion equation
+\label[analytical_models]
+\sec Analytical models
 
 Here we present the analytical models used in the comparisons to the proposed model. An computational implementation were made to each model.
 
 {\localcolor\Red MAYBE IT IS NOT NECESSARY TO SHOWN THE ANALYTICAL EQUATIONS, JUST CITE THEM}
 
-\secc Concentration dependent solution
+%\secc Concentration dependent solution
 
-\secc Constant uptake solution
+%\secc Constant uptake solution
 
 %\sec Other models
 
+\label[scenarios]
+\sec Simulation scenarios
+
+\label[lu_nlu_comp]
 \sec Analysis of linear and nonlinear approaches
 
 To analyze the differences between the two proposed models (linear and nonlinear), the absolute and relative differences were calculated as follows:
@@ -427,7 +462,7 @@ This section describes how the linear (LU) and nonlinear (NLU) solutions simulat
 
 Also, the Mann--Whitney U test was made with two datasets (concentration and cumulative uptake) for the two models. The choice of this test is due to the fact that the distributions for both datasets are not normal, the pairs (concentration for LU and for NLU and cumulative uptake for LU and NLU) are distinct and do not affect each other. This test can decide whether each pair is identical without assuming them to follow the normal distribution (nonparametric test). The null hypothesis ($H_0$) is that both populations (model output data) are the same and the alternate hypothesis ($H_1$) is that one particular model (LU or NLU) has greater values than the other.
 
-
+\label[model_comp]
 \sec Model comparissons
 
 The scenario of this simulation is of loam soil, medium root length density, high potential transpiration and high initial concentration (Table \ref[general_param]). We compare all model types (no solute uptake -- NU; constant -- CU; linear -- LU and nonlinear -- NLU concentration dependent uptake rates). All simulations were made until the value of relative transpiration was equal or less than 0.001. The time step is dynamical (depends on the number of iterations for water and solute equations) and was set to vary between 0.1 and 2 seconds. The simulation for NU ended within near 3 days; for CU, LU and NLU, about 5 days.
@@ -441,3 +476,7 @@ The scenario of this simulation is of loam soil, medium root length density, hig
 %•	It does not consider complementary ion effects
 %•	It does not consider soil buff power
 %•	See 21.pdf for limitations in measurement of MM parameters
+
+\label[sensitivity]
+\sec Sensitivity analysis
+
