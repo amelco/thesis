@@ -16,34 +16,38 @@
 
 \chap RESULTS AND DISCUSSION
 
-%PUT IT SOMEWHERE
-The default values for $\Delta r_{min}$, $\Delta r_{max}$ and $S$ are of 10$^{-8}$ m, 5 10$^{-4}$ m and 0.5, resulting in 24, 73 and 228 segments for the high, medium and low root density simulations, respectively. However, further reductions of the segment size may bes needed in case of stabilization problems in the solute transport equation.
+%%PUT IT SOMEWHERE
+%The default values for $\Delta r_{min}$, $\Delta r_{max}$ and $S$ are of 10$^{-8}$ m, 5 10$^{-4}$ m and 0.5, resulting in 24, 73 and 228 segments for the high, medium and low root density simulations, respectively. However, further reductions of the segment size may bes needed in case of stabilization problems in the solute transport equation.
+%
+%The simulations were performed using the hydraulic parameters from the Dutch Staring series \cite[wosten] for three typical top soils, as listed in Table \ref[soils]. 
+%The general system parameters for the different scenarios are listed in Table \ref[general_param] and values for the Michaelis-Menten (MM) parameters in Table \ref[MMparam]. Values of root length density, salt content and relative transpiration were chosen to change, reflecting different possible scenarios that would occur in a practical situation. The chosen MM parameters were for K$^+$ solute.
+%
+%\input tables/soils
+%
+%\input tables/general_param
+%
+%\input tables/MMparam
 
-The simulations were performed using the hydraulic parameters from the Dutch Staring series \cite[wosten] for three typical top soils, as listed in Table \ref[soils]. 
-The general system parameters for the different scenarios are listed in Table \ref[general_param] and values for the Michaelis-Menten (MM) parameters in Table \ref[MMparam]. Values of root length density, salt content and relative transpiration were chosen to change, reflecting different possible scenarios that would occur in a practical situation. The chosen MM parameters were for K$^+$ solute.
+\sec Linear (LU) versus nonlinear (NLU) solutions
 
-\input tables/soils
-
-\input tables/general_param
-
-\input tables/MMparam
-
-\sec Linear versus nonlinear comparison
-
-In all simulated scenarios, the difference between LU and NLU models occurs only at values of solute concentration in soil water ($C$) below the threshold value \clim. This is expected because of the nature of the piecewise MM equation used in the model.
+%In all simulated scenarios, the difference between LU and NLU models occurs only at values of solute concentration in soil water ($C$) below the threshold value \clim. This is expected because of the nature of the piecewise MM equation used in the model.
 %{\bf (EXPLAIN THAT THE DIFFERENCE OCCURS ONLY FOR C<Clim IN METHODOLOGY)}
-For both models, when solute concentration values are higher than \c2, solute transport from soil to root is mostly driven by convection, therefore the uptake is passive with active uptake equal to zero. For values of $C$ between the two threshold values (\c2 and \clim), the solute flux density is constant and NLU and LU are different only for $C$ values lower than $C_{lim}$ .
+%For both models, when solute concentration values at the root surface are higher than \c2, solute transport from soil to root is mostly driven by convection and, according to Equations \ref[eq_MM_mod] and \ref[eq_MM_linear], the uptake is passive only, with active uptake equal to zero. 
+%For values of $C_0$ between the two threshold values (\c2 and \clim), the solute flux density is constant and NLU and LU are different only for $C$ values lower than $C_{lim}$ .
+
+According to Equations \ref[eq_MM_mod] and \ref[eq_MM_linear], the difference between LU and NLU occurs only at root surface concentration values below $C_{lim}$. 
+For the chosen scenario, this situation occurred at nearly the fourth simulated day.
+The absolute and relative difference between the estimated solute concentration for the linear (CL) and nonlinear (CNL) model was calculated according to Equations \ref[error_abs] and \ref[error_rel], respectively.
 
 %Figures \ref[diff_t] and \ref[diff_r] show the differences between $C$ outputs of LU and NLU as a function of time and radial distance of axial center, respectively, for scenario 1.
-The absolute difference between $C$ outputs of LU and NLU was calculated according to Equation \ref[error_abs].
 %$$
 %\label[eq_diff]
 %d\!i\!f\!f\!=C\!L-C\!N\!L \eqmark
 %$$
 %%
 %where $C\!L$ and $C\!N\!L$ are the concentrations for LU and for NLU, respectively.
-When comparing differences in concentration between the two models, one has to be aware that $C\!N\!L<C\!L$ means that the uptake for NLU is greater than LU uptake since with a higher uptake, a higher amount of solute goes out from soil solution to inside the plant.
-Therefore if $d\!i\!f\!f\!<0$ then $C\!N\!L>C\!L$ and LU uptake is greater; if $d\!i\!f\!f\!>0$ then $C\!N\!L<C\!L$ and NLU uptake is greater. Said that, we can see in Figure \ref[diff_t] that the uptake for NLU is greater then LU uptake at times when $C<C_{lim}$. This reflects a change also in the concentration profile for the latter times. Figure \ref[diff_r] shows the concentration profile at day 5 and the difference between $C\!L$ and $C\!N\!L$ through the profile. The higher NLU uptake increases the concentration gradient causing a higher solute flux (most diffusive since water flux is very small) from soil towards the root, resulting in a slightly higher concentration for NLU close to root surface ($d\!i\!f\!f\!.<0$).
+When comparing differences in concentration between the two models, one has to be aware that $C\!N\!L<C\!L$ means that the uptake for NLU is greater than that of LU because, for a higher uptake, a higher amount of solute goes out from soil solution to inside the plant.
+Therefore if $d\!i\!f\!f\!<0$ then CNL > CL and LU uptake is greater; if $d\!i\!f\!f\!>0$ then $C\!N\!L<C\!L$ and NLU uptake is greater. Said that, we can see in Figure \ref[diff_t] that the uptake for NLU is greater then LU uptake at times when $C<C_{lim}$. This reflects a change also in the concentration profile for the latter times. Figure \ref[diff_r] shows the concentration profile at day 5 and the difference between $C\!L$ and $C\!N\!L$ through the profile. The higher NLU uptake increases the concentration gradient causing a higher solute flux (most diffusive since water flux is very small) from soil towards the root, resulting in a slightly higher concentration for NLU close to root surface ($d\!i\!f\!f\!.<0$).
 
 
 \medskip
