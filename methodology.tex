@@ -310,8 +310,9 @@ $$
 \right\} &
 }
 $$
-
+%
 When $C=0$ the solute flux is set to zero and the equation is equal to Eq. \ref[lier] (zero uptake). While $C_{lim}~\leq~C~\leq~C_2$, the solute flux density is constant and the equation is equal to Eq. \ref[will] (constant uptake).
+
 Rearrangement of Eq. \ref[LU] to Eq. \ref[matrix] results in the following coefficients:
 $$
 \eqalignno{
@@ -319,17 +320,17 @@ b_1 &= r_1 \theta^{j+1}_1 + {\Delta t \over 2 \Delta r_1} \left[ {r_{1+1/2} \ove
 c_1 &= -{r_{1+1/2} \Delta t \over 2 \Delta r_1 (r_2-r_1)} (2D^{j+1}_{1+1/2} - q_{1+1/2} \Delta r_1) & \eqmark
 }
 $$
-% bs(1) = dt/(2.*dr(1)) * ((Imm/c_lim*dr(1)+q(0)*dr(1))/(2.*PI*Lrv*z*r(0)) + rsup(1)/(r(2)-r(1)) * (2*D(1)+q(1)*dr(2)) )+ r(1)*theta(1)
+% bs(1) = dt/(2.*dr(1)) * ((Imm/c_lim*dr(1)+q(0)*dr(1))/(2.*PI*R*z*r(0)) + rsup(1)/(r(2)-r(1)) * (2*D(1)+q(1)*dr(2)) )+ r(1)*theta(1)
 
 * {\bf Nonlinear concentration dependent model (NLU)}
 
-Applying boundary conditions of nonlinear concentration dependent solute flux, the first and second term of the right-hand side of Eq. \ref[eq_disc_sol] are equal to $-({I_m \over 2 \pi r_0 L(K_m +C^{j+1}_1)} + q_0)C^{j+1}_1 \Delta r_1$ while $C < C_{lim}$ and $C > C_2$:
+Applying boundary conditions of nonlinear concentration dependent solute flux, the first and second term of the right-hand side of Eq. \ref[eq_disc_sol] are equal to $-({I_m \over 2 \pi r_0 R(K_m +C^{j+1}_1)} + q_0)C^{j+1}_1 \Delta r_1$ while $C < C_{lim}$ and $C > C_2$:
 $$
 \eqalignno{
 \label[NLU]
 \theta^{j+1}_1 &C^{j+1}_1 - \theta^j_1 C^j_1 = {\Delta t \over 2 r_1 \Delta r_1} \times \cr
 & \left\{  
-{r_{1-1/2} \over r_{1}-r_{0}} \left[-({I_m \over 2 \pi r_0 L(K_m +C^{j+1}_1)} + q_0)\right] C^{j+1}_1 \Delta r_1 \right. - & \eqmark \cr
+{r_{1-1/2} \over r_{1}-r_{0}} \left[-({I_m \over 2 \pi r_0 R(K_m +C^{j+1}_1)} + q_0)\right] C^{j+1}_1 \Delta r_1 \right. - & \eqmark \cr
 & \left. { r_{1+1/2} \over r_{2}-r_{1}} \left[ q_{1+1/2}(C^{j+1}_{1}\Delta r_{2} + C^{j+1}_{2}\Delta r_{1}) - 2D^{j+1}_{1+1/2}(C^{j+1}_{2}-C^{j+1}_{1}) \right] 
 \right\} & 
 }
@@ -340,7 +341,7 @@ $$
 \eqalignno{
 \label[b1]
 b_1 = r_1 \theta^{j+1}_1 + {\Delta t \over 2 \Delta r_1} &\left[ {r_{1+1/2} \over (r_2-r_1)} (2D^{j+1}_{1+1/2} + q_{i+1/2} \Delta r_2) - \right. \cr
-& \left. {r_{1-1/2} \over r_{1}-r_{0}}\left({I_m \over 2 \pi r_0 L(K_m +C^{j+1}_1)} + q_0 \right) \Delta r_1\right] & \eqmark \cr
+& \left. {r_{1-1/2} \over r_{1}-r_{0}}\left({I_m \over 2 \pi r_0 R(K_m +C^{j+1}_1)} + q_0 \right) \Delta r_1\right] & \eqmark \cr
 c_1 = -{r_{1+1/2} \Delta t \over 2 \Delta r_1 (r_2-r_1)} &(2D^{j+1}_{1+1/2} - q_{1+1/2} \Delta r_1) & \eqmark
 }
 $$
@@ -351,11 +352,10 @@ The value of $C^{j+1}_1$ in Equation \ref[b1] is found using the iterative Newto
 %Note that since this is a one-dimensional microscopic model, it is assumed that the root has the same characteristcs in all vertical soil profile (along its vertical axis), thus, water and solute transport from soil towards the roots and uptakes are occurring at the same rate in the vertical profile. It is possible to couple this model in another one that has discretized soil layers. For a 2D model (depth and radial distance), the solutions presented here are applied in each layer independently. For a 1D model (only depth), an average of water and solute content through the horizontal profile has to be determined.
 \secc Zero uptake solution (ZU)
 
-The zero uptake solution is the original model presented by \citeonline[liersolute]. The numerical discretization is according to Equation \ref[eq_disc_sol] and the intermediate nodes are analogous to Equations \ref[eq_int_nodes1] to \ref[eq_int_nodes3]. The only difference is the boundary at root surface, which is of zero solute flux.
-
-The solute flux at the inner boundary (Equation \ref[eq_inner_bound]) is then:
+The zero uptake solution is the original model presented by \citeonline[liersolute]. The numerical discretization is according to Equation \ref[eq_disc_sol] and the intermediate nodes are analogous to Equations \ref[eq_int_nodes1] to \ref[eq_int_nodes3]. 
+The only difference is the boundary at root surface (Equation~\ref[eq_inner_bound]), which is of zero solute flux:
 $$
-q_{s0}=0. \eqmark
+q_{s0}=0 \eqmark
 $$
 
 \seccc The inner boundary ($i=1$)
@@ -381,34 +381,35 @@ $$
 
 \secc Constant uptake solution (CU)
 
-The constant uptake solution is was proposed by \citeonline[willigen1]. The numerical discretization is according to Equation \ref[eq_disc_sol] and the intermediate nodes are analogous to Equations \ref[eq_int_nodes1] to \ref[eq_int_nodes3]. The only difference is the boundary at root surface, which is of constant solute flux.
-
-The solute flux at the inner boundary (Equation \ref[eq_inner_bound]) is then:
+The constant uptake solution is was proposed by \citeonline[willigen1]. The numerical discretization is according to Equation \ref[eq_disc_sol] and the intermediate nodes are analogous to Equations \ref[eq_int_nodes1] to \ref[eq_int_nodes3]. 
+The only difference is the boundary at root surface, which is of constant solute flux.
+The only difference is the boundary at root surface (Equation~\ref[eq_inner_bound]), which is of constant solute flux:
 $$
 q_{s0}=I_m. \eqmark
 $$
 
 \seccc The inner boundary ($i=1$)
 
-Applying boundary conditions of constant solute flux, the first and second term of the right-hand side of Eq. \ref[eq_disc_sol] are equal to $-{I_m \over 2 \pi r_0 L}\Delta r_1$ while $C > 0$:
+Applying boundary conditions of constant solute flux, the first and second term of the right-hand side of Eq. \ref[eq_disc_sol] are equal to $-{I_m \over 2 \pi r_0 R}\Delta r_1$ while $C > 0$:
 $$
 \eqalignno{
 \label[will]
 \theta^{j+1}_1 &C^{j+1}_1 - \theta^j_1 C^j_1 = {\Delta t \over 2 r_1 \Delta r_1} \times \cr
 & \left\{  
-{r_{1-1/2} \over r_{1}-r_{0}} \left(-{I_m \over 2 \pi r_0 L}\right) \Delta r_1 - \right. & \eqmark \cr 
+{r_{1-1/2} \over r_{1}-r_{0}} \left(-{I_m \over 2 \pi r_0 R}\right) \Delta r_1 - \right. & \eqmark \cr 
 & \left. { r_{1+1/2} \over r_{2}-r_{1}} \left[ q_{1+1/2}(C^{j+1}_{1}\Delta r_{2} + C^{j+1}_{2}\Delta r_{1}) - 2D^{j+1}_{1+1/2}(C^{j+1}_{2}-C^{j+1}_{1}) \right] 
 \right\} & 
 }
 $$
+%
+When $C = 0$ the solute flux is set to zero and the equation becomes equal to Eq. \ref[lier].
 
-When $C = 0$ the maximum solute flux ($I_m$) is set to zero and the equation becomes equal to Eq. \ref[lier].
 Rearrangement of Eq. \ref[will] to Eq. \ref[matrix] results in the following coefficients:
 $$
 \eqalignno{
 b_1 &= r_1 \theta^{j+1}_1 + {\Delta t \over 2 \Delta r_1} \left[ {r_{1+1/2} \over (r_2-r_1)} (2D^{j+1}_{1+1/2} + q_{1+1/2} \Delta r_2) \right] & \eqmark \cr
 c_1 &= -{r_{1+1/2} \Delta t \over 2 \Delta r_1 (r_2-r_1)} (2D^{j+1}_{1+1/2} - q_{1+1/2} \Delta r_1) & \eqmark \cr
-f_1 &= r_1 \theta^j_1 C^j_1 - {r_{1-1/2} \over r_{1}-r_{0}} I_m {\Delta t \over 4 \pi r_0 L} & \eqmark
+f_1 &= r_1 \theta^j_1 C^j_1 - {r_{1-1/2} \over r_{1}-r_{0}} I_m {\Delta t \over 4 \pi r_0 R} & \eqmark
 }
 $$
 
@@ -431,6 +432,21 @@ Here we present the analytical models used in the comparisons to the proposed mo
 \label[scenarios]
 \sec Simulation scenarios
 
+%PUT IT SOMEWHERE
+The default values for $\Delta r_{min}$, $\Delta r_{max}$ and $S$ are of 10$^{-8}$ m, 5 10$^{-4}$ m and 0.5, resulting in 24, 73 and 228 segments for the high, medium and low root density simulations, respectively. 
+However, further reductions of the segment size might be needed in case of stabilization problems in the solute transport equation.
+
+The simulations were performed using the hydraulic parameters from the Dutch Staring series \cite[wosten] for three different soils types, as listed in Table \ref[soils]. 
+The general system parameters for the different scenarios are listed in Table \ref[general_param] and values for the Michaelis-Menten (MM) parameters in Table \ref[MMparam]. Values of root length density, salt content and relative transpiration were chosen to change, reflecting different possible scenarios that would occur in a practical situation. The chosen MM parameters were for K$^+$ solute.
+
+\input tables/soils
+
+\input tables/general_param
+
+\input tables/MMparam
+
+
+
 \label[lu_nlu_comp]
 \sec Analysis of linear and nonlinear approaches
 
@@ -438,17 +454,22 @@ To analyze the differences between the two proposed models (linear and nonlinear
 $$
 \eqalignno{
 \label[error_abs]
-diff_{abs} &= \sum_{t=1}^{t_{end}} |C\!L_t - C\!N\!L_t|  & \eqmark \cr
+di\!f\!\!f_{abs} &= \sum_{t=1}^{t_{end}} C\!L_t - C\!N\!L_t  & \eqmark \cr
 \label[error_rel] 
-diff_{rel} &= {\sum_{t=1}^{t_{end}} |C\!L_t - C\!N\!L_t| \over \sum_{t=1}^{t_{end}} C\!L_t} & \eqmark \cr
+di\!f\!\!f_{rel} &= {\sum_{t=1}^{t_{end}} C\!L_t - C\!N\!L_t \over \sum_{t=1}^{t_{end}} C\!L_t} & \eqmark \cr
 }
 $$
 %
 where $C\!L_t$ and $C\!N\!L_t$ are the solute concentration in soil water for LU and NLU, respectvely, at a given time $t$, and $t_{end}$ is the end time of the simulation.
 
-The equations are the same of absolute and relative errors but since we are analyzing differences instead of errors (there is not a right or standard model), we called it differences.
+%The equations are the same of absolute and relative errors but since we are analyzing differences instead of errors (there is not a standard model), we called it differences.
 
-This section describes how the linear (LU) and nonlinear (NLU) solutions simulate the transport of water and solutes in the soil, plant and atmosphere system. The analysis of the results was made in order to choose one out of the two models in further simulations. The nonlinear solution uses the original MM equation but it takes longer to run due to an additional iterative process that has to be made. NLU is also more susceptible to stabilization problems in the results. The linear model is a simplified version of the MM equation in which the solute uptake rate for the situation $C<C_{lim}$ is smaller when compared to the original nonlinear equation, it has no stabilization problems and runs faster. Therefore, the objective of this section is to analyze the differences between the results of the two models and check if those differences are significant. For that, four different general scenarios were chosen (using the parameters listed in Table 2, with  loam soil) as listed below:
+%This section describes how the linear (LU) and nonlinear (NLU) solutions simulate the transport of water and solutes in the soil-plant-atmosphere system. 
+The analysis of the results was made in order to choose one out of the two models in further simulations. 
+NLU solution uses the MM equation \ref[eq_MM_mod], takes longer to run -- due to an additional iterative process --, and is more susceptible to stabilization problems in the results. 
+LU is a simplified version of the MM equation in which the solute uptake rate for the situation $C<C_{lim}$ is smaller when compared to the original nonlinear equation (details in Appendix \ref[ap_l_nl_fluxes]), it has no stabilization problems and runs faster. 
+Therefore, the objective of this section is to analyze the differences between the results of the two models and check if they change significantly the results. 
+For that, four different general scenarios were chosen (using the parameters listed in Table 2, with  loam soil) as listed below:
 
 \begitems
 %\style i
@@ -460,12 +481,19 @@ This section describes how the linear (LU) and nonlinear (NLU) solutions simulat
 
 \secc Statistical difference
 
-Also, the Mann--Whitney U test was made with two datasets (concentration and cumulative uptake) for the two models. The choice of this test is due to the fact that the distributions for both datasets are not normal, the pairs (concentration for LU and for NLU and cumulative uptake for LU and NLU) are distinct and do not affect each other. This test can decide whether each pair is identical without assuming them to follow the normal distribution (nonparametric test). The null hypothesis ($H_0$) is that both populations (model output data) are the same and the alternate hypothesis ($H_1$) is that one particular model (LU or NLU) has greater values than the other.
+Also, the Mann--Whitney U test was made with two datasets (concentration and cumulative uptake) for the two models. 
+The choice of this test is due to the fact that the distributions for both datasets are not normal, the pairs (concentration for LU and for NLU and cumulative uptake for LU and NLU) are distinct and do not affect each other. 
+This test can decide whether each pair is identical without assuming them to follow the normal distribution (nonparametric test). 
+The null hypothesis ($H_0$) is that both populations (model output data) are the same and the alternate hypothesis ($H_1$) is that one particular model (LU or NLU) has greater values than the other.
 
 \label[model_comp]
 \sec Model comparissons
 
-The scenario of this simulation is of loam soil, medium root length density, high potential transpiration and high initial concentration (Table \ref[general_param]). We compare all model types (no solute uptake -- NU; constant -- CU; linear -- LU and nonlinear -- NLU concentration dependent uptake rates). All simulations were made until the value of relative transpiration was equal or less than 0.001. The time step is dynamical (depends on the number of iterations for water and solute equations) and was set to vary between 0.1 and 2 seconds. The simulation for NU ended within near 3 days; for CU, LU and NLU, about 5 days.
+The scenario of this simulation is of loam soil, medium root length density, high potential transpiration and high initial concentration (Table \ref[general_param]). 
+We compare all model types (no solute uptake -- NU; constant -- CU; linear -- LU and nonlinear -- NLU concentration dependent uptake rates). 
+All simulations were made until the value of relative transpiration was equal or less than 0.001. 
+The time step is dynamic (depends on the number of iterations of the previous time step for water and solute equations) and was set to vary between 0.1 and 2 seconds. 
+The simulation for NU ended within near 3 days; for CU, LU and NLU, about 5 days.
 
 %CONSIDERATIONS:
 %•	It is not considered root growth
