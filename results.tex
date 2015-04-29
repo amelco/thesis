@@ -1,7 +1,7 @@
 \cleardoublepage
 
 % COMMENTS FOR FURTHER DISCUSSION
-%At low solute con-centrations, the ion transport across membranes is limitedby the diffusive flux of solute towards the membrane in caseof high affinity uptake.Although mass flow towards the rootcaused by the transpiration stream is an additional solutetransport mechanism to the root surface, its contribution touptake at solute concentrations in the low micromolar range to uptake is estimated to be very low, often below0.1% (cf.Tinker & Nye 2000) - Tinker P.B. & Nye P.H. (2000) Solute Movement in the Rhizosphere.Oxford University Press, New York, Oxford.
+%At low solute concentrations, the ion transport across membranes is limited by the diffusive flux of solute towards the membrane in case of high affinity uptake.Although mass flow towards the root caused by the transpiration stream is an additional solute transport mechanism to the root surface, its contribution to uptake at solute concentrations in the low micromolar range to uptake is estimated to be very low, often below 0.1% (cf.Tinker & Nye 2000) - Tinker P.B. & Nye P.H. (2000) Solute Movement in the Rhizosphere.Oxford University Press, New York, Oxford.
 
 %IMPORTANT IN THE DISCUSSION, OR IN THE METHODOLOGY
 %Uptake could be exclusively
@@ -35,9 +35,20 @@
 %For both models, when solute concentration values at the root surface are higher than \c2, solute transport from soil to root is mostly driven by convection and, according to Equations \ref[eq_MM_mod] and \ref[eq_MM_linear], the uptake is passive only, with active uptake equal to zero. 
 %For values of $C_0$ between the two threshold values (\c2 and \clim), the solute flux density is constant and NLU and LU are different only for $C$ values lower than $C_{lim}$ .
 
-According to Equations \ref[eq_MM_mod] and \ref[eq_MM_linear], the difference between LU and NLU occurs only at root surface concentration values below $C_{lim}$. 
-For the chosen scenario, this situation occurred at nearly the fourth simulated day.
-The absolute and relative difference between the estimated solute concentration for the linear (CL) and nonlinear (CNL) model was calculated according to Equations \ref[error_abs] and \ref[error_rel], respectively.
+\def\diff{{\it diff}}
+According to Equations \ref[eq_MM_mod] and \ref[eq_MM_linear], the difference between LU and NLU occurs only for concentration at root surface ($C_0$) values below $C_{lim}$ and, therefore, the differences between the two models (according to Equations  \ref[error_abs] and \ref[error_rel]) were calculated for this time period only. 
+%For the Scenario 1, this situation occurred at nearly the fourth simulated day. 
+It was observed that although $C_0$ values are distinct between the two models, it does not add a significant contribution to the final extracted solute amount. 
+Figure~\ref[diff_t] shows that the difference between the estimated concentration for the linear (CL) and non-linear (CNL) models, as a function of time for Scenario 1, are of 81\%.
+CNL tends to be smaller than CL because the uptake rate of NLU is always higher than that of LU, in accordance to their govern equations.
+Figure~\ref[diff_r], however, shows that the final concentration profile is nearly identical, presenting a difference of 0.3\%, and that the difference in the concentration at the root surface does not lead to a significant additional uptake. 
+Moreover, Figure~\ref[accumxt] shows that the 
+Nevertheless, in all simulation scenarios, the total solute taken up in the end of simulation was similar in both models, even with the time interval of greater uptake of NLU.
+%The absolute and relative differences between the estimated solute concentration for the linear (CL) and nonlinear (CNL) model was calculated according to Equations \ref[error_abs] and \ref[error_rel], respectively.
+%From the \diff{} value resulted from Equations \ref[error_abs] and \ref[error_rel], it can be inferred which model had a greater uptake.
+%For instance, if \diff{}~>~0, then the solute concentration estimated by the linear model (CL) was greater than that of the non-linear model (CNL). 
+%As the only output of solute is caused by root extraction, a lower concentration indicates a higher uptake so that NLU taken up more solute for this case. 
+%The opposite is true for \diff{}~<~0, and for \diff{}~=~0 both models had the same uptake.
 
 %Figures \ref[diff_t] and \ref[diff_r] show the differences between $C$ outputs of LU and NLU as a function of time and radial distance of axial center, respectively, for scenario 1.
 %$$
