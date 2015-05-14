@@ -491,7 +491,8 @@ For that, four different general scenarios were chosen (using the parameters lis
 * Scenario 4: Medium root length density, Low concentration and High potential transpiration
 \enditems
 
-The default values for $\Delta r_{min}$, $\Delta r_{max}$ and $S$, on Equation \ref[eq_disc], are of 10$^{-8}$ m, 5~10$^{-4}$ m and 0.5, resulting in 24, 73 and 228 segments for the high, medium and low root density simulations, respectively. 
+The default values for $\Delta r_{min}$, $\Delta r_{max}$ and $S$, on Equation \ref[eq_disc], are of 10$^{-5}$ m, 5~10$^{-3}$ m and 0.5, resulting in XXX, 68 and XXX segments for the high, medium and low root density simulations, respectively.
+To guarantee complete convergence for the non-linear model, the time step for $C_0$ values less than \clim{} was set to 0.01 s.
 {\localcolor\Red
 However, further reductions of the segment size might be needed in case of stabilization problems in the solute transport equation.
 TELL EXPLICITLY IN WHICH CASES THE SEGMENT SIZE WAS REDUCED AND THEIR RESPECTIVE VALUES
@@ -525,4 +526,12 @@ The simulation for NU ended within near 3 days; for CU, LU and NLU, about 5 days
 
 \label[sensitivity]
 \sec Sensitivity analysis
+
+\medskip
+\label[fig_saltsoilconc]
+\picw=11cm \cinspic productivityXsalinity.pdf
+\caption/f {Biomass production of four diverse and important plant species in a range of salinities. Wheat is one of the more salt-tolerant crops, and rice is one of the more salt-sensitive crops. Source: \cite[munns]}
+\medskip
+
+Biomass production of four diverse and important plant species in a range of salinities. Wheat is one of the more salt-tolerant crops, and rice is one of the more salt-sensitive crops. 
 
