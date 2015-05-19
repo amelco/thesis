@@ -104,8 +104,11 @@ A sink-source term is then added to Equation \ref[eq_Richards] to deal with such
 %can be equal to the evaporation rate and of free drainage in the bottom (root depth). The water extraction by plant roots is equal to the plant transpiration encapsulated in a sink term in Richards equation.
 
 The hydraulic potential $H$ is composed of pressure ($h$) and gravitational ($h_g$) heads in models that do not consider the presence or flow of solutes. 
-In order to deal with solutes, the osmotic head ($h_\pi$) must be added to $H$ and it will serve as a {\localcolor \Red `link'} to the solute transport equation, detailed in Section \ref[sol_transp]. {\localcolor\Red\quic This is not clear -- say exactly what you mean.}
-Moreover, $h_g$ is neglected in microscopic models due to its minor relevance.
+In order to deal with solutes, the osmotic head ($h_\pi$) must be added to $H$ and its value is calculated through
+%will serve as a {\localcolor \Red `link'} to 
+the solute transport equation, detailed in Section \ref[sol_transp]. 
+%{\localcolor\Red\quic This is not clear -- say exactly what you mean.}
+In microscopic models, $h_g$ is neglected due to its minor relevance.
 
 %When no solute is dealt in the solution of Richards equation, $H$ turns out to be pressure head $h$ and, occasionally, the sum of pressure head an gravitational component $h_g$, neglecting the osmotic head $h_\pi$. The link between water movement and solute transport in soil appears when $h_\pi$ is considered in the Richards equation. Researchers try to separate the mechanisms that deals with both transports although they occur sinergically in nature. The flow of water interferes in the solute flow and vice-versa and a link between them should exist. In Section \ref[sol_transp] we deal with transport of solute in more details.
 
@@ -188,11 +191,19 @@ where $D_m$ \udisp is the molecular diffusion coefficient that, as $D_s$, is als
 
 \label[eq_Dm]
 $$
-D_m=\xi D^0 = {\theta^{10 \over 3} \over \theta^2_s} D^0 \eqmark
+D_m=\xi D^0 \eqmark
 $$
 %
-where $\xi$ (--) is the tortuosity factor and $D^0$  \udisp is the diffusion coefficient in water. Values of $D^0$ for ions or molecules can be easily measured and estimated by analytical equations for free water. Soil water content is often below its saturation point, thus, diffusion is often different from that of free water. 
-Equations \ref [eq_Ds] to \ref[eq_Dm] are one of the several existing models to estimate the effective diffusion-dispersion coefficient. {\localcolor\Red\quic Better present only the first two terms; then say that the tortusosity can be estimated, for example, by the Millington-Quirk relation -- the one you use.} 
+where $\xi$ (--) is the tortuosity factor and $D^0$  \udisp is the diffusion coefficient in water. 
+Values of $D^0$ for ions or molecules can be easily measured and estimated by analytical equations for free water. Soil water content is often below its saturation point, thus, diffusion is often different from that of free water. 
+The tortuosity factor of Equation \ref[eq_Dm] can be calculated, for instance, by the empiric Millington-Quirk relation as follows:
+
+$$
+\xi={\theta^{10 \over 3} \over \theta^2_s} \eqmark
+$$
+%
+%Equations \ref [eq_Ds] to \ref[eq_Dm] are one of the several existing models to estimate the effective diffusion-dispersion coefficient. 
+%{\localcolor\Red\quic Better present only the first two terms; then say that the tortusosity can be estimated, for example, by the Millington-Quirk relation -- the one you use.} 
 %Chapter \ref[literature] mentions other models that can be used for this purpose.
 
 
