@@ -449,7 +449,9 @@ Computational implementations of the analytical models of \citeonline[cushman] a
 \sec Simulation scenarios
 
 The simulations were performed using the hydraulic parameters from the Dutch Staring series \cite[wosten] for three different soils types, as listed in Table \ref[soils]. 
-The general system parameters for the different scenarios are listed in Table \ref[general_param] and values for the Michaelis-Menten (MM) parameters in Table \ref[MMparam]. Values of root length density, salt content and relative transpiration were chosen to change, reflecting different possible scenarios that would occur in a practical situation. The chosen MM parameters were for K$^+$ solute.
+The general system parameters for the different scenarios are listed in Table \ref[general_param] and values for the Michaelis-Menten (MM) parameters in Table \ref[MMparam]. 
+Values of root length density, initial salt content, relative transpiration, soil type, and ion species were chosen to change, reflecting different possible scenarios that would occur in a practical situation, resulting in eight distinct scenarios as listed in Table \ref[tab_scenarios]. 
+%The chosen MM parameters were for K$^+$ solute.
 
 \input tables/soils
 
@@ -457,6 +459,7 @@ The general system parameters for the different scenarios are listed in Table \r
 
 \input tables/MMparam
 
+\input tables/scenarios
 
 
 \label[lu_nlu_comp]
@@ -483,20 +486,25 @@ LU is a simplified version of the MM equation in which the solute uptake rate fo
 Therefore, the objective of this section is to analyze the differences between the results of the two models and check if they change significantly the results. 
 For that, four different general scenarios were chosen (using the parameters listed in Table 2, with  loam soil) as listed below:
 
-\begitems
-%\style i
-* Scenario 1: Medium root length density, High concentration and High potential transpiration
-* Scenario 2: Medium root length density, High concentration and Low potential transpiration
-* Scenario 3: Low root length density, High concentration and High potential transpiration
-* Scenario 4: Medium root length density, Low concentration and High potential transpiration
-\enditems
 
-The default values for $\Delta r_{min}$, $\Delta r_{max}$ and $S$, on Equation \ref[eq_disc], are of 10$^{-5}$ m, 5~10$^{-3}$ m and 0.5, resulting in XXX, 68 and XXX segments for the high, medium and low root density simulations, respectively.
-To guarantee complete convergence for the non-linear model, the time step for $C_0$ values less than \clim{} was set to 0.01 s.
-{\localcolor\Red
-However, further reductions of the segment size might be needed in case of stabilization problems in the solute transport equation.
-TELL EXPLICITLY IN WHICH CASES THE SEGMENT SIZE WAS REDUCED AND THEIR RESPECTIVE VALUES
-}
+%\begitems
+%%\style i
+%* Scenario 1: Medium root length density, High concentration and High potential transpiration, Loam (default)
+%* Scenario 2: Medium root length density, High concentration and Low potential transpiration, Loam
+%* Scenario 3: Medium root length density, Low concentration and High potential transpiration, Loam
+%* Scenario 4: High root length density, High concentration and High potential transpiration, Loam
+%* Scenario 5: Low root length density, High concentration and High potential transpiration, Loam
+%* Scenario 6: default, Sand
+%* Scenario 7: default, Clay
+%* Scenario 8: default, Loam, Other solute (different $I_m$ and $K_m$)
+%\enditems
+
+The default values for $\Delta r_{min}$, $\Delta r_{max}$ and $S$, on Equation \ref[eq_disc], are of 10$^{-5}$ m, 5~10$^{-4}$ m and 0.5, resulting in 22, 68 and 213 segments for the high, medium and low root density simulations, respectively.
+To guarantee complete convergence for the non-linear model, a time step of 0.01 s was set when $C_0 < C_{lim}$.
+%{\localcolor\Red
+%However, further reductions of the segment size might be needed in case of stabilization problems in the solute transport equation.
+%TELL EXPLICITLY IN WHICH CASES THE SEGMENT SIZE WAS REDUCED AND THEIR RESPECTIVE VALUES
+%}
 
 \secc Statistical difference
 

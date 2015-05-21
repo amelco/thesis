@@ -1,0 +1,70 @@
+% Table with scenarios
+%
+%{\tenpoint
+%\midinsert\medskip \label[tab_scenarios]
+%\caption/t {Simulation scenarios}
+%\def\tabiteml{\hbox to 4pt{}}  % left material before each \table item
+%\def\tabitemr{\hbox to 4pt{}}
+%\ctable{l|ccc|cc|cc|cc}{
+%\crl\hfil 
+%{\bf Scenario}\hfill	& \multispan3\hfill{\bf Root density}\hfill& \multispan2\hfill{\bf Initial Concentration}	& \multispan2\hfill{\bf Potential Transpiration} & {\bf Soil} & {\bf Ion} \cr 
+%	                & Low & Medium &	High               & Low   	& High       	                & Low		& High		                 &	      &           \crl \tskip4pt
+%\hfill	1\hfill         &     & X      &	                   &       	& X             	        & 		& X		                 &	Loam  &  K$^+$    \cr
+%\hfill	2\hfill         &     & X      &	                   &       	& X             	        & X		& 		                 &	Loam  &  K$^+$    \cr
+%\hfill	3\hfill         &     & X      &	                   & X      	&              	        & 		& X		                 &	Loam  &  K^$+$    \cr
+%\hfill	4\hfill         &     &        &	X                  &       	& X             	        & 		& X		                 &	Loam  &  K$^+$    \cr
+%\hfill	5\hfill         & X   &        &	                   &       	& X             	        & 		& X		                 &	Loam  &  K$^+$    \cr
+%\hfill	6\hfill         &     & X      &	                   &       	& X             	        & 		& X		                 &	Sand  &  K$^+$    \cr
+%\hfill	7\hfill         &     & X      &	                   &       	& X             	        & 		& X		                 &	Clay  &  K$^+$    \cr
+%\hfill	8\hfill         &     & X      &	                   &       	& X             	        & 		& X		                 &	Loam  &  Na$^+$   \crl
+%%{\tenpoint Source: \citeonline[wosten]} \hfill  & & & & & & & \cr
+%}
+%\endinsert
+%}
+
+%{\tenpoint
+%\midinsert\medskip \label[tab_scenarios]
+%\caption/t {Simulation scenarios}
+%\def\tabiteml{\hbox to 4pt{}}  % left material before each \table item
+%\def\tabitemr{\hbox to 4pt{}}
+%\ctable{lccccc}{
+%\crl\hfil 
+%%{\bf Scenario}\hfill	& \hfill{\bf Root density}\hfill & \hfill{\bf Initial concentration}	& \hfill{\bf Potential transpiration} & {\bf Soil} & {\bf Ion} \crl\tskip4pt
+%{\bf Scenario}\hfill	& \hfill{\bf R}\hfill & \hfill\pmb{$C_{ini}$}	& \hfill\pmb{$T_p$} & {\bf Soil} & {\bf Ion} \crl\tskip4pt
+%%	                & Low & Medium &	High               & Low   	& High       	                & Low		& High		                 &	      &           \crl \tskip4pt
+%\hfill	1\hfill         &                          & \vspan2{High}            	        & High	                              &	\vspan5{Loam}       &  \vspan7{K$^+$}    \cr
+%\hfill	2\hfill         & Medium                   &             	                & Low	                              &	                    &      \cr
+%\hfill	3\hfill         &                          & Low            	                & \vspan6{High}	                      &	                    &      \cr
+%\hfill	4\hfill         & High                     & \vspan5{High}            	        & 	                              &	                    &      \cr
+%\hfill	5\hfill         & Low                      &             	                & 	                              &	                    &      \cr
+%\hfill	6\hfill         &                          &             	                & 	                              &	Sand                &      \cr
+%\hfill	7\hfill         & Medium                   &             	                & 	                              &	Clay                &      \cr
+%\hfill	8\hfill         &                          &             	                & 	                              &	Loam                &  Na$^+$   \crl
+%%{\tenpoint Source: \citeonline[wosten]} \hfill  & & & & & & & \cr
+%}
+%\endinsert
+%}
+
+{\tenpoint
+\midinsert\medskip \label[tab_scenarios]
+\caption/t {Simulation scenarios$^*$}
+\def\tabiteml{\hbox to 4pt{}}  % left material before each \table item
+\def\tabitemr{\hbox to 4pt{}}
+\ctable{lccccc}{
+\crl\hfil 
+%{\bf Scenario}\hfill	& \hfill{\bf Root density}\hfill & \hfill{\bf Initial concentration}	& \hfill{\bf Potential transpiration} & {\bf Soil} & {\bf Ion} \crl\tskip4pt
+{\bf Scenario}\hfill	& \hfill{\bf R}\hfill & \hfill\pmb{$C_{ini}$}	& \hfill\pmb{$T_p$} & {\bf Soil} & {\bf Ion} \crl\tskip4pt
+%	                & Low & Medium &	High               & Low   	& High       	                & Low		& High		                 &	      &           \crl \tskip4pt
+\hfill	1\hfill         & M                   & H            	                & H	                              &	Loam       &  K$^+$    \cr
+\hfill	2\hfill         & M                   & H            	                & L                        &	Loam       & K$^+$     \cr
+\hfill	3\hfill         & M                   & L           	                & H	                      &	Loam       & K$^+$     \cr
+\hfill	4\hfill         & H                   & H            	                & H	                      &	Loam       & K$^+$     \cr
+\hfill	5\hfill         & L                   & H            	                & H	                      &	Loam       & K$^+$     \cr
+\hfill	6\hfill         & M                   & H            	                & H	                      &	Sand                & K$^+$     \cr
+\hfill	7\hfill         & M                   & H            	                & H	                      &	Clay                & K$^+$     \cr
+\hfill	8\hfill         & M                   & H            	                & H	                      &	Loam                &  Na$^+$   \crl
+%{\tenpoint Source: \citeonline[wosten]} \hfill  & & & & & & & \cr
+}
+{\eightpoint $^*$H - high; M - medium; L - low; R - root length density; $C_{ini}$ - initial concentration; $T_p$ - potential transpiration}
+\endinsert
+}
