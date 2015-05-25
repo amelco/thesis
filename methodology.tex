@@ -368,7 +368,7 @@ The value of $C^{j+1}_1$ in Equation \ref[b1] is found using the iterative Newto
 %Note that since this is a one-dimensional microscopic model, it is assumed that the root has the same characteristcs in all vertical soil profile (along its vertical axis), thus, water and solute transport from soil towards the roots and uptakes are occurring at the same rate in the vertical profile. It is possible to couple this model in another one that has discretized soil layers. For a 2D model (depth and radial distance), the solutions presented here are applied in each layer independently. For a 1D model (only depth), an average of water and solute content through the horizontal profile has to be determined.
 
 \label[ZU]
-\secc Zero uptake solution (ZU)
+\secc Zero uptake model (ZU)
 
 The zero uptake solution is the original model presented by \citeonline[liersolute]. The numerical discretization is according to Equation \ref[eq_disc_sol] and the intermediate nodes are analogous to Equations \ref[eq_int_nodes1] to \ref[eq_int_nodes3]. 
 The only difference is the boundary at root surface (Equation~\ref[eq_inner_bound]), which is of zero solute flux:
@@ -398,7 +398,7 @@ c_1 &= -{r_{1+1/2} \Delta t \over 2 \Delta r_1 (r_2-r_1)} (2D^{j+1}_{1+1/2} - q_
 $$
 
 \label[CU]
-\secc Constant uptake solution (CU)
+\secc Constant uptake model (CU)
 
 The constant uptake solution was based on the model proposed by \citeonline[willigen1]. The numerical discretization is according to Equation \ref[eq_disc_sol] and the intermediate nodes are analogous to Equations \ref[eq_int_nodes1] to \ref[eq_int_nodes3]. 
 %The only difference is the boundary at root surface, which is of constant solute flux.
@@ -439,7 +439,7 @@ $$
 \label[analytical_models]
 \sec Analytical models
 
-Computational implementations of the analytical models of \citeonline[cushman] and \citeonline[willigen1] were made to confront them with the numerical solutions. The former uses the MM equation as the boundary condition at root surface to deal with solute uptake.
+Computational implementations of the analytical models of \citeonline[cushman] and \citeonline[willigen1] were made to confront them with the numerical solutions. The former uses the MM equation as the boundary condition at root surface to deal with solute uptake, and is used to compare with the proposed nonlinear model (NLU).
 
 %Here we present the analytical models used in the comparisons to the proposed model. An computational implementation were made to each model.
 
@@ -461,6 +461,8 @@ Values of root length density, initial salt content, relative transpiration, soi
 
 \input tables/scenarios
 
+The default values for $\Delta r_{min}$, $\Delta r_{max}$ and $S$, on Equation \ref[eq_disc], are of 10$^{-5}$ m, 5~10$^{-4}$ m and 0.5, resulting in 22, 68 and 213 segments for the high, medium and low root density simulations, respectively.
+To guarantee complete convergence for the non-linear model, a time step of 0.01 s was set when $C_0 < C_{lim}$.
 
 \label[lu_nlu_comp]
 \sec Analysis of linear and nonlinear approaches
@@ -499,8 +501,6 @@ For that, four different general scenarios were chosen (using the parameters lis
 %* Scenario 8: default, Loam, Other solute (different $I_m$ and $K_m$)
 %\enditems
 
-The default values for $\Delta r_{min}$, $\Delta r_{max}$ and $S$, on Equation \ref[eq_disc], are of 10$^{-5}$ m, 5~10$^{-4}$ m and 0.5, resulting in 22, 68 and 213 segments for the high, medium and low root density simulations, respectively.
-To guarantee complete convergence for the non-linear model, a time step of 0.01 s was set when $C_0 < C_{lim}$.
 %{\localcolor\Red
 %However, further reductions of the segment size might be needed in case of stabilization problems in the solute transport equation.
 %TELL EXPLICITLY IN WHICH CASES THE SEGMENT SIZE WAS REDUCED AND THEIR RESPECTIVE VALUES
