@@ -1,4 +1,4 @@
-set term pdf enhanced
+set term pdfcairo dashed enhanced
 
 I(x)=Im*x/(Km+x)
 Im=0.76
@@ -19,7 +19,16 @@ set xtics ("0" 0, "K_m" Km) nomirror
 set arrow from Km,0 to Km, Im/2 nohead lt 0 lc -1
 set arrow from 0,Im/2 to Km, Im/2 nohead lt 0 lc -1
 
-plot [0:250][0:1] I(x) lt 1 lc -1, Im lt 0 lc -1
+#linestyles
+set style line 1 dt 1  lc -1
+set style line 2 dt 2  lc -1
+set style line 3 dt 3  lc -1
+set style line 4 dt 4  lc -1
+set style line 5 dt 5  lc -1
+set style line 6 dt 6  lc -1
+
+
+plot [0:250][0:1] I(x) ls 1, ls 2
 
 
 
