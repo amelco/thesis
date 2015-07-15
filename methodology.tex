@@ -60,7 +60,7 @@ indicate the minimum and maximum segment sizes defined by the user, and $S$ give
 The parameters $r_0$ (m) is the root radius, and $r_m$ (m) is the root extraction zone, equal to the half-distance between roots, which relates to the root density $R$ (m m$^{-3}$) according to equation \ref[eq_rm].
 This approach for the discretization has the advantage of determine smaller segments in regions that need more precision in the calculations (root soil interface) due to the greater variation of the flux properties. 
 %It is specially advantageous when dealing with numerical stabilization and convergence problems. 
-Figure~\ref[fig_scheme] shows the discretization resulted from Equation~\ref[eq_disc].
+Figure~\ref[fig_scheme] shows a schematic representation of the discretization resulted from Equation~\ref[eq_disc].
 
 \medskip
 \label[fig_scheme]
@@ -75,7 +75,7 @@ $$
 {\partial \theta \over \partial t} = {\partial \theta \over \partial H} {\partial H \over \partial t} = C_w(H) {\partial H \over \partial t} = {1 \over r}{\partial \over \partial r} \left[ r K(H,\theta) {\partial H \over \partial r} \right] \eqmark
 $$
 %
-where the total hydraulic head ($H$) is the sum of pressure ($h$) and osmotic ($h_\pi$) heads and $C_w$ (m$^{-1}$) is the differential water capacity.
+where the total hydraulic head ($H$) is the sum of pressure ($h$) and osmotic ($h_\pi$) heads and $C_w$ (m$^{-1}$) is the differential water capacity (${\partial H \over \partial\theta}$).
 Relations between $K$, $\theta$ and $h$ are described by the van Genuchten equation system (Equations \ref[eq_theta] and \ref[eq_K]).
 Analogous to \citeonline[vandam_feddes], Equation \ref[eq_complete_richards] can be solved using an implicit scheme of finite differences with the Picard iteractive process:
 $$
@@ -117,7 +117,7 @@ described by MM equation \ref[eq_MM1], with the following assumptions:
 \begitems
 \style n
 %* Solute flux is governed by plant demand (which is constant)
-* Solute uptake by mass flow of water is not controlled by the plant by other means but transpiration, thus the uptake by convection is passive;
+* Solute uptake by mass flow of water is not controlled by the plant by other means but transpiration, thus the uptake by convection is considered passive;
 * Plant regulates active uptake, thus the uptake by diffusion is plant regulated;
 %* Uptake by convection is considered to be passive, and by diffusion, active;
 * Plant demand is equal to the $I_m$ (mol m$^{-2}$ s$^{-1}$) parameter from MM equation;
@@ -129,15 +129,15 @@ If the concentration is bellow a certain limiting value (\clim), the uptake is l
 Additionally, solute uptake by mass flow of water can be higher than the plant demand in situations of high transpiration rate and/or for high soil water content. 
 In that case, we assume that active uptake is zero and all uptake is done by the passive process. A concentration \c2 (mol) for this situation is calculated.
 When the concentration is between \clim{} and \c2, the uptake is equal to the plant demand as a result of the sum of active and passive contributions to the uptake.
-Assumption 1 states that passive uptake is not regulated by any physiological plant mechanisms and, in order to save metabolic energy, active uptake is regulated such that it works as a complementary mechanism of extraction to achieve plant demand, 
+Assumption 1 states that passive uptake is not regulated by any physiological plant mechanisms and, in order to save metabolic energy, active uptake is regulated such that it works as a complementary mechanism of extraction to achieve plant demand (Assumption 2), 
 resulting in a lower active uptake contribution than that of its potential value.
 %--IMPORTANT TO IMPROVE ASSUMPTIONS
 %Ions and water move into the plant independently, reflecting entirely different physical-chemical forces; nevertheless, the water moving to the root carries ions in it. A portion of these ions is taken up by the plant by an independent mechanism. The remainder is left behind at the root surface or on the soil particles in the vicinity of the root where they represent a subsequent source of supply. 81.pdf, pg. 98
 %This can explain the analysis of diffusion and convection (active and passive) separately.
 Nevertheless, the effects of solute concentration inside the plant in solute uptake and plant demand are not considered in the model.
-Consequently, a situation where the demand is diminished due to an excess of solute inside the plant is not considered, which can lead to overestimated predictions of the uptake.
+Consequently, a situation where the demand is diminished due to an excess of solute inside the plant is not considered, which can lead to overestimated predictions of uptake.
 
-A piecewise uptake function that considers the explicit assumptions was, then, formulated
+A piecewise (nonlinear) uptake function that considers the explicit assumptions was, then, formulated
 \label[eq_MM_mod]
 \numcases{q_{s0} =}
 \label[eq_case1]
@@ -168,7 +168,7 @@ $$
 \medskip
 
 %IMPROVE IT AND EXPLAIN MORE
-The non-linear part of the uptake function resides in Equation \ref[eq_case1]. As implicit numerical implementations of non-linear functions may result in solutions with stabilization issues, a linearization of Equation \ref[eq_case1] was made, which yields:
+The non-linear part of the uptake function resides in Equation \ref[eq_case1]. As implicit numerical implementations of non-linear functions may result in solutions with stabilization issues, a linearization of Equation \ref[eq_case1] was made, resulting in:
 %Due to the difficulty of implement a numerical algorithm to the non-linear Equation \ref[eq_case1], a linearization was made, resulting in:
 \label[eq_MM_linear]
 $$
@@ -196,13 +196,13 @@ $$
 \label[numerical_implementation]
 \sec Numerical implementations of convection-dispersion equation
 
-Here, we present the numerical discretization and the applied boundary conditions, together with the algorithm to find the solution of Equation \ref[eq_complete_solute] for both linear and non-linear cases.
+Here, we present the numerical discretization and the applied boundary conditions, together with the algorithm to find the solution of Equation \ref[eq_complete_solute] for both linear and non-linear boundary conditions at root surface.
 %find a better place to put it
 The mass balance equations are considered to have transient condition in respect to water and solute.
 
 %IMPROVE
 As mentioned in the introduction of this chapter, besides the development of the proposed model (concentration dependent solute uptake), we also developed a numerical solution for a constant uptake model (based on \citeonline[willigen1]), using the same discretization detailed in the previous section. 
-Additionally, we present the numerical solution for the zero uptake model (developed by \citeonline[liersolute]), in which we are proposing modifications. 
+Additionally, we present the numerical solution for the zero uptake model \cite[liersolute], in which we are proposing modifications. 
 Thus, from now on -- to avoid lengthy texts -- we will abbreviate zero uptake model, constant uptake model, linear concentrations dependent model and non-linear concentration dependent model as ZU, CU, LU, and NLU, respectively. 
 
 %--
@@ -439,7 +439,7 @@ $$
 \label[analytical_models]
 \sec Analytical models
 
-Computational implementations of the analytical models of \citeonline[cushman] and \citeonline[willigen1] were made to confront them with the numerical solutions. The former uses the MM equation as the boundary condition at root surface to deal with solute uptake, and is used to compare with the proposed nonlinear model (NLU).
+Computational implementations of the analytical models of \citeonline[cushman] and \citeonline[willigen1] were made to confront them with the numerical solutions. The former uses the MM equation as the boundary condition at root surface to deal with solute uptake, and it is used to compare with the proposed nonlinear model (NLU).
 
 %Here we present the analytical models used in the comparisons to the proposed model. An computational implementation were made to each model.
 
@@ -514,7 +514,7 @@ This test can decide whether each pair is identical without assuming them to fol
 The null hypothesis ($H_0$) is that both populations (model output data) are the same and the alternate hypothesis ($H_1$) is that one particular model (LU or NLU) has greater values than the other.
 
 \label[model_comp]
-\sec Model comparissons
+\sec Model comparisons
 
 The scenario of this simulation is of loam soil, medium root length density, high potential transpiration and high initial concentration (Table \ref[general_param]). 
 We compare all model types (no solute uptake -- NU; constant -- CU; linear -- LU and nonlinear -- NLU concentration dependent uptake rates). 
@@ -538,19 +538,24 @@ The simulation for NU ended within near 3 days; for CU, LU and NLU, about 5 days
 The relative partial sensitivity ($\eta$) \cite[quirijn_sens] of model predictions 
 %for tend, C0(tend), av. h, av. hos, h(tend) and hos(tend) 
 ($Y$) as a function of the respective parameter value ($P$) was calculated as
-
 $$
-\eta = {dY/Y \over dP/P}
+\eta = {dY/Y \over dP/P}\;.
 $$
+%
+where $P$ is the default value of the parameter, $dP$ is the in(de)crement applied to $P$, $Y$ is the output of a selected predicted variable and $dY$ is the variation over $Y$ when applied the new parameter value $P \pm dP$.
 
+{\localcolor\Red ::DRAFT:: IMPROVE IT!}
 
+Since the sensitivity analisys is just to analise the derivative of the function prediction X parameter values, we are interested in the slope of this function. So, an infinitesimal variation of $P$ ($dP$) is straight-forward manner to do it.
 
+A variation of 1\% (dP/P=0.01) of $I_m$ and $K_m$ where made from the default values of K$^+$ ion and the relative partial sensitivity was calculated for: end time of simulation ($t_{end}$, s); pressure ($h_{end}$, m) and osmotic ($h_{\pi_{end}}$, m) heads at root surface in the end time of simulation.
 
-\medskip
-\label[fig_saltsoilconc]
-\picw=11cm \cinspic productivityXsalinity.pdf
-\caption/f {Biomass production of four diverse and important plant species in a range of salinities. Wheat is one of the more salt-tolerant crops, and rice is one of the more salt-sensitive crops. Source: \cite[munns]}
-\medskip
-
-Biomass production of four diverse and important plant species in a range of salinities. Wheat is one of the more salt-tolerant crops, and rice is one of the more salt-sensitive crops. 
-
+%
+%\medskip
+%\label[fig_saltsoilconc]
+%\picw=11cm \cinspic productivityXsalinity.pdf
+%\caption/f {Biomass production of four diverse and important plant species in a range of salinities. Wheat is one of the more salt-tolerant crops, and rice is one of the more salt-sensitive crops. Source: \cite[munns]}
+%\medskip
+%
+%Biomass production of four diverse and important plant species in a range of salinities. Wheat is one of the more salt-tolerant crops, and rice is one of the more salt-sensitive crops. 
+%
