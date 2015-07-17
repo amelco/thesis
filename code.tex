@@ -1,0 +1,1720 @@
+\begtt
+
+program Water_ZeroUptk
+implicit none
+! Algorithm to solve numerically the transient soil water flow equation and solute flow equation
+
+real(8),parameter :: PI = 4.0*atan(1.0)		! Pi value
+real(8),parameter :: scLim = 0.5		! Stability criteria limit
+
+! Finite differences method parameters
+integer :: tend				  	! End time
+real(8) :: t				  	! Current time
+integer :: seg 				  	! Number of segments
+real(8) :: dtprint			  	! Time interval of printing
+real(8) :: tprint				! Time of printing
+real(8) :: dt				  	! Time step
+real(8) :: dtini				! Initial time step
+integer :: i				  	! Index variable
+
+! Model parameters
+real(8) :: rm, r0, z 				! Root parameters
+real(8) :: rmh					! r minus half of previus segment
+real(8) :: rph					! r minus half of next segment
+real(8) :: Tp					! Potencial transpiration
+real(8) :: TransBal				! Potencial transpiration from water balance
+real(8) :: Ap					! Plant surface area
+real(8) :: Ar					! Root area
+real(8) :: loss					! Numerically computed water loss by transpiration
+real(8) :: RootLength
+real(8) :: Trel					! Relative transpiration
+real(8),dimension(:),allocatable :: r     	! space vector
+real(8),dimension(:),allocatable :: rsup     	!
+real(8),dimension(:),allocatable :: dr     	! spacestep vector
+real(8),dimension(:),allocatable :: VolSeg     	
+
+! Water model parameters
+real(8) :: q0					! Water flux at root surface
+real(8) :: Ks				  	! Saturated hydraulic conductivity
+real(8) :: theta_r				! Residual water content
+real(8) :: theta_s				! Saturated water content
+real(8) :: n, alpha, lambda			! Empirical parameters
+real(8) :: h_ini				! Initial pressure head
+real(8) :: theta_ini				! Initial water content
+real(8) :: h_lim				! Limiting pressure head at root surface
+real(8) :: Kmh					! Mean hydraulic conductivity between current and previous segment
+real(8) :: Kph					! Mean hydraulic conductivity between current and next segment
+real(8) :: Avtheta				! Mean theta
+real(8),dimension(:),allocatable :: wc    	! Water capacity (dh/dO)
+real(8),dimension(:),allocatable :: theta	! Water content 
+real(8),dimension(:),allocatable :: thetaL	! Water content from current time step
+real(8),dimension(:),allocatable :: Bigtheta	! Water content 
+real(8),dimension(:),allocatable :: h		! Pressure head
+real(8),dimension(:),allocatable :: K		! Hydraulic conductivity
+real(8),dimension(:),allocatable :: Km		! Mean hydraulic conductivity between segments
+real(8),dimension(:),allocatable :: h_tot	! Total pressure head
+
+! Solute model parameters
+real(8) :: q0_ws				! Water flux at root surface considering osmotic head
+real(8) :: Dm					! Molecular diffusion coefficient
+real(8) :: c_ini				! Initial soil concentration
+real(8) :: disp					! Dispersivity
+real(8) :: qmh					! Mean water flux between current and previous segment
+real(8) :: qph					! Mean water flux between current and next segment
+real(8) :: Dmh					! Mean effective dispersion between current and previous segment
+real(8) :: Dph                                  ! Mean effective dispersion between current and next segment
+real(8) :: thetasup
+real(8) :: h_os_ini				! Initial osmotic pressure
+real(8) :: h_osm				! Osmotic pressure at root surface
+real(8) :: h_osmL				! Osmotic pressure at root surface from previuos iteration
+integer :: Rd					! Root density choice [1,2,3 -> low,medium,high]
+real(8) :: Lrv					! Root density value [m/m3]
+logical :: Im_whole_plant			! Flag. Im was measured for the whole plant?
+real(8),dimension(:),allocatable :: q	  	! water flux at each segment
+real(8),dimension(:),allocatable :: D	  	! Effective diff-disp coefficient at each segment
+real(8),dimension(:),allocatable :: Dmed  	! Mean effective diff-disp coefficient at each segment
+real(8),dimension(:),allocatable :: h_os	! Osmotic head at each segment
+real(8),dimension(:),allocatable :: LIh_os	! Osmotic head at each segment from the last iteration
+real(8),dimension(:),allocatable :: c_water	! Solute concentration in water
+real(8),dimension(:),allocatable :: c_soil	! Solute concentration in soil
+real(8) :: active_sl, passive_sl		! slopes for active and passive uptake
+real(8) :: s_loss				! amount of absorbed solute per time step
+real(8) :: Avc_water				! average concentration
+real(8),dimension(:),allocatable :: c_waterL	! Solute concentration in water from previous time step
+real(8) :: acum_solute				! Total absorbed solute
+
+real(8),dimension(:),allocatable :: h_oldSalt
+real(8),dimension(:),allocatable :: theta_oldSalt
+real(8),dimension(:),allocatable :: wc_oldSalt
+real(8),dimension(:),allocatable :: c_water_oldSalt
+
+! Picard iteration method parameters
+real(8),dimension(:),allocatable :: LIh		! Pressure head Last Iteration vector
+real(8),dimension(:),allocatable :: LItheta	! Water content Last Iteration vector
+real(8),dimension(:),allocatable :: LIwc	! Water capacity Last Iteration vector
+real(8) :: alt_h				! Difference between new and old values of h
+real(8) :: alt_theta				! Difference between new and old values of theta
+logical :: converge				! Flag to convergence of iteration method
+logical :: saltconverge				! Flag to convergence of iteration method of solute
+integer :: itera,nitera,nitera_lc		! Number of iterations
+integer :: saltiter				! Number of iteration for the salt convergence
+integer :: nmaxitera				! Maximum number of iterations allowed
+
+real(8) :: h_total				! total pressure head
+real(8) :: h_total_old
+
+! Variable time step parameters
+integer :: dtmin				! Minimum timestep
+integer :: dtmax				! Maximum time step
+real(8) :: dr0					! dr0 to calculate dr(1)
+
+! Variable dr parameters
+real(8) :: drmin				! Minimum step
+real(8) :: drmax				! Maximum step
+real(8) :: S					! Shape parameter
+real(8) :: x					! auxiliary variable
+integer :: ct					! a counter
+
+! Matrix coefficients for water
+real(8),dimension(:),allocatable :: aw	  	! Sub-diagonal coefficient 
+real(8),dimension(:),allocatable :: bw	  	! Main-diagonal coefficient
+real(8),dimension(:),allocatable :: cw     	! Sup-diagonal coefficient
+real(8),dimension(:),allocatable :: fw     	! Knowns (answer)
+
+! Matrix coefficients for solute
+real(8),dimension(:),allocatable :: as		! Sub-diagonal coefficient
+real(8),dimension(:),allocatable :: bs		! Main-diagonal coefficient
+real(8),dimension(:),allocatable :: cs		! Sup-diagonal coefficient
+real(8),dimension(:),allocatable :: fs		! Knowns (answer)
+
+! Program parameters
+integer :: mean_type				! type of the mean (arithmetic, geometric)
+logical :: Tp_wave				! Flag to the sinus wave transpiration (yes or no)
+!character(12) :: str
+integer :: day_count = 1			! Current day variable
+integer :: hour_count = 1			! Current day variable
+integer :: runmode				! Run mode
+integer :: model
+real(8) :: sc					! Stability criteria
+
+real(8) :: hprev,dhdt,d2hdt2,dhdtOld
+real(8) :: sum_saltiter, salt_ct
+logical :: lim_cond = .false.
+
+! limiting conditions
+real(8),dimension(:),allocatable :: h_lc, theta_lc,wc_lc
+real(8) :: loss_lc, Avtheta_lc, TransBal_lc, Trel_lc
+
+! Confort variables
+logical :: h_lim_stop, do_graphs, show_on_screen
+integer :: hour_lim
+
+integer :: picard, picard_max
+
+! program arguments
+integer :: n_arg				! Number of argunents
+character(50) :: fname				! File name of inpuit file
+
+real(8) :: qs 					! Solute flux at root surface
+real(8),dimension(:),allocatable :: qs_array  	! solute flux at each segment
+
+! MM parameters
+real(8) :: Imm, Kmm, c_lim1, c_lim2, c_lim, c_2
+real(8) :: Imm_input, qs_calc
+real(8) :: alpha_s
+
+! nonlinear MM equation variables
+logical :: nonlinear
+real(8) :: c_old
+integer :: c1_num_it
+
+
+!!! Checking arguments
+n_arg = 1
+call get_command_argument(n_arg, fname)
+! If no input file name is given, assume default: param.in
+if(len_trim(fname) == 0) then
+  fname = 'param.in'
+endif
+
+! Formats, inputs and outputs
+100  FORMAT(7F25.13)
+101  FORMAT(7A25)
+102  FORMAT(I6,F8.1,E12.4,F12.5,F12.5,F12.5,F12.5,F9.5,F6.1,3E12.4,5E12.4,E12.4)
+103  FORMAT(A4,A8,  A12,  A12,  A12,  A12,  A12,  A9,  A6,  3A12,  5A12,  A12)
+1022 FORMAT(F8.4,F8.1,E12.4,F12.5,F12.5,F12.5,F12.5,F9.5,F6.1,3E12.4,5E12.4,E12.4)
+open (11, file=trim(fname), action="read", status="old")			! Input (parameters) file
+open (10, file="results_"//trim(fname)//".out", action="write", status="replace")	! Output file (results as function of r and t. File can be big)
+open (12, file="time_results_"//trim(fname)//".out", action="write", status="replace")	! Output file (results as function of t. 24 outputs a day)
+open (13, file="ini_values_"//trim(fname)//".out", action="write", status="replace")	! Output file (results as function of t. 24 outputs a day)
+open (14, file="stability_"//trim(fname)//".out", action="write", status="replace")	! Print times when stability criteria was not reached
+
+! Printing header of output file
+write(10,101) "#r", "theta", "h", "c_water", "h_os", "q", "qs"
+
+
+!!! Initialization of variables =========
+call read_param()
+salt_ct     = 0.0
+tprint      = 0.0
+hprev       = 0.0
+dhdt        = 0.0
+d2hdt2      = 0.0
+picard      = 0
+picard_max  = 0
+qs_calc     = 0.0
+acum_solute = 0.0
+
+!TEST
+print*, 'Ap = ',Ap
+print*, 'R = ',Lrv
+print*, 'z = ',z
+print*, 'L = ',RootLength
+print*, 'L/Ap = ',RootLength/Ap
+!pause
+
+! Prime allocation of r and dr arrays
+seg = 1000	! Great number of segments at first
+allocate(dr(0:seg))
+allocate(r(0:seg))
+allocate(rsup(0:seg))
+allocate(VolSeg(seg))
+
+! Computation of calculated parameters
+dt = dtmin
+
+! Space discretization with variable step (dr)
+seg = 0
+r(0) = r0
+rsup(0) = r0
+x = r0
+do while (x.lt.rm)
+  seg=seg+1
+  if (seg.gt.1000) then
+     print *,'Segment # exceeds 1000; adjust spacesteps or shape factor'
+     stop
+  endif
+  dr(seg) = drmin + (drmax-drmin) * ((x-r0)/(rm-r0))**S
+  r(seg) = r(seg-1) + dr(seg)/2 + dr(seg-1)/2
+  rsup(seg) = r(seg) + dr(seg)/2
+  VolSeg(seg) = pi * ((rsup(seg)**2) - (rsup(seg-1)**2))
+  x=x+dr(seg)
+enddo
+dr(seg)=dr(seg)-(x-rm)
+r(seg) = r(seg-1) + dr(seg)/2 + dr(seg-1)/2
+rsup(seg) = r(seg) + dr(seg)/2
+VolSeg(seg) = pi * ((rsup(seg)**2) - (rsup(seg-1)**2))
+!write(*,*) seg-1, r(seg-1), dr(seg-1)
+!write(*,*) seg, r(seg), dr(seg)
+
+! array's allocation to the actual number of segments
+allocate(aw(seg))
+allocate(bw(seg))
+allocate(cw(seg))
+allocate(fw(seg))
+allocate(h(seg))
+
+allocate(as(seg))
+allocate(bs(seg))
+allocate(cs(seg))
+allocate(fs(seg))
+allocate(c_water(seg))
+allocate(c_soil(seg))
+
+allocate(h_oldSalt(seg))
+allocate(wc_oldSalt(seg))
+allocate(theta_oldSalt(seg))
+allocate(c_water_oldSalt(seg))
+allocate(c_waterL(seg))
+
+allocate(wc(seg))
+allocate(theta(seg))
+allocate(Bigtheta(seg))
+allocate(K(seg))
+allocate(Km(0:seg))
+allocate(LIh(seg))
+allocate(LItheta(seg))
+allocate(LIwc(seg))
+allocate(thetaL(seg))
+
+allocate(h_os(seg))
+allocate(h_tot(seg))
+allocate(LIh_os(seg))
+allocate(D(0:seg))
+allocate(Dmed(seg))
+allocate(q(0:seg))
+allocate(qs_array(0:seg))
+
+allocate(h_lc(seg))
+allocate(theta_lc(seg))
+allocate(wc_lc(seg))
+
+! writing header of stability criteria output file
+!write(14,*) "dr(1) = ", dr(1)
+!write(14,*)
+!write(14,*) "sc", "t", "dt", "D(1)"
+
+! writing output file for initial parameters
+call print_param()
+
+! Initial conditions
+h = h_ini
+theta_ini = calc_theta(theta_r, theta_s, alpha, h_ini, n)
+h_os_ini = calc_h_os(c_ini)
+do i=1,seg
+  c_water(i) = c_ini/theta_ini
+  theta(i) = theta_ini
+  thetaL(i) = theta_ini
+  h(i) = calc_h(theta_r,theta_s,alpha,theta(i),n)
+  Bigtheta(i) = calc_satEfet(theta_r, theta_s, theta(i))
+  K(i) = calc_K(Ks, Bigtheta(i), lambda, n, h(i))
+enddo
+dt = dtini
+hprev = h(1)+h_osm
+saltiter = 0
+t = 0.0
+
+if(runmode==2) then
+  Trel = 1.0
+endif
+
+do while ((runmode .ne. 2 .and.t <= tend) .or. (runmode == 2 .and. Trel >= 1E-3))
+  !! changing dt according to some charcteristics
+  if (hprev < h_lim-1000) then
+    dt = dt/10
+  elseif (saltiter > 50) then
+    dt = dt*0.9
+  elseif (dt < 1.0) then
+    dt = dt*2
+  else
+    dt = dt*1.02
+  endif
+  
+  ! Checking whether dt is greater than dmax or smaller than dmin
+  if (dt < dtmin) then
+    dt = dtmin
+  elseif (dt > dtmax) then
+    dt = dtmax
+  endif
+
+  !if (h(1)+h_osm < h_lim+10) then
+  if (h(1)+h_osm < h_lim+5) then
+    !dt = 0.05
+    !dt = 1.0
+    dt = 0.1
+    !dt = 10.0
+  endif
+
+  if (c_water(1) <= c_lim+0.5) then
+    dt = 0.01
+  endif
+
+  t=t+dt
+  tprint=tprint+dt
+
+  ! Checking the stability criteria value
+  sc = dt * D(1) / dr(1)**2
+  !if (sc > scLim .and. t == tprint) then
+  !  write(14,'(F5.2,F10.2,F5.2,E12.4)') sc, t, dt, D(1)
+  !endif
+  
+  ! Potential flux of water at root surface. Depends on transpiration
+  q0 = Tp*Ap/(2*PI*r0*RootLength)
+
+  ! Averaging K between segments
+  Km(0) = K(1)
+  do i=1,seg
+    Km(i) = mean(K(i),K(i+1),mean_type)
+  enddo
+
+  ! Initializing model arrays
+  do i=1,seg
+    wc(i) = calc_WC(theta_r, theta_s, alpha, h(i), n)
+    thetaL(i) = theta(i)
+    c_waterL(i) = c_water(i)
+  enddo
+
+  h_total_old = h(1)+h_osm
+  hprev = h(1)+h_osm + dhdt*dt + d2hdt2*dt*dt
+
+  ! Check if hlim is true or false
+  if (lim_cond) then
+    if (TransBal > Tp) then
+      lim_cond = .false.
+    endif
+  elseif (hprev < h_lim-1000) then
+    lim_cond = .true.
+  endif
+
+  do i=1,seg
+    h_oldSalt(i) = h(i)
+    theta_oldSalt(i) = theta(i)
+    wc_oldSalt(i) = wc(i)
+    c_water_oldSalt(i) = c_water(i)
+  enddo
+
+  saltconverge = .false.
+  saltiter = 0
+
+  do while (saltconverge .eqv. .false.) !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    
+    if (saltiter > 0) then
+      do i=1,seg
+        h(i) = h_oldSalt(i)
+        theta(i) = theta_oldSalt(i)
+        wc(i) = wc_oldSalt(i)
+      enddo
+    endif
+
+    !Solve for limiting and non-limiting conditions
+    ! 1. Non-limiting
+
+    ! Store h values to compute for limiting conditions afterwards
+    do i = 1, seg
+      h_lc(i)=h(i)
+      theta_lc(i)=theta(i)
+      wc_lc(i)=wc(i)
+    enddo
+    
+    call solve_water(.false.)
+    if (saltiter == 0) then
+      nitera = itera
+    endif
+    
+    ! Calculate water loss by transpiration by difference of theta
+    loss = 0.0
+    Avtheta = 0.0
+    do i=1,seg
+      loss = loss+VolSeg(i)*(thetaL(i)-theta(i))
+      Avtheta = Avtheta + 2*r(i)*dr(i)*theta(i)/(rm**2-r(0)**2)
+    enddo
+    loss = loss * RootLength
+    TransBal = loss/(Ap*dt)
+    Trel = TransBal/Tp
+
+    ! 2. Limiting conditions
+    call solve_water(.true.)
+    if (saltiter == 0) then
+      nitera_lc = itera
+    endif
+
+    ! Calculate water loss by transpiration by difference of theta
+    loss_lc = 0.0
+    Avtheta_lc = 0.0
+    do i=1,seg
+      loss_lc = loss_lc+VolSeg(i)*(thetaL(i)-theta_lc(i))
+      Avtheta_lc = Avtheta_lc + 2*r(i)*dr(i)*theta_lc(i)/(rm**2-r(0)**2)
+    enddo
+    loss_lc = loss_lc * RootLength
+    TransBal_lc = loss_lc/(Ap*dt)
+    Trel_lc = TransBal_lc/Tp
+
+    if (Trel_lc < Trel) then
+      nitera = nitera_lc
+      lim_cond = .true.
+      loss = loss_lc
+      Avtheta = Avtheta_lc
+      TransBal = TransBal_lc
+      Trel = Trel_lc
+      do i = 1,seg
+        h(i) = h_lc(i)
+        theta(i) = theta_lc(i)
+        wc(i) = wc_lc(i)
+      enddo
+    else
+      lim_cond = .false.
+    endif
+
+
+    ! Update flux at root surface to the calculated loss
+    q(0) = -loss/(RootLength*dt*2*PI*r0)
+    if (q(0) > 0.0) then
+      q(0) = 0.0
+    endif
+
+        
+    do i=1,seg
+      c_water(i) = c_water_oldSalt(i)
+      c_soil(i) = thetaL(i)*c_water(i)
+    enddo
+
+    ! Calculate c_lim and c_2
+    !c_lim1 = (-Kmm+sqrt(Kmm**2.+4.*Kmm*Imm/abs( q(0)*2.*PI*r0*RootLength )))/2.
+    !c_lim2 = (-Kmm-sqrt(Kmm**2.+4.*Kmm*Imm/abs( q(0)*2.*PI*r0*RootLength )))/2.
+    c_lim1 = (-Kmm+sqrt(Kmm**2.+4.*Kmm*(-Imm)*Ap/(q(0)*2.*PI*r0*RootLength) ))/2.
+    c_lim2 = (-Kmm-sqrt(Kmm**2.+4.*Kmm*(-Imm)*Ap/(q(0)*2.*PI*r0*RootLength) ))/2.
+    c_2 = -Imm*Ap/(2.*PI*RootLength*r(0) * q(0))
+    if (c_lim1 >= c_lim2) then
+      c_lim = c_lim1
+    elseif (c_lim2 >= c_lim1) then
+      c_lim = c_lim2
+    endif
+    if (c_lim < 0.0) then
+      c_lim = 0.0
+    endif
+    if (c_2 < 0.0) then
+      c_2 = 0.0
+    endif
+
+    ! TEST
+    if (c_lim > 0.2e5) then
+      c_lim = 0.2e5
+    endif
+
+    ! Adjusting alpha
+    passive_sl = abs(q(0))
+    if (model == 1) then
+      alpha_s = 0.0
+    elseif (model == 2) then
+      alpha_s = 0.0
+      if (c_water(1) <= 0.0) then
+        Imm = 0.0
+      else
+        Imm = Imm_input
+      endif
+    elseif (model == 3 .and. c_water(1) <= 0.0) then 	!act like de Jong van Lier
+      active_sl = 0.0
+      alpha_s = active_sl+passive_sl
+    elseif (model == 3 .and. c_water(1) < c_lim) then	! conc. dependent
+      !alpha_s = Imm*Ap/(c_lim * RootLength*2.*PI*r0)	! (active+passive) m/s
+      !active_sl = alpha_s - passive_sl
+      active_sl = Imm*Ap/(c_lim * RootLength*2.*PI*r0)-passive_sl
+      alpha_s = active_sl+passive_sl
+    elseif (model == 3 .and. c_water(1) <= c_2) then	! act like Willigen
+      !active_sl = -Imm/(2*PI*RootLength*r(0)*c_water(1)) - q(0)
+      !active_sl = Imm*Ap/(2*PI*RootLength*r(0)*c_2) - q(0)
+      !alpha_s = active_sl+passive_sl
+      active_sl = Imm*Ap/(c_water(1) * RootLength*2.*PI*r0)-passive_sl
+      alpha_s = active_sl+passive_sl
+    elseif (model == 3 .and. c_water(1) > c_2) then 	! conc. dependent
+      active_sl = 0.0
+      alpha_s = active_sl+passive_sl
+    endif 
+
+    ! Solute
+    ! Calculates water flux and dispersion coefficient arrays
+    do i=1,seg
+      q(i) = q(i-1)*rsup(i-1)/rsup(i) - VolSeg(i) * (theta(i) - ThetaL(i)) / dt / (2*PI*rsup(i))
+      thetasup = (Theta(i)*dr(i+1) + Theta(i+1)*dr(i)) / (dr(i)+dr(i+1))
+      D(i) = Dm*(thetasup**(10./3.))/(theta_s**2) - q(i) * disp / thetasup
+    enddo
+
+    call solve_solute()   ! returns new c_water
+
+ 
+    h_osmL = h_osm
+    h_osm = calc_h_os(c_water(1))
+    
+    !! Maximum osmotic potential: h_lim (avoid convergence errors)
+    !if (h_osm < h_lim-h(1)) then
+    !  h_osm = h_lim-h(1)
+    !endif
+    !! No need to recalculate c_water
+
+    if (abs(h_osm-h_osmL) <= 1E-5 .or. saltiter > 50 .or. dt < 1.0) then
+      saltconverge = .true.
+    endif
+
+    saltiter = saltiter + 1
+
+        
+  enddo  !! end of current timestep iterations  !!!!!!!!!!!!!!!!!!!!!!!!! returns new set of h, theta, wc and c_water
+  
+  ! Adjusting solute fluxe to the new c_water according to the chosen model and other conditions
+  if (model == 1) then
+    qs = 0.0
+  elseif (model == 2 .and. c_water(1) > 0.0) then	! de Willigen
+    qs = -Imm/(2*PI*r(0)*RootLength)			! mol/m2soil/s
+  elseif (model == 2 .and. c_water(1) <= 0.0) then	! de Willigen at limiting concentration (0) acts like de Jong van Lier (zero sink)
+    qs = 0.0
+  elseif (model == 3 .and. c_water(1) <= 0.0) then 	!act like de Jong van Lier
+    qs = 0.0
+  elseif (model == 3 .and. c_water(1) < c_lim) then
+    qs = (active_sl*c_water(1) + passive_sl*c_water(1)) ! mol/m2soil/s
+  elseif (model == 3 .and. c_water(1) <= c_2) then
+    qs = -Imm/(2*PI*r(0)*RootLength)			! mol/m2soil/s
+  elseif (model == 3 .and. c_water(1) > c_2) then 
+    qs = (active_sl*c_water(1) + passive_sl*c_water(1)) ! mol/m2soil/s
+  endif 
+
+  ! Calculate solute loss by difference of concentration
+  s_loss = 0.0
+  Avc_water = 0.0
+  do i=1,seg
+    s_loss = s_loss + VolSeg(i)*(c_waterL(i)*thetaL(i) - c_water(i)*theta(i))
+    ! Average solute concentratino in soil water
+    Avc_water = Avc_water + 2*r(i)*dr(i)*c_water(i)/(rm**2-r(0)**2)
+  enddo
+  s_loss = s_loss * RootLength	! mol
+  
+  ! Total of extracted solute
+  acum_solute = acum_solute + s_loss
+
+  ! Calculate solute flux at root surface
+  qs_calc = -s_loss/(2.*PI*RootLength*r(0)*dt)		! mol/m2soil/s
+
+  !Check if losses are negative (means movement of water/solute from root to soil)
+  !if (loss < 0) then
+  !  loss = 0
+  !  print*, "Water going from root to soil"
+  !  print*, "Try to decrease time and/or space step"
+  !  pause
+  !endif
+  !if (s_loss < 0) then
+  !  s_loss = 0
+  !  print*, "Solute going from root to soil"
+  !  print*, "Try to decrease time and/or space step"
+  !  pause
+  !endif
+ 
+  ! Calculates solute flux array
+  qs_array(0) = qs_calc
+  do i=1,seg
+    !qs_array(i) = qs_array(i-1)*rsup(i-1)/rsup(i) - VolSeg(i) * (c_waterL(i)*thetaL(i) - c_water(i)*theta(i)) / dt / (2*PI*rsup(i))
+    qs_array(i) = qs_array(i-1)*rsup(i-1)/rsup(i) - VolSeg(i) * (c_water(i)*theta(i) - c_waterL(i)*thetaL(i)) / dt / (2*PI*rsup(i))
+  enddo
+
+  ! Summation of salt iterations to print the average value at the end of the day/hour
+  sum_saltiter = sum_saltiter + saltiter
+  salt_ct = salt_ct+1
+
+  dhdtOld = dhdt
+  dhdt = (h(1)+h_osm - h_total_old ) / dt
+  d2hdt2 = (dhdt - dhdtOld) / dt
+
+  ! Setting dt according to h(1)+h_osm
+  !if ((h(1) + h_osm) <= (h_lim + 0.3) .and. lim_cond == .false.) then
+  !  dt = 50 * ((h(1) + h_osm) - h_lim)
+  !  if (dt .lt. 0.1) then
+  !    dt = 0.1
+  !  endif
+  !endif
+
+  ! Update K to the new set of h
+  do i=1,seg
+    Bigtheta(i) = calc_satEfet(theta_r, theta_s, theta(i))
+    K(i) = calc_K(Ks, Bigtheta(i), lambda, n, h(i))
+  enddo
+  
+
+  ! Printing water and solute output file
+  !if (tprint >= dtprint .or. t >= tend) then
+  if (tprint >= dtprint) then
+    if (t==dt) then ! printing header
+      write(10,*) "r","theta","h", "c_w", "h_os","q","qs"
+    endif
+    do i=1,seg
+      write(10,100) r(i), theta(i), h(i), c_water(i), h_os(i),q(i),qs_array(i)
+    enddo
+    write(10,*)
+    write(10,*)
+    tprint = 0.0
+  endif
+  
+  ! Store hour of the onset of falling rate phase (just for the plot file)
+  if (Trel < 1.0) then
+    hour_lim = hour_count
+  endif
+
+  ! Print initial time on the screen and in the output file
+  if (t==dt) then
+    if (show_on_screen) then
+      print*
+      write(*,103) "hour", "dt(s)", "theta", "C_w", "h", "h_os", "h_tot","Trel", "siter","q0","alpha_s","qs","c_lim","c_2",&
+"qs_calc","active","passive","acum_solute"
+      write(*,*) "--------------------------------------------------------------"
+      write(*,102) 0, dt, theta(1), c_water(1), h(1), h_osm, h(1)+h_osm,Trel,sum_saltiter/salt_ct,q(0),alpha_s,qs,c_lim,c_2,&
+qs_calc,active_sl,passive_sl,acum_solute
+    endif
+    write(12,103) "#hour", "dt(s)", "theta", "C_w", "h", "h_os", "h_tot","Trel", "siter","q0","alpha_s","qs", "c_lim", "c_2",&
+"qs_calc","active","passive","acum_solute"
+    write(12,*) "#--------------------------------------------------------------"
+    write(12,102) 0, dt, theta(1), c_water(1), h(1), h_osm, h(1)+h_osm, Trel, sum_saltiter/salt_ct,q(0),alpha_s,qs,c_lim,c_2,&
+qs_calc,active_sl,passive_sl,acum_solute
+  endif
+
+
+  ! Daily print on the screen
+  !if (t/86400 >= day_count) then
+  !  write(*,102) day_count, dt, theta(1), c_water(1), h(1), h_osm, h(1)+h_osm, Trel,sum_saltiter/salt_ct
+  !  !print*, TransBal, Tp
+  !  day_count = day_count+1
+
+  !  salt_ct = 0.
+  !  sum_saltiter = 0.
+  !endif
+
+  ! Hourly printing on the screen and in the output file
+  !if (t/3600 >= hour_count) then
+  ! 1/4 of hour printing on the screen and in the output file
+  if (t/900 >= hour_count) then
+    if (show_on_screen) then
+      write(*,102) hour_count, dt, theta(1), c_water(1), h(1), h_osm, h(1)+h_osm, Trel,sum_saltiter/salt_ct,q(0),&
+alpha_s,qs,c_lim,c_2,qs_calc,active_sl,passive_sl,acum_solute
+    endif
+    write(12,102) hour_count, dt, theta(1), c_water(1), h(1), h_osm, h(1)+h_osm, Trel,sum_saltiter/salt_ct,q(0),&
+alpha_s,qs,c_lim,c_2,qs_calc,active_sl,passive_sl,acum_solute
+    hour_count = hour_count+1
+    salt_ct = 0.
+    sum_saltiter = 0.
+  endif
+
+  
+  ! EXIT if h_lim_stop is TRUE
+  ! Print last result and exit time loop if h_lim reached, if runmode = 1
+  !if ((h(1)+h_osm <= h_lim+1E-3) .and. (h_lim_stop == .true.)) then
+  if ((Trel < 1.0 .and. h(1)+h_osm <= h_lim+1E-3) .and. (h_lim_stop .eqv. .true.)) then
+    if (show_on_screen) then
+      write(*,102) hour_count, dt, theta(1), c_water(1), h(1), h_osm, h(1)+h_osm, Trel,sum_saltiter/salt_ct,q(0),&
+alpha_s,qs,c_lim,c_2,qs_calc,active_sl,passive_sl,acum_solute
+    endif
+    write(12,102) hour_count, dt, theta(1), c_water(1), h(1), h_osm, h(1)+h_osm, Trel,sum_saltiter/salt_ct,q(0),&
+alpha_s,qs,c_lim,c_2,qs_calc,active_sl,passive_sl,acum_solute
+    exit
+  endif
+  
+!  ! Print partial results when c < c_lim
+!  !if (c_water(1) < c_lim) then
+!    !write(*,'(4F12.8)') abs(c_water(1)-c_old), c1_num_it, c_water(1),bs(1)
+!    !write(*,'(9F14.8)') t/900, (-Imm/(Kmm+c_water(1))+q(0)), -(active_sl+passive_sl), c_water(1), q(0), thetaL(1), theta(1), thetaL(1)-theta(1), loss
+!    !write(*,'(f12.8)') h_os(1)
+!    write(*,1022) t/900, dt, theta(1), c_water(1), h(1), h_osm, h(1)+h_osm,Trel,sum_saltiter/salt_ct,q(0),alpha_s,qs,c_lim,c_2,qs_calc,active_sl,passive_sl,acum_solute
+!    if ((thetaL(1)-theta(1)) < 0.0) then
+!      !print*, 'thetaL < theta'
+!      !pause
+!    endif
+!  !endif
+
+
+
+  !if (itera == nmaxitera) then
+  !  print*
+  !  print*, "Maximum mumber of iterations reached. Stopping program."
+  !  print*
+  !  stop
+  !endif
+
+  ! Changing dt according number of iterations (water only)
+  if (nitera > 4) then
+    dt = dt/1.2
+  elseif (nitera < 3) then
+    dt = dt*1.1
+  else
+    dt = dt
+  endif
+  
+  ! Checking whether dt is greater than dmax or smaller than dmin
+  if (dt < dtmin) then
+    dt = dtmin
+  elseif (dt > dtmax) then
+    dt = dtmax
+  endif
+
+
+enddo   !! End of time loop
+
+! Printing last time in the output file and screen
+do i=1,seg
+  write(10,100) r(i), theta(i), h(i), c_water(i), h_os(i), q(i), qs_array(i)
+enddo
+write(10,*)
+write(10,*)
+
+! Final printing
+print*
+print*, "average theta", theta_mean(theta,r,dr,seg)
+print*, "average h", calc_h(theta_r,theta_s,alpha,theta_mean(theta,r,dr,seg),n)
+print*, "average C", Avc_water
+
+close(10)
+close(11)
+close(12)
+
+
+if (do_graphs) then
+  call graphs()
+endif
+
+!!! ========================================================================= !!!
+!!! ========================================================================= !!!
+contains
+
+! Solves the tridiagonal matrix
+subroutine solve_tridiag(a,b,c,d,u,n)
+      implicit none
+!	 a - sub-diagonal (means it is the diagonal below the main diagonal)
+!	 b - the main diagonal
+!	 c - sup-diagonal (means it is the diagonal above the main diagonal)
+!	 d - right part
+!	 u - the answer
+!	 n - number of equations
+ 
+        integer,intent(in) :: n
+        real(8),dimension(n),intent(in) :: a,b,c,d
+        real(8),dimension(n),intent(out) :: u
+        real(8),dimension(n) :: cp,dp
+        real(8) :: m
+        integer i
+ 
+! initialize c-prime and d-prime
+        cp(1) = c(1)/b(1)
+        dp(1) = d(1)/b(1)
+! solve for vectors c-prime and d-prime
+         do i = 2,n
+           m = b(i)-cp(i-1)*a(i)
+           cp(i) = c(i)/m
+           dp(i) = (d(i)-dp(i-1)*a(i))/m
+         enddo
+! initialize u
+         u(n) = dp(n)
+! solve for u from the vectors c-prime and d-prime
+        do i = n-1, 1, -1
+          u(i) = dp(i)-cp(i)*u(i+1)
+        end do
+end subroutine solve_tridiag
+
+! Reads the input file
+subroutine read_param()
+implicit none
+
+  read(11,*) r0
+  read(11,*) z
+  read(11,*) Rd
+  read(11,*) Ks
+  read(11,*) theta_r
+  read(11,*) theta_s
+  read(11,*) alpha
+  read(11,*) lambda
+  read(11,*) n
+  read(11,*) Tp
+  read(11,*) Ap
+  read(11,*) h_ini
+  read(11,*) h_lim
+  read(11,*)
+  read(11,*) Dm
+  read(11,*) c_ini
+  read(11,*) disp
+  read(11,*)
+  read(11,*) Imm
+  read(11,*) Kmm
+  read(11,*) Im_whole_plant
+  read(11,*)
+  read(11,*) dtprint
+  read(11,*) tend
+  read(11,*) dtmin
+  read(11,*) dtmax
+  read(11,*) dtini
+  read(11,*) mean_type
+  read(11,*) nmaxitera
+  read(11,*) drmin
+  read(11,*) drmax
+  read(11,*) S
+  read(11,*)
+  read(11,*) runmode
+  read(11,*) h_lim_stop
+  read(11,*) do_graphs
+  read(11,*) show_on_screen
+  read(11,*)
+  read(11,*) model
+  read(11,*) nonlinear
+  ! Chose rm according to Root density
+  select case (Rd) 
+    case (1)		! Low root density
+      rm = 56.5
+      !RootLength = 2 
+      !Lrv = 100.
+    case (2)		! Medium root density
+      rm = 17.841241
+      !Lrv = 1000.
+      !RootLength = 20
+    case (3)		! High root density
+      rm = 5.65
+      !Lrv = 10000.
+      !RootLength = 200
+    case default	! Default = Low root density
+      rm = 56.5
+      !RootLength = 2
+  end select
+
+  ! Adjusting to units: SECOND, METER and MOL
+  Ap = 0.04   ! m2 -> plant area
+  r0 = r0/1000.
+  rm = rm/1000.
+  Ks = Ks/86400.
+  Tp = Tp/(1000.*86400.)
+  tend = tend*86400
+  dtprint = dtprint*86400
+  Imm = Imm/(10**2) !=> umol/cm2/s to mol/m2/s
+  !If Imm was measured for the whole plant, it must be divided by root density
+  if (Im_whole_plant) then
+    Imm = Imm/Lrv
+  endif
+  Imm_input = Imm
+  ! unity of Imm is mol/s
+  RootLength = Ap*z/(PI*(rm)**2)
+  !Lrv = (RootLength/z*Ap)**0.5
+  Lrv = 1./(PI*rm**2)
+
+end subroutine
+
+! Calculates water content from Mualen-van Genuchten
+function calc_theta(or,os,a,h,n) result (res)
+implicit none
+  real(8), intent(in) :: or,os,a,h,n
+  real(8) 	      :: res
+  
+  if (h >=0) then
+    res = os
+  else
+    res = or + (os-or) * (1.+abs(a*h)**n)**(1./n-1.)
+  endif
+end function
+
+function calc_h(or,os,a,o,n) result (res)
+  real(8), intent(in) :: or,os,a,o,n
+  real(8) :: m
+  real(8) 	      :: res
+
+  if (o >= os) then
+    res = 0.0
+  else
+    m = 1.-1./n
+    res = -((((os-or)/(o-or))**(1./m)-1.)**(1./n))/a
+  endif
+end function
+
+function calc_h_os(c) result(res)
+implicit none
+  real(8), intent(in) :: c
+  real(8)	      :: res
+  real(8), parameter  :: mi = 8.314*293./(9.81*1000.)
+  
+  if (c < 0.0) then
+    res = 0.0
+  else
+    res = -mi*c
+  endif
+end function
+
+! Calculates effective saturation
+function calc_satEfet(or,os,o) result (res)
+implicit none
+  real(8), intent(in) :: or,os,o
+  real(8)	      :: res
+
+  res = (o-or)/(os-or)
+end function
+
+! Calculates hydraulic conductivity for unsaturated soil
+function calc_K(ks,se,l,n,h) result(res)
+implicit none
+  real(8), intent(in) :: ks,se,l,n,h
+  real(8)	      :: res
+
+  if (h >= 0) then
+    res = ks
+  else
+    res = ks * se**l * (1.-(1.-se**(n/(n-1.)))**(1.-1./n))**2.
+  endif
+end function
+
+! Calculates water capacity from Mualen-van Genuchten
+function calc_WC (or,os,a,h,n) result (res)
+implicit none
+  real(8), intent(in) :: or,os,a,h,n
+  real(8)	      :: res
+
+ if (h>=0) then
+    res = 1E-20
+ else
+    res = (a* (1.-1./n) * n *  (abs(a*h) ** (n - 1))*(os - or)) / ((1 + (abs(a*h)) ** n) ** ((1.-1./n) + 1)) 
+ endif
+end function
+
+function mean(a,b,t) result(res)
+implicit none
+  real(8),intent(in)         :: a,b
+  integer, intent(in)        :: t
+  real(8)	             :: res
+  
+  select case (t) 
+  case (1) 		! arithmetic mean
+    res = (a+b)*0.5
+  case (2)		! geometric mean
+    res = (a*b)**0.5
+  case default
+    res = (a+b)*0.5	! default = arithmetic mean
+  end select
+end function
+
+function theta_mean(theta,r,dr,n_segs) result (res)
+implicit none
+  real(8),dimension(:),intent(in) :: theta,r,dr
+  integer,intent(in)		  :: n_segs
+  real(8)			  :: res
+  integer  			  :: i
+
+  do i=1,seg
+    res = res + 2*r(i)*dr(i)*theta(i)/(rm**2-r(0)**2)
+    !ThMed=ThMed+2*r(i)*dr(i)*(Theta(i))/(Rmax**2 - r(0)**2)
+  enddo
+end function
+
+! With non-limiting condition
+subroutine solve_water(limit_cond)
+implicit none
+   
+   logical :: limit_cond
+
+   if (limit_cond .eqv. .false.) then
+
+    !!! ======= BEGINING OF FIRST ITERATION ================================== !!!
+    
+    !!! Matrix parameters
+    ! Intermediate segments
+    do i=2,seg-1
+      rmh = r(i) - dr(i)/2.	! r(i) minus half
+      rph = r(i) + dr(i)/2.	! r(i) plus half
+      aw(i) = -dt/(r(i)*(r(i)-r(i-1))*dr(i)) * rmh * Km(i-1)
+      cw(i) = -dt/(r(i)*(r(i+1)-r(i))*dr(i)) * rph * Km(i)
+      bw(i) = wc(i) - aw(i) - cw(i)
+      fw(i) = wc(i)*(h(i)+h_osm)
+    enddo
+    
+    ! Inner segment (i=1) (inner boundary)
+    rmh = r(1) - dr(1)/2.	! r(i) minus half
+    rph = r(1) + dr(1)/2.	! r(i) plus half
+    cw(1) = -dt/(r(1)*(r(2)-r(1))*dr(1)) * rph * Km(1)
+    ! non-limiting condition boundary
+    bw(1) = wc(1) - cw(1)
+    fw(1) = wc(1)*(h(1)+h_osm) - r0*q0*dt/(r(1)*dr(1))
+    
+    ! Outer segment (i=seg) (outer boundary)
+    rmh = r(seg) - dr(seg)/2.	! r(i) minus half
+    rph = r(seg) + dr(seg)/2.	! r(i) plus half
+    aw(seg) = -dt/(r(seg)*(r(seg)-r(seg-1))*dr(seg)) * rmh * Km(seg-1)
+    bw(seg) = wc(seg) - aw(seg)
+    fw(seg) = wc(seg)*(h(seg)+h_osm)
+    
+    ! Stores values of h, theta and wc from the last iteration
+    do i=1,seg
+      LIh(i) = h(i)
+      LItheta(i) = theta(i)
+      LIwc(i) = wc(i)
+      h_tot(i) = h(i)+h_osm
+    enddo
+    
+    ! Solves the tridiagonal matrix (returns new values of h)
+    !call solve_tridiag(aw,bw,cw,fw,h,seg)
+    call tridiag(aw,bw,cw,fw,h_tot,seg)
+      
+    ! Check whether h_tot is smaller than h_lim
+    !do i=1,seg
+    !  if (h_tot(i) < h_lim) then
+    !    h_tot(i) = h_lim
+    !  endif
+    !enddo
+
+    ! Calculates new theta, wc and Bigtheta and K
+    do i=1,seg
+      h(i) = h_tot(i) - h_osm
+      theta(i) = calc_theta(theta_r, theta_s, alpha, h(i), n)
+      wc(i) = calc_WC(theta_r, theta_s, alpha, h(i), n)
+      !Bigtheta(i) = calc_satEfet(theta_r, theta_s, theta(i))
+      !K(i) = calc_K(Ks, Bigtheta(i), lambda, n, h(i))
+    enddo
+
+    ! Check whether h is smaller than h_lim
+    !do i=1,seg
+    !  if (h(i) < h_lim) then
+    !    h(i) = h_lim
+    !  endif
+    !enddo
+        
+    !!! ======= END OF FIRST ITERATION ================================== !!!
+    
+    converge = .false.
+    itera = 1
+    
+    !!! ======= BEGINING OF FURTHER ITERATIONS ========================== !!!
+    
+    do while(converge .eqv. .false.)
+      itera = itera + 1
+      ! Intermediate segments
+      do i=2,seg-1
+        rmh = r(i) - dr(i)/2.	! r(i) minus half
+        rph = r(i) + dr(i)/2.	! r(i) plus half
+      
+        aw(i) = -dt/(r(i)*(r(i)-r(i-1))*dr(i)) * rmh * Km(i-1)
+        cw(i) = -dt/(r(i)*(r(i+1)-r(i))*dr(i)) *rph * Km(i)
+        bw(i) = LIwc(i) - aw(i) - cw(i)
+        fw(i) = LIwc(i)*(LIh(i)+h_osm) - LItheta(i) + thetaL(i)
+      enddo
+      ! Inner segment (i=1) (inner boundary)
+      rmh = r(1) - dr(1)/2.	! r(i) minus half
+      rph = r(1) + dr(1)/2.	! r(i) plus half
+      cw(1) = -dt/(r(1)*(r(2)-r(1))*dr(1)) *rph * Km(1)
+      !non-limiting condition boundary  
+      bw(1) = LIwc(1) - cw(1)
+      fw(1) = LIwc(1) * (LIh(1)+h_osm) - LItheta(1) + thetaL(1) - r0*q0*dt/(dr(1)*r(1))
+      
+      ! Outer segment (i=seg) (outer boundary)
+      rmh = r(seg) - dr(seg)/2.	! r(i) minus half
+      rph = r(seg) + dr(seg)/2.	! r(i) plus half
+      aw(seg) = -dt/(r(seg)*(r(seg)-r(seg-1))*dr(seg)) * rmh * Km(seg-1)
+      bw(seg) = LIwc(seg) - aw(seg)
+      fw(seg) = LIwc(seg)*(LIh(seg)+h_osm) - LItheta(seg) + thetaL(seg)
+
+      do i=1,seg
+        h_tot(i) = h(i) + h_osm
+      enddo
+
+    
+      ! Solves the tridiagonal matrix (returns new values of h)
+      !call solve_tridiag(aw,bw,cw,fw,h,seg)
+      call tridiag(aw,bw,cw,fw,h_tot,seg)
+    
+      ! Check whether h_tot is smaller than h_lim
+      !do i=1,seg
+      !  if (h_tot(i) < h_lim) then
+      !    h_tot(i) = h_lim
+      !  endif
+      !enddo
+
+      ! Calculates new theta, wc and Bigtheta and K
+      alt_h = 0.0
+      alt_theta = 0.0
+      do i=1,seg
+        h(i) = h_tot(i) - h_osm
+        theta(i) = calc_theta(theta_r, theta_s, alpha, h(i), n)
+        wc(i) = calc_WC(theta_r, theta_s, alpha, h(i), n)
+        !Bigtheta(i) = calc_satEfet(theta_r, theta_s, theta(i))
+        !K(i) = calc_K(Ks, Bigtheta(i), lambda, n, h(i))
+      
+        ! Calculates the sum of the differences between old and new values of h and theta
+        alt_h = alt_h + abs(LIh(i) - h(i))
+        alt_theta = alt_theta + abs(LItheta(i) - theta(i))
+      enddo
+ 
+      ! Averaging K between segments
+      !Km(0)=K(1)
+      !do i=1,seg-1
+      !  Km(i) = mean(K(i),K(i+1),mean_type)
+      !enddo
+    
+      
+      ! Stores values of h, theta and wc from the last iteration
+      do i=1,seg
+        LIh(i) = h(i)
+        LItheta(i) = theta(i)
+        LIwc(i) = wc(i)
+      enddo
+      
+      if (alt_h < 1E-8 .or. alt_theta < 1E-10) then
+        converge = .true.
+      endif
+    
+      if (itera > nmaxitera) then
+        !print*
+        print*, "Maximum number of iterations reached"
+	call error_print()
+	converge = .true.
+        !print*
+        !close(10)
+        !close(11)
+        !close(12)
+        !exit
+      endif
+    
+    enddo
+
+
+    !!! ======= END OF ITERATIONS ========================== !!!
+
+  endif
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  if (limit_cond .eqv. .true.) then
+
+    !!! ======= BEGINING OF FIRST ITERATION ================================== !!!
+    
+    !!! Matrix parameters
+    ! Intermediate segments
+    do i=2,seg-1
+      rmh = r(i) - dr(i)/2.	! r(i) minus half
+      rph = r(i) + dr(i)/2.	! r(i) plus half
+      aw(i) = -dt/(r(i)*(r(i)-r(i-1))*dr(i)) * rmh * Km(i-1)
+      cw(i) = -dt/(r(i)*(r(i+1)-r(i))*dr(i)) * rph * Km(i)
+      bw(i) = wc_lc(i) - aw(i) - cw(i)
+      fw(i) = wc_lc(i)*(h_lc(i)+h_osm)
+    enddo
+    
+    ! Inner segment (i=1) (inner boundary)
+    rmh = r(1) - dr(1)/2.	! r(i) minus half
+    rph = r(1) + dr(1)/2.	! r(i) plus half
+    cw(1) = -dt/(r(1)*(r(2)-r(1))*dr(1)) * rph * Km(1)
+    !limiting condition boundary
+    bw(1) = wc_lc(1) - cw(1) + dt/(r(1)*(r(1)-r0)*dr(1)) * r0*Km(0)
+    fw(1) = wc_lc(1)*(h_lc(1)+h_osm) + dt/(r(1)*(r(1)-r0)*dr(1)) * r0*Km(0) * h_lim
+    
+    ! Outer segment (i=seg) (outer boundary)
+    rmh = r(seg) - dr(seg)/2.	! r(i) minus half
+    rph = r(seg) + dr(seg)/2.	! r(i) plus half
+    aw(seg) = -dt/(r(seg)*(r(seg)-r(seg-1))*dr(seg)) * rmh * Km(seg-1)
+    bw(seg) = wc_lc(seg) - aw(seg)
+    fw(seg) = wc_lc(seg)*(h_lc(seg)+h_osm)
+    
+    ! Stores values of h, theta and wc from the last iteration
+    do i=1,seg
+      LIh(i) = h_lc(i)
+      LItheta(i) = theta_lc(i)
+      LIwc(i) = wc_lc(i)
+      h_tot(i) = h_lc(i)+h_osm
+    enddo
+    
+    ! Solves the tridiagonal matrix (returns new values of h)
+    !call solve_tridiag(aw,bw,cw,fw,h,seg)
+    call tridiag(aw,bw,cw,fw,h_tot,seg)
+      
+    ! Check whether h_tot is smaller than h_lim
+    !do i=1,seg
+    !  if (h_tot(i) < h_lim) then
+    !    h_tot(i) = h_lim
+    !  endif
+    !enddo
+
+    ! Calculates new theta, wc and Bigtheta and K
+    do i=1,seg
+      h_lc(i) = h_tot(i) - h_osm
+      theta_lc(i) = calc_theta(theta_r, theta_s, alpha, h_lc(i), n)
+      wc_lc(i) = calc_WC(theta_r, theta_s, alpha, h_lc(i), n)
+      !Bigtheta(i) = calc_satEfet(theta_r, theta_s, theta(i))
+      !K(i) = calc_K(Ks, Bigtheta(i), lambda, n, h(i))
+    enddo
+
+    ! Check whether h is smaller than h_lim
+    do i=1,seg
+      if (h_lc(i) < h_lim) then
+        h_lc(i) = h_lim
+      endif
+    enddo
+
+    
+    !!! ======= END OF FIRST ITERATION ================================== !!!
+    
+    converge = .false.
+    itera = 1
+    
+    !!! ======= BEGINING OF FURTHER ITERATIONS ========================== !!!
+    
+    do while(converge .eqv. .false.)
+      itera = itera + 1
+      ! Intermediate segments
+      do i=2,seg-1
+        rmh = r(i) - dr(i)/2.	! r(i) minus half
+        rph = r(i) + dr(i)/2.	! r(i) plus half
+      
+        aw(i) = -dt/(r(i)*(r(i)-r(i-1))*dr(i)) * rmh * Km(i-1)
+        cw(i) = -dt/(r(i)*(r(i+1)-r(i))*dr(i)) *rph * Km(i)
+        bw(i) = LIwc(i) - aw(i) - cw(i)
+        fw(i) = LIwc(i)*(LIh(i)+h_osm) - LItheta(i) + thetaL(i)
+      enddo
+      ! Inner segment (i=1) (inner boundary)
+      rmh = r(1) - dr(1)/2.	! r(i) minus half
+      rph = r(1) + dr(1)/2.	! r(i) plus half
+      cw(1) = -dt/(r(1)*(r(2)-r(1))*dr(1)) *rph * Km(1)
+      !limiting condition boundary
+      bw(1) = LIwc(1) - cw(1) + dt/(r(1)*(r(1)-r0)*dr(1)) *r0 * Km(0)
+      fw(1) = LIwc(1)*(LIh(1)+h_osm) - LItheta(1) + thetaL(1) + dt/(r(1)*(r(1)-r0)*dr(1)) *r0 * Km(0)*h_lim
+      
+      ! Outer segment (i=seg) (outer boundary)
+      rmh = r(seg) - dr(seg)/2.	! r(i) minus half
+      rph = r(seg) + dr(seg)/2.	! r(i) plus half
+      aw(seg) = -dt/(r(seg)*(r(seg)-r(seg-1))*dr(seg)) * rmh * Km(seg-1)
+      bw(seg) = LIwc(seg) - aw(seg)
+      fw(seg) = LIwc(seg)*(LIh(seg)+h_osm) - LItheta(seg) + thetaL(seg)
+
+      do i=1,seg
+        h_tot(i) = h_lc(i) + h_osm
+      enddo
+
+    
+      ! Solves the tridiagonal matrix (returns new values of h)
+      !call solve_tridiag(aw,bw,cw,fw,h,seg)
+      call tridiag(aw,bw,cw,fw,h_tot,seg)
+    
+      ! Check whether h_tot is smaller than h_lim
+      !do i=1,seg
+      !  if (h_tot(i) < h_lim) then
+      !    h_tot(i) = h_lim
+      !  endif
+      !enddo
+
+      ! Calculates new theta, wc and Bigtheta and K
+      alt_h = 0.0
+      alt_theta = 0.0
+      do i=1,seg
+        h_lc(i) = h_tot(i) - h_osm
+        theta_lc(i) = calc_theta(theta_r, theta_s, alpha, h_lc(i), n)
+        wc_lc(i) = calc_WC(theta_r, theta_s, alpha, h_lc(i), n)
+        !Bigtheta(i) = calc_satEfet(theta_r, theta_s, theta(i))
+        !K(i) = calc_K(Ks, Bigtheta(i), lambda, n, h(i))
+      
+        ! Calculates the sum of the differences between old and new values of h and theta
+        alt_h = alt_h + abs(LIh(i) - h_lc(i))
+        alt_theta = alt_theta + abs(LItheta(i) - theta_lc(i))
+      enddo
+ 
+      ! Averaging K between segments
+      !Km(0)=K(1)
+      !do i=1,seg-1
+      !  Km(i) = mean(K(i),K(i+1),mean_type)
+      !enddo
+    
+      ! Stores values of h, theta and wc from the last iteration
+      do i=1,seg
+        LIh(i) = h_lc(i)
+        LItheta(i) = theta_lc(i)
+        LIwc(i) = wc_lc(i)
+      enddo
+      
+      if (alt_h < 1E-8 .or. alt_theta < 1E-10) then
+        converge = .true.
+      endif
+
+      !if (h(1)+h_osm < h_lim) then
+      !  print*, t/86400.0, itera, converge
+      !endif
+      if (itera > nmaxitera) then
+
+        !print*
+        print*, "Maximum number of iterations reached"
+	call error_print()
+	converge = .true.
+        !print*
+        !close(10)
+        !close(11)
+        !close(12)
+        !exit
+      endif
+
+    enddo
+
+    !!! ======= END OF ITERATIONS ========================== !!!
+
+  endif
+
+end subroutine
+
+subroutine error_print()
+implicit none
+  
+  102 FORMAT(I4,F8.1,F6.2,F9.2,F12.5,F12.5,F12.5,F6.2,F6.1)
+  write(*,102) hour_count, dt, theta(1), c_water(1), h(1), h_osm, h(1)+h_osm, Trel,sum_saltiter/salt_ct
+  print*
+  write(*,'(3A5,3A11)') "limcd","iter","salit","q(0)","O_oldsalt","O_diff"
+  write(*,'(L5,2I5,3F11.5)') lim_cond,itera,saltiter,q(0),theta_oldSalt,alt_theta
+  pause
+
+end subroutine
+
+subroutine solve_solute()
+implicit none
+real(8) :: res
+real(8),parameter :: precis = 1E-10
+  
+  do i = 2,seg-1
+    rmh = r(i) - dr(i)/2.	! r(i) minus half
+    rph = r(i) + dr(i)/2.	! r(i) plus half
+    as(i) = -rsup(i-1) * (2.*D(i-1)+q(i-1)*dr(i))*dt / (2.*(r(i)-r(i-1))*dr(i))
+    bs(i) = r(i)*theta(i) + dt/(2.*dr(i))*&
+( rsup(i-1)/(r(i)-r(i-1))*(2.*D(i-1)-q(i-1)*dr(i-1)) + rsup(i)/(r(i+1)-r(i))*(2.*D(i)+q(i)*dr(i+1)) )
+    cs(i) = -rsup(i) * (2.*D(i)-q(i)*dr(i))*dt / (2.*(r(i+1)-r(i))*dr(i))
+    fs(i) = r(i)*thetaL(i)*c_water(i)
+  enddo
+  ! Boundaries nodes
+  ! i=1
+  rmh = r(1) - dr(1)/2.		! r(i) minus half
+  rph = r(1) + dr(1)/2.		! r(i) plus half
+  
+  if (model == 1) then					! de Jong van Lier
+    bs(1) = r(1)*theta(1) + rsup(1)*dt/(2*(r(2)-r(1))*dr(1)) * (2*D(1)+q(1)*dr(2))
+    cs(1) = -rsup(1)*dt/(2.*(r(2)-r(1))*dr(1)) * (2.*D(1)-q(1)*dr(1))
+    fs(1) = r(1)*thetaL(1)*c_water(1)
+  elseif (model == 2) then	! de Willigen
+    bs(1) = r(1)*theta(1) + rsup(1)*dt/(2*(r(2)-r(1))*dr(1)) * (2*D(1)+q(1)*dr(2))
+    cs(1) = -rsup(1)*dt/(2.*(r(2)-r(1))*dr(1)) * (2.*D(1)-q(1)*dr(1))
+    fs(1) = r(1)*thetaL(1)*c_water(1) - rsup(0)/(r(1)-r(0))*Imm*dt*Ap/(4.*PI*r(0)*RootLength)
+  elseif (model == 3) then	! proposed
+    if (c_water(1) >= c_lim .and. c_water(1) <= c_2) then  ! between c_lim and c_2, act like Willigen
+      bs(1) = r(1)*theta(1) + rsup(1)*dt/(2*(r(2)-r(1))*dr(1)) * (2*D(1)+q(1)*dr(2))
+      cs(1) = -rsup(1)*dt/(2.*(r(2)-r(1))*dr(1)) * (2.*D(1)-q(1)*dr(1))
+      fs(1) = r(1)*thetaL(1)*c_water(1) - rsup(0)/(r(1)-r(0))*Imm*dt*Ap/(4.*PI*r(0)*RootLength)
+    else                        ! concentration dependent part (for c < c_lim and for c > c_2)
+      if (nonlinear .eqv. .TRUE.) then
+        c_old = c_water(1)
+        if (c_water(1) <=c_lim) then
+	  ! Put a very small time step to avoid stabilization problems!!
+          bs(1) = dt/(2.*dr(1)) * (rsup(0)/(r(1)-r(0)) * ((Imm*Ap/(2*PI*r(0)*RootLength*&
+           (Kmm+c_water(1)))-q(0)))*dr(1) + rsup(1)/(r(2)-r(1)) * (2*D(1)+q(1)*dr(2)) )+ r(1)*theta(1)
+          cs(1) = -rsup(1)*dt/(2.*(r(2)-r(1))*dr(1)) * (2.*D(1)-q(1)*dr(1))
+          fs(1) = r(1)*thetaL(1)*c_waterL(1)
+        else
+          !Imm = 0.0
+          bs(1) = dt/(2.*dr(1)) * (rsup(0)/(r(1)-r(0)) * ((0.0/(2*PI*r(0)*RootLength*&
+            (Kmm+c_water(1)))-q(0)))*dr(1) + rsup(1)/(r(2)-r(1)) * (2*D(1)+q(1)*dr(2)) )+ r(1)*theta(1)
+          cs(1) = -rsup(1)*dt/(2.*(r(2)-r(1))*dr(1)) * (2.*D(1)-q(1)*dr(1))
+          fs(1) = r(1)*thetaL(1)*c_waterL(1)
+        endif
+      else
+	if (c_water(1) <= c_lim) then
+          bs(1) = dt/(2.*dr(1)) * (rsup(0)/(r(1)-r(0)) * (Imm*Ap/(c_lim*2*PI*r(0)*RootLength))*dr(1)&
+	    + rsup(1)/(r(2)-r(1)) * (2*D(1)+q(1)*dr(2)) )+ r(1)*theta(1) 
+	else
+          bs(1) = dt/(2.*dr(1)) * (rsup(0)/(r(1)-r(0)) * (-q(0))*dr(1)&
+	    + rsup(1)/(r(2)-r(1)) * (2*D(1)+q(1)*dr(2)) )+ r(1)*theta(1) 
+	endif
+        cs(1) = -rsup(1)*dt/(2.*(r(2)-r(1))*dr(1)) * (2.*D(1)-q(1)*dr(1))
+        fs(1) = r(1)*thetaL(1)*c_waterL(1)
+      endif
+    endif
+  endif
+  
+
+! i=seg
+  rmh = r(seg) - dr(seg)/2.		! r(i) minus half
+  rph = r(seg) + dr(seg)/2.		! r(i) plus half
+  as(seg) = -rsup(seg-1)*dt/(2.*(r(seg)-r(seg-1))*dr(seg)) * (2.*D(seg-1)+q(seg-1)*dr(seg))
+  bs(seg) = r(seg)*theta(seg) + rsup(seg-1)*dt/(2.*(r(seg)-r(seg-1))*dr(seg)) * (2.*D(seg-1)-q(seg-1)*dr(seg-1))
+  fs(seg) = r(seg)*thetaL(seg)*c_water(seg)
+  
+  !call solve_tridiag(as,bs,cs,fs,c,seg)
+  call tridiag(as,bs,cs,fs,c_water,seg)
+  
+  if (c_water(1) > c_old) then
+    !c_water(1) = c_old
+    !print*, c_old, c_water(1)
+    !pause
+  endif
+  if (c_water(1) < 0.0) then
+    c_water(1) = 0.0
+  endif
+
+  ! Iteration to find the value from concentration at root surface in the
+  ! non-linearized MM equation case
+  !if (model == 3 .and. (c_water(1) <= c_lim .or. c_water(1) > c_2) .and. nonlinear .eqv. .TRUE.) then
+  if (model == 3 .and. (c_water(1) <= c_lim) .and. nonlinear .eqv. .TRUE.) then
+  !  c1_num_it = 1
+  !  !res = (bs(1)+cs(1)) * c_water(1) - fs(1)
+
+  !  ! Repeat until it converges or the number of iterations reaches 50
+  !  do while (c_water(1)-c_old > 2e-15 .and. c1_num_it < 50) 
+  !  !do while (abs(c_water(1)-c_old) > 2e-15 .and. c1_num_it < 50) 
+  !    c_old = c_water(1)
+  !    !bs(1) = dt/(2.*dr(1)) * (-rsup(0)/(r(1)-r(0)) * (-Imm/(Kmm+c_old)+q(0))*dr(1) + rsup(1)/(r(2)-r(1)) * (2*D(1)+q(1)*dr(2)) )+ r(1)*theta(1)
+  !    bs(1) = dt/(2.*dr(1)) * (rsup(0)/(r(1)-r(0)) * (Imm/(Kmm+c_old)-q(0))*dr(1) + &
+  !            rsup(1)/(r(2)-r(1)) * (2*D(1)+q(1)*dr(2)) )+ r(1)*theta(1) 
+  !    
+  !    call tridiag(as,bs,cs,fs,c_water,seg)
+
+  !    c1_num_it = c1_num_it + 1
+  !  enddo
+  ! 
+  ! if (c_water(1) <= c_lim) then 
+  !   call newthon_raphson()
+  ! endif
+  endif
+  
+  do i=1,seg
+    if (c_water(i) < 0.0) then
+      c_water(i) = 0.0
+    endif
+    h_os(i) = calc_h_os(c_water(i))
+  enddo
+
+end subroutine
+
+subroutine newthon_raphson()
+implicit none
+  real(8) :: f_x, df_x, xn, xn1
+
+  xn = c_water(1)
+  !f_x = -dt*(2*dr(1)) * (rsup(0)/(r(1)-r(0))*(-(Imm/(Kmm+xn)+q(0)))*xn*dr(1) - &
+  f_x = -dt*(2*dr(1)) * (rsup(0)/(r(1)-r(0))*((Imm/(2*PI*r(0)*RootLength*(Kmm+xn))+q(0)))*xn*dr(1) - &
+    rsup(1)/(r(2)-r(1))*(q(1)*(xn*dr(2)+c_water(2)*dr(1))-2*D(1)*(c_water(2)-xn))) + &
+    theta(1)*xn*r(1) - thetaL(1)*c_waterL(1)*r(1)
+  df_x = dt/2*rsup(0)/(r(1)-r(0))*(Imm*Kmm/(2*PI*r(0)*RootLength*(Kmm+xn))**2+q(0)) + &
+    dt/dr(1)*rsup(1)/(r(2)-r(1))*(1/2*q(1)*dr(2)+D(1))+theta(1)*r(1)
+  xn1 = xn - f_x/df_x
+
+!  bs(1) = dt/(2.*dr(1)) * (rsup(0)/(r(1)-r(0)) * (Imm/(2*PI*r(0)*RootLength*(Kmm+xn1))-q(0))*dr(1) + rsup(1)/(r(2)-r(1)) * (2*D(1)+q(1)*dr(2)) )+ r(1)*theta(1) 
+!  call tridiag(as,bs,cs,fs,c_water,seg)
+!  print*, xn
+!  print*, xn1
+!  print*, abs(xn-xn1)
+!  pause
+  do while (abs(xn-xn1) > 1E-5)
+    xn = xn1
+    f_x = -dt*(2*dr(1)) * (rsup(0)/(r(1)-r(0))*((Imm/(2*PI*r(0)*RootLength*(Kmm+xn))+q(0)))*xn*dr(1) - &
+      rsup(1)/(r(2)-r(1))*(q(1)*(xn*dr(2)+c_water(2)*dr(1))-2*D(1)*(c_water(2)-xn))) + &
+      theta(1)*xn*r(1) - thetaL(1)*c_waterL(1)*r(1)
+    df_x = dt/2*rsup(0)/(r(1)-r(0))*(Imm*Kmm/(2*PI*r(0)*RootLength*(Kmm+xn))**2+q(0)) + &
+      dt/dr(1)*rsup(1)/(r(2)-r(1))*(1/2*q(1)*dr(2)+D(1))+theta(1)*r(1)
+    xn1 = xn - f_x/df_x
+    
+    !bs(1) = dt/(2.*dr(1)) * (rsup(0)/(r(1)-r(0)) * (Imm/(Kmm+xn1)-q(0))*dr(1) + rsup(1)/(r(2)-r(1)) * (2*D(1)+q(1)*dr(2)) )+ r(1)*theta(1) 
+    !call tridiag(as,bs,cs,fs,c_water,seg)
+    
+!    if(t>150*900) then
+!      print*, xn
+!      print*, xn1
+!      print*, abs(xn-xn1)
+!      pause
+!    endif
+  enddo
+
+  bs(1) = dt/(2.*dr(1)) * (rsup(0)/(r(1)-r(0)) * (Imm/(2*PI*r(0)*RootLength*&
+(Kmm+xn1))-q(0))*dr(1) + rsup(1)/(r(2)-r(1)) * (2*D(1)+q(1)*dr(2)) )+ r(1)*theta(1) 
+  call tridiag(as,bs,cs,fs,c_water,seg)
+
+end subroutine
+
+SUBROUTINE TRIDIAG (a,b,c,r,u,n)
+!***********************************************************************
+!* Date      : 15/9/99                                    
+!* Purpose:    Solves for a vector U a tridiagonal linear set.         *
+!* References:                                                         *
+!* Press, W.H., B.P. Flannery, S.A. Teukolsky & W.T. Vetterling, 1989. *
+!* Numerical Recipes in FORTRAN. Cambridge University Press, New York. *
+!* pp 40-41                                                            *
+!***********************************************************************
+!* Input:     N -      Number of equations                             *
+!*            A,B,C -  Coefficients of the matrix                      *
+!*            R -      known vector                                    *
+!* Output:    U -      solved vector                                   *
+!***********************************************************************
+      implicit none
+
+! --- global declarations
+! --- (i.i) input
+      integer   n
+      real*8    a(1000), b(1000), c(1000), r(1000)
+! --- output
+      real*8    u(1000)
+! --- parameters
+      real*8    small
+      parameter (small = 0.3d-37)
+
+! --- local declarations
+      integer   i
+!      real*8    gamma(macp), beta
+	  real*8    gamma(1000), beta
+!      character messag*200
+! ----------------------------------------------------------------------
+! --- (1) if b(1)=0 then rewrite the equations as a set of order n-1
+!     to eliminate u(2)
+
+      if (abs(b(1)).lt.small) then
+!        messag = 'During the numerical solution the factor b(1)'//
+!     &  ' became too small !'
+!        call fatalerr ('tridag',messag)
+	    stop
+      else
+! ---   (2) decomposition and forward substitution
+        beta = b(1)
+
+        u(1) = r(1) / beta
+        do i = 2, n
+          gamma(i) = c(i-1) / beta
+          beta = b(i) - a(i)*gamma(i)
+
+! ---     (2.1) if beta=0 then go to another algorithm including
+! ---     elimination with pivoting
+          if (abs(beta).lt.small) then
+!            messag = 'during the numerical solution the factor beta'//
+!     &      ' became too small !'
+            stop
+!            call fatalerr ('tridag',messag)
+          else
+            u(i) = (r(i) - a(i)*u(i-1)) / beta
+            end if
+        enddo
+
+! ---   (3) back substitution
+        do i = n-1, 1, -1
+          u(i) = u(i) - gamma(i+1)*u(i+1)
+        end do
+      end if
+
+      return
+end subroutine
+
+! Print on screen the values of all parameters
+subroutine print_param()
+implicit none
+1 FORMAT(A10,F20.10,A8)
+2 FORMAT(A10,I20,A8)
+3 FORMAT(A10,A20,A8)
+  
+  ! Write on the screen
+  print*
+  write(*,*) 'Initial parameters values'
+  print*, '-------------------------------------'
+  write(*,3) 'param.', 'value', 'unit'
+  print*, '----------|--------------------|-----'
+  write(*,1) 'r0', r0*1000, 'mm'
+  write(*,1) 'rm', rm, 'm'
+  write(*,1) 'z', z, 'm'
+  write(*,2) 'tend', tend/86400, 'd'
+  write(*,2) 'seg', seg, '-'
+  write(*,1) 'Tp', Tp*1000*86400, 'mm/d'
+  write(*,1) 'Ap', Ap, 'm2'
+  write(*,1) 'L', RootLength, 'm'
+  write(*,1) 'theta_r', theta_r, 'm3/m3'
+  write(*,1) 'theta_s', theta_s, 'm3/m3'
+  write(*,1) 'n', n, '-'
+  write(*,1) 'alpha', alpha, '1/m'
+  write(*,1) 'lambda', lambda, '-'
+  write(*,1) 'h_ini', h_ini, 'm'
+  write(*,1) 'h_lim', h_lim, 'm'
+  write(*,1) 'Dm', Dm*86400, 'm2/d'
+  write(*,1) 'c_ini', c_ini, 'mol/m3'
+  write(*,1) 'disp', disp, 'm'
+  write(*,2) 'Rd', Rd, '-'
+  write(*,2) 'dtmin', dtmin, 's'
+  write(*,2) 'dtmax', dtmax, 's'
+  write(*,1) 'dr0', dr0, 'm'
+  write(*,1) 'drmin', drmin, 'm'
+  write(*,1) 'drmax', drmax, 'm'
+  write(*,1) 'S', S, '-'
+  write(*,2) 'mean_type', mean_type, '-'
+  write(*,1) 'Im', Imm, 'mol/m2/s'
+  write(*,1) 'Km', Kmm, 'mol/m3'
+  print*, '----------|--------------------|-----'
+  print*
+
+  ! Write on the output file
+  write(13,*) 'Initial parameters values'
+  write(13,*) '-------------------------------------'
+  write(13,3) 'param.', 'value', 'unit'
+  write(13,*) '----------|--------------------|-----'
+  write(13,1) 'r0', r0*1000, 'mm'
+  write(13,1) 'rm', rm, 'm'
+  write(13,1) 'z', z, 'm'
+  write(13,2) 'tend', tend/86400, 'd'
+  write(13,2) 'seg', seg, '-'
+  write(13,1) 'Tp', Tp*1000*86400, 'mm/d'
+  write(13,1) 'Ap', Ap, 'm2'
+  write(13,1) 'L', RootLength, 'm'
+  write(13,1) 'theta_r', theta_r, 'm3/m3'
+  write(13,1) 'theta_s', theta_s, 'm3/m3'
+  write(13,1) 'n', n, '-'
+  write(13,1) 'alpha', alpha, '1/m'
+  write(13,1) 'lambda', lambda, '-'
+  write(13,1) 'h_ini', h_ini, 'm'
+  write(13,1) 'h_lim', h_lim, 'm'
+  write(13,1) 'Dm', Dm*86400, 'm2/d'
+  write(13,1) 'c_ini', c_ini, 'mol/m3'
+  write(13,1) 'disp', disp, 'm'
+  write(13,2) 'Rd', Rd, '-'
+  write(13,2) 'dtmin', dtmin, 's'
+  write(13,2) 'dtmax', dtmax, 's'
+  write(13,1) 'dr0', dr0, 'm'
+  write(13,1) 'drmin', drmin, 'm'
+  write(13,1) 'drmax', drmax, 'm'
+  write(13,1) 'S', S, '-'
+  write(13,2) 'mean_type', mean_type, '-'
+  write(13,1) 'Im', Imm*86400, 'mol/d'
+  write(13,1) 'Km', Kmm, 'mol/m3'
+  write(13,*) '----------|--------------------|-----'
+end subroutine
+
+subroutine graphs()
+implicit none
+  character(len=8) :: hour,lim
+  write(hour,'(I8)') hour_lim
+  write(lim,'(F8.2)') h_lim
+  
+  open (20, file="plots.gpl", action="write", status="replace")
+
+  write(20,*) "set terminal postscript eps enhanced color"
+  write(20,*) 
+  write(20,*) "file='time_results_"//trim(fname)//".out'"
+  write(20,*) 
+  write(20,*) "set output file.'.eps'"
+  write(20,*) 
+  write(20,*) "set size 2.0,1.6"
+  write(20,*) "set multiplot"
+  write(20,*) 
+  write(20,*) "set origin 0.0,0.4"
+  write(20,*) "set size 1.0,1.0"
+  write(20,*) "set border 3"
+  write(20,*) "set ytics nomirror"
+  write(20,*) "set xtics nomirror"
+  write(20,*) "set xlabel 'time, d'"
+  write(20,*) "set ylabel 'head, m'"
+  write(20,*) "set key bottom left"
+  write(20,*) "set arrow from "//hour//",0 to "//hour//","//lim//" lt 0 nohead"
+  write(20,*) "plot file u ($1):5 with lines t 'h', file u ($1):6 with lines t 'h_{os}',\" 
+  write(20,*) "file u ($1):7 with lines t 'h_{total}'"
+  write(20,*) 
+  write(20,*) "set origin 0.0,1.335"
+  write(20,*) "set size 1.0,0.2"
+  write(20,*) "set border 3"
+  write(20,*) "set ytics nomirror"
+  write(20,*) "set ylabel 'relative transpiration'"
+  write(20,*) "unset xlabel"
+  write(20,*) "unset xtics"
+  write(20,*) "set nokey"
+  write(20,*) "unset arrow"
+  write(20,*) "plot [][0:1] file u ($1):8 with lines lt -1"
+
+  print*
+  print*, "Plots done."
+  print*, "Final Tr=",Trel
+  print*
+  
+  close(20)
+end subroutine
+
+\endtt

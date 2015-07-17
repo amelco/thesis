@@ -23,7 +23,9 @@ In this chapter, the model development is described.
 First, we show the mathematical equations that represent the transport of water and solutes and their uptake by the root (Section~\ref[model_description]). 
 The numerical development with the applied boundary conditions are show in Section~\ref[numerical_implementation]. 
 % LET'S STATE THAT WE ARE NOT USING THE PETER'S MODEL, BUT A NUMERICAL SOLUTION BASED ON HIS SOLUTION OF CONSTANT UPTAKE RATE
-The numerical solutions for the zero \cite[liersolute] and constant uptake {\localcolor\Red LIKE PROPOSED BY \citeonline[willigen1]} models (used in the comparison with the proposed model) are show in Sections \ref[ZU] and \ref[CU].
+The numerical solutions for the zero \cite[liersolute] and constant uptake 
+%{\localcolor\Red LIKE PROPOSED BY \citeonline[willigen1]} 
+models -- that were used in the comparison with the proposed model -- are show in Sections \ref[ZU] and \ref[CU].
 Later, we present 
 %Section \ref[analytical_models] that shows the analytical models that has been chosen to compare with the proposed model, followed by 
 the description of the simulated scenarios (Section~\ref[scenarios]), a comparative analysis of the linear and non-linear approaches of the proposed model (Section~\ref[lu_nlu_comp]), as well as of the other numerical models (Section~\ref[model_comp]) and, finally, the methodology used for the sensitivity analysis (Section~\ref[sensitivity]).
@@ -483,8 +485,8 @@ where $C\!L_t$ and $C\!N\!L_t$ are the solute concentration in soil water for LU
 
 %This section describes how the linear (LU) and nonlinear (NLU) solutions simulate the transport of water and solutes in the soil-plant-atmosphere system. 
 The analysis of the results was made in order to choose one out of the two models in further simulations. 
-NLU solution uses the MM equation \ref[eq_MM_mod], takes longer to run -- due to an additional iterative process --, and is more susceptible to stabilization problems in the results. 
-LU is a simplified version of the MM equation in which the solute uptake rate for the situation $C<C_{lim}$ is smaller when compared to the original nonlinear equation (details in Appendix \ref[ap_l_nl_fluxes]), it has no stabilization problems and runs faster. 
+NLU solution uses the MM equation \ref[eq_MM_mod], its calculation takes longer to run -- due to an additional iterative process -- and is more susceptible to stabilization problems in the results. 
+LU is a simplified version of the MM equation in which the solute uptake rate for the situation $C<C_{lim}$ is smaller when compared to the original nonlinear equation (details in Appendix \ref[ap_l_nl_fluxes]), it has no problems regarding to stabilization and runs faster. 
 Therefore, the objective of this section is to analyze the differences between the results of the two models and check if they change significantly the results. 
 For that, four different general scenarios were chosen (using the parameters listed in Table 2, with  loam soil) as listed below:
 

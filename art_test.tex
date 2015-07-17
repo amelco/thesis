@@ -1,0 +1,126 @@
+%\danger
+\TeX\ looks at the parameters that affect
+line breaking only when it is breaking lines. For example, you shouldn't
+try to change the 
+%^|\hyphenpenalty| 
+in the middle of a paragraph,
+if you want \TeX\ to penalize the hyphens in one word more than it does in
+another word. The relevant values of
+%|\hyphenpenalty|, |\rightskip|, |\hsize|, 
+and so on,
+are the ones that are current at the end of the paragraph.
+On the other hand, the width of indentation that you get
+implicitly at the beginning of a paragraph or when you say 
+%`^|\indent|'
+is determined by the value of\/ 
+%^|\parindent| 
+at the time the
+indentation is contributed to the current horizontal list,
+not by its value at the end of the paragraph. Similarly, penalties
+that are inserted into math formulas within a paragraph are based
+on the values of\/ 
+%^|\binoppenalty| and ^|\relpenalty| 
+that are current
+at the end of each particular formula. Appendix~D contains an example
+that shows how to have both ragged-right and ragged-left margins within
+a single paragraph, without using 
+%|\leftskip| or |\rightskip|.
+
+\newdimen\varunit \varunit=0.989pt % getting ready to make circular insert
+% \varunit=1.078pt was used with amr5: it had more letterspacing
+\setbox0=\vtop{\null
+\baselineskip6\varunit
+\parfillskip0pt
+\parshape 19
+-18.25\varunit 36.50\varunit
+-30.74\varunit 61.48\varunit
+-38.54\varunit 77.07\varunit
+-44.19\varunit 88.39\varunit
+-48.47\varunit 96.93\varunit
+-51.70\varunit 103.40\varunit
+-54.08\varunit 108.17\varunit
+-55.72\varunit 111.45\varunit
+-56.68\varunit 113.37\varunit
+-57.00\varunit 114.00\varunit
+-56.68\varunit 113.37\varunit
+-55.72\varunit 111.45\varunit
+-54.08\varunit 108.17\varunit
+-51.70\varunit 103.40\varunit
+-48.47\varunit 96.93\varunit
+-44.19\varunit 88.39\varunit
+-38.54\varunit 77.07\varunit
+-30.74\varunit 61.48\varunit
+-18.25\varunit 36.50\varunit
+\fiverm
+\frenchspacing
+\noindent
+\hbadness 6000
+\tolerance 9999
+\pretolerance 0
+\hyphenation{iso-peri-met-ric}
+The area of a circle is a mean proportional
+between any two regular and similar polygons of which one
+circumscribes it and the other is isoperimetric with it.
+In addition, the area of the circle is less than that of any
+circumscribed polygon and greater than that of any
+isoperimetric polygon. And further, of these
+circumscribed polygons, the one that has the greater number of sides
+has a smaller area than the one that has a lesser number;
+but, on the other hand, the isoperimetric polygon that
+has the greater number of sides is the larger.
+\hbox to 36.50\varunit{\hss[Galileo,\thinspace1638]\hss}
+}
+
+%\danger
+\parshape 16
+3pc 26pc
+3pc 26pc
+0pc 24.69pc
+0pc 23.51pc
+0pc 22.73pc
+0pc 22.20pc
+0pc 21.85pc
+0pc 21.65pc
+0pc 21.58pc
+0pc 21.65pc
+0pc 21.85pc
+0pc 22.20pc
+0pc 22.73pc
+0pc 23.51pc
+0pc 24.69pc
+0pc 29pc
+\leavevmode
+\vadjust{\moveright 28pc\vbox to 0pt{\vskip88pt\vskip-60\varunit
+  \vskip-3pt\box0\vss}}%
+\strut It's possible to control the length of lines in a much more general
+way, if simple changes to 
+%|\leftskip| and |\rightskip| 
+aren't
+flexible enough for your purposes. For example, a semicircular
+%^{hole} 
+has been cut out of the present paragraph, in order to make
+room for a circular illustration that contains some of 
+%^{Galileo}'s
+immortal words about 
+%^{circle}s; 
+all of the line breaks in this paragraph
+and in the circular quotation were found by \TeX's line-breaking
+algorithm. You can specify an essentially arbitrary paragraph
+shape by saying 
+%^|\parshape||=|\<number>, where the \<number> is
+a positive integer $n$, followed by $2n$ <dimen> specifications.
+In general, 
+%`|\parshape=|
+$n$ $i_1$~$l_1$ $i_2$~$l_2$ $\ldots$ $i_n$~$l_n$'
+specifies a paragraph whose first $n$ lines will have lengths
+$l_1$, $l_2$, \dots,~$l_n$, respectively, and they will be
+indented from the left margin by the respective amounts
+$i_1$, $i_2$, \dots,~$i_n$. If the paragraph has fewer than
+$n$ lines, the additional specifications will be ignored;
+if it has more than $n$ lines, the specifications for line $n$ will
+be repeated ad infinitum. You can cancel the effect of a previously
+specified 
+%|\parshape| by saying `|\parshape=0|'.\parfillskip0pt
+%^^{illustrations, fitting copy around}
+
+\end
