@@ -469,17 +469,28 @@ To guarantee complete convergence for the non-linear model, a time step of 0.01 
 \label[lu_nlu_comp]
 \sec Analysis of linear and nonlinear approaches
 
-To analyze the differences between the two proposed models (linear and nonlinear solutions), the absolute and relative differences in the predicted concentrations were calculated as follows:
+To analyze the differences between the two proposed models (linear and nonlinear solutions), the relative differences in the predicted concentrations ($di\!f\!\!f_{C}$) and accumulated uptake ($di\!f\!\!f_{Ac}$), for both models, were calculated as follows:
+%$$
+%\eqalignno{
+%\label[error_abs]
+%di\!f\!\!f_{abs} &= \sum_{t=1}^{t_{end}} C\!L_t - C\!N\!L_t  & \eqmark \cr
+%\label[error_rel] 
+%di\!f\!\!f_{rel} &= {\sum_{t=1}^{t_{end}} C\!L_t - C\!N\!L_t \over \sum_{t=1}^{t_{end}} C\!L_t} & \eqmark \cr
+%}
+%$$
 $$
 \eqalignno{
-\label[error_abs]
-di\!f\!\!f_{abs} &= \sum_{t=1}^{t_{end}} C\!L_t - C\!N\!L_t  & \eqmark \cr
-\label[error_rel] 
-di\!f\!\!f_{rel} &= {\sum_{t=1}^{t_{end}} C\!L_t - C\!N\!L_t \over \sum_{t=1}^{t_{end}} C\!L_t} & \eqmark \cr
+\label[error_C]
+di\!f\!\!f_{C}  &= {\sum_{x=1}^{x_{end}} C\!L_x - C\!N\!L_x \over \sum_{x=1}^{x_{end}} C\!L_x} & \eqmark \cr
+\label[error_acc] 
+di\!f\!\!f_{Ac} &= {\sum_{t=1}^{t_{end}} AcL_t - AcN\!L_t \over \sum_{t=1}^{t_{end}} AcL_t} & \eqmark \cr
 }
 $$
 %
-where $C\!L_t$ and $C\!N\!L_t$ are the solute concentration in soil water for LU and NLU, respectvely, at a given time $t$, and $t_{end}$ is the end time of the simulation.
+where $C\!L_t$, $C\!N\!L_t$, $AcL_t$ and $AcN\!L_t$ are the solute concentration in soil water and the accumulated uptake for LU and NLU, respectively,  
+and $x$ can be the time ($t$) or the distance from the axial center ($r$).
+%and $t_{end}$ is the end time of the simulation.
+
 
 %The equations are the same of absolute and relative errors but since we are analyzing differences instead of errors (there is not a standard model), we called it differences.
 
@@ -488,7 +499,7 @@ The analysis of the results was made in order to choose one out of the two model
 NLU solution uses the MM equation \ref[eq_MM_mod], its calculation takes longer to run -- due to an additional iterative process -- and is more susceptible to stabilization problems in the results. 
 LU is a simplified version of the MM equation in which the solute uptake rate for the situation $C<C_{lim}$ is smaller when compared to the original nonlinear equation (details in Appendix \ref[ap_l_nl_fluxes]), it has no problems regarding to stabilization and runs faster. 
 Therefore, the objective of this section is to analyze the differences between the results of the two models and check if they change significantly the results. 
-For that, four different general scenarios were chosen (using the parameters listed in Table 2, with  loam soil) as listed below:
+For that, four different general scenarios were chosen (scenarios 1 to 4 as listed in Table \ref[tab_scenarios]).
 
 
 %\begitems
@@ -510,7 +521,7 @@ For that, four different general scenarios were chosen (using the parameters lis
 
 \secc Statistical difference
 
-Also, the Mann--Whitney U test was made with two datasets (concentration and cumulative uptake) for the two models. 
+Also, the Mann--Whitney U test was made with two datasets (concentration and cumulative uptake over time) for the two models. 
 The choice of this test is due to the fact that the distributions for both datasets are not normal, the pairs (concentration for LU and for NLU and cumulative uptake for LU and NLU) are distinct and do not affect each other. 
 This test can decide whether each pair is identical without assuming them to follow the normal distribution (nonparametric test). 
 The null hypothesis ($H_0$) is that both populations (model output data) are the same and the alternate hypothesis ($H_1$) is that one particular model (LU or NLU) has greater values than the other.

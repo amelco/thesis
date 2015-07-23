@@ -36,8 +36,9 @@
 %For values of $C_0$ between the two threshold values (\c2 and \clim), the solute flux density is constant and NLU and LU are different only for $C$ values lower than $C_{lim}$ .
 
 \def\diff{{\it diff}}
-According to Equations \ref[eq_MM_mod] and \ref[eq_MM_linear], the difference between LU and NLU occurs only for concentration at root surface ($C_0$) values below $C_{lim}$ and, therefore, the differences between the two models (according to Equations  \ref[error_abs] and \ref[error_rel]) were calculated for this time period only. 
+According to Equations \ref[eq_MM_mod] and \ref[eq_MM_linear], the difference between LU and NLU occurs only for concentration values at root surface ($C_0$) below $C_{lim}$ and, therefore, the differences between the two models outputs -- according to Equations  \ref[error_abs] and \ref[error_rel] -- were calculated for this time period only. 
 %For the Scenario 1, this situation occurred at nearly the fourth simulated day. 
+%It was observed that although $C_0$ values are distinct between the two models, it does not add a significant contribution to the final extracted solute amount. 
 It was observed that although $C_0$ values are distinct between the two models, it does not add a significant contribution to the final extracted solute amount. 
 Figure~\ref[diff_t] shows that the difference between the estimated concentration for the linear (CL) and non-linear (CNL) models, as a function of time for Scenario 1, are of 81\%.
 CNL tends to be smaller than CL because the uptake rate of NLU is always higher than that of LU, in accordance to their govern equations.
@@ -64,13 +65,13 @@ Therefore if $d\!i\!f\!f\!<0$ then CNL > CL and LU uptake is greater; if $d\!i\!
 \medskip
 \label[diff_t]
 \picw=13cm \cinspic diffs_t.pdf
-\caption/f {Difference between the solute concentration in soil water at root surface ($C_0$) output for LU and NLU and $C_0$ as a function of time; and the relative difference -- Scenario 1}
+\caption/f {Difference between the solute concentration in soil water at root surface ($C_0$) for LU and NLU and $C_0$ as a function of time; and the relative difference -- Scenario 1}
 \medskip
 
 \medskip
 \label[diff_r]
 \picw=13cm \cinspic diffs_r.pdf
-\caption/f {Difference between the solute concentration in soil water ($C$) output for LU and NLU and $C$ as a function of distance from axial center; and the relative difference -- Scenario 1}
+\caption/f {Difference between the solute concentration in soil water ($C$) at the end of simulation for LU and NLU and $C$ as a function of distance from axial center; and the relative difference -- Scenario 1}
 \medskip
 
 % This is the actual discussion of U test
