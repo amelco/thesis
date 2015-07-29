@@ -1,0 +1,23 @@
+% Table with MM parameters (Roose and Kirk, 2009)
+
+% macro pmb to bold math symbols
+\long\def\pmb#1{\setbox0=\hbox{#1}\copy0\kern-\wd0%
+\kern0.02em\raise0.02ex\copy0\kern-\wd0\kern0.02em\box0}
+
+{\tenpoint
+\midinsert\medskip \label[tab_diff]
+\caption/t {Relative difference between LU and NLU for the selected model outputs, for the condition $C_0 < C_{lim}$}
+\def\tabiteml{\hbox to 4pt{}}  % left material before each \table item
+\def\tabitemr{\hbox to 4pt{}}
+\ctable{ccc}{
+\crl\hfil 
+{\bf Scenario}\hfill	& \pmb{$C_0(t)$}	& \pmb{$C(r)$}	\cr
+			& mol m$^{-3}$		& mol m$^{-3}$	\crl \tskip4pt 
+1			& 42.964		& 2.370 	\cr
+2			& 43.497		& 2.484 	\cr
+3			& 89.753		& 2.342 	\cr
+4			& 0			& 0		\crl
+%{\tenpoint Source: \citeonline[wosten]} \hfill  & & & & & & & \cr
+}
+\endinsert
+}

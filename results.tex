@@ -16,18 +16,6 @@
 
 \chap RESULTS AND DISCUSSION
 
-%%PUT IT SOMEWHERE
-%The default values for $\Delta r_{min}$, $\Delta r_{max}$ and $S$ are of 10$^{-8}$ m, 5 10$^{-4}$ m and 0.5, resulting in 24, 73 and 228 segments for the high, medium and low root density simulations, respectively. However, further reductions of the segment size may bes needed in case of stabilization problems in the solute transport equation.
-%
-%The simulations were performed using the hydraulic parameters from the Dutch Staring series \cite[wosten] for three typical top soils, as listed in Table \ref[soils]. 
-%The general system parameters for the different scenarios are listed in Table \ref[general_param] and values for the Michaelis-Menten (MM) parameters in Table \ref[MMparam]. Values of root length density, salt content and relative transpiration were chosen to change, reflecting different possible scenarios that would occur in a practical situation. The chosen MM parameters were for K$^+$ solute.
-%
-%\input tables/soils
-%
-%\input tables/general_param
-%
-%\input tables/MMparam
-
 \sec Linear (LU) versus nonlinear (NLU) solutions
 
 %In all simulated scenarios, the difference between LU and NLU models occurs only at values of solute concentration in soil water ($C$) below the threshold value \clim. This is expected because of the nature of the piecewise MM equation used in the model.
@@ -36,11 +24,48 @@
 %For values of $C_0$ between the two threshold values (\c2 and \clim), the solute flux density is constant and NLU and LU are different only for $C$ values lower than $C_{lim}$ .
 
 \def\diff{{\it diff}}
-According to Equations \ref[eq_MM_mod] and \ref[eq_MM_linear], the difference between LU and NLU occurs only for concentration values at root surface ($C_0$) below $C_{lim}$ and, therefore, the differences between the two models outputs -- according to Equations  \ref[error_abs] and \ref[error_rel] -- were calculated for this time period only. 
+According to Equations \ref[eq_MM_mod] and \ref[eq_MM_linear], the difference between LU and NLU occurs only at the condition of concentration values at root surface below $C_{lim}$, due to the different considered boundary condition of each model. For now on, the condition $C_0 < C_{lim}$ will be referred as limiting concentration condition, or LCC, for short.
+
+%FIRST, TALK ONLY ABOUT THE RELATIVE DIFFERENCES. SHOW A TABLE OF VALUES. THEN GO TO THE STATISTICAL TEST TO SHOW THE SIGNIFICANCE. THEN SHOW THE DIFFERENCES IN Tr.
+
+The differences between the two models were not significant when the whole time series is considered in calculations (from the initial to the final time step). 
+As the limiting concentration condition occurred with very low solute uptake rates in all simulation scenarios, the amount of solute extracted by the roots at the end of simulation are nearly the same for both models (Figure \ref[accumxt]) in all scenarios. 
+The relative transpiration is also little affected by the change of the boundary condition. The difference between the models starts to occur at values around 0.03 or less, close to the end of simulation that stops when $Tr \leq 0.0001$. At the LCC occurs a second reduction in the transpiration and can be observed by an abrupt decrease of the transpiration rate, being the NLU reduction smoother (Figure \ref[diff_tr]).  
+
+The relative differences between the models, for simulation scenarios 1 to 4 at the LCC, are shown in Table \ref[tab_diff]. 
+Scenarios 1 and 2 showed similar results for $C_0(t)$, meaning that the potential transpiration has little impact on the computation of the relative difference. 
+Scenario 3 showed a greater difference because the limiting concentration condition was reached earlier than that of the other scenarios due to the lower initial concentration. 
+Nevertheless, for $C(r)$, the relative differences were of about 2.5\% for scenarios 1, 2 and 3. 
+This is due to the fact that at this condition, the flux of water and solutes towards the roots is higher near the roots and becomes small with the increasing distance.
+This gradient makes water and solute flow towards the roots. The higher the uptake, the higher the gradient and the solute transport. As NLU has a higher uptake rate, $C_0$ is smaller and the gradient is higher, resulting in little difference between LU and NLU.
+
+\input tables/diff.tex
+
+All simulations had similar results then, to illustrate, we show the analysis of scenario 1 in Figures \ref[diff_t] and \ref[diff_r].
+
+%The relative difference between both models, for the time selected outputs ($C_0(t)$ and $Ac(t)$), becomes significant only when calculated for this condition. 
+%If the whole time series is analyzed, the difference is not significant since the condition of $C_0 < C_{lim}$ is achieved near the end of simulations and its contribution is small due to the low solute uptake rate at this time.
+
+%PUT PLOTS TO EXPLAIN THIS
+
+%This small flux can be observed in Figure \ref[diff_r]. At the end of simulation, the relative difference of LU and NLU was of 2.37\%. The relative difference between LU and NLU, in this case, ranged from XXX\% to XXX\% in the simulated scenarios.
+
+Figure~\ref[diff_t] shows that the difference between the estimated concentration at the root surface, for the linear (CL) and non-linear (CNL) models as a function of time and when $C_0 < C_{lim}$ for Scenario 1, is of around 43\%. 
+For the scenarios 2 to 4, the difference were of XXX\%, XXX\% and XXX\% respectively. 
+The Mann-Whitney U test for all scenarios when $C_0 < C_{lim}$, and the same output, showed a significant difference between the two models.
+When the same test is applied considering the whole time series, it shows non-significant difference.
+The list of the p-values for all cases and scenarios is presented in Table \ref[Utest].
+Figure~\ref[diff_r] shows the relative difference of concentration as a function of radial distance of 2.37\% and it can be noticed visually that the concentration profile does not change so much. 
+The U test corroborates with the visual analysis.
+The results for scenarios 2 to 4 were similar and it is not showed in the plots.
+
+These results means that although there is indeed a difference between the two models, they are important only if looked in a "time zoom". 
+If the interest is the result of the whole time serie, or the concentration as a function of the radial distance, they are not important. 
+Considering that the metabolic response of the plant for different levels of concentration at root surface is immediate, it is plausible to consider  NLU for the simulations since it is the more realistic model. On the other hand, if there is a delay of any kind in that response -- the plant is not immediately affected by a change in the rate of solute uptake -- or if the variable of interest is the concentration as a function of radial distance, it is reasonable to use LU. In this thesis we choose to use NLU since we are analysing the behaviour of the model and, for that, it is interesting to be as close as possible to the real phenomena.
+% and, therefore, the differences between the two models outputs -- according to Equations  \ref[error_abs] and \ref[error_rel] -- were calculated for this time period only. 
+
 %For the Scenario 1, this situation occurred at nearly the fourth simulated day. 
 %It was observed that although $C_0$ values are distinct between the two models, it does not add a significant contribution to the final extracted solute amount. 
-It was observed that although $C_0$ values are distinct between the two models, it does not add a significant contribution to the final extracted solute amount. 
-Figure~\ref[diff_t] shows that the difference between the estimated concentration for the linear (CL) and non-linear (CNL) models, as a function of time for Scenario 1, are of 81\%.
 CNL tends to be smaller than CL because the uptake rate of NLU is always higher than that of LU, in accordance to their govern equations.
 Figure~\ref[diff_r], however, shows that the final concentration profile is nearly identical, presenting a difference of 0.3\%, and that the difference in the concentration at the root surface does not lead to a significant additional uptake. 
 Moreover, Figure~\ref[accumxt] shows that the 
@@ -103,7 +128,7 @@ Since the differences between LU and NLU occurs for low concentration values and
 \medskip
 \label[diff_tr]
 \picw=17cm \cinspic diffs_tr.pdf
-\caption/f {Cumulative solute uptake as a function of time for all scenarios. Dashed lines represent the nonlinear model}
+\caption/f {Relative transpiration as a function of time for all scenarios. Dashed lines represent the nonlinear model}
 \medskip
 
 \citeonline[roose2009] stated that, for numerical solutions of convection-dispersion equation, the convective part might use an explicit scheme because convection, unlike diffusion, occurs only in one direction thus the solution at the following time step depends only on the values within the domain of influence of the previous time step. This set bounds on time and space steps, with a condition of stability given by ${r_0 q_0 \Delta t \over D} < \Delta r$. As the proposed model uses a fully implicit scheme, that might be the cause of the stabilization problems.

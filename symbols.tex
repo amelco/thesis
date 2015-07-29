@@ -3,9 +3,11 @@
 %\def\symb #1 #2{\ctpush{\hbox to 40pt{#1\hfill--\hfill}}#2}  % with dash left justified
 %\def\symb #1 #2{\ctpush{\hbox to 50pt{\hfill#1\hbox to 6pt{}--}}#2} % with dash right justified
 
+% Spacing
 \def\ctp #1{\leftskip 2cm \par\noindent\llap{#1\enspace}\ignorespaces}
 \def\symb #1 #2{\ctp{#1\enspace--}#2}
 
+% Some units definitions
 \def\uconc{(mol~cm$^{-3}$) }
 \def\udisp{(m$^2$~s$^{-1}$) }
 \def\uhead{(m) }
