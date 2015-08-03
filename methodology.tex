@@ -74,7 +74,7 @@ A fully implicit numerical treatment was given to the water and solute balance e
 The Richards equation \ref[eq_Richards] for one-dimensional axis-symetric flow can be writen as
 \label[eq_complete_richards]
 $$
-{\partial \theta \over \partial t} = {\partial \theta \over \partial H} {\partial H \over \partial t} = C_w(H) {\partial H \over \partial t} = {1 \over r}{\partial \over \partial r} \left[ r K(H,\theta) {\partial H \over \partial r} \right] \eqmark
+{\partial \theta \over \partial t} = {\partial \theta \over \partial H} {\partial H \over \partial t} = C_w(H) {\partial H \over \partial t} = {1 \over r}{\partial \over \partial r} \left( r K(H,\theta) {\partial H \over \partial r} \right) \eqmark
 $$
 %
 where the total hydraulic head ($H$) is the sum of pressure ($h$) and osmotic ($h_\pi$) heads and $C_w$ (m$^{-1}$) is the differential water capacity (${\partial H \over \partial\theta}$).
@@ -83,7 +83,7 @@ Analogous to \citeonline[vandam_feddes], Equation \ref[eq_complete_richards] can
 $$
 \eqalignno{
 \label[eq_disc_water]
-C_i^{j+1,p-1} (H_i^{j+1,p}&-H_i^{j+1,p-1}) + \theta_i^{j+1,p-1}-\theta_i^j = {t^{j+1}-t^j \over r_i \Delta r_i} \times \cr
+{C_w}_i^{j+1,p-1} (H_i^{j+1,p}&-H_i^{j+1,p-1}) + \theta_i^{j+1,p-1}-\theta_i^j = {t^{j+1}-t^j \over r_i \Delta r_i} \times \cr
 &\left[ 
 r_{i-1/2}K_{i-1/2}^j {H_{i-1}^{j+1,p}-H_i^{j+1,p} \over r_i-r_{i-1}} 
 - 

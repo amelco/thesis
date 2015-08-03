@@ -1,3 +1,73 @@
 \app Algorithm used to solve Equation \ref[eq_disc_water]
 
-CONTENT
+Applying Equation \ref[eq_disc_water] to each segment $i$, the values of $H_i^{j+1}$ is found by solving the tridiagonal matrix as follows
+
+$$
+\left [ \matrix{
+ \beta_1 & \gamma_1 & & & &  \cr
+ \alpha_2 & \beta_2 & \gamma_2 & & &  \cr
+  & \alpha_3 & \beta_3 & \gamma_3 & &  \cr
+  &  & \ddots & \ddots & \ddots &  \cr
+  &  & & \alpha_{n-1} & \beta_{n-1} & \gamma_{n-1}  \cr
+  &  & & & \alpha_{n} & \beta_{n}  \cr}  \right]
+\left [ \matrix{
+ H^{j+1}_1 \cr
+ H^{j+1}_2 \cr
+ H^{j+1}_3 \cr
+ \vdots \cr
+ H^{j+1}_{n-1} \cr
+ H^{j+1}_n \cr} \right ]
+=
+\left [ \matrix{
+ g_1 \cr
+ g_2 \cr
+ g_3 \cr
+ \vdots \cr
+ g_{n-1} \cr
+ g_n \cr} \right ]
+ \eqmark
+$$
+%
+in which $H_n=h_n+{h_\pi}_n$ and ${h_\pi}_n$ is the osmotic head of the last time step; $\alpha_i$, $\beta_i$, $\gamma_i$ and $g_i$ are defined as described in the following.
+
+1. Intermediate segments ($i=2$ to $i=n-1$):
+$$
+\eqalignno{
+\alpha_i &= -{t^{j+1}-t^j \over r_i(r_i-r_{i-1})\Delta r_i} r_{i-1/2}K_{i-1/2}^j & \eqmark \cr
+\beta_i &= {C_w}_i^{j+1,p-1}+{t^{j+1}-t^j \over r_i(r_i-r_{i-1})\Delta r_i} r_{i-1/2}K_{i-1/2}^j
+   + {t^{j+1}-t^j \over r_i(r_{i+1}-r_{i})\Delta r_i} r_{i+1/2}K_{i+1/2}^j  & \eqmark \cr
+\gamma_i &= -{t^{j+1}-t^j \over r_i(r_{i+1}-r_{i})\Delta r_i} r_{i+1/2}K_{i+1/2}^j & \eqmark \cr
+g_i &= {C_w}_i^{j+1,p-1}H_i^{j+1,p-1} - \theta_i^{j+1,p-1}+\theta_i^j & \eqmark \cr
+}
+$$
+
+2A. Root segment ($i=1$) with flux boundary condition, applied while $h_1 > h_{lim}$, i.e., when transpiration meets potential transpiration demand:
+$$
+\eqalignno{
+\beta_1 &= {C_w}_1^{j+1,p-1} + {t^{j+1}-t^j \over r_1(r_{2}-r_{1})\Delta r_1} r_{1+1/2}K_{1+1/2}^j  & \eqmark \cr
+\gamma_1 &= -{t^{j+1}-t^j \over r_1(r_{2}-r_{1})\Delta r_1} r_{1+1/2}K_{1+1/2}^j & \eqmark \cr
+g_1 &= {C_w}_1^{j+1,p-1}H_1^{j+1,p-1} - \theta_1^{j+1,p-1}+\theta_1^j - {r_0 q_0(t^{j+1}-t^j) \over r_1 \Delta r_1}& \eqmark \cr
+}
+$$
+
+2B. Root segment ($i=1$) with head boundary condition, applied while $h_1 = h_{lim}$, i.e., when transpiration is less than potential transpiration demand:
+$$
+\eqalignno{
+\beta_1 &= {C_w}_1^{j+1,p-1} + {t^{j+1}-t^j \over r_1(r_{1}-r_{0})\Delta r_1} r_{1/2}K_{1/2}^j
+  + {t^{j+1}-t^j \over r_1(r_{2}-r_{1})\Delta r_1} r_{1+1/2}K_{1+1/2}^j  & \eqmark \cr
+\gamma_1 &= -{t^{j+1}-t^j \over r_1(r_{2}-r_{1})\Delta r_1} r_{1+1/2}K_{1+1/2}^j & \eqmark \cr
+g_1 &= {C_w}_1^{j+1,p-1}H_1^{j+1,p-1} - \theta_1^{j+1,p-1}+\theta_1^j + {t^{j+1}-t^j \over r_1(r_{1}-r_{0})\Delta r_1} r_{1/2}K_{1/2}^j h_{lim} & \eqmark \cr
+}
+$$
+
+3. Outer segment ($i=n$):
+
+$$
+\eqalignno{
+\alpha_n &= -{t^{j+1}-t^j \over r_n(r_n-r_{n-1})\Delta r_n} r_{n-1/2}K_{n-1/2}^j & \eqmark \cr
+\beta_n &= {C_w}_n^{j+1,p-1}+{t^{j+1}-t^j \over r_n(r_n-r_{n-1})\Delta r_n} r_{n-1/2}K_{n-1/2}^j & \eqmark \cr
+g_n &= {C_w}_n^{j+1,p-1}H_n^{j+1,p-1} - \theta_n^{j+1,p-1}+\theta_n^j & \eqmark \cr
+}
+$$
+
+The value of pressure head $h$ is calculated and added to $H$ using the value of osmotic head ($h_\pi$) from the previous time step. The values of $h_\pi$ are calculated and then the values of $H$ are updated in the next time step. The process repeats until the values of updated $H$ converge to $H$ from the previous time step. 
