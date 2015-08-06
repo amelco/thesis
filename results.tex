@@ -57,9 +57,9 @@ We could not find a scenario that matched the first option.
 By analysing the Equation \ref[eq_clim2], it is noticeable that the maximum value for $C_{lim}$ is equal to $K_m$ and only if $q_0 \gg Km^2$. 
 But, even if the value of $q_0$ attends this condition, Equation \ref[eq_c2] shows that $C_2$ would be higher and, since the uptake function is a piecewise equation, $C_0$ would have to be decreased until it reaches $C_{lim}$. 
 At that time, the water flux would be low and the LCC period would be still small. 
-However, changing the scope and computing the differences between the two models starting from the time where LCC starts, a significant difference is noticed. 
+However, by changing the scope and computing the differences between the two models starting from the time where LCC starts, a significant difference is noticed. 
 
-Table \ref[tab_diff] shows the relative difference between the two models for concentration at root surface as function  of time ($C_0(t)$) and for concentration as a function of distance from axial center ($C(r)$) at the end of simulation, considering the shorter time scale (beginning from time where LCC is achieved). The Mann-whitney U test showed a significant difference for $C_0(t)$ but not for $C(r)$. The changes in root surface concentrations happen rapidly due to the decrease in solute uptake rate and it increase with time (Figure \ref[diff_t]), which is not the case for the concentration over the radial distance that the solute concentration for each segment is replenished by its neighbor, making the difference small with the increasing distance (Figure \ref[diff_r]). Scenario 4 never reached the LCC and it is presented in the results to show that the differences occurs only starting from this condition.
+Table \ref[tab_diff] shows the relative difference between the two models for concentration at root surface as function  of time ($C_0(t)$) and for concentration as a function of distance from axial center ($C(r)$) at the end of simulation, considering the shorter time scale (beginning from time where LCC starts). The Mann-whitney U test showed a significant difference for $C_0(t)$ but not for $C(r)$. The changes in root surface concentrations happen rapidly due to the decrease in solute uptake rate and it increase with time (Figure \ref[diff_t]), which is not the case for the concentration over the radial distance that the solute concentration for each segment is replenished by its neighbor, making the difference small with the increasing distance (Figure \ref[diff_r]). Scenario 4 never reached the LCC and it is presented in the results to show that the differences occurs only starting from this condition.
 
 
 %The relative differences between the models, for simulation scenarios 1 to 4 at the LCC, are shown in Table \ref[tab_diff]. 
@@ -149,10 +149,13 @@ In this thesis we choose to use NLU since the values of $C_0$ are important to d
 
 It is important to cite here the issues with stabilization in the numerical solution of NLU.
 %In addition, some part of the differences was due to stability problems with the numerical solution for NLU. 
-The changing from equation 21 to equation 25 (change of boundary condition, from constant to nonlinear uptake rate) makes the numerical solution take some time to stabilize at the initial times if the time and space steps are not chosen properly. 
-Many time and space steps combinations were used as an attempt to minimize the problem. 
-Choosing a very small time step eliminates the stabilization problem but makes the simulation lasts longer. 
-It needs to be found an optimal value for time and space step relation. 
+The change from equation 21 to equation 25 (change of boundary condition, from constant to nonlinear uptake rate) makes the numerical solution take some time to stabilize at the initial times if the time and space steps are not chosen properly. 
+Many different time and space steps combinations had to be tested, for each scenario, to eliminate the problem. 
+We found that, as a general rule, a small time step (commonly less than 0.1 s) can be used when the default space step is used. 
+In situations that a finner space step is necessary, smaller values of $\Delta t$ are required. 
+As mentioned before, decreasing the time step leads to an increase of the number of calculatoins making the simulation takes longer to complete. 
+In our simulation scenarios, the time that they took to complete ranged from 40 minutes to 1.5 days.
+%It needs to be found an optimal value for time and space step relation. 
 %Stabilization problems were not found in LU.
 
 %Since the differences between LU and NLU occurs for low concentration values and low solute flux, changes in relative transpiration are also negligible. The oscillation in the results due to the stabilization problem of the numerical solution is more likely to be noticed than the difference between the models. Figure \ref[diff_tr] shows the relative transpiration as a function of time and details the part where the oscillation occurs for each scenario. The absolute and relative differences are all due to oscillation problem, since $T_r$ turns out to be the same after complete convergence.
@@ -167,10 +170,22 @@ It needs to be found an optimal value for time and space step relation.
 
 \sec Model results
 
+According to the analysis of the differences between the linear (LU) and nonlinear (NLU) solution for the solute uptake equation showed in the last section, the simulations of scenarios 1 to 7 (Table \ref[tab_scenarios]) were made using NLU. In this section, the results of the main output variables ($C_0(t)$, $C(r)$ and $T_r(t)$) are presented for each scenario, as well as the active and passive contributions to uptake.
+
+%The model simulates the solute transport in soil according to the convection-dispersion equation \ref[eq_complete_solute] and boundary contitions of zero solute flux at the outer segment (Equation \ref[eq_bcrm]) and a concentration dependent solute uptake at root surface (inner segment, Equation \ref[eq_inner_bound]). 
+%Those equations have the soil water content as a variable (the governing solute transport equation does not consider steady-state condition in respect to water flow), which is determined by the water flow equation. 
+%The soil hydraulics functions and parameters determine how water flows towards the root and, consequently, the solute flow. 
+%Therefore, different soil types will interact differently with water and solute flow. 
+The simulation scenarios 1, 6 and 7 have the soil hydraulic properties as the only difference in the input parameters, being loam, sand and clay soil, respectively.
+The concentration profiles were different for each soil type (Figure \ref[fig_C_r]).
+Finer-texture soils offer less resistance to water transport and to convective solute flux.
+
+Figure \ref[fig_C_r] shows the response of $C(r)$ to different input values of soil, root density, initial concentration and potencial transpiration. 
+
 \medskip
 \label[fig_C_r]
 \picw=17cm \cinspic C_r.pdf
-\caption/f {Changes in $C(r)$ according to different values of the selected parameters}
+\caption/f {Responses of $C(r)$ to different values of the selected input parameters (a) soil, (b) root density, (c) initial concentration, and (d) potencial transpiration, simulated using the nonlinear uptake model (NLU)}
 \medskip
 
 \medskip
