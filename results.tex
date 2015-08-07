@@ -171,37 +171,67 @@ In our simulation scenarios, the time that they took to complete ranged from 40 
 \sec Model results
 
 According to the analysis of the differences between the linear (LU) and nonlinear (NLU) solution for the solute uptake equation showed in the last section, the simulations of scenarios 1 to 7 (Table \ref[tab_scenarios]) were made using NLU. 
-In this section, the results of the main output variables ($C(r)$, $C_0(t)$ and $T_r(t)$) are presented for each scenario, as well as the active and passive contributions to uptake.
+In this section, the results of the main output variables ($C_0(t)$, $C(r)$ and $T_r(t)$) are presented for each scenario, as well as the active and passive contributions to solute uptake.
+Simulation results are shown in Figures \ref[fig_C_t], \ref[fig_C_r] and \ref[fig_Tr_t] for the variations of soil hydraulic properties, root density, initial concentration and potential transpiration values. 
+All simulations had initial pressure head values of $-1$ m, so that both wet and dry soil conditions could be analysed.
 
-%The model simulates the solute transport in soil according to the convection-dispersion equation \ref[eq_complete_solute] and boundary contitions of zero solute flux at the outer segment (Equation \ref[eq_bcrm]) and a concentration dependent solute uptake at root surface (inner segment, Equation \ref[eq_inner_bound]). 
-%Those equations have the soil water content as a variable (the governing solute transport equation does not consider steady-state condition in respect to water flow), which is determined by the water flow equation. 
-%The soil hydraulics functions and parameters determine how water flows towards the root and, consequently, the solute flow. 
-%Therefore, different soil types will interact differently with water and solute flow. 
-The simulation scenarios 1, 6 and 7 have the soil hydraulic properties as the only difference in the input parameters, being loam, sand and clay soil, respectively.
-The concentration profiles were different for each soil type (Figure \ref[fig_C_r]).
-Finer-texture soils offer more resistance to water transport and to convective solute flux.
-In the clay soil, the relative transpiration starts to reduce from its potential earlier when compared to loam or sand soil because, according to its water retention curve
-, making that the concentration at root surface for clay soil.
-The water retention characteristics are different for each solo type, reflecting in different concentration profiles.
+The general model predictions can be done by analysing scenario 1, chosen to be the default scenario (continuous line in Figures \ref[fig_C_t], \ref[fig_C_r] and \ref[fig_Tr_t]).
+According to the piecewise Equation \ref[eq_MM_mod], the solute uptake rate is divided in three phases. Let us call them linear uptake phase when $C_0>C_2$, constant uptake phase when $C_{lim}<C_0<C_2$, and nonlinear uptake phase when $C_0<C_{lim}$.
+For the simulation scenarios, the set of input parameters $h_{ini}$ and $C_{ini}$ were chosen in a way that the simulation always starts at the linear phase, at which the water is taken up in the same rate of the potential transpiration and the solute uptake is done by mass flow of water only (passive uptake).
+The water content and concentration in bulk soil are being depleted at the same rate, developing a period of constant concentration in soil water (Figure \ref[fig_C_t]).
+The depletion of $C_0$ starts a little after at the onset of the $T_r$ falling rate phase.
+When the total head reaches its limit value $H_{lim}$, there is a reduction in $q_0$ and, consequently, an increase in $C_2$ value according to Equation \ref[eq_c2].
+Therefore, the time that the constant uptake phase ($C_0<C_2$) starts depends on the rate of $q_0$ decrease.
+(WE CAN SEE IT IN THE DIFFERENT SOIL TYPES)
+In the constant uptake phase, the solute uptake by mass flow does not attend the plant demand. 
+Thus, according to the model assumptions, an active uptake is developed and it becomes higher as the passive uptake (driven by mass flow of water) becomes lower.
+This constant demand, fulfilled by active and passive uptake, is maintained until $C_0$ reaches $C_{lim}$ which, in turn, increases as $q_0$ decreases (Equation \ref[eq_clim]).
+At this point, active uptake reached its maximum value and now it is limited by the concentration in the soil.
+This is also when a second reduction in $T_r$ occurs (EXPLAIN WHY).
 
-Figure \ref[fig_C_r] shows the response of $C(r)$ to different input values of soil, root density, initial concentration and potencial transpiration. 
+
+
+The variation in concentration over time and distance to soil hydraulic properties is shown in Figures \ref[fig_C_t](a) and \ref[fig_C_r](a).
+Although the initial concentration in bulk soil is the same (10 mol m$^{-3}$), initially, the concentrations at the root surface are different for each soil type. 
+As the input parameter for water content is {\it h}-based, its initial value is calculated according to Equation \ref[eq_theta], which leads to different $\theta$ values for each soil, in accordance to their hydraulic parameters. 
+The water retention curve for the three soil types can be seen in Figure \ref[fig_wrcs].
+The constant $C_0$ values on Figure \ref[fig_C_r]
+
+In the clay soil, $C_0$
+
+%All simulations started with a low value of pressure head ($h=-1 m$) such that the potencial transpiration is attended ($T_r=1$) until the value of total potentail $H$ is equal to the limiting value, -150 m in our simulations.
+%This is the onset of the falling rate phase for the relative transpiration ($T_r<1$). The water flux diminishes from its start value -- wich was constant because $T_r$ was also constant -- and the concentration in soil water starts to diminish (the uptake by mass flow also diminishes and it starts to become less important) because the water uptake rate is less but the solute uptake remains the same -- it is the constant solute uptake phase.
+%When the concentration at root surface becomes less than $C_{lim}$, we are at the LCC phase and the uptake by mass flow is really small. 
+%
+%To see the differences in the model predictions we changed some input parameters...
+%It can be seen in Figure \ref[fig_C_r](a) that the concentration profile is different for different soil types. Fine-textured soil retains more water and the soil reaches the residual water content faster. 
+%The only situation that did not make difference was for the potential transpiration change. The final concentration profile was the same. EXPLAIN WHY
+%
+%The simulation scenarios 1, 6 and 7 have the soil hydraulic properties as the only difference in the input parameters, being loam, sand and clay soil, respectively.
+%The concentration profiles were different for each soil type (Figure \ref[fig_C_r]).
+%Finer-texture soils offer more resistance to water transport and to convective solute flux.
+%In the clay soil, the relative transpiration starts to reduce from its potential earlier when compared to loam or sand soil because, according to its water retention curve
+%, making that the concentration at root surface for clay soil.
+%The water retention characteristics are different for each solo type, reflecting in different concentration profiles.
+%
+%Figure \ref[fig_C_r] shows the response of $C(r)$ to different input values of soil, root density, initial concentration and potencial transpiration. 
 
 \medskip
 \label[fig_wrcs]
-\picw=12cm \cinspic wrcs.pdf
+\picw=11cm \cinspic wrcs.pdf
 \caption/f {Theoretical water retention curves, according to Equation \ref[eq_theta], for the selected simulation soils from Table \ref[soils]}
-\medskip
-
-\medskip
-\label[fig_C_r]
-\picw=17cm \cinspic C_r.pdf
-\caption/f {Concentration in soil water as a function of distance from axial center, at the end of simulation, with different values of the selected input parameters (a) soil, (b) root density, (c) initial concentration, and (d) potencial transpiration, simulated using the nonlinear uptake model (NLU)}
 \medskip
 
 \medskip
 \label[fig_C_t]
 \picw=17cm \cinspic C_t.pdf
 \caption/f {Changes in $C_0(t)$ according to different values of the selected parameters}
+\medskip
+
+\medskip
+\label[fig_C_r]
+\picw=17cm \cinspic C_r.pdf
+\caption/f {Concentration in soil water as a function of distance from axial center, at the end of simulation, with different values of the selected input parameters (a) soil, (b) root density, (c) initial concentration, and (d) potencial transpiration, simulated using the nonlinear uptake model (NLU)}
 \medskip
 
 \medskip
@@ -241,29 +271,29 @@ Figure \ref[Trs] shows that CU and NLU have a more negative pressure head value 
 
 At the onset of the second falling rate phase ($C<C_{lim}$), water and solute fluxes decreases rapidly. In Figures XXX10 and 20 we can see that from day 4 to day 5, the fluxes are rapidly reduced, the water flux is near zero in the whole profile, meaning zero or really small convection. Thus, within this period, the transport of solute is made mainly by diffusion and the results of this diffusive transport can be visualized in Figures XXX17 and 18.
 
-\medskip
-\label[cxt]
-\picw=13cm \cinspic cxt.pdf
-\caption/f {Solute concentration in soil water at root surface as a function of time for no uptake (NU), constant (CU) and nonlinear (NLU) uptake models}
-\medskip
-
-\medskip
-\label[cxr]
-\picw=13cm \cinspic cxr.pdf
-\caption/f {Solute concentration in soil water as a function of distance from axial center for no uptake (NU), constant (CU) and nonlinear (NLU) uptake models}
-\medskip
-
-\medskip
-\label[fluxesxt]
-\picw=13cm \cinspic fluxesxt.pdf
-\caption/f {Solute and water fluxes at root surface as a function of time for no uptake (NU), constant (CU) and nonlinear (NLU) uptake models}
-\medskip
-
-\medskip
-\label[Trs]
-\picw=13cm \cinspic Trs.pdf
-\caption/f {Relative transpiration as a function of time and pressure head for no uptake (NU), constant (CU) and nonlinear (NLU) uptake models}
-\medskip
+%\medskip
+%\label[cxt]
+%\picw=13cm \cinspic cxt.pdf
+%\caption/f {Solute concentration in soil water at root surface as a function of time for no uptake (NU), constant (CU) and nonlinear (NLU) uptake models}
+%\medskip
+%
+%\medskip
+%\label[cxr]
+%\picw=13cm \cinspic cxr.pdf
+%\caption/f {Solute concentration in soil water as a function of distance from axial center for no uptake (NU), constant (CU) and nonlinear (NLU) uptake models}
+%\medskip
+%
+%\medskip
+%\label[fluxesxt]
+%\picw=13cm \cinspic fluxesxt.pdf
+%\caption/f {Solute and water fluxes at root surface as a function of time for no uptake (NU), constant (CU) and nonlinear (NLU) uptake models}
+%\medskip
+%
+%\medskip
+%\label[Trs]
+%\picw=13cm \cinspic Trs.pdf
+%\caption/f {Relative transpiration as a function of time and pressure head for no uptake (NU), constant (CU) and nonlinear (NLU) uptake models}
+%\medskip
 
 \sec Guidelines to upscale the proposed model
 
