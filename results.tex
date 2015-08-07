@@ -170,7 +170,8 @@ In our simulation scenarios, the time that they took to complete ranged from 40 
 
 \sec Model results
 
-According to the analysis of the differences between the linear (LU) and nonlinear (NLU) solution for the solute uptake equation showed in the last section, the simulations of scenarios 1 to 7 (Table \ref[tab_scenarios]) were made using NLU. In this section, the results of the main output variables ($C_0(t)$, $C(r)$ and $T_r(t)$) are presented for each scenario, as well as the active and passive contributions to uptake.
+According to the analysis of the differences between the linear (LU) and nonlinear (NLU) solution for the solute uptake equation showed in the last section, the simulations of scenarios 1 to 7 (Table \ref[tab_scenarios]) were made using NLU. 
+In this section, the results of the main output variables ($C(r)$, $C_0(t)$ and $T_r(t)$) are presented for each scenario, as well as the active and passive contributions to uptake.
 
 %The model simulates the solute transport in soil according to the convection-dispersion equation \ref[eq_complete_solute] and boundary contitions of zero solute flux at the outer segment (Equation \ref[eq_bcrm]) and a concentration dependent solute uptake at root surface (inner segment, Equation \ref[eq_inner_bound]). 
 %Those equations have the soil water content as a variable (the governing solute transport equation does not consider steady-state condition in respect to water flow), which is determined by the water flow equation. 
@@ -178,14 +179,23 @@ According to the analysis of the differences between the linear (LU) and nonline
 %Therefore, different soil types will interact differently with water and solute flow. 
 The simulation scenarios 1, 6 and 7 have the soil hydraulic properties as the only difference in the input parameters, being loam, sand and clay soil, respectively.
 The concentration profiles were different for each soil type (Figure \ref[fig_C_r]).
-Finer-texture soils offer less resistance to water transport and to convective solute flux.
+Finer-texture soils offer more resistance to water transport and to convective solute flux.
+In the clay soil, the relative transpiration starts to reduce from its potential earlier when compared to loam or sand soil because, according to its water retention curve
+, making that the concentration at root surface for clay soil.
+The water retention characteristics are different for each solo type, reflecting in different concentration profiles.
 
 Figure \ref[fig_C_r] shows the response of $C(r)$ to different input values of soil, root density, initial concentration and potencial transpiration. 
 
 \medskip
+\label[fig_wrcs]
+\picw=12cm \cinspic wrcs.pdf
+\caption/f {Theoretical water retention curves, according to Equation \ref[eq_theta], for the selected simulation soils from Table \ref[soils]}
+\medskip
+
+\medskip
 \label[fig_C_r]
 \picw=17cm \cinspic C_r.pdf
-\caption/f {Responses of $C(r)$ to different values of the selected input parameters (a) soil, (b) root density, (c) initial concentration, and (d) potencial transpiration, simulated using the nonlinear uptake model (NLU)}
+\caption/f {Concentration in soil water as a function of distance from axial center, at the end of simulation, with different values of the selected input parameters (a) soil, (b) root density, (c) initial concentration, and (d) potencial transpiration, simulated using the nonlinear uptake model (NLU)}
 \medskip
 
 \medskip
