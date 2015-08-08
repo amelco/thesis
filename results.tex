@@ -175,69 +175,35 @@ In this section, the results of the main output variables ($C_0(t)$, $C(r)$ and 
 Simulation results are shown in Figures \ref[fig_C_t], \ref[fig_C_r] and \ref[fig_Tr_t] for the variations of soil hydraulic properties, root density, initial concentration and potential transpiration values. 
 All simulations had initial pressure head values of $-1$ m, so that both wet and dry soil conditions could be analysed.
 
-The general model predictions can be done by analysing scenario 1, chosen to be the default scenario (continuous line in Figures \ref[fig_C_t], \ref[fig_C_r] and \ref[fig_Tr_t]).
+%The general model predictions can be done by analysing scenario 1, chosen to be the default scenario (continuous line in Figures \ref[fig_C_t], \ref[fig_C_r] and \ref[fig_Tr_t]).
 According to the piecewise Equation \ref[eq_MM_mod], the solute uptake rate is divided in three phases. Let us call them linear uptake phase when $C_0>C_2$, constant uptake phase when $C_{lim}<C_0<C_2$, and nonlinear uptake phase when $C_0<C_{lim}$.
-For the simulation scenarios, the set of input parameters $h_{ini}$ and $C_{ini}$ were chosen in a way that the simulation always starts at the linear phase, at which the water is taken up in the same rate of the potential transpiration and the solute uptake is done by mass flow of water only (passive uptake).
+For the simulation scenarios, the set of input parameters $h_{ini}$ and $C_{ini}$ were chosen in a way that the simulation always starts at the linear uptake phase, at which $T_r=1$ and solute uptake is done by mass flow of water only (passive uptake).
 The water content and concentration in bulk soil are being depleted at the same rate, developing a period of constant concentration in soil water (Figure \ref[fig_C_t]).
-The depletion of $C_0$ starts a little after at the onset of the $T_r$ falling rate phase.
-When the total head reaches its limit value $H_{lim}$, there is a reduction in $q_0$ and, consequently, an increase in $C_2$ value according to Equation \ref[eq_c2].
-Therefore, the time that the constant uptake phase ($C_0<C_2$) starts depends on the rate of $q_0$ decrease.
-(WE CAN SEE IT IN THE DIFFERENT SOIL TYPES)
-In the constant uptake phase, the solute uptake by mass flow does not attend the plant demand. 
-Thus, according to the model assumptions, an active uptake is developed and it becomes higher as the passive uptake (driven by mass flow of water) becomes lower.
-This constant demand, fulfilled by active and passive uptake, is maintained until $C_0$ reaches $C_{lim}$ which, in turn, increases as $q_0$ decreases (Equation \ref[eq_clim]).
-At this point, active uptake reached its maximum value and now it is limited by the concentration in the soil.
-This is also when a second reduction in $T_r$ occurs (EXPLAIN WHY).
-
-
-
-The variation in concentration over time and distance to soil hydraulic properties is shown in Figures \ref[fig_C_t](a) and \ref[fig_C_r](a).
-Although the initial concentration in bulk soil is the same (10 mol m$^{-3}$), initially, the concentrations at the root surface are different for each soil type. 
-As the input parameter for water content is {\it h}-based, its initial value is calculated according to Equation \ref[eq_theta], which leads to different $\theta$ values for each soil, in accordance to their hydraulic parameters. 
-The water retention curve for the three soil types can be seen in Figure \ref[fig_wrcs].
-The constant $C_0$ values on Figure \ref[fig_C_r]
-
-In the clay soil, $C_0$
-
-%All simulations started with a low value of pressure head ($h=-1 m$) such that the potencial transpiration is attended ($T_r=1$) until the value of total potentail $H$ is equal to the limiting value, -150 m in our simulations.
-%This is the onset of the falling rate phase for the relative transpiration ($T_r<1$). The water flux diminishes from its start value -- wich was constant because $T_r$ was also constant -- and the concentration in soil water starts to diminish (the uptake by mass flow also diminishes and it starts to become less important) because the water uptake rate is less but the solute uptake remains the same -- it is the constant solute uptake phase.
-%When the concentration at root surface becomes less than $C_{lim}$, we are at the LCC phase and the uptake by mass flow is really small. 
-%
-%To see the differences in the model predictions we changed some input parameters...
-%It can be seen in Figure \ref[fig_C_r](a) that the concentration profile is different for different soil types. Fine-textured soil retains more water and the soil reaches the residual water content faster. 
-%The only situation that did not make difference was for the potential transpiration change. The final concentration profile was the same. EXPLAIN WHY
-%
-%The simulation scenarios 1, 6 and 7 have the soil hydraulic properties as the only difference in the input parameters, being loam, sand and clay soil, respectively.
-%The concentration profiles were different for each soil type (Figure \ref[fig_C_r]).
-%Finer-texture soils offer more resistance to water transport and to convective solute flux.
-%In the clay soil, the relative transpiration starts to reduce from its potential earlier when compared to loam or sand soil because, according to its water retention curve
-%, making that the concentration at root surface for clay soil.
-%The water retention characteristics are different for each solo type, reflecting in different concentration profiles.
-%
-%Figure \ref[fig_C_r] shows the response of $C(r)$ to different input values of soil, root density, initial concentration and potencial transpiration. 
-
-\medskip
-\label[fig_wrcs]
-\picw=11cm \cinspic wrcs.pdf
-\caption/f {Theoretical water retention curves, according to Equation \ref[eq_theta], for the selected simulation soils from Table \ref[soils]}
-\medskip
+In the case of the different soil types, as shown in Figure \ref[fig_C_t](a), although the initial concentration in bulk soil is the same (10 mol m$^{-3}$), initially, the concentrations in soil water at the root surface are different for each soil type. 
+As the input parameter for water content is {\it h}-based, its initial value is calculated according to Equation \ref[eq_theta], which leads to different $\theta$ values for each soil, in accordance to their hydraulic parameters.
 
 \medskip
 \label[fig_C_t]
 \picw=17cm \cinspic C_t.pdf
-\caption/f {Changes in $C_0(t)$ according to different values of the selected parameters}
+\caption/f {Concentration in soil water as a function of time with different values of the selected input parameters (a) soil, (b) root density, (c) initial concentration, and (d) potencial transpiration, simulated using the nonlinear uptake model (NLU)}
 \medskip
 
-\medskip
-\label[fig_C_r]
-\picw=17cm \cinspic C_r.pdf
-\caption/f {Concentration in soil water as a function of distance from axial center, at the end of simulation, with different values of the selected input parameters (a) soil, (b) root density, (c) initial concentration, and (d) potencial transpiration, simulated using the nonlinear uptake model (NLU)}
-\medskip
+The constant uptake phase is characterized by the depletion of $C_0$ at a constant rate, which starts some time after the onset of the $T_r$ falling rate phase.
+%, when the total head reaches its limit value $H_{lim}$. 
+The reduction in $q_0$ (reflected in $T_r$) increases $C_2$ value according to Equation \ref[eq_c2], therefore, the time that the constant uptake phase starts depends on the rate that $q_0$ decreases.
+According to the results showed in Figure \ref[fig_C_t], the rate of decreasing $q_0$ is modified by soil type, root density, initial concentration and potential transpiration.
+%(WE CAN SEE IT IN THE DIFFERENT SOIL TYPES)
+Moreover, in the constant uptake phase, the solute uptake by mass flow does not attend completely the plant demand,
+thus, according to the model assumptions, an active uptake is developed and it becomes higher as the passive uptake (driven by mass flow of water) becomes lower (Figure \ref[fig_contrib_t]).
+This constant demand, filled by active and passive uptake, is maintained until $C_0$ reaches $C_{lim}$ which, in turn, increases as $q_0$ decreases, according to Equation \ref[eq_clim].
+Active uptake reaches its maximum value when $C_0=C_{lim}$ (Figure \ref[fig_contrib_t]) and the uptake will be limited by the concentration in the soil in further time steps, starting the nonlinear uptake phase.
+It can be seen in Figure \ref[fig_contrib_t] that the time of the occurrence of the maximum value for active uptake depends on how fast passive uptake and $C_0$ decrease. 
+Passive uptake decreases as fast as $q_0$ and $C_0$ decreases depending on the rate of solute uptake \im, therefore, the soil type, root density, initial concentration and potential transpiration also affects the time for the maximum active uptake value and, consequently, the time at which the nonlinear phase starts.
 
 \medskip
-\label[fig_Tr_t]
-\picw=17cm \cinspic Tr_t.pdf
-\caption/f {Changes in $T_r(t)$ according to different values of the selected parameters}
+\label[fig_contrib_t]
+\picw=17cm \cinspic all_contributionsxt.pdf
+\caption/f {Still to put}
 \medskip
 
 \medskip
@@ -246,13 +212,128 @@ In the clay soil, $C_0$
 \caption/f {Still to put}
 \medskip
 
+The characteristic of the nonlinear uptake phase is a second falling rate phase for $T_r$. 
+The total head $H$ is not able to fall below $H_{lim}$ and, as the solute uptake rate ($q_{s0}$) decreases due to the limitation imposed by $C_{lim}$, a decrease in the water uptake rate ($q_0$) has to occur to maintain $H$ in its limiting value.
+It is the shortest phase because it starts with very low values of $q_0$ and $T_r$, near the end time of simulation ($T_r=0.001$) in which $q_0$ is considered negligible.
+Figure \ref[fig_contrib_c] showns that the three phases are present in all scenarios, excepting scenario 7. The water flux is small due to the hydraulic properties of the clay soil which causes also a small solute uptake. 
+The concentration in soil solution at root surface, when $T_r\approx0$ (end of simulation), is higher than $C_{lim}$ (Figure \ref[fig_C_r](a)) and the active contribution ends in its maximum value (Figures \ref[fig_contrib_t] and \ref[fig_contrib_c]).
+
+%\medskip
+%\label[fig_wrcs]
+%\picw=11cm \cinspic wrcs.pdf
+%\caption/f {Theoretical water retention curves, according to Equation \ref[eq_theta], for the selected simulation soils from Table \ref[soils]}
+%\medskip
+
+The final concentration profile is shown to be affected by all selected input parameters, excepting potential transpiration (Figure \ref[fig_C_r]).
+Decreasing $T_p$ from 6 mm to 3 mm just changed the times of the limiting variables due to the decrease in water and solute fluxes. Figure \ref[fig_contrib_c], that has no time axes, shows the same amount of active and passive uptake contributions according to the actual concentration in the soil, for both scenarios 1 ($T_p=6$ mm) and 2 ($T_p=3$ mm).
+This only can cause the same concentration profiles for every condition, although at different times.
+
+The $C_0$ value at the end of simulation is never absolutely zero due to the asymptotic behaviour of $q_{s0}$ function in response to decreasing $C_0$ values (Equation \ref[eq_case1]). 
+%Even so, $C_0$ becomes so close to zero that it can be consider zero and, consequently, solute uptake also zero.
+
 \medskip
-\label[fig_contrib_t]
-\picw=17cm \cinspic all_contributionsxt.pdf
-\caption/f {Still to put}
+\label[fig_C_r]
+\picw=17cm \cinspic C_r.pdf
+\caption/f {Concentration in soil water as a function of distance from axial center, at the end of simulation, with different values of the selected input parameters (a) soil, (b) root density, (c) initial concentration, and (d) potencial transpiration, simulated using the nonlinear uptake model (NLU)}
+\medskip
+
+%\medskip
+%\label[fig_Tr_t]
+%\picw=17cm \cinspic Tr_t.pdf
+%\caption/f {Changes in $T_r(t)$ according to different values of the selected parameters}
+%\medskip
+
+The model is able to quantify the active and passive uptake (say its importance).
+The time that the maximum active uptake value is reached depends on ... (say the importance of that)
+The time that the concentration starts to decrease depends on ... and happens some time after the Tr reduction (this implies something interesting?)
+
+To better analyse the impact of the input parameters at the model results, a sensitivity analysis was made.
+
+\sec Sensitivity analysis results
+
+\medskip
+\label[fig_etas]
+\picw=11cm \cinspic bar_n.pdf
+\caption/f {Relative partial sensitivity ($\eta$) of selected model outputs to $I_m$ parameter. tC0, tTr, tend~-~times at the onset of falling concentration at root surface and transpiration and time at the end of simulation, respectively; hTr and hosTr~-~pressure and osmotic heads at the onset of falling transpiration; acc~-~total amount of solute taken up by the root at the end of simulation}
+\medskip
+
+\medskip
+\label[sensitivity_all]
+\picw=17cm \cinspic final_every_bar.pdf
+\caption/f {Relative partial sensitivity of end time of simulation ($t_{end}$) and osmotic head ($h_{os}$) to selected plant and soil hydraulic sensitivity parameters for scenarios 1 to 7}
 \medskip
 
 \sec Solute uptake models comparison
+
+\medskip
+\label[fig_C0]
+\picw=11cm \cinspic cxt1.pdf
+\caption/f {Soil solution concentration at root surface as a function of time for constant (CU), zero (ZU) and nonlinear (NLU) uptake models}
+\medskip
+
+\medskip
+\label[fig_C]
+\picw=11cm \cinspic cxr1.pdf
+\caption/f {Soil solution concentration as a function of distance from axial root center for constant (CU), zero (ZU) and nonlinear (NLU) uptake models}
+\medskip
+
+\medskip
+\label[fig_accsol]
+\picw=11cm \cinspic accumxt.pdf
+\caption/f {Cumulative solute uptake as a function of time for constant (CU), zero (ZU) and nonlinear (NLU) uptake models}
+\medskip
+
+\vfill\break
+\medskip
+\label[fig_heads1]
+\picw=11cm \cinspic headsxt.pdf
+\caption/f {Pressure ($h$), osmotic ($h_\pi$) and total ($H$) heads as a function of time for constant (CU) and zero (ZU) uptake models}
+\medskip
+
+\medskip
+\label[fig_heads2]
+\picw=11cm \cinspic headsNLxt.pdf
+\caption/f {Pressure ($h$), osmotic ($h_\pi$) and total ($H$) heads as a function of time for nonlinear (NLU) uptake model}
+\medskip
+
+\vfill\break
+\medskip
+\label[fig_qst]
+\picw=11cm \cinspic qxt1.pdf
+\caption/f {Water flux at root surface as a function of time for constant (CU), zero (ZU) and nonlinear (NLU) uptake models}
+\medskip
+
+\medskip
+\label[fig_qst_detail]
+\picw=11cm \cinspic qsxt1_detail.pdf
+\caption/f {Detail of solute flux at root surface as a function of time, at times when $C_0<C_{lim}$, for constant (CU), zero (ZU) and nonlinear (NLU) uptake models}
+\medskip
+
+%\medskip
+%%\label[Trs]
+%\picw=11cm \cinspic qxt1.pdf
+%%\caption/f {Relative transpiration as a function of time and pressure head for no uptake (NU), constant (CU) and nonlinear (NLU) uptake models}
+%\medskip
+
+\vfill\break
+\medskip
+\label[fig_Tr]
+\picw=11cm \cinspic Trxt1.pdf
+\caption/f {Relative transpiration as a function of time for constant (CU), zero (ZU) and nonlinear (NLU) uptake models}
+\medskip
+
+%\medskip
+%\label[fig_Tr_detail]
+%\picw=11cm \cinspic Trxt1_detail.pdf
+%\caption/f {Detail of Relative transpiration as a function of time, at times when $C_0<C_{lim}$, for linear (LU) and nonlinear (NLU) uptake models}
+%\medskip
+
+\vfill\break
+%\medskip
+%\label[fig_Im_sensit_curve]
+%\picw=11cm \cinspic Im_x_C0.pdf
+%\caption/f {Response of the time at the onset of concentration reduction at root surface for different values of $I_m$ parameter}
+%\medskip
 
 In NU, salt is transported to the roots by convection, causing an accumulation of solutes at root surface. As water flux towards the root starts to decrease, salt is transported slower and carried away from the roots by diffusion (Figure \ref[cxt]). Because of the accumulation of salt in the root surface, the total head becomes limiting very fast and the transpiration is reduced faster than the other models (Figure \ref[Trs]).
 
@@ -298,84 +379,4 @@ At the onset of the second falling rate phase ($C<C_{lim}$), water and solute fl
 \sec Guidelines to upscale the proposed model
 
 \cleardoublepage
-\medskip
-\label[fig_C0]
-\picw=11cm \cinspic cxt1.pdf
-\caption/f {Soil solution concentration at root surface as a function of time for constant (CU), zero (ZU) and nonlinear (NLU) uptake models}
-\medskip
 
-\medskip
-\label[fig_C]
-\picw=11cm \cinspic cxr1.pdf
-\caption/f {Soil solution concentration as a function of distance from axial root center for constant (CU), zero (ZU) and nonlinear (NLU) uptake models}
-\medskip
-
-\medskip
-\label[fig_accsol]
-\picw=11cm \cinspic accumxt.pdf
-\caption/f {Cumulative solute uptake as a function of time for constant (CU), zero (ZU) and nonlinear (NLU) uptake models}
-\medskip
-
-\vfill\break
-\medskip
-\label[fig_heads1]
-\picw=11cm \cinspic headsxt.pdf
-\caption/f {Pressure ($h$), osmotic ($h_\pi$) and total ($H$) heads as a function of time for constant (CU) and zero (ZU) uptake models}
-\medskip
-
-\medskip
-\label[fig_heads2]
-\picw=11cm \cinspic headsNLxt.pdf
-\caption/f {Pressure ($h$), osmotic ($h_\pi$) and total ($H$) heads as a function of time for nonlinear (NLU) uptake model}
-\medskip
-
-\vfill\break
-\medskip
-\label[fig_qst]
-\picw=11cm \cinspic qsxt1.pdf
-\caption/f {Solute flux at root surface as a function of time for constant (CU), zero (ZU) and nonlinear (NLU) uptake models}
-\medskip
-
-\medskip
-\label[fig_qst_detail]
-\picw=11cm \cinspic qsxt1_detail.pdf
-\caption/f {Detail of solute flux at root surface as a function of time, at times when $C_0<C_{lim}$, for constant (CU), zero (ZU) and nonlinear (NLU) uptake models}
-\medskip
-
-%\medskip
-%%\label[Trs]
-%\picw=11cm \cinspic qxt1.pdf
-%%\caption/f {Relative transpiration as a function of time and pressure head for no uptake (NU), constant (CU) and nonlinear (NLU) uptake models}
-%\medskip
-
-\vfill\break
-\medskip
-\label[fig_Tr]
-\picw=11cm \cinspic Trxt1.pdf
-\caption/f {Relative transpiration as a function of time for constant (CU), zero (ZU) and nonlinear (NLU) uptake models}
-\medskip
-
-\medskip
-\label[fig_Tr_detail]
-\picw=11cm \cinspic Trxt1_detail.pdf
-\caption/f {Detail of Relative transpiration as a function of time, at times when $C_0<C_{lim}$, for linear (LU) and nonlinear (NLU) uptake models}
-\medskip
-
-\vfill\break
-\medskip
-\label[fig_Im_sensit_curve]
-\picw=11cm \cinspic Im_x_C0.pdf
-\caption/f {Response of the time at the onset of concentration reduction at root surface for different values of $I_m$ parameter}
-\medskip
-
-\medskip
-\label[fig_etas]
-\picw=11cm \cinspic bar_n.pdf
-\caption/f {Relative partial sensitivity ($\eta$) of selected model outputs to $I_m$ parameter. tC0, tTr, tend~-~times at the onset of falling concentration at root surface and transpiration and time at the end of simulation, respectively; hTr and hosTr~-~pressure and osmotic heads at the onset of falling transpiration; acc~-~total amount of solute taken up by the root at the end of simulation}
-\medskip
-
-\medskip
-\label[sensitivity_all]
-\picw=11cm \cinspic final_every_bar.pdf
-\caption/f {Relative partial sensitivity of end time of simulation ($t_{end}$) and osmotic head ($h_{os}$) to selected plant and soil hydraulic sensitivity parameters for scenarios 1 to 7}
-\medskip
