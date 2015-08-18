@@ -214,8 +214,8 @@ Passive uptake decreases as fast as $q_0$ and $C_0$ decreases depending on the r
 The characteristic of the nonlinear uptake phase is a second falling rate phase for $T_r$. 
 The total head $H$ is not able to fall below $H_{lim}$ and, as the solute uptake rate ($q_{s_0}$) decreases due to the limitation imposed by $C_{lim}$, a decrease in the water uptake rate ($q_0$) has to occur to maintain $H$ in its limiting value.
 It is the shortest phase because it starts with very low values of $q_0$ and $T_r$, near the end time of simulation ($T_r=0.001$) in which $q_0$ is considered negligible.
-According to \citeonline[tinker], at low concentrations, the ion transport across membranes is limited by the diffusive flux of solute towards the membrane in case of high affinity uptake (low $K_m$ values) and
-the contribution of the solute uptake by mass flow of water (through the transpiration stream) is estimated to be very low, often below 0.1\%.
+{\localcolor\Red According to \citeonline[tinker], at low concentrations, the ion transport across membranes is limited by the diffusive flux of solute towards the membrane in case of high affinity uptake (low $K_m$ values) and
+the contribution of the solute uptake by mass flow of water (through the transpiration stream) is estimated to be very low, often below 0.1\%.}
 Figure \ref[fig_contrib_c] showns that the three phases are present in all scenarios, excepting scenario 7. The water flux is small due to the hydraulic properties of the clay soil which causes also a small solute uptake. 
 The concentration in soil solution at root surface, when $T_r\approx0$ (end of simulation), is higher than $C_{lim}$ (Figure \ref[fig_C_r](a)) and the active contribution ends in its maximum value (Figures \ref[fig_contrib_t] and \ref[fig_contrib_c]).
 
@@ -272,7 +272,7 @@ Thus, in general, a variation of 1\% in $K_m$ and $I_m$ cause, respectively, a d
 The exception was scenario 7 that showed low $\eta$ values for both parameters.
 The reason is the small variation in concentration from the beginning to the end of simulation due to the low water and solute fluxes of the clay soil, explained in last section.
 
-Figure \ref[sensitivity_MM_rest] shows that, despite the sensitivity of $h_{os}$, $acc$ presented very low (close to zero) sensitivity to $K_m$ and $I_m$.
+Fig:re \ref[sensitivity_MM_rest] shows that, despite the sensitivity of $h_{os}$, $acc$ presented very low (close to zero) sensitivity to $K_m$ and $I_m$.
 This is due to the fact that $I_m$ and $K_m$ just effectively act in the solute uptake rate in the constant and nonlinear uptake phases, since all the uptake in the linear uptake phase is due to mass flow of water. 
 The period of constant and nonlinear phases are relatively short when compared with the linear phase period, causing a low influence of $I_m$ and $K_m$ in the accumulated solute uptake. 
 
@@ -344,6 +344,12 @@ The accumulated solute uptake presented low sensitivity to all tested parameters
 
 \sec Solute uptake models comparison
 
+The incorporation of solute uptake in the model of \citeonline[liersolute] shows to be very complex according to the results that has been shown. 
+The differences are shown in this section, together with the constant uptake model developed by \citeonline[willigen1] to 
+SECTION INTRODUCTION
+
+The most obvious difference is that ZU tends to accumulate solute at the root surface with increasing time due to the no uptake
+
 \medskip
 \label[fig_C0]
 \picw=11cm \cinspic cxt1.pdf
@@ -358,7 +364,7 @@ The accumulated solute uptake presented low sensitivity to all tested parameters
 
 \medskip
 \label[fig_accsol]
-\picw=11cm \cinspic accumxt.pdf
+\picw=11cm \cinspic accumxt_models.pdf
 \caption/f {Cumulative solute uptake as a function of time for constant (CU), zero (ZU) and nonlinear (NLU) uptake models}
 \medskip
 
