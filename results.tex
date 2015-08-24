@@ -211,30 +211,53 @@ Active uptake reaches its maximum value when $C_0=C_{lim}$ (Figure \ref[fig_cont
 It can be seen in Figure \ref[fig_contrib_t] that the time of the occurrence of the maximum value for active uptake depends on how fast passive uptake and $C_0$ decrease. 
 Passive uptake decreases as fast as $q_0$ and $C_0$ decreases depending on the rate of solute uptake \im{} (according to Equation \ref[eq_MM_mod] and model assumptions), therefore, the soil type, root density, initial concentration and potential transpiration also affects the time for the maximum active uptake value and, consequently, the time at which NUP starts.
 
+\def\desc{Scenarios according to Table \ref[tab_scenarios] with scenario 1 as default and the others with the variation parameter specified on their titles}
+
 \medskip
 \label[fig_contrib_t]
 \picw=17cm \cinspic all_contributionsxt.pdf
-\caption/f {Active and passive contributions to the solute uptake as a function of time. Thicker continuous line represents the total uptake (active+passive)}
+\caption/f {Active and passive contributions to the solute uptake as a function of time. Thicker continuous line represents the total uptake (active+passive). \desc}
 \medskip
 
 \medskip
 \label[fig_contrib_c]
 \picw=17cm \cinspic all_contributionsxc.pdf
-\caption/f {Active, passive and total uptake ($q_{s_0}$) as a function of concentration in soil water}
+\caption/f {Active, passive and total uptake ($q_{s_0}$) as a function of concentration in soil water. \desc}
 \medskip
 
 The characteristic of the nonlinear uptake phase is a second falling rate phase for $T_r$ (as shown in Figure \ref[diff_tr]). 
 The total head $H$ is not able to fall below $H_{lim}$ and, as the solute uptake rate ($q_{s_0}$) decreases due to the limitation imposed by $C_{lim}$ (Equation~\ref[eq_MM_mod]), a decrease in the water uptake rate ($q_0$) has to occur to maintain $H$ in its limiting value.
 It is the shortest phase because it starts with very low values of $q_0$ and $T_r$, near the end time of simulation ($T_r=0.001$) in which $q_0$ is considered negligible.
 
-{\localcolor\Red The simulation scenario 7 presented different results when compared to the others due to clay soil. Figure \ref[fig_contrib_c] showns that the three phases are present in all scenarios, excepting scenario 7. The water flux is small due to the hydraulic properties of the clay soil which causes also a small solute uptake. 
-The concentration in soil solution at root surface, when $T_r\approx0$ (end of simulation), is higher than $C_{lim}$ (Figure \ref[fig_C_r](a)) and the active contribution ends in its maximum value (Figures \ref[fig_contrib_t] and \ref[fig_contrib_c]).}
+The results of active and passive contributions with respect to time and concentration in soil solution are shown respectively in Figures \ref[fig_contrib_t] and \ref[fig_contrib_c], according to Equation \ref[eq_MM_mod] and the model assumptions.
+From the beginning of the simulations (wet soil, $T_r=1$), although it is in LUP, a constant uptake rate is developed. 
+This is due to the fact that the model considers a constant potential transpiration rate through the day and
+%, according to equation XXX, 
+the water flux is directly related to $T_p$.
+In that phase, the solute uptake is determined by $q_0$ and $C_0$ (Equation \ref[eq_case3]) but $C_0$ does not change because of the equal rates of depletion for water and solute.
+A plant regulated process that limits the solute uptake (for example, a reflection coefficient) might be an alternative to regulate the uptake in this phase.
+Therefore, according to the model assumptions, the rate of solute uptake at LUP is constant and its value depends on the potential transpiration, soil type, root length density, and initial concentration and it does not depend on ion type (Figure \ref[fig_contrib_t]).
 
-{\localcolor\Red According to \citeonline[tinker], at low concentrations, the ion transport across membranes is limited by the diffusive flux of solute towards the membrane in case of high affinity uptake (low $K_m$ values) and
+%The length of the two subsequent phases (CUP and NUP)
+\def\tred {\localcolor\Red}
+It is shown in Figure \ref[fig_contrib_c] different behaviours for the active and passive contributions for solute uptake, with respect to soil concentration on soil solution.
+Although low or high values of potential transpiration cause changes in the length of the phases LUP, CUP and NUP, no changes in behaviour was detected with the variation of this parameter.
+This result is straight forward to explain since the potential transpiration affects the rate of the potential water flux and uptake which, consequently, affects the rate of solute uptake.
+In a case that all the model parameters are the same (soil type, root density, ion type and solute uptake), it is expected the same results in different times.
+The most significant difference can be noticed from the different soil types (specially on clay soil) and root density values.
+{\tred EXPLAIN}
+%{\tred The simulation scenario 7 presented different results when compared to the others due to clay soil. Figure \ref[fig_contrib_c] showns that the three phases are present in all scenarios, excepting scenario 7. 
+In the clay soil, the water flux is small due to its hydraulic properties which causes also a small solute uptake. 
+The concentration in soil solution at root surface, when $T_r\approx0$ (end of simulation), is higher than $C_{lim}$ (Figure \ref[fig_C_r](a)) and the active contribution ends in its maximum value (Figures \ref[fig_contrib_t] and \ref[fig_contrib_c]).
+
+{\tred According to \citeonline[tinker], at low concentrations, the ion transport across membranes is limited by the diffusive flux of solute towards the membrane in case of high affinity uptake (low $K_m$ values) and
 
 the contribution of the solute uptake by mass flow of water (through the transpiration stream) is estimated to be very low, often below 0.1\%.}
 {\localcolor\Red IMPROVE: It is interesting that, with the same values of $I_m$ and $K_m$, a whole different sets of active and passive contributions can be generated just because of changes in soil and atmospheric parameters. This gives light to the really complex system that is the soil-plant and its relations with water and solute uptake.}
 
+The final concentration profile and relative transpiration are important model outputs to be analysed. 
+The former is essential for the model upscaling since the average soil concentration needed in the calculations of the majority of the macroscopic models is used.
+The later is related to biomass and yield predictions.
 The final concentration profile is shown to be affected by all selected input parameters, excepting potential transpiration (Figure \ref[fig_C_r]).
 Decreasing $T_p$ from 6 mm to 3 mm just changed the times of the limiting variables due to the decrease in water and solute fluxes. Figure \ref[fig_contrib_c], that has no time axes, shows the same amount of active and passive uptake contributions according to the actual concentration in the soil, for both scenarios 1 ($T_p=6$ mm) and 2 ($T_p=3$ mm).
 This only can cause the same concentration profiles for every condition, although at different times.
