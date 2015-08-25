@@ -246,52 +246,73 @@ Therefore, according to the model assumptions, the rate of solute uptake at LUP 
 
 %The length of the two subsequent phases (CUP and NUP)
 It is shown in Figure \ref[fig_contrib_c] different behaviours for the active and passive contributions for solute uptake as a function of soil concentration in soil solution.
-Although low or high values of potential transpiration cause changes in the length of the phases (LUP, CUP and NUP), no changes in the active and passive partitioning was detected with the variation of this parameter.
+Although changing from low to high values of potential transpiration causes changes in the length of the phases (LUP, CUP and NUP), no changes in the active and passive partitioning was detected with the variation of this parameter.
 This result is straightforward 
 %to explain 
 since the potential transpiration affects the rate of the potential water flux and uptake which, consequently, affects the rate of solute uptake.
-In a case that all the model parameters are the same (soil type, root density, ion type and solute uptake), it is expected the same results in different times.
+In a case that all model parameters of soil type, root density, ion type and solute uptake are the same, it is expected the same results in different times.
 The most significant difference can be noticed from the different soil types (specially on clay soil) and root density values.
+
 In the clay soil, the water flux is small due to its hydraulic properties which causes also a small solute transport and uptake by mass flow of water. 
 Consequently, $C_0$ is slowly depleted in CUP whereas $\theta_r$ is achieved fast, causing a fast reduction of $q_0$ and $T_r$.
 %The concentration in soil solution at root surface, 
-When $T_r\approx0$ (end of simulation), $C_0$ (17.88~mol~m$^{-3}$) is higher than $C_{lim}$ (5.97~mol~m$^{-3}$) (Figure \ref[fig_C_r](a)), the active contribution ends in its maximum value (Figures \ref[fig_contrib_t] and \ref[fig_contrib_c]) and the NUP does not begin (Figure \ref[fig_contrib_c], scenario 7).
+%Still in the clay soil, 
+When $T_r\approx0$ (end of simulation), $C_0$ value is 17.88~mol~m$^{-3}$, higher than $C_{lim}$ 
+%(5.97~mol~m$^{-3}$) 
+(Figure \ref[fig_C_r](a)), the active contribution ends in its maximum value  and the NUP never starts (Figures \ref[fig_contrib_t] and \ref[fig_contrib_c], scenario 7).
+
 With high root densities, the same soil volume extracts more water (and solutes) in a given time period, causing a belated but fast reduction in $T_r$. 
-As high is the root density, higher is the steepness of the $T_r$ falling rating phase (Figure \ref[fig_Tr_t]). As a consequence, active uptake becomes more important with increasing $R$, as can be seen in Figure \ref[fig_contrib_c] (scenarios 1, 4 and 5).
+As high is the root density, higher is the steepness of the $T_r$ falling rate phase (Figure \ref[fig_Tr_t]). As a consequence, active uptake becomes more important with increasing $R$, as can be seen in Figure \ref[fig_contrib_c] (scenarios 1, 4 and 5).
 
-
-
-{\localcolor\Red IMPROVE: It is interesting that, with the same values of $I_m$ and $K_m$, a whole different sets of active and passive contributions can be generated just because of changes in soil and atmospheric parameters. This gives light to the really complex system that is the soil-plant and its relations with water and solute uptake.}
-
-{\tred The final concentration profile and relative transpiration are important model outputs to be analysed. 
-The former is essential for the model upscaling since the average soil concentration needed in the calculations of the majority of the macroscopic models is used.
-The later is related to biomass and yield predictions.}
-The concentration profile can be checked at any time. 
-Figure \ref[fig_C_r] shows it in the end of simulation. 
-This result is important in the computation of the average concentration, essential for macroscopic models.
-The final concentration profile is shown to be affected by all selected input parameters, excepting potential transpiration (Figure \ref[fig_C_r]).
-Decreasing $T_p$ from 6 mm to 3 mm just changed the times of the limiting variables due to the decrease in water and solute fluxes. Figure \ref[fig_contrib_c], that has no time axes, shows the same amount of active and passive uptake contributions according to the actual concentration in the soil, for both scenarios 1 ($T_p=6$ mm) and 2 ($T_p=3$ mm).
-This only can cause the same concentration profiles for every condition, although at different times.
-
-The $C_0$ value at the end of simulation is never absolutely zero due to the asymptotic behaviour of $q_{s_0}$ function in response to decreasing $C_0$ values (Equation \ref[eq_case1]). 
-%Even so, $C_0$ becomes so close to zero that it can be consider zero and, consequently, solute uptake also zero.
+The final concentration profile and relative transpiration are important model outputs to be analysed. 
+The former is essential to determine the gradient of solute concentration and fluxes. 
+Additionally, it can be used to compute the average concentration in a soil layer, essential for the model upscaling since it is required for one dimensional macroscopic models.
+The later is used to predict water and osmotic stress, which can be related to biomass and yield predictions.
+By default, the concentration profile is set to be stored in a file at the end of each day and in the end of simulation, but the user can choose any time interval to it.
+Figure \ref[fig_C_r] shows that the concentration profiles -- and their averages -- in the end of simulation
+are affected by all selected parameters variations, excepting potential transpiration.
+It is expected that decreasing $T_p$ values causes only changes in the times which $C_0$ achieves the limiting values ($C_2$ and \clim) due to the decrease in water and solute fluxes. 
+Corroborating the results, Figure \ref[fig_contrib_c] shows the same amount of active and passive uptake contributions, according to the actual concentration in the soil, for both scenarios 1 ($T_p=6$ mm) and 2 ($T_p=3$ mm),
+and the $T_r$ falling rate phase initiates at higher times when $T_p$ is increased (Figure \ref[fig_Tr_t]).
+In other words, the simulations showed that reducing $T_p$ might cause the same concentration profiles for every scenario, although at different times, if all other parameters are the same.
+Soil type and root density change the final concentration profile respectively due to the different soil hydraulic properties that affects the water retention in soil and to the greater water and solute uptake per soil unit, as explained before in the active and passive uptake partitioning.
+Similarly, they affect the steepness of the $T_r$ falling rate phase, also modifying the length of the phases LUP, CUP and NUP.
+The initial concentration, for obvious reasons, changes the final concentration profile as initially they are already different.
+It slightly changes the onset of falling $T_r$ rate phase. 
+The greater variation can be observed in CUP and NUP.
+With low values of $C_0$ (and $h_\pi$), $H_{lim}$ is achieved faster because there is less solute in soil to be taken up.
+This causes a steeper $T_r$ reduction curve, shortening the time needed to $C_0$ be smaller than \clim.
 
 \medskip
 \label[fig_C_r]
 \picw=17cm \cinspic C_r.pdf
-\caption/f {Concentration in soil water as a function of distance from axial center, at the end of simulation, with different values of the selected input parameters (a) soil, (b) root density, (c) initial concentration, and (d) potencial transpiration, simulated using the nonlinear uptake model (NLU). Lighter straight lines are the average concentration}
+\caption/f {Concentration in soil water as a function of distance from axial center, at the end of simulation, with different values of the selected input parameters (a) soil, (b) root density, (c) initial concentration, and (d) potencial transpiration. Lighter straight lines are the average concentration}
 \medskip
 
 \medskip
 \label[fig_Tr_t]
 \picw=17cm \cinspic Tr_t.pdf
-\caption/f {Changes in $T_r(t)$ according to different values of the selected parameters}
+\caption/f {Relative transpiration as a function of time, with different values of the selected input parameters (a) soil, (b) root density, (c) initial concentration, and (d) potencial transpiration. Lighter straight lines are the average concentration}
 \medskip
+
+%The $C_0$ value at the end of simulation is never absolutely zero due to the asymptotic behaviour of $q_{s_0}$ function in response to decreasing $C_0$ values (Equation \ref[eq_case1]). 
+%Even so, $C_0$ becomes so close to zero that it can be consider zero and, consequently, solute uptake also zero.
+
+{\localcolor\Red IMPROVE: It is interesting that, with the same values of $I_m$ and $K_m$, a whole different sets of active and passive contributions can be generated just because of changes in soil and atmospheric parameters. This gives light to the really complex system that is the soil-plant and its relations with water and solute uptake.}
+
+{\tred The importance of active and passive uptake partitioning are huge.
+It gives light to the modelling of metabolic partitioning of energy spent by the plant, that can be used in a proper quantification of osmotic and toxic stresses.
+The stressors are direct related to crop yield which can be also improve models crop predictions, and water and nutrients management.
+Obviously, the model assumptions could be more complex and, as is known, the assumptions are extremelly important to the model predictions.
+Poor assumptions leads to poor predictions and a complex system like this in study (SPA) are often far from reality.
+Luckily, several computational/physical/mathematical models are being developed, each one with its own characteristics and limitations, in order to best approximate nature and its phenomena.
+}
 
 The model is able to quantify the active and passive contributions to the solute uptake, which can be used to distinguish osmotic and ionic stress.
 Soil type, root density, initial concentration and potential transpiration are factors that change the time that the concentration starts to decrease and the time that the active uptake is maximum.
 
-%To better analyse the impact of the input parameters at the model results, a sensitivity analysis was made.
+
+To better analyse the impact of the input parameters at the model results, a sensitivity analysis was made.
 
 \sec Sensitivity analysis results
 
