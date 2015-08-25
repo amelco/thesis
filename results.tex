@@ -263,9 +263,12 @@ As high is the root density, higher is the steepness of the $T_r$ falling rating
 
 {\localcolor\Red IMPROVE: It is interesting that, with the same values of $I_m$ and $K_m$, a whole different sets of active and passive contributions can be generated just because of changes in soil and atmospheric parameters. This gives light to the really complex system that is the soil-plant and its relations with water and solute uptake.}
 
-The final concentration profile and relative transpiration are important model outputs to be analysed. 
+{\tred The final concentration profile and relative transpiration are important model outputs to be analysed. 
 The former is essential for the model upscaling since the average soil concentration needed in the calculations of the majority of the macroscopic models is used.
-The later is related to biomass and yield predictions.
+The later is related to biomass and yield predictions.}
+The concentration profile can be checked at any time. 
+Figure \ref[fig_C_r] shows it in the end of simulation. 
+This result is important in the computation of the average concentration, essential for macroscopic models.
 The final concentration profile is shown to be affected by all selected input parameters, excepting potential transpiration (Figure \ref[fig_C_r]).
 Decreasing $T_p$ from 6 mm to 3 mm just changed the times of the limiting variables due to the decrease in water and solute fluxes. Figure \ref[fig_contrib_c], that has no time axes, shows the same amount of active and passive uptake contributions according to the actual concentration in the soil, for both scenarios 1 ($T_p=6$ mm) and 2 ($T_p=3$ mm).
 This only can cause the same concentration profiles for every condition, although at different times.
@@ -276,7 +279,7 @@ The $C_0$ value at the end of simulation is never absolutely zero due to the asy
 \medskip
 \label[fig_C_r]
 \picw=17cm \cinspic C_r.pdf
-\caption/f {Concentration in soil water as a function of distance from axial center, at the end of simulation, with different values of the selected input parameters (a) soil, (b) root density, (c) initial concentration, and (d) potencial transpiration, simulated using the nonlinear uptake model (NLU)}
+\caption/f {Concentration in soil water as a function of distance from axial center, at the end of simulation, with different values of the selected input parameters (a) soil, (b) root density, (c) initial concentration, and (d) potencial transpiration, simulated using the nonlinear uptake model (NLU). Lighter straight lines are the average concentration}
 \medskip
 
 \medskip
