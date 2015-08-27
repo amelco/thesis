@@ -298,7 +298,9 @@ This causes a steeper $T_r$ reduction curve, shortening the time needed to $C_0$
 %The $C_0$ value at the end of simulation is never absolutely zero due to the asymptotic behaviour of $q_{s_0}$ function in response to decreasing $C_0$ values (Equation \ref[eq_case1]). 
 %Even so, $C_0$ becomes so close to zero that it can be consider zero and, consequently, solute uptake also zero.
 
-{\localcolor\Red IMPROVE: It is interesting that, with the same values of $I_m$ and $K_m$, a whole different sets of active and passive contributions can be generated just because of changes in soil and atmospheric parameters. This gives light to the really complex system that is the soil-plant and its relations with water and solute uptake.}
+{\tred LITTLE DISCUSSION
+
+IMPROVE: It is interesting that, with the same values of $I_m$ and $K_m$, a whole different sets of active and passive contributions can be generated just because of changes in soil and atmospheric parameters. This gives light to the really complex system that is the soil-plant and its relations with water and solute uptake.}
 
 {\tred The importance of active and passive uptake partitioning are huge.
 It gives light to the modelling of metabolic partitioning of energy spent by the plant, that can be used in a proper quantification of osmotic and toxic stresses.
@@ -308,9 +310,11 @@ Poor assumptions leads to poor predictions and a complex system like this in stu
 Luckily, several computational/physical/mathematical models are being developed, each one with its own characteristics and limitations, in order to best approximate nature and its phenomena.
 }
 
+{\tred LITTLE CONCLUSION
+
 The model is able to quantify the active and passive contributions to the solute uptake, which can be used to distinguish osmotic and ionic stress.
 Soil type, root density, initial concentration and potential transpiration are factors that change the time that the concentration starts to decrease and the time that the active uptake is maximum.
-
+}
 
 To better analyse the impact of the input parameters at the model results, a sensitivity analysis was made.
 
@@ -318,14 +322,24 @@ To better analyse the impact of the input parameters at the model results, a sen
 
 The relative partial sensitivity $\eta$ is the fraction of the relative change in parameter $P$ that will propagate in the prediction $Y$ \cite[quirijn_sens].
 A value of $\eta=0.5$ indicates that a 1\% increase of $P$ results in 0.5\% increase in the prediction $Y$.
-The value of $\eta$ found through a variation of a parameter is likely to change with variation of another parameter. 
-Thus, it is profoundly difficult to make a sensitivity analysis that deals with all parameters variation combination of a complex model. 
-Analyses are therefore restricted to a fixed set of parameters. 
+The value of $\eta$ found through a variation of a parameter is likely to change with variation of another parameter, 
+%Thus, it is profoundly difficult to make a sensitivity analysis that deals with all combinations of parameters variation of a complex model. 
+making the sensitivity analysis that deals with all combinations of parameters variation of a complex model being profoundly difficult to be done. 
+Therefore, the analyses are commonly restricted to a fixed set of parameters. 
 
-Despite the solution to the convection-dispersion equation be the concentration in soil solution as a function of time and distance ($C(r,t)$), the model can give a wide range of another predictions, for instance: relative transpiration, pressure and osmotic potentials, water and solute uptake rates, and accumulated solute uptake.
+Despite the solution to the convection-dispersion equation be the concentration in soil solution as a function of time and distance ($C(r,t)$), the model can give a wide range of another predictions.
+For instance: relative transpiration, pressure and osmotic potentials, water and solute uptake rates, and accumulated solute uptake.
 Some of these predictions were selected to check how changes in soil and ion/plant parameters would affect them. 
 The selected predictions $Y$ were end time of simulation ($t_{end}$), osmotic head ($h_{os}$), time at the onset of the $T_r$ falling rate phase ($t_{T_r}$), time at the onset of constant uptake phase ($t_{C_0}$) and accumulated solute uptake ($acc$);
-and $P$ was the ion/plant ($I_m$ and $K_m$) and the soil hydraulic ($\alpha$, $n$, $K_s$, $\lambda$, $\theta_r$ and $\theta_s$) parameters. 
+and $P$ were the ion/plant ($I_m$ and $K_m$) and the soil hydraulic ($\alpha$, $n$, $K_s$, $\lambda$, $\theta_r$ and $\theta_s$) parameters. 
+
+Sensitivities to ion/plant parameters were high for $h_{os}$, that presented an inverse response to $I_m$ variation (Figure \ref[sensitivity_MM_rest]).
+This is due to the fact that, with higher values of $I_m$ there are higher uptake rates of solute in both phases of constant and nonlinear uptake, diminishing the value of concentration at root surface in the end of simulation (less negative values of osmotic head $h_\pi$).
+On the contrary, higher values of $K_m$ make higher values of $C_{lim}$ that causes an increase of the nonlinear uptake phase and a decrease in the constant uptake phase.
+With less time of potential solute uptake, the final concentration becomes higher due to a lower amount of extracted solute.   
+Thus, in general, a variation of 1\% in $K_m$ and $I_m$ cause, respectively, a decrease of 1.2\% and a increase of 1\%, approximately, in $h_{os}$. 
+The exception was scenario 7 that showed low $\eta$ values for both parameters.
+The reason is due to the small variation in concentration from the beginning to the end of simulation due to the low water and solute fluxes of the clay soil, explained in last section.
 
 \medskip
 \label[sensitivity_MM_rest]
@@ -333,15 +347,7 @@ and $P$ was the ion/plant ($I_m$ and $K_m$) and the soil hydraulic ($\alpha$, $n
 \caption/f {Relative partial sensitivity of osmotic head at root surface in the end of simulation ($h_{os}$) and accumulated solute uptake ($acc$) to MM equation parameters for scenarios 1 to 7}
 \medskip
 
-Sensitivities to ion/plant parameters were high for $h_{os}$, that presented an inverse response to $I_m$ variation (Figure \ref[sensitivity_MM_rest]).
-This is due to the fact that, with higher values of $I_m$ there are higher uptake rates of solute in both phases of constant and nonlinear uptake, diminishing the value of concentration at root surface in the end of simulation (less negative values of osmotic head $h_\pi$).
-On the contrary, higher values of $K_m$ make higher values of $C_{lim}$ that causes an increase of the nonlinear uptake phase and a decrease in the constant uptake phase.
-With less time of potential solute uptake, the final concentration becomes higher.   
-Thus, in general, a variation of 1\% in $K_m$ and $I_m$ cause, respectively, a decrease of 1.2\% and a increase of 1\%, approximately, in $h_{os}$. 
-The exception was scenario 7 that showed low $\eta$ values for both parameters.
-The reason is the small variation in concentration from the beginning to the end of simulation due to the low water and solute fluxes of the clay soil, explained in last section.
-
-Fig:re \ref[sensitivity_MM_rest] shows that, despite the sensitivity of $h_{os}$, $acc$ presented very low (close to zero) sensitivity to $K_m$ and $I_m$.
+Figure \ref[sensitivity_MM_rest] shows that, despite the sensitivity of $h_{os}$, $acc$ presented very low (close to zero) sensitivity to $K_m$ and $I_m$.
 This is due to the fact that $I_m$ and $K_m$ just effectively act in the solute uptake rate in the constant and nonlinear uptake phases, since all the uptake in the linear uptake phase is due to mass flow of water. 
 The period of constant and nonlinear phases are relatively short when compared with the linear phase period, causing a low influence of $I_m$ and $K_m$ in the accumulated solute uptake. 
 
@@ -356,13 +362,13 @@ It is a phase that $I_m$ and $K_m$ does not exerts any influence, which explains
 \medskip
 
 The predictions for $t_{end}$ and $t_{C_0}$ presented low sensitivity to $I_m$ and no sensitivity to $K_m$.
-$I_m$ is directly related to the solute uptake rate (as it defines the plant demand) and $K_m$ to $C_{lim}$ value. 
+$I_m$ is directly related to the solute uptake rate (as it defines the plant demand) and $K_m$ to the $C_{lim}$ value. 
 Thus, higher values of $I_m$ causes higher uptake rates, faster decrease of water and solute contents and, therefore, a faster $T_r$ falling rate phase resulting in a sooner end of simulation.
 %The no influence of $K_m$ over the time predictions is due to... EXPLAIN
 %It is hard to be analyzed in another way than empirically testing.
 
 Figures \ref[sensitivity_soil_time], \ref[sensitivity_soil_rest] and \ref[sensitivity_n] show the sensitivities to the soil hydraulic properties.
-It is hard to discuss the sensitivities of the model outputs to each each parameter because of the great number of parameters and outputs tested.
+It is hard to discuss the sensitivities of the model outputs to each parameter because of the great number of parameters and outputs being tested.
 Although the sensitivity results are presented separately for each parameter, output and scenario, the discussion will focus on the greatest and shortest $\eta$ values.
 A more detailed and profound analysis with these sensitivity results can be done in the future (inclusive with empirical tests), as the results are shown here.
 
@@ -370,8 +376,11 @@ The model sensitivity for the parameter $\theta_r$ was the lowest in the selecte
 An increase in $\theta_r$ decreases the available water content decreasing the time of $T_r$ and $C_0$ falling phases, consequently reducing $t_{end}$. 
 %It also reduces the minimum value of $h$ (becomes more negative) increasing the maximum value of $h_\pi$ in the limiting total head ($H=-150$) m.
 Increasing $\theta_s$, in turn, increases the available water content and therefore increases $t_{T_r}$, $t_{end}$ and $t_{C_0}$.
-Depending on the potential transpiration, initial concentration and other parameters combinations, $h$
 Thus, sensitivities to $\theta_r$ and $\theta_s$ are expected to be negative and positive, respectively, for the selected time predictions, corroborating the results (Figure \ref[sensitivity_soil_time]).
+%Depending on the potential transpiration, initial concentration and other parameters combinations, $h$
+In a general way, the selected time predictions showed to be much more sensitive to $\theta_s$ (disregarding $n$), being $\lambda$ the second in some scenarios.
+A possible explanation would be that the model has a powerful (possibly overestimated) solute extraction at LUP, due to the lack of a plant regulation process for the uptake.
+In that way, an increase in $\theta_s$ is proportionally more significant than $\theta_r$, for example, as for low water contents values the uptake rates are smaller.
 
 {\localcolor\Red
 The variation of $\alpha$ parameter caused more changes in $t_{end}$ and $h_{os}$ model predictions.
@@ -416,6 +425,9 @@ The accumulated solute uptake presented low sensitivity to all tested parameters
 %The incorporation of solute uptake in the model of \citeonline[liersolute] shows to be very complex according to the results that has been shown. 
 %The differences are shown in this section, together with the constant uptake model developed by \citeonline[willigen1] to 
 {\localcolor\Red SECTION INTRODUCTION}
+
+As the model developed in this thesis is an addition to the model of \citeonline[liersolute], in which does not considers solute uptake, a comparisson between the two models is necessary.
+Additionally, the results are compared with a model of constant solute uptake (based on the work of \citeonline[willigen1]) to show the differences between these two approaches.
 
 Figure \ref[fig_C0] shows the differences in the concentration as a function of time of the three different models. 
 In ZU, salt is transported to the roots by convection, causing an accumulation of solutes at root surface. As water flux towards the root starts to decrease, salt is transported slower and carried away from the roots by diffusion. 
