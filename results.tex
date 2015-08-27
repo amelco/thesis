@@ -431,30 +431,40 @@ Additionally, the results are compared with a model of constant solute uptake (b
 
 Figure \ref[fig_C0] shows the differences in the concentration as a function of time of the three different models. 
 In ZU, salt is transported to the roots by convection, causing an accumulation of solutes at root surface. As water flux towards the root starts to decrease, salt is transported slower and carried away from the roots by diffusion. 
-CU presents the same behaviour with a slightly lower $C_0$ value. 
+CU presents the same behaviour with a slightly lower $C_0$ value, due to the small solute uptake value. 
 The difference between ZU and CU concentrations increases as the water flux decreases.
-As higher the value for the constant uptake rate in CU, more close to the NLU plot it becomes.
+As higher is the value of the constant uptake rate and as lower is $T_p$ in CU, less solute will accumulate in the root surface and more similar CU and NLU will become, as can be seen in the gray line of Figure \ref[fig_C0].
 
+\def\descc{Gray line is CU with the constant of solute uptake rate 10 times higher}
 
 \medskip
 \label[fig_C0]
-\picw=11cm \cinspic cxt1.pdf
-\caption/f {Soil solution concentration at root surface as a function of time for constant (CU), zero (ZU) and nonlinear (NLU) uptake models}
+%\picw=11cm \cinspic cxt1.pdf
+\picw=13cm \cinspic cxt_comp.pdf
+\caption/f {Soil solution concentration at root surface as a function of time for constant (CU), zero (ZU) and nonlinear (NLU) uptake models. \descc}
 \medskip
 
-For ZU and CU the concentration starts to diminish when $T_r<1$ due to $H_0=-150$ m (Figure \ref[fig_heads1]).
-For the case of NLU, there is a delay for $C_0$ starts to decrease after $TR<1$, which is the time needed to $C_2$ increases until it becomes higher than $C_0$ (Figure \ref[fig_heads2]).
+For ZU and CU, $C_0$ 
+%the concentration 
+starts to diminish (less negative values of $h_\pi$) as soon as $T_r<1$, because $H$ at root surface reached the limiting value of $-$150 m (Figure~\ref[fig_heads1]).
+%due to $H_0=-150$ m (Figure \ref[fig_heads1]).
+In CU, as the solute uptake does not depend on the solute concentration in soil (it is a constant), the solute transport by convection becomes less important than the movement by diffusion as the water flux towards the root diminishes.
+Thus, the solute depletion at the root surface is due both to the uptake and to the diffusive transport away from the roots.
+For the case of NLU, an accumulation period does not happen because of the high solute uptake rate in LUP (all solute carried by mass flow of water is taken up).
+The time needed to $C_2$ increases until it becomes higher than $C_0$ (explained in the last section) generates a delay between the onset of the $T_r$ falling rate phase and the time that $C_0$ starts to diminish (Figure \ref[fig_heads2]).
+Moreover, the higher uptake of NLU causes lower values of osmotic head ($h_\pi$) and generates a longer period of potential transpiration rate ($T_r=1$).
+
 
 \medskip
 \label[fig_heads1]
-\picw=11cm \cinspic headsxt.pdf
-\caption/f {Pressure ($h$), osmotic ($h_\pi$) and total ($H$) heads as a function of time for constant (CU) and zero (ZU) uptake models}
+\picw=13cm \cinspic headsxt.pdf
+\caption/f {Pressure ($h$), osmotic ($h_\pi$) and total ($H$) heads at root surface as a function of time for constant (CU) and zero (ZU) uptake models, for scenario 1}
 \medskip
 
 \medskip
 \label[fig_heads2]
-\picw=11cm \cinspic headsNLxt.pdf
-\caption/f {Pressure ($h$), osmotic ($h_\pi$) and total ($H$) heads as a function of time for nonlinear (NLU) uptake model}
+\picw=13cm \cinspic headsNLxt.pdf
+\caption/f {Pressure ($h$), osmotic ($h_\pi$) and total ($H$) heads as a function of time for nonlinear (NLU) uptake model, for scenario 1}
 \medskip
 
 The concentration profile changes from accumulation to a depletion of solute close to the root surface.
@@ -462,8 +472,9 @@ Again, the higher the constant uptake rate value for CU, more similar to NLU it 
 
 \medskip
 \label[fig_C]
-\picw=11cm \cinspic cxr1.pdf
-\caption/f {Soil solution concentration as a function of distance from axial root center for constant (CU), zero (ZU) and nonlinear (NLU) uptake models}
+%\picw=11cm \cinspic cxr1.pdf
+\picw=11cm \cinspic cxr_comp.pdf
+\caption/f {Soil solution concentration as a function of distance from axial root center for constant (CU), zero (ZU) and nonlinear (NLU) uptake models. \descc}
 \medskip
 
 \medskip
