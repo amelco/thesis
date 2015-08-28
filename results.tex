@@ -450,11 +450,15 @@ starts to diminish (less negative values of $h_\pi$) as soon as $T_r<1$, because
 %due to $H_0=-150$ m (Figure \ref[fig_heads1]).
 In CU, as the solute uptake does not depend on the solute concentration in soil (it is a constant), the solute transport by convection becomes less important than the movement by diffusion as the water flux towards the root diminishes.
 Thus, the solute depletion at the root surface is due both to the uptake and to the diffusive transport away from the roots.
-For the case of NLU, an accumulation period does not happen because of the high solute uptake rate in LUP (all solute carried by mass flow of water is taken up).
-The time needed to $C_2$ increases until it becomes higher than $C_0$ (explained in the last section) generates a delay between the onset of the $T_r$ falling rate phase and the time that $C_0$ starts to diminish (Figure \ref[fig_heads2]).
+For the case of NLU (Figure \ref[fig_heads2]), an accumulation period is not developed due to the high solute uptake rate in LUP (as can be seen in Figure \ref[fig_qst_detail], all solute carried by mass flow of water is taken up).
+The time needed to $C_2$ increases until it becomes higher than $C_0$ (explained in the last section) generates a delay between the onset of the $T_r$ falling rate phase and the time that $C_0$ starts to diminish.
 Moreover, the higher uptake of NLU causes lower values of osmotic head ($h_\pi$) and generates a longer period of potential transpiration rate ($T_r=1$).
 
-
+Figure \ref[fig_heads2] shows the solute uptake rate (solute flux at root surface $q_{s_0}$) as a function of time of each model, and it can be seen the three uptake phases for NLU (LUP, CUP and NUP), the constant uptake rate for CU and the zero uptake rate for ZU, according to their respective equations.
+Once more, it is noticeable that at the first uptake phase (LUP) the solute uptake rate is higher than the other two phases due to the constant potential transpirations rate and the lack of a plant controlled mechanism of solute uptake regulation.
+Nevertheless, this result is compatible with the model assumption 1, that the plant does not control the solute taken up by mass flow of water.
+This result must be compared with experimental data of solute uptake of non-stressed plants to elucidate whether a plant regulated mechanism of uptake must be added to the model. 
+ 
 \medskip
 \label[fig_heads1]
 \picw=13cm \cinspic headsxt.pdf
@@ -467,6 +471,29 @@ Moreover, the higher uptake of NLU causes lower values of osmotic head ($h_\pi$)
 \caption/f {Pressure ($h$), osmotic ($h_\pi$) and total ($H$) heads as a function of time for nonlinear (NLU) uptake model, for scenario 1}
 \medskip
 
+\medskip
+\label[fig_qst_detail]
+\picw=11cm \cinspic qsxt1_detail.pdf
+\caption/f {Detail of solute flux at root surface as a function of time for constant (CU), zero (ZU) and nonlinear (NLU) uptake models, for scenario 1}
+\medskip
+
+
+
+The result of the total amount of solute extracted by the plant is shown in Figure \ref[fig_accsol].
+A high slope
+
+\medskip
+\label[fig_accsol]
+\picw=11cm \cinspic accumxt_models.pdf
+\caption/f {Cumulative solute uptake as a function of time for constant (CU), zero (ZU) and nonlinear (NLU) uptake models}
+\medskip
+
+\medskip
+\label[fig_Tr]
+\picw=11cm \cinspic Trxt1.pdf
+\caption/f {Relative transpiration as a function of time for constant (CU), zero (ZU) and nonlinear (NLU) uptake models}
+\medskip
+
 The concentration profile changes from accumulation to a depletion of solute close to the root surface.
 Again, the higher the constant uptake rate value for CU, more similar to NLU it becomes.
 
@@ -477,37 +504,18 @@ Again, the higher the constant uptake rate value for CU, more similar to NLU it 
 \caption/f {Soil solution concentration as a function of distance from axial root center for constant (CU), zero (ZU) and nonlinear (NLU) uptake models. \descc}
 \medskip
 
-\medskip
-\label[fig_accsol]
-\picw=11cm \cinspic accumxt_models.pdf
-\caption/f {Cumulative solute uptake as a function of time for constant (CU), zero (ZU) and nonlinear (NLU) uptake models}
-\medskip
+%\medskip
+%\label[fig_qst]
+%\picw=11cm \cinspic qxt1.pdf
+%\caption/f {Water flux at root surface as a function of time for constant (CU), zero (ZU) and nonlinear (NLU) uptake models, for scenario 1}
+%\medskip
 
-\vfill\break
-\medskip
-\label[fig_qst]
-\picw=11cm \cinspic qxt1.pdf
-\caption/f {Water flux at root surface as a function of time for constant (CU), zero (ZU) and nonlinear (NLU) uptake models}
-\medskip
-
-\medskip
-\label[fig_qst_detail]
-\picw=11cm \cinspic qsxt1_detail.pdf
-\caption/f {Detail of solute flux at root surface as a function of time, at times when $C_0<C_{lim}$, for constant (CU), zero (ZU) and nonlinear (NLU) uptake models}
-\medskip
-
+%\vfill\break
 %\medskip
 %%\label[Trs]
 %\picw=11cm \cinspic qxt1.pdf
 %%\caption/f {Relative transpiration as a function of time and pressure head for no uptake (NU), constant (CU) and nonlinear (NLU) uptake models}
 %\medskip
-
-\vfill\break
-\medskip
-\label[fig_Tr]
-\picw=11cm \cinspic Trxt1.pdf
-\caption/f {Relative transpiration as a function of time for constant (CU), zero (ZU) and nonlinear (NLU) uptake models}
-\medskip
 
 %\medskip
 %\label[fig_Tr_detail]
@@ -515,7 +523,7 @@ Again, the higher the constant uptake rate value for CU, more similar to NLU it 
 %\caption/f {Detail of Relative transpiration as a function of time, at times when $C_0<C_{lim}$, for linear (LU) and nonlinear (NLU) uptake models}
 %\medskip
 
-\vfill\break
+%\vfill\break
 %\medskip
 %\label[fig_Im_sensit_curve]
 %\picw=11cm \cinspic Im_x_C0.pdf
@@ -562,6 +570,13 @@ Again, the higher the constant uptake rate value for CU, more similar to NLU it 
 %\picw=13cm \cinspic Trs.pdf
 %\caption/f {Relative transpiration as a function of time and pressure head for no uptake (NU), constant (CU) and nonlinear (NLU) uptake models}
 %\medskip
+
+{\tred The effects of the MM-based uptake model applied in the convection-dispersion equation are noticed in very low concentration values.
+This is due to the selected model assumptions but they are acceptable.
+The addition of a solute uptake function to the already existent model of solute transport was able to improve it, giving more realistic results to the simulations.
+Moreover, it is possible to, in further developments, add a more realistic plant concentration model to improve the proposed model, in a way that the uptake will also depend on the concentration inside the plant, and not only on concentration in soil.
+In that way, the active and passive partitioning would be essential to determine the stress status of the plant, separating osmotic and toxicity effects on biomass production and yield.
+Irrigation and nutrition management would then be improved.}
 
 \sec Guidelines to upscale the proposed model
 
