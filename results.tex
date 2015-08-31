@@ -405,8 +405,15 @@ The accumulated solute uptake presented low sensitivity to all tested parameters
 \caption/f {Relative partial sensitivity of osmotic head at root surface in the end of simulation ($h_{os}$) and accumulated solute uptake ($acc$) to soil hydraulic parameters for scenarios 1 to 7}
 \medskip
 
-{\localcolor\Red The parameter $n$ showed the highest values of $\eta$ }
-
+{\tred 
+The parameter $n$ showed the highest values of $\eta$ among the soil hydraulic properties, mainly for $h_{os}$ value in the end of simulation reaching the value of $-$23 for scenario 2 (Figure~\ref[sensitivity_n]).
+Similar result was found by \citeonline[quirijn_sens], where the yield predictions of the evaluated model had higher sensitivity for the $n$ parameter, also with one order of magnitude higher.
+Figure \ref[fig_wrcs] shows how the water retention curve, following the \citeonline[genuchten80] model, changes with the variation of 1\% in $n$ parameter.
+The same value of water content is reached with higher values (more negative) of pressure head.
+This brings expectations that the limiting value $H_{lim}$ would be reached at lower values of $\theta$ with higher value of solute concentration in soil water (more negative $h_\pi$).
+That is what occurs in the simulations with loam soil (scenarios 1,2,3,4 and 5) but, despite the higher change in the water retention curve for the clay soil, does not occur for scenario 7 (its variation parameter is the soil type: clay).
+The cause resides on the fact that the solute uptake is so low at this scenario that an apparent big change on the retention curve does not makes so much difference.
+}
 \medskip
 \label[sensitivity_n]
 \picw=15cm \cinspic final_large.pdf
@@ -416,7 +423,7 @@ The accumulated solute uptake presented low sensitivity to all tested parameters
 \medskip
 \label[fig_wrcs]
 \picw=12cm \cinspic wrcs.pdf
-\caption/f {Theoretical water retention curves, according to Equation \ref[eq_theta], for the selected simulation soils from Table \ref[soils]. The lower value of $h$ matches the initial value for all simulations $h_{ini}=-1$~m. Dashed lines represents the variation of 1\% in the $n$ parameter}
+\caption/f {Theoretical water retention curves, according to Equation \ref[eq_theta], for the selected soils from Table \ref[soils]. The lower value of $h$ matches the initial value for all simulations $h_{ini}=-1$~m. Dashed lines represent the variation of 1\% in the $n$ parameter}
 \medskip
 
 
@@ -424,7 +431,7 @@ The accumulated solute uptake presented low sensitivity to all tested parameters
 
 %The incorporation of solute uptake in the model of \citeonline[liersolute] shows to be very complex according to the results that has been shown. 
 %The differences are shown in this section, together with the constant uptake model developed by \citeonline[willigen1] to 
-{\localcolor\Red SECTION INTRODUCTION}
+%{\localcolor\Red SECTION INTRODUCTION}
 
 As the model developed in this thesis is an addition to the model of \citeonline[liersolute], in which does not considers solute uptake, a comparisson between the two models is necessary.
 Additionally, the results are compared with a model of constant solute uptake (based on the work of \citeonline[willigen1]) to show the differences between these two approaches.
@@ -478,24 +485,42 @@ This result must be compared with experimental data of solute uptake of non-stre
 \medskip
 
 
-
+{\tred
 The result of the total amount of solute extracted by the plant is shown in Figure \ref[fig_accsol].
-A high slope
+It can be understand as the amount of solute accumulated inside the plant.
+The high uptake rate at LUP, in NLU, causes a fast accumulation of solute inside the plant due to passive uptake.
+According to the model assumptions, the plant does not regulate passive uptake (or the uptake caused by mass flow of water), which, for the case of NLU, is the greatest contribution to the uptake.
+Thus, in a further improvement of the model to separate ionic and osmotic stress, it can be assumed that the plant will enter in a stage of toxicity by means of passive uptake since active uptake is plant regulated.
+In the current proposed model, in a situation that the plant is in osmotic stress, it is in CUP with $T_r < 1$ and with passive and active uptake contributions working.
+Once the plant concentration is accounted into the model and the concentration inside the plant already reached the critical level (value the above it, the solute will start to produce toxicity effects), the plant can eliminate the active uptake (because it is plant regulated) but can not eliminate passive uptake.
+Therefore, in this situation, all solute that is extracted by the plant will contribute to a unavoidable accumulation of solute inside the plant, causing the toxicity effects of the ionic stress.The ZU model obviously does not accumulate any solute and LU model accumulates it linearly, at a constant rate.
+}
 
 \medskip
 \label[fig_accsol]
 \picw=11cm \cinspic accumxt_models.pdf
-\caption/f {Cumulative solute uptake as a function of time for constant (CU), zero (ZU) and nonlinear (NLU) uptake models}
+\caption/f {Cumulative solute uptake as a function of time for constant (CU), zero (ZU) and nonlinear (NLU) uptake models, for scenario 1}
 \medskip
+
+{\tred
+When solute uptake is considered, the value of $H$ diminishes (becomes more negative) slower either because $h_\pi$ becomes less negative or more negative at a smaller rate, which causes that the limiting value of $H$ be achieved on a later time, according to the solute uptake rate.
+Figure \ref[fig_Tr] shows that the onset of the falling $T_r$ phase, for NLU model, occurs in a later time when compared with ZU or CU (which has a smaller solute uptake rate) models.
+}
 
 \medskip
 \label[fig_Tr]
 \picw=11cm \cinspic Trxt1.pdf
-\caption/f {Relative transpiration as a function of time for constant (CU), zero (ZU) and nonlinear (NLU) uptake models}
+\caption/f {Relative transpiration as a function of time for constant (CU), zero (ZU) and nonlinear (NLU) uptake models, for scenario 1}
 \medskip
 
-The concentration profile changes from accumulation to a depletion of solute close to the root surface.
-Again, the higher the constant uptake rate value for CU, more similar to NLU it becomes.
+{\tred
+As explained before, the LU model might develop a period of accumulation of solute near the root surface depending on the potential transpiration rate and solute uptake rate values.
+This period is then followed by a period of diffusion of solute away from the roots which, along with the solute uptake, is responsible for the depletion of solute at the root surface.
+This behaviour causes a different solute concentration profile when compared with the proposed solute uptake model (NLU).
+It can be seen on figure \ref[fig_C] that the diffusion of solute away from the roots generates a higher concentration somewhere between $r_0$ and $r_m$, as opposed to NLU model, which has no solute accumulation period.}
+{\tred
+It is also shown that the models that consider solute uptake (CU and NLU) present a smaller concentration at $r_m$ due to the solute transport towards the root generate by the gradient caused by the solute uptake.
+}
 
 \medskip
 \label[fig_C]
