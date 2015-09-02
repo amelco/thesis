@@ -318,6 +318,10 @@ Soil type, root density, initial concentration and potential transpiration are f
 
 To better analyse the impact of the input parameters at the model results, a sensitivity analysis was made.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \sec Sensitivity analysis 
 
 The relative partial sensitivity $\eta$ is the fraction of the relative change in parameter $P$ that will propagate in the prediction $Y$ \cite[quirijn_sens].
@@ -448,6 +452,17 @@ Values of $h$ ranges from the initial value for all simulations $h_{ini}=-1$~m t
 \medskip
 
 With this simple sensitivity analysis, we can conclude that the parameters that need more carefulness to measure are: $\theta_r$, $\theta_s$, $\alpha$, $I_m$ and $K_m$ which affects more strongly the solute concentration at root surface in the end of simulation, $\theta_s$ which strongly affects the time at the limiting values are reached, and $n$ which strongly affects all selected predictions, mainly $h_{os}$.
+
+{\tred
+Note that we could have choose one scenario to do the sensitivity analysis. 
+In that way we would have not analyse a wide range of possibilities of sensitivity in the model predictions.
+The same prediction can have positive or negative sensitivity to a variation of a parameter depending on the chosen scenario.
+In other words, it is proven that the value of $\eta$ calculated through a variation of a parameter can change with the variation of another parameter and shows the complexity of the model and, therefore, of its sensitivity analysis.
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \sec Solute uptake models comparison
 
