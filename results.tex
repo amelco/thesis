@@ -318,7 +318,7 @@ Soil type, root density, initial concentration and potential transpiration are f
 
 To better analyse the impact of the input parameters at the model results, a sensitivity analysis was made.
 
-\sec Sensitivity analysis results
+\sec Sensitivity analysis 
 
 The relative partial sensitivity $\eta$ is the fraction of the relative change in parameter $P$ that will propagate in the prediction $Y$ \cite[quirijn_sens].
 A value of $\eta=0.5$ indicates that a 1\% increase of $P$ results in 0.5\% increase in the prediction $Y$.
@@ -344,7 +344,7 @@ The reason is due to the small variation in concentration from the beginning to 
 \medskip
 \label[sensitivity_MM_rest]
 \picw=15cm \cinspic final_everybar_MM_rest.pdf
-\caption/f {Relative partial sensitivity of osmotic head at root surface in the end of simulation ($h_{os}$) and accumulated solute uptake ($acc$) to MM equation parameters for scenarios 1 to 7}
+\caption/f {Relative partial sensitivity of osmotic head at root surface in the end of simulation ($h_{os}$) and accumulated solute uptake ($acc$) to MM equation parameters $I_m$ and $K_m$ for scenarios 1 to 7}
 \medskip
 
 Figure \ref[sensitivity_MM_rest] shows that, despite the sensitivity of $h_{os}$, $acc$ presented very low (close to zero) sensitivity to $K_m$ and $I_m$.
@@ -358,7 +358,7 @@ It is a phase that $I_m$ and $K_m$ does not exerts any influence, which explains
 \medskip
 \label[sensitivity_MM_time]
 \picw=15cm \cinspic final_everybar_MM_time.pdf
-\caption/f {Relative partial sensitivity of end time of simulation ($t_{end}$), time at the onset of the $T_r$ falling rate phase ($t_{T_r}$) and time at the onset of constant uptake phase ($t_{C_0}$) to MM equation parameters for scenarios 1 to 7}
+\caption/f {Relative partial sensitivity of end time of simulation ($t_{end}$), time at the onset of the $T_r$ falling rate phase ($t_{T_r}$) and time at the onset of constant uptake phase ($t_{C_0}$) to MM equation parameters $I_m$ and $K_m$ for scenarios 1 to 7}
 \medskip
 
 The predictions for $t_{end}$ and $t_{C_0}$ presented low sensitivity to $I_m$ and no sensitivity to $K_m$.
@@ -368,51 +368,65 @@ Thus, higher values of $I_m$ causes higher uptake rates, faster decrease of wate
 %It is hard to be analyzed in another way than empirically testing.
 
 Figures \ref[sensitivity_soil_time], \ref[sensitivity_soil_rest] and \ref[sensitivity_n] show the sensitivities to the soil hydraulic properties.
-It is hard to discuss the sensitivities of the model outputs to each parameter because of the great number of parameters and outputs being tested.
-Although the sensitivity results are presented separately for each parameter, output and scenario, the discussion will focus on the greatest and shortest $\eta$ values.
-A more detailed and profound analysis with these sensitivity results can be done in the future (inclusive with empirical tests), as the results are shown here.
+%It is hard to discuss the sensitivities of the model outputs to each parameter because of the great number of parameters and outputs being tested.
+Although the sensitivity results are presented separately for each parameter, output and scenario, the interactions between all parameters and simulated processes occurs sinergetically and concomitantly.
+Due to the relative nature of the sensitivity (there is no absolute value of $\eta$ for one prediction with a variation of different parameters), an individual analysis can give an insight of the importance of a parameter to the model, but it truthly serves only for that particular simulation.
+Therefore, due to the high number of soil hydraulic parameters, the discussion will focus only on those with the greatest $\eta$ values.
+A more detailed and profound analysis with these sensitivity results can be done in the future, with empirical tests that might corroborate the results.
 
-The model sensitivity for the parameter $\theta_r$ was the lowest in the selected time predictions.
-An increase in $\theta_r$ decreases the available water content decreasing the time of $T_r$ and $C_0$ falling phases, consequently reducing $t_{end}$. 
-%It also reduces the minimum value of $h$ (becomes more negative) increasing the maximum value of $h_\pi$ in the limiting total head ($H=-150$) m.
-Increasing $\theta_s$, in turn, increases the available water content and therefore increases $t_{T_r}$, $t_{end}$ and $t_{C_0}$.
-Thus, sensitivities to $\theta_r$ and $\theta_s$ are expected to be negative and positive, respectively, for the selected time predictions, corroborating the results (Figure \ref[sensitivity_soil_time]).
-%Depending on the potential transpiration, initial concentration and other parameters combinations, $h$
-In a general way, the selected time predictions showed to be much more sensitive to $\theta_s$ (disregarding $n$), being $\lambda$ the second in some scenarios.
-A possible explanation would be that the model has a powerful (possibly overestimated) solute extraction at LUP, due to the lack of a plant regulation process for the uptake.
-In that way, an increase in $\theta_s$ is proportionally more significant than $\theta_r$, for example, as for low water contents values the uptake rates are smaller.
+For the time selected predictions ($t_{end}$, $t_{T_r}$ and $t_{C_0}$), the parameters $\theta_s$ and $\lambda$ presented the highest absolute $\eta$ values.
+Increasing values of $\theta_s$ increases the available water content and increases at about the same proportion ($\approx$1\%) $t_{T_r}$, $t_{end}$ and $t_{C_0}$ due to the highest opportunity of water uptake with the same rate of $T_p$.
+The parameter of the hydraulic conductivity function $\lambda$ causes an inverse response in $t_{end}$ prediction.
+Higher values of $\lambda$ causes higher hydraulic conductivities with the same value of water content, which increases the water flux and uptake and decreases the time that the root surface reaches the limiting value $H_{lim}$, reducing the time of $T_r$ and $C_0$ falling phases, consequently reducing $t_{end}$.
+Thus, sensitivities to $\lambda$ and $\theta_s$ are expected to be negative and positive, respectively, for the selected time predictions, corroborating the results (Figure \ref[sensitivity_soil_time]).
+The higher sensitivity to $\theta_s$ can be explained due to the fact that the model has a powerful (possibly overestimated) solute extraction at LUP, due to the lack of a plant regulated process for solute uptake at this phase.
 
-{\localcolor\Red
-The variation of $\alpha$ parameter caused more changes in $t_{end}$ and $h_{os}$ model predictions.
+%The model sensitivity for the parameter $\theta_r$ was the lowest in the selected time predictions.
+%An increase in $\theta_r$ decreases the available water content decreasing the time of $T_r$ and $C_0$ falling phases, consequently reducing $t_{end}$. 
+%%It also reduces the minimum value of $h$ (becomes more negative) increasing the maximum value of $h_\pi$ in the limiting total head ($H=-150$) m.
+%Thus, sensitivities to $\theta_r$ and $\theta_s$ are expected to be negative and positive, respectively, for the selected time predictions, corroborating the results (Figure \ref[sensitivity_soil_time]).
+%%Depending on the potential transpiration, initial concentration and other parameters combinations, $h$
+%In a general way, the selected time predictions showed to be much more sensitive to $\theta_s$ (disregarding $n$), being $\lambda$ the second in some scenarios.
+%A possible explanation would be that the model has a powerful (possibly overestimated) solute extraction at LUP, due to the lack of a plant regulation process for the uptake.
+%In that way, an increase in $\theta_s$ is more significant than an equal increase in $\theta_r$, as for low water contents the water uptake and solute transport by mass flow are smaller.
 
-$\lambda$ and $K_s$ presented low capacity of alter the predictions, when compared to the other parameters.
-
-The accumulated solute uptake presented low sensitivity to all tested parameters, with exception of $n$.
-}
-
-
-
+%{\localcolor\Red
+%The variation of $\alpha$ parameter caused more changes in $t_{end}$ and $h_{os}$ model predictions.
+%
+%$\lambda$ and $K_s$ presented low capacity of alter the predictions, when compared to the other parameters.
+%
+%The accumulated solute uptake presented low sensitivity to all tested parameters, with exception of $n$.
+%}
 
 \medskip
 \label[sensitivity_soil_time]
 \picw=15cm \cinspic final_every_bar_soil_time.pdf
-\caption/f {Relative partial sensitivity of end time of simulation ($t_{end}$), time at the onset of the $T_r$ falling rate phase ($t_{T_r}$) and time at the onset of constant uptake phase ($t_{C_0}$) to soil hydraulic parameters for scenarios 1 to 7}
+\caption/f {Relative partial sensitivity of end time of simulation ($t_{end}$), time at the onset of the $T_r$ falling rate phase ($t_{T_r}$) and time at the onset of constant uptake phase ($t_{C_0}$) to soil hydraulic parameters $\theta_r$, $\theta_s$, $\alpha$, $K_s$ and $\lambda$ for scenarios 1 to 7}
 \medskip
+
+
+
+
+For the solute related predictions,
+%($h_{os}$ and $acc$),
+$h_{os}$ presented highest sensitivities to $\theta_r$, $\theta_s$ and $\alpha$ (Figure \ref[sensitivity_soil_rest]).
 
 \medskip
 \label[sensitivity_soil_rest]
 \picw=15cm \cinspic final_every_bar_soil_rest.pdf
-\caption/f {Relative partial sensitivity of osmotic head at root surface in the end of simulation ($h_{os}$) and accumulated solute uptake ($acc$) to soil hydraulic parameters for scenarios 1 to 7}
+\caption/f {Relative partial sensitivity of osmotic head at root surface in the end of simulation ($h_{os}$) and accumulated solute uptake ($acc$) to soil hydraulic parameters $\theta_r$, $\theta_s$, $\alpha$, $K_s$ and $\lambda$ for scenarios 1 to 7}
 \medskip
 
 {\tred 
-The parameter $n$ showed the highest values of $\eta$ among the soil hydraulic properties, mainly for $h_{os}$ value in the end of simulation reaching the value of $-$23 for scenario 2 (Figure~\ref[sensitivity_n]).
+The parameter $n$ showed the highest values of $\eta$ among the soil hydraulic properties, mainly for $h_{os}$ in the end of simulation reaching the value of $-$23 for scenario 2 (Figure~\ref[sensitivity_n]).
 Similar result was found by \citeonline[quirijn_sens], where the yield predictions of the evaluated model had higher sensitivity for the $n$ parameter, also with one order of magnitude higher.
 Figure \ref[fig_wrcs] shows how the water retention curve, following the \citeonline[genuchten80] model, changes with the variation of 1\% in $n$ parameter.
-The same value of water content is reached with higher values (more negative) of pressure head.
-This brings expectations that the limiting value $H_{lim}$ would be reached at lower values of $\theta$ with higher value of solute concentration in soil water (more negative $h_\pi$).
-That is what occurs in the simulations with loam soil (scenarios 1,2,3,4 and 5) but, despite the higher change in the water retention curve for the clay soil, does not occur for scenario 7 (its variation parameter is the soil type: clay).
-The cause resides on the fact that the solute uptake is so low at this scenario that an apparent big change on the retention curve does not makes so much difference.
+It shows that the same value of water content is reached with higher (more negative )values of pressure head.
+This brings expectations that the limiting value $H_{lim}$ would be reached at lower values of $\theta$ and with higher (more negative) values of solute concentration in soil water ($h_\pi$), which
+%That 
+is what occurs in the simulations with loam soil (scenarios 1,2,3,4 and 5) but, despite the higher change in the water retention curve for the clay soil, it does not occur for scenario 7.
+%(its variation parameter is the soil type: clay).
+The cause for the lower value of $\eta$ in scenario 7 resides on the fact that the solute uptake rate in this scenario is very low and, even if the variation of 1\% in $n$ causes a bigger change on the retention curve, it does not strongly affect the solute uptake rate and, consequently, the change in $h_\pi$ (or $h_{os}$) at the end of simulation is small.
 }
 \medskip
 \label[sensitivity_n]
@@ -423,9 +437,10 @@ The cause resides on the fact that the solute uptake is so low at this scenario 
 \medskip
 \label[fig_wrcs]
 \picw=12cm \cinspic wrcs.pdf
-\caption/f {Theoretical water retention curves, according to Equation \ref[eq_theta], for the selected soils from Table \ref[soils]. The lower value of $h$ matches the initial value for all simulations $h_{ini}=-1$~m. Dashed lines represent the variation of 1\% in the $n$ parameter}
+\caption/f {Theoretical water retention curves, according to Equation \ref[eq_theta], for the selected soils from Table \ref[soils]. The lower value of $h$ matches the initial value for all simulations $h_{ini}=-1$~m. Dashed lines represent the variation of 1\% in $n$ parameter}
 \medskip
 
+With this simple sensitivity analysis, we can conclude that the parameters that need more carefulness to measure are: $\theta_r$, $\theta_s$, $\alpha$, $I_m$ and $K_m$ which affects more strongly the solute concentration at root surface in the end of simulation, $\theta_s$ which strongly affects the time at the limiting values are reached, and $n$ which strongly affects all selected predictions, mainly $h_{os}$.
 
 \sec Solute uptake models comparison
 
