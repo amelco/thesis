@@ -378,7 +378,29 @@ Due to the relative nature of the sensitivity (there is no absolute value of $\e
 Therefore, due to the high number of soil hydraulic parameters, the discussion will focus only on those with the greatest $\eta$ values.
 A more detailed and profound analysis with these sensitivity results can be done in the future, with empirical tests that might corroborate the results.
 
-For the time selected predictions ($t_{end}$, $t_{T_r}$ and $t_{C_0}$), the parameters $\theta_s$ and $\lambda$ presented the highest absolute $\eta$ values.
+{\tred 
+The parameter $n$ showed the highest (absolute) values of $\eta$ among the soil hydraulic properties, mainly for $h_{os}$ in the end of simulation, reaching the value of $-$23 for scenario 2 (Figure~\ref[sensitivity_n]).
+Similar result was found by \citeonline[quirijn_sens], where the yield predictions of the evaluated model had higher sensitivity for the $n$ parameter.
+%, also with one order of magnitude higher.
+Figure \ref[fig_wrcs](a) shows how the water retention curve, following the \citeonline[genuchten80] model, changes with the variation of 1\% in $n$ parameter.
+It shows that the same value of water content is reached with higher (more negative) values of pressure head and it affects both water retention and hydraulic conductivity. 
+An increase in this parameter causes a more steep decrease in those hydraulic functions.
+Increasing $n$ increases the solute uptake rate because the same initial pressure head originates lower values of water content and, consequently, higher solute concentration values.
+Therefore, due to the higher solute uptake rate, the limiting value $H_{lim}$ is reached at later times, elongating LUP and resulting in less negative values of solute concentration in soil water ($h_\pi$), which
+%That 
+is what occurs in the simulations with loam soil (scenarios 1,2,3,4 and 5) but, despite the higher change in the water retention curve for the clay soil, it does not occur for scenario 7.
+%(its variation parameter is the soil type: clay).
+Due to the interactions between water retention and hydraulic conductivity curves, the overall effect is hard to be properly analyzed without an empirical test.
+However, the cause for the lower value of $\eta$ in scenario 7 might reside on the fact that the solute uptake rate in this scenario is very low and, even if the variation of 1\% in $n$ causes a bigger change on the retention curve (and consequently in the concentration values), it does not strongly affect the solute uptake rate and, consequently, the change in $h_\pi$ (or $h_{os}$) at the end of simulation is small.
+}
+\medskip
+\label[sensitivity_n]
+\picw=15cm \cinspic final_large.pdf
+\caption/f {Relative partial sensitivity of end time of simulation ($t_{end}$), osmotic head ($h_{os}$), time at the onset of the $T_r$ falling rate phase ($t_{T_r}$), time at the onset of constant uptake phase ($t_{C_0}$) and accumulated solute uptake ($acc$) to soil hydraulic parameter $n$ for scenarios 1 to 7}
+\medskip
+
+
+For the time selected predictions ($t_{end}$, $t_{T_r}$ and $t_{C_0}$), the parameters $\theta_s$ and $\lambda$ presented the highest (absolute) $\eta$ values.
 Increasing values of $\theta_s$ increases the available water content and increases at about the same proportion ($\approx$1\%) $t_{T_r}$, $t_{end}$ and $t_{C_0}$ due to the highest opportunity of water uptake with the same rate of $T_p$.
 The parameter of the hydraulic conductivity function $\lambda$ causes an inverse response in $t_{end}$ prediction.
 Higher values of $\lambda$ causes higher hydraulic conductivities with the same value of water content, which increases the water flux and uptake and decreases the time that the root surface reaches the limiting value $H_{lim}$, reducing the time of $T_r$ and $C_0$ falling phases, consequently reducing $t_{end}$.
@@ -408,34 +430,29 @@ The higher sensitivity to $\theta_s$ can be explained due to the fact that the m
 \caption/f {Relative partial sensitivity of end time of simulation ($t_{end}$), time at the onset of the $T_r$ falling rate phase ($t_{T_r}$) and time at the onset of constant uptake phase ($t_{C_0}$) to soil hydraulic parameters $\theta_r$, $\theta_s$, $\alpha$, $K_s$ and $\lambda$ for scenarios 1 to 7}
 \medskip
 
-
-
-
 For the solute related predictions,
 %($h_{os}$ and $acc$),
 $h_{os}$ showed high sensitivities to $\theta_r$, $\theta_s$ and $\alpha$ (Figure \ref[sensitivity_soil_rest]).
+The sign of sensitivity of $h_{os}$ to $\theta_r$ and $\theta_s$ is straightforward.
+As explained before, an increase in $\theta_r$ decreases the available water content, shortening the duration of LUP phase and $t_{T_r}$.
+As a result, the period of highest solute uptake rate is reduced causing, in the end of simulation, a higher solute concentration at the root surface (more negative $h_{os}$).
+On the other hand, an increase in $\theta_s$ causes a increase in the available water content, elongating LUP which reflects in lower solute concentration at the root surface (less negative $h_{os}$).
+As the change in the retention curve is similar to the variation of $n$, the effects are also similar.
+The end of simulation presents less negative values of $h_\pi$ due to the higher solute uptake rate.
+
+Accumulated solute uptake at the end of simulation ($acc$) presented the lowest sensitivity to all parameters for almost all scenarios. 
+As the majority of the solute uptake is done in LUP (first phase, where $C > C_2$), $acc$ is more affected when the duration of this phase is altered.
+The sensitivity of $t_{T_r}$ serves as an indicator to the shortening/elongation of this phase, in a way that $acc$ responds more strongly when $t_{T_r}$ is also affected.
+%, as Figures \ref[sensitivity_soil_time] to \ref[sensitivity_n] show.
+The parameter $\alpha$ affects the water retention curve by changing the air entry pressure head.
+An increase in its value makes that the same water content corresponds to a less negative pressure head (Figure \ref[fig_wrcs](b)).
+
+
 
 \medskip
 \label[sensitivity_soil_rest]
 \picw=15cm \cinspic final_every_bar_soil_rest.pdf
 \caption/f {Relative partial sensitivity of osmotic head at root surface in the end of simulation ($h_{os}$) and accumulated solute uptake ($acc$) to soil hydraulic parameters $\theta_r$, $\theta_s$, $\alpha$, $K_s$ and $\lambda$ for scenarios 1 to 7}
-\medskip
-
-{\tred 
-The parameter $n$ showed the highest values of $\eta$ among the soil hydraulic properties, mainly for $h_{os}$ in the end of simulation reaching the value of $-$23 for scenario 2 (Figure~\ref[sensitivity_n]).
-Similar result was found by \citeonline[quirijn_sens], where the yield predictions of the evaluated model had higher sensitivity for the $n$ parameter, also with one order of magnitude higher.
-Figure \ref[fig_wrcs] shows how the water retention curve, following the \citeonline[genuchten80] model, changes with the variation of 1\% in $n$ parameter.
-It shows that the same value of water content is reached with higher (more negative )values of pressure head.
-This brings expectations that the limiting value $H_{lim}$ would be reached at lower values of $\theta$ and with higher (more negative) values of solute concentration in soil water ($h_\pi$), which
-%That 
-is what occurs in the simulations with loam soil (scenarios 1,2,3,4 and 5) but, despite the higher change in the water retention curve for the clay soil, it does not occur for scenario 7.
-%(its variation parameter is the soil type: clay).
-The cause for the lower value of $\eta$ in scenario 7 resides on the fact that the solute uptake rate in this scenario is very low and, even if the variation of 1\% in $n$ causes a bigger change on the retention curve, it does not strongly affect the solute uptake rate and, consequently, the change in $h_\pi$ (or $h_{os}$) at the end of simulation is small.
-}
-\medskip
-\label[sensitivity_n]
-\picw=15cm \cinspic final_large.pdf
-\caption/f {Relative partial sensitivity of end time of simulation ($t_{end}$), osmotic head ($h_{os}$), time at the onset of the $T_r$ falling rate phase ($t_{T_r}$), time at the onset of constant uptake phase ($t_{C_0}$) and accumulated solute uptake ($acc$) to soil hydraulic parameter $n$ for scenarios 1 to 7}
 \medskip
 
 \medskip
@@ -445,9 +462,9 @@ The cause for the lower value of $\eta$ in scenario 7 resides on the fact that t
 %\caption/f {Theoretical water retention curves, according to Equation \ref[eq_theta], for the selected soils from Table \ref[soils]. The lower value of $h$ matches the initial value for all simulations $h_{ini}=-1$~m. Dashed lines represent the variation of 1\% in $n$ parameter}
 \caption/f {
 Theoretical water retention curves, according to Equation \ref[eq_theta], 
-(a) for the selected soils from Table \ref[soils] with dashed lines representing a variation of +1\% in parameter $n$;
-(b) for the loam soil with dashed line representing a variation of +50\% in parameter $\alpha$; and
-(c) hydraulic conductivity function, according to Equation \ref[eq_K], for the loam soil with dashed line representing a variation of +50\% in parameter $\lambda$.
+(a) for the selected soils from Table \ref[soils] with dashed lines representing a variation of +1\% in parameter $n$; and
+(b) for the loam soil with dashed line representing a variation of +50\% in parameter $\alpha$;
+%(c) hydraulic conductivity function, according to Equation \ref[eq_K], for the loam soil with dashed line representing a variation of +50\% in parameter $\lambda$.
 Values of $h$ ranges from the initial value for all simulations $h_{ini}=-1$~m to $-$150 m}
 \medskip
 
