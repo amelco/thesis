@@ -671,6 +671,40 @@ Moreover, it is possible to, in further developments, add a more realistic plant
 In that way, the active and passive partitioning would be essential to determine the stress status of the plant, separating osmotic and toxicity effects on biomass production and yield.
 Irrigation and nutrition management would then be improved.}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\sec Analytical comparison
+
+{\tred
+The numerical proposed model is compared with the analytical model proposed by \citeonline[cushman] in Figure \ref[fig_analytic].
+The analytical model has the disadvantage to deal with constant water flux only (steady-state condition).
+Therefore, an average of the simulated water flux of scenario 1 was calculated to serve as an input in the analytical model.
+The maximum rate of solute uptake of both models were the same ($J_{max}=I_m$), as well as the root absorbing power was equal to the plant affinity to the solute ($k=K_m$).
+We put the time to evaluate the concentration profile in the analytical model as being the same for the numerical model for scenario 1 ($t_{end}=30$ days).
+We have also to put a fixed dispersion coefficient, which is crucial to the behavior showed in the figure.
+In the numerical model, the dispersion coefficient changes in time and distance whilst in the analytical model, it is a constant in time and space.
+To achieve the similar concentration profile showed in the figure, we had to put a value of $D=1.98 10^{-7}$ cm$^2$ s$^{-1}$, whilst in the numerical model, this coefficient ranges from XXX to XXX.
+}
+
+\medskip
+\label[fig_analytic]
+\picw=13cm \cinspic analytic_cushman.pdf
+\caption/f {Analytical and numerical result of scenario 1 simulation }
+\medskip
+
+{\tred
+The numerical model follows the same behavior as the analytical one, but we can conclude that, the numerical model, despite its limitations, has more flexibility and can simulate a wider range of scenarios and possibilities when compared with the analytical one.
+On the other hand, analytical models has the advantages of predict in a direct way several things as time when concentration is equal to zero, and we can formulate expressions to understand what happens if the water flux is zero, if the solute flux is zero, and so on.
+Expressions can be generated to analyse a scenario even without make any simulation,  but just by analysing the expressions.
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \sec Guidelines to upscale the proposed model
 
 The proposed model simulates the transport and uptake of solutes from the soil to a single root and, because of the considered geometry (Figure \ref[root_zone]), it can be easily upscaled to consider a single plant.
