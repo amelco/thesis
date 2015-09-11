@@ -288,7 +288,7 @@ are affected by all selected parameters variations, excepting potential transpir
 It is expected that decreasing $T_p$ values causes only changes in the times which $C_0$ achieves the limiting values ($C_2$ and \clim) due to the decrease in water and solute fluxes. 
 Corroborating the results, Figure \ref[fig_contrib_c] shows the same amount of active and passive uptake contributions, according to the actual concentration in the soil, for both scenarios 1 ($T_p=6$ mm) and 2 ($T_p=3$ mm),
 and the $T_r$ falling rate phase initiates at higher times when $T_p$ is increased (Figure \ref[fig_Tr_t]).
-In other words, the simulations showed that reducing $T_p$ might cause the same concentration profiles for every scenario, although at different times, if all other parameters remains the same.
+In other words, the simulations showed that reducing $T_p$ might cause the same concentration profiles for every scenario, at different times, if all other parameters remains the same.
 Soil type and root density change the final concentration profile respectively due to the different soil hydraulic properties that affects the water retention in soil and to the greater water and solute uptake per soil unit, as explained before in the active and passive uptake partitioning.
 Similarly, they affect the steepness of the $T_r$ falling rate phase, also modifying the length of the phases LUP, CUP and NUP.
 The initial concentration, for obvious reasons, changes the final concentration profile as initially they are already different.
@@ -306,31 +306,32 @@ This causes a steeper $T_r$ reduction curve, shortening the time needed to $C_0$
 \medskip
 \label[fig_Tr_t]
 \picw=17cm \cinspic Tr_t.pdf
-\caption/f {Relative transpiration as a function of time, with different values of the selected input parameters (a) soil, (b) root density, (c) initial concentration, and (d) potencial transpiration. Lighter straight lines are the average concentration}
+\caption/f {Relative transpiration as a function of time, with different values of the selected input parameters (a) soil, (b) root density, (c) initial concentration, and (d) potencial transpiration}
 \medskip
 
 %The $C_0$ value at the end of simulation is never absolutely zero due to the asymptotic behaviour of $q_{s_0}$ function in response to decreasing $C_0$ values (Equation \ref[eq_case1]). 
 %Even so, $C_0$ becomes so close to zero that it can be consider zero and, consequently, solute uptake also zero.
 
-{\tred LITTLE DISCUSSION
+Figures \ref[fig_contrib_t] and \ref[fig_contrib_c], considering scenarios 1 to 7, interestingly show that with the same values of $I_m$ and $K_m$ (same solute), a whole different sets of active and passive contributions can be observed just due to changes in soil, root and atmospheric parameters. 
+All of these changes occurred in drying out simulations, with constant atmospheric demand.
+In a real system, the water content constantly changes due to rain or irrigation, the solute concentration can be altered by addition of nutrients in the soil and the atmospheric demand is far to be constant.
+The variation of all model parameters due to the natural changes that occur in a real system would generate a wide range of different responses of root uptake and its passive and active contributions, being hard to be predicted even with a more complex model.
+It gives light to the really complex system that the model is trying to simulate and shows that we are still trying to understand the whole nature of solute movement in soil and its uptake.
 
-IMPROVE: It is interesting that, with the same values of $I_m$ and $K_m$, a whole different sets of active and passive contributions can be generated just because of changes in soil and atmospheric parameters. This gives light to the really complex system that is the soil-plant and its relations with water and solute uptake.}
+The partitioning of the solute uptake by active and passive processes here demonstrated can serve as an initial insight for further studies. 
+It gives light to the modelling of the metabolic partitioning of energy used by the plant that regulates solute uptake, which would be useful to predict its stress status and separate osmotic and ionic stressors.
+To achieve that, there must be a more complex plant model than that presented in this thesis, which deals with metabolic processes as a function of the solute concentration within plant cells (nutritional status) and time.
+Separating osmotic and ionic stress would lead to more detailed predictions of crop stress, growth and yield.
+Besides, it also could aid water and nutritional management.
+%Obviously, the model assumptions could be more complex and, as is known, the assumptions are extremelly important to the model predictions.
+%Poor assumptions leads to poor predictions and a complex system like this in study (SPA) are often far from reality.
+%Luckily, several computational/physical/mathematical models are being developed, each one with its own characteristics and limitations, in order to best approximate nature and its phenomena.
 
-{\tred The importance of active and passive uptake partitioning are huge.
-It gives light to the modelling of metabolic partitioning of energy spent by the plant, that can be used in a proper quantification of osmotic and toxic stresses.
-The stressors are direct related to crop yield which can be also improve models crop predictions, and water and nutrients management.
-Obviously, the model assumptions could be more complex and, as is known, the assumptions are extremelly important to the model predictions.
-Poor assumptions leads to poor predictions and a complex system like this in study (SPA) are often far from reality.
-Luckily, several computational/physical/mathematical models are being developed, each one with its own characteristics and limitations, in order to best approximate nature and its phenomena.
-}
 
-{\tred LITTLE CONCLUSION
+As a conclusion to this section, it was shown that the model is able to quantify the active and passive contributions to the solute uptake, which can be used to distinguish osmotic and ionic stressors in further works.
+Soil type, root density, initial concentration and potential transpiration are factors that change the time that the concentration at the root surface starts to decrease and the time that the active uptake is maximum.
 
-The model is able to quantify the active and passive contributions to the solute uptake, which can be used to distinguish osmotic and ionic stress.
-Soil type, root density, initial concentration and potential transpiration are factors that change the time that the concentration starts to decrease and the time that the active uptake is maximum.
-}
-
-To better analyse the impact of the input parameters at the model results, a sensitivity analysis was made.
+To better analyse the impact of the variation of the model input parameters, a sensitivity analysis is presented in the next section.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -392,7 +393,6 @@ Due to the relative nature of the sensitivity (there is no absolute value of $\e
 Therefore, due to the high number of soil hydraulic parameters, the discussion will focus only on those with the greatest $\eta$ values.
 A more detailed and profound analysis with these sensitivity results can be done in the future, with empirical tests that might corroborate the results.
 
-{\tred 
 The parameter $n$ showed the highest (absolute) values of $\eta$ among the soil hydraulic properties, mainly for $h_{os}$ in the end of simulation, reaching the value of $-$23 for scenario 2 (Figure~\ref[sensitivity_n]).
 Similar result was found by \citeonline[quirijn_sens], where the yield predictions of the evaluated model had higher sensitivity for the $n$ parameter.
 %, also with one order of magnitude higher.
@@ -406,7 +406,7 @@ is what occurs in the simulations with loam soil (scenarios 1,2,3,4 and 5) but, 
 %(its variation parameter is the soil type: clay).
 Due to the interactions between water retention and hydraulic conductivity curves, the overall effect is hard to be properly analyzed without an empirical test.
 However, the cause for the lower value of $\eta$ in scenario 7 might reside on the fact that the solute uptake rate in this scenario is very low and, even if the variation of 1\% in $n$ causes a bigger change on the retention curve (and consequently in the concentration values), it does not strongly affect the solute uptake rate and, consequently, the change in $h_\pi$ (or $h_{os}$) at the end of simulation is small.
-}
+
 \medskip
 \label[sensitivity_n]
 \picw=15cm \cinspic final_large.pdf
@@ -419,7 +419,7 @@ Increasing values of $\theta_s$ increases the available water content and increa
 The parameter of the hydraulic conductivity function $\lambda$ causes an inverse response in $t_{end}$ prediction.
 Higher values of $\lambda$ causes higher hydraulic conductivities with the same value of water content, which increases the water flux and uptake and decreases the time that the root surface reaches the limiting value $H_{lim}$, reducing the time of $T_r$ and $C_0$ falling phases, consequently reducing $t_{end}$.
 Thus, sensitivities to $\lambda$ and $\theta_s$ are expected to be negative and positive, respectively, for the selected time predictions, corroborating the results (Figure \ref[sensitivity_soil_time]).
-The higher sensitivity to $\theta_s$ can be explained due to the fact that the model has a powerful (possibly overestimated) solute extraction at LUP, due to the lack of a plant regulated process for solute uptake at this phase.
+The higher sensitivity to $\theta_s$ can be explained due to the fact that the model has a powerful (possibly overestimated) solute extraction at LUP, either due to the lack of a plant regulated process for solute uptake at this phase or because the model does not consider a regulation in the solute uptake according to solute concentration inside the plant.
 
 %The model sensitivity for the parameter $\theta_r$ was the lowest in the selected time predictions.
 %An increase in $\theta_r$ decreases the available water content decreasing the time of $T_r$ and $C_0$ falling phases, consequently reducing $t_{end}$. 
@@ -483,6 +483,8 @@ Values of $h$ ranges from the initial value for all simulations $h_{ini}=-1$~m t
 \medskip
 
 With this simple sensitivity analysis, we can conclude that the parameters that need more carefulness to measure are: $\theta_r$, $\theta_s$, $\alpha$, $I_m$ and $K_m$ which affects more strongly the solute concentration at root surface in the end of simulation, $\theta_s$ which strongly affects the time at the limiting values are reached, and $n$ which strongly affects all selected predictions, mainly $h_{os}$.
+
+
 
 {\tred
 Note that we could have choose one scenario to do the sensitivity analysis. 
