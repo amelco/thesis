@@ -439,9 +439,46 @@ $$
 
 
 \label[analytical_models]
-\sec Analytical models
+\sec Comparison with an analytical model
 
-Computational implementations of the analytical models of \citeonline[cushman] and \citeonline[willigen1] were made to confront them with the numerical solutions. The former uses the MM equation as the boundary condition at root surface to deal with solute uptake, and it is used to compare with the proposed nonlinear model (NLU).
+A computational implementation of the analytical model of \citeonline[cushman] was made to confront it with the nonlinear numerical solution (NLU). 
+This particular analytical model was chosen due to the reason that both models use the MM equation as the boundary condition at root surface to deal with solute uptake.
+A transcription of the Cushman's equation can be found here:
+%but the reader can find all the details in his original work.
+
+$$
+\Theta(\mu,\eta) = \sum_{n=0}^\infty A_n \mu^v \beta(\mu,\tau,\alpha_n) \exp(-\alpha^2\eta)+1 \eqmark
+$$
+where
+$$
+\eqalignno{
+\beta_v(\mu,\tau,\alpha_n) &= \left[\alpha aY_{v-1}(a\alpha)-2v(1-\tau)Y_v(\alpha_n)\right] J_v(\alpha_n\mu) & \cr
+                         &- \left[\alpha aJ_{v-1}(a\alpha)-2v(1-\tau)J_v(\alpha_n)\right] Y_v(\alpha_n\mu),
+}
+$$
+the $\alpha_n$ are roots of
+$$
+\eqalignno{
+&[\alpha aJ_{v-1}(\alpha a)-2vJ_v(\alpha a)] [\alpha Y_{v-1}(\alpha)-2v(1-\tau)Y_v(\alpha)] + & \cr
+&[2vY_{v}(\alpha a)-\alpha aY_{v-1}(\alpha a)] [\alpha J_{v-1}(\alpha)-2v(1-\tau)J_v(\alpha)] = 0,
+}
+$$
+and the $A_n$ are given by
+$$
+A_n=-{\displaystyle\int_1^a \mu^{1-v}\beta_v(\mu,\tau,\alpha_n)d\mu \over \displaystyle\int_1^a \mu{\beta_v}^2(\mu,\tau,\alpha_n)d\mu}.
+$$
+
+This analytical solution is for a linear boundary condition. 
+The simplification was based on the assumption that the concentration in solution is initially low, then the nonlinear boundary
+$$
+D{\partial C \over \partial r}+q_0 C = {kC \over 1+kC J_{max}}
+$$
+becomes linear
+$$
+D{\partial C \over \partial r}+q_0 C = kC.
+$$
+
+
 
 %Here we present the analytical models used in the comparisons to the proposed model. An computational implementation were made to each model.
 

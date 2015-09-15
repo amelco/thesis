@@ -697,20 +697,21 @@ It is also shown that the models that consider solute uptake (CU and NLU) presen
 
 The proposed numerical model is compared with the analytical model of \citeonline[cushman], in Figure \ref[fig_analytic], with input parameters of scenario 1.
 The analytical model has the disadvantage to deal with constant water flux (steady-state condition) and dispersion coefficient.
-Therefore, an average of the simulated water flux of scenario 1 was calculated to serve as an input in the analytical model.
-In the numerical model, the dispersion coefficient changes in time and distance.
-Therefore, to get similar concentration profiles, the analytical model had a value of $D=1.98 \cdot 10^{-7}$ cm$^2$ s$^{-1}$ (or $1.98\cdot10^{-11}$ m$^2$ s$^{-1}$) whereas the numerical model had dispersion coefficients that ranged from $4.13 \cdot 10^{-10}$ to $1.25\cdot10^{-12}$ m$^2$ s$^{-1}$ at the root surface.
+Therefore, averages for the simulated water flux and dispersion coefficient of scenario 1 were calculated to serve as an inputs in the analytical model.
+%In the numerical model, the dispersion coefficient changes in time and distance.
+%Therefore, to get similar concentration profiles, the analytical model had a value of $D=1.98 \cdot 10^{-11}$ m$^2$ s$^{-1}$ whereas the numerical model had dispersion coefficients that ranged from $4.13 \cdot 10^{-10}$ to $1.25\cdot10^{-12}$ m$^2$ s$^{-1}$ at the root surface.
 The maximum rate of solute uptake of both models were the same ($J_{max}=I_m$), as well as the root absorbing power was equal to the plant affinity to the solute ($k=K_m$).
 The input time to evaluate the concentration profile in the analytical model was the same of the numerical model for scenario 1 ($t_{end}=30$ days).
 
 \medskip
 \label[fig_analytic]
 \picw=13cm \cinspic analytic_cushman.pdf
-\caption/f {Solute concentration profile of the analytical and numerical models, with parameters of scenario 1, at time $t=30$ days. }
+\caption/f {Solute concentration profile of the analytical and numerical models, with parameters of scenario 1, at time $t=30$ days }
 \medskip
 
 {\tred
 In that way, the concentration profile of the analytical model corroborates the results of the numerical model, despite the differences of their input values.
+
 
 The numerical model follows the same behavior as the analytical one, but we can conclude that, the numerical model, despite its limitations, has more flexibility and can simulate a wider range of scenarios and possibilities when compared with the analytical one.
 On the other hand, analytical models has the advantages of predict in a direct way several things as time when concentration is equal to zero, and we can formulate expressions to understand what happens if the water flux is zero, if the solute flux is zero, and so on.
