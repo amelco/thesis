@@ -442,42 +442,48 @@ $$
 \sec Comparison with an analytical model
 
 A computational implementation of the analytical model of \citeonline[cushman] was made to confront it with the nonlinear numerical solution (NLU). 
-This particular analytical model was chosen due to the reason that both models use the MM equation as the boundary condition at root surface to deal with solute uptake.
+This particular analytical model was chosen due to the reason that it also uses the MM equation as the boundary condition at root surface to deal with solute uptake.
 A transcription of the Cushman's equation can be found here:
 %but the reader can find all the details in his original work.
 
+\label[eq_cush]
 $$
-\Theta(\mu,\eta) = \sum_{n=0}^\infty A_n \mu^v \beta(\mu,\tau,\alpha_n) \exp(-\alpha^2\eta)+1 \eqmark
+\Theta(\mu,\eta) = \sum_{n=0}^\infty A_n \mu^v \beta(\mu,\tau,\alpha_n) \exp(-\alpha_n^2\eta)+1 \eqmark
 $$
 where
+%
 $$
 \eqalignno{
-\beta_v(\mu,\tau,\alpha_n) &= \left[\alpha aY_{v-1}(a\alpha)-2v(1-\tau)Y_v(\alpha_n)\right] J_v(\alpha_n\mu) & \cr
-                         &- \left[\alpha aJ_{v-1}(a\alpha)-2v(1-\tau)J_v(\alpha_n)\right] Y_v(\alpha_n\mu),
+\beta_v(\mu,\tau,\alpha_n) &= \left[\alpha_n aY_{v-1}(a\alpha_n)-2v(1-\tau)Y_v(\alpha_n)\right] J_v(\alpha_n\mu) & \eqmark\cr
+                         &- \left[\alpha_n aJ_{v-1}(a\alpha_n)-2v(1-\tau)J_v(\alpha_n)\right] Y_v(\alpha_n\mu),
 }
 $$
 the $\alpha_n$ are roots of
 $$
 \eqalignno{
-&[\alpha aJ_{v-1}(\alpha a)-2vJ_v(\alpha a)] [\alpha Y_{v-1}(\alpha)-2v(1-\tau)Y_v(\alpha)] + & \cr
+&[\alpha aJ_{v-1}(\alpha a)-2vJ_v(\alpha a)] [\alpha Y_{v-1}(\alpha)-2v(1-\tau)Y_v(\alpha)] + & \eqmark\cr
 &[2vY_{v}(\alpha a)-\alpha aY_{v-1}(\alpha a)] [\alpha J_{v-1}(\alpha)-2v(1-\tau)J_v(\alpha)] = 0,
 }
 $$
 and the $A_n$ are given by
 $$
-A_n=-{\displaystyle\int_1^a \mu^{1-v}\beta_v(\mu,\tau,\alpha_n)d\mu \over \displaystyle\int_1^a \mu{\beta_v}^2(\mu,\tau,\alpha_n)d\mu}.
+A_n=-{\displaystyle\int_1^a \mu^{1-v}\beta_v(\mu,\tau,\alpha_n)d\mu \over \displaystyle\int_1^a \mu{\beta_v}^2(\mu,\tau,\alpha_n)d\mu}. \eqmark
 $$
 
 This analytical solution is for a linear boundary condition. 
-The simplification was based on the assumption that the concentration in solution is initially low, then the nonlinear boundary
+The simplification was based on the assumption that the concentration in solution is initially low, then the nonlinear MM equation becomes linear:
+\label[eq_cond_linear]
 $$
-D{\partial C \over \partial r}+q_0 C = {kC \over 1+kC J_{max}}
+{kC \over 1+kC J_{max}} \approx kC \eqmark
 $$
-becomes linear
+and the boundary condition becomes
+\label[eq_bc_cush]
 $$
-D{\partial C \over \partial r}+q_0 C = kC.
+D{\partial C \over \partial r}+q_0 C = kC. \eqmark
 $$
 
+The nondimensional variables $\eta$, $\mu$, $\tau$, $\Theta$, $v$ and $a$ account for time, distance, root ability to absorb solute by convective flux, solute concentration in soil solution, ratio of convective to diffusive flux and outer influence of the root, respectively.
+It is important to know that $\tau=k/q_0$, where $k$ is the root absorbing power, or $K_m$ in the nomenclature of this thesis.
 
 
 %Here we present the analytical models used in the comparisons to the proposed model. An computational implementation were made to each model.
@@ -593,7 +599,7 @@ where $P$ is the default value of the parameter, $dP$ is the in(de)crement appli
 
 To find the sensitivity of the model to a input parameter is to find the magnitude of its derivative in respect of the model result. If the derivative, for instance, is zero, the model has no sensitivity to this parameter. The higher the derivative, the higher is the sensitivity and, therefore, the higher is the precision needed to measure that parameter. By making a relative analysis, one can observe the sensitivity from distinct parameters through the same scale, and compare them. 
 
-Here, we did an increment of 1\% of the following selected parameters ($P$): a) MM parameters $I_m$, $K_m$; and  b) soil hydraulic parameters $\alpha$, $n$, $\lambda$, $K_s$, $\theta_r$ and $\theta_s$.
+In this thesis, it was implemented an increment of 1\% of the following selected parameters ($P$): a) MM parameters $I_m$, $K_m$; and  b) soil hydraulic parameters $\alpha$, $n$, $\lambda$, $K_s$, $\theta_r$ and $\theta_s$.
 The analysed predicted variables ($Y$) were: end time of simulation $t_{end}$, osmotic head in the end of simulation $h_{\pi}$, pressure head in the end of simulation $h$, average osmotic head in the soil profile in the end of simulation $\overline{h_{\pi}}$, average pressure head in soil profile in the end of simulation $\overline{h}$ and accumulated uptake in the end of simulation $Ac$.
 %
 %{\localcolor\Red ::DRAFT:: IMPROVE IT!}

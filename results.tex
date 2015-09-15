@@ -696,22 +696,28 @@ It is also shown that the models that consider solute uptake (CU and NLU) presen
 \sec Analytical comparison
 
 The proposed numerical model is compared with the analytical model of \citeonline[cushman], in Figure \ref[fig_analytic], with input parameters of scenario 1.
-The analytical model has the disadvantage to deal with constant water flux (steady-state condition) and dispersion coefficient.
-Therefore, averages for the simulated water flux and dispersion coefficient of scenario 1 were calculated to serve as an inputs in the analytical model.
-%In the numerical model, the dispersion coefficient changes in time and distance.
-%Therefore, to get similar concentration profiles, the analytical model had a value of $D=1.98 \cdot 10^{-11}$ m$^2$ s$^{-1}$ whereas the numerical model had dispersion coefficients that ranged from $4.13 \cdot 10^{-10}$ to $1.25\cdot10^{-12}$ m$^2$ s$^{-1}$ at the root surface.
-The maximum rate of solute uptake of both models were the same ($J_{max}=I_m$), as well as the root absorbing power was equal to the plant affinity to the solute ($k=K_m$).
+The analytical model has the limitation to deal with constant water flux and dispersion coefficient (steady-state condition).
+Therefore, averages for the simulated water flux and dispersion coefficient of scenario 1 were calculated to serve as inputs in the analytical model.
+%The maximum rate of solute uptake of both models were the same ($J_{max}=I_m$), as well as the root absorbing power was equal to the plant affinity to the solute ($k=K_m$).
 The input time to evaluate the concentration profile in the analytical model was the same of the numerical model for scenario 1 ($t_{end}=30$ days).
 
 \medskip
 \label[fig_analytic]
 \picw=13cm \cinspic analytic_cushman.pdf
-\caption/f {Solute concentration profile of the analytical and numerical models, with parameters of scenario 1, at time $t=30$ days }
+\caption/f {Solute concentration profile of the analytical and numerical models, with parameters of scenario 1, at time $t=30$ days. The grey line is the numerical result of the linear model }
 \medskip
+
+The differences between the two models is mostly due to the consideration of steady-state condition in respect of water flow, that provides constant water flux and solute dispersion coefficient.
+As the analytical model is a solution to the Equation \ref[eq_cush] with a linear boundary condition of solute uptake at the root surface (Equation \ref[eq_bc_cush]), it is also shown in Figure \ref[fig_analytic] the result of the linear numerical model (LU, grey line).
+The similar result indicates that the proposed numerical model is in agreement to 
+{\tred
+what is proposed in the literature, with the advantage of being more flexible because it has no limitations of steady-state condition, leading to a potential of simulate a wider range of scenarios.
+}
 
 {\tred
 In that way, the concentration profile of the analytical model corroborates the results of the numerical model, despite the differences of their input values.
 
+With the assumption of linearity (Equation \ref[eq_cond_linear]), the boundary condition equation has 1 ($k$) instead of 2 ($J_{max}$ and $k$) parameters, which can overestimate the uptake at high concentrations.
 
 The numerical model follows the same behavior as the analytical one, but we can conclude that, the numerical model, despite its limitations, has more flexibility and can simulate a wider range of scenarios and possibilities when compared with the analytical one.
 On the other hand, analytical models has the advantages of predict in a direct way several things as time when concentration is equal to zero, and we can formulate expressions to understand what happens if the water flux is zero, if the solute flux is zero, and so on.
