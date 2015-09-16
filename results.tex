@@ -19,6 +19,7 @@
 
 \chap RESULTS AND DISCUSSION
 
+\label[result_luxnlu]
 \sec Linear (LU) versus nonlinear (NLU) solutions
 
 %In all simulated scenarios, the difference between LU and NLU models occurs only at values of solute concentration in soil water ($C$) below the threshold value \clim. This is expected because of the nature of the piecewise MM equation used in the model.
@@ -707,8 +708,10 @@ The input time to evaluate the concentration profile in the analytical model was
 \caption/f {Solute concentration profile of the analytical and numerical models, with parameters of scenario 1, at time $t=30$ days. The grey line is the numerical result of the linear model }
 \medskip
 
-The differences between the two models is mostly due to the consideration of steady-state condition in respect of water flow, that provides constant water flux and solute dispersion coefficient.
-As the analytical model is a solution to the Equation \ref[eq_cush] with a linear boundary condition of solute uptake at the root surface (Equation \ref[eq_bc_cush]), it is also shown in Figure \ref[fig_analytic] the result of the linear numerical model (LU, grey line).
+The differences between the two models is mostly due to the consideration of steady-state condition in respect to water flow in the analytical model as opposed to the proposed numerical model that deals with transient water and solute fluxes.
+It is shown in the discussion of Section \ref[result_luxnlu] that there is no significant difference between LU and NLU models results of concentration profile.
+Nevertheless, Figure \ref[fig_analytic] shows the concentration profile also for the LU model, considering that the analytical model has a linear solute uptake rate as the boundary condition at the root surface.
+%As the analytical model is a solution to the Equation \ref[eq_cush] with a linear boundary condition of solute uptake at the root surface (Equation \ref[eq_bc_cush]), it is also shown in Figure \ref[fig_analytic] the result of the linear numerical model (grey line), which is similar to the nonlinear result (actually, according to the analysis made in section \ref[result_luxnlu], their difference is not significant).
 The similar result indicates that the proposed numerical model is in agreement to 
 {\tred
 what is proposed in the literature, with the advantage of being more flexible because it has no limitations of steady-state condition, leading to a potential of simulate a wider range of scenarios.
