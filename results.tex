@@ -42,7 +42,7 @@ For example, the amount of solute extracted by the roots at the end of simulatio
 In addition, the LCC occurs at values of relative transpiration around 0.03 or less -- in a situation that the plant is already at high (water and/or osmotic) stress levels -- and close to the end of simulation (that stops when $Tr \leq 0.001$). 
 %Because the difference between the models starts to occur at $T_r$ values around 0.03 or less, close to the end of simulation (that stops when $Tr \leq 0.001$), the time period in which the models to differ is small. 
 A second reduction in the relative transpiration occurs and it can be noticed by an abrupt decrease in the transpiration rate (Figure \ref[diff_tr]).
-A possible explanation is that, at this point, the solute uptake rate decreases, building a more negative value for the osmotic head and, consequently, reducing also the water uptake rate. It can be seen in Figure \ref[diff_tr] that the nonlinear equation causes a smoother $T_r$ reduction, which seems to be more appropriate for a natural phenomena.
+A possible explanation is that, at this point, the solute uptake rate decreases, building a more negative value for the osmotic head and, consequently, reducing also the water uptake rate. It can be seen in Figure \ref[diff_tr] that the nonlinear equation causes a smoother $T_r$ reduction, which seems to be more appropriate for a natural phenomenon.
 
 \medskip
 \label[accumxt]
@@ -327,7 +327,7 @@ Separating osmotic and ionic stress would lead to more detailed predictions of c
 Besides, it also could aid water and nutritional management.
 %Obviously, the model assumptions could be more complex and, as is known, the assumptions are extremelly important to the model predictions.
 %Poor assumptions leads to poor predictions and a complex system like this in study (SPA) are often far from reality.
-%Luckily, several computational/physical/mathematical models are being developed, each one with its own characteristics and limitations, in order to best approximate nature and its phenomena.
+%Luckily, several computational/physical/mathematical models are being developed, each one with its own characteristics and limitations, in order to best approximate nature and its phenomenon.
 
 
 As a conclusion to this section, it was shown that the model is able to quantify the active and passive contributions to the solute uptake, which can be used to distinguish osmotic and ionic stressors in further works.
@@ -709,48 +709,38 @@ The input time to evaluate the concentration profile in the analytical model was
 \medskip
 
 The differences between the two models is mostly due to the consideration of steady-state condition in respect to water flow in the analytical model as opposed to the proposed numerical model that deals with transient water and solute fluxes.
-It is shown in the discussion of Section \ref[result_luxnlu] that there is no significant difference between LU and NLU models results of concentration profile.
-Nevertheless, Figure \ref[fig_analytic] shows the concentration profile also for the LU model, considering that the analytical model has a linear solute uptake rate as the boundary condition at the root surface.
-%As the analytical model is a solution to the Equation \ref[eq_cush] with a linear boundary condition of solute uptake at the root surface (Equation \ref[eq_bc_cush]), it is also shown in Figure \ref[fig_analytic] the result of the linear numerical model (grey line), which is similar to the nonlinear result (actually, according to the analysis made in section \ref[result_luxnlu], their difference is not significant).
-The similar result indicates that the proposed numerical model is in agreement to 
-{\tred
-what is proposed in the literature, with the advantage of being more flexible because it has no limitations of steady-state condition, leading to a potential of simulate a wider range of scenarios.
-}
-
-{\tred
-In that way, the concentration profile of the analytical model corroborates the results of the numerical model, despite the differences of their input values.
-
+It is shown in the discussion of Section \ref[result_luxnlu] that there is no significant difference between the results of concentration profile of LU and NLU models.
+Nevertheless, Figure \ref[fig_analytic] also shows the concentration profile for the LU model, considering that the analytical model has a linear solute uptake rate as the boundary condition at the root surface.
 With the assumption of linearity (Equation \ref[eq_cond_linear]), the boundary condition equation has 1 ($k$) instead of 2 ($J_{max}$ and $k$) parameters, which can overestimate the uptake at high concentrations.
 
-The numerical model follows the same behavior as the analytical one, but we can conclude that, the numerical model, despite its limitations, has more flexibility and can simulate a wider range of scenarios and possibilities when compared with the analytical one.
-On the other hand, analytical models has the advantages of predict in a direct way several things as time when concentration is equal to zero, and we can formulate expressions to understand what happens if the water flux is zero, if the solute flux is zero, and so on.
-Expressions can be generated to analyse a scenario even without make any simulation,  but just by analysing the expressions.
-}
-
+Despite the differences in the assumptions and input values of each model, the numerical model shows good agreement with the analytical solution by \citeonline[cushman], which is plausible as they are simulating the same phenomenon over a almost identical scenario.
+The proposed numerical model can then be used as an alternative to the analytical model, with the advantage of simulate transient water and solute fluxes, giving the possibility to predict the solute uptake of a wider range of scenarios.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\sec Guidelines to upscale the proposed model
-
-{\tred
-The proposed model simulates the transport and uptake of solutes from the soil to a single root and, because of the considered geometry (Figure \ref[root_zone]), it can be easily upscaled to consider a single plant.
-There are more complex models that simulates crop production at field scale and, since the proposed model deals with and quantify active and passive uptakes, it can be used to simulate osmotic and ionic stressors that cause a yield decrease.
-For this, the present model has to be upscaled, or goes from a micro to a macroscopic scale.
-There are 1D, 2D and 3D macroscopic models.
-Here it will be shown how to upscale to a 1D model as for the other dimensions is just do everything again.
-
-One dimensional models usually consider vertical fluxes. 
-The gradients are vertical and all movements and exchanges are vertical, between the layers of the model.
-We will focus in the soil layers.
-The proposed model simulates horizontal fluxes and therefore horizontal gradients.
-Although the model calculates the horizontal gradients and fluxes between all segments and each concentration for them, a representative average soil concentration has to be computed.
-As the calculations takes some time to run, as showed in the previous sections, the number of segments must be the smallest as possible.
-As we saw in FIGURE XXX when the concentration in the root surface is not important, we can use the LU and the generated concentration profile can be used to calculate the average soil concentration.
-As LU is more flexible to deal with time and space steps, it is the chosen model to use in the upscaling.
-More studies must be done to determine the ideal space steps to use for each time step scale, since macroscopic models can use time steps that range from seconds to days.
-}
+%
+%
+%\sec Guidelines to upscale the proposed model
+%
+%{\tred
+%The proposed model simulates the transport and uptake of solutes from the soil to a single root and, because of the considered geometry (Figure \ref[root_zone]), it can be easily upscaled to consider a single plant.
+%There are more complex models that simulates crop production at field scale and, since the proposed model deals with and quantify active and passive uptakes, it can be used to simulate osmotic and ionic stressors that cause a yield decrease.
+%For this, the present model has to be upscaled, or goes from a micro to a macroscopic scale.
+%There are 1D, 2D and 3D macroscopic models.
+%Here it will be shown how to upscale to a 1D model as for the other dimensions is just do everything again.
+%
+%One dimensional models usually consider vertical fluxes. 
+%The gradients are vertical and all movements and exchanges are vertical, between the layers of the model.
+%We will focus in the soil layers.
+%The proposed model simulates horizontal fluxes and therefore horizontal gradients.
+%Although the model calculates the horizontal gradients and fluxes between all segments and each concentration for them, a representative average soil concentration has to be computed.
+%As the calculations takes some time to run, as showed in the previous sections, the number of segments must be the smallest as possible.
+%As we saw in FIGURE XXX when the concentration in the root surface is not important, we can use the LU and the generated concentration profile can be used to calculate the average soil concentration.
+%As LU is more flexible to deal with time and space steps, it is the chosen model to use in the upscaling.
+%More studies must be done to determine the ideal space steps to use for each time step scale, since macroscopic models can use time steps that range from seconds to days.
+%}
 
 \cleardoublepage
 
