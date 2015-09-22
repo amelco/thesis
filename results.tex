@@ -27,7 +27,7 @@
 %For both models, when solute concentration values at the root surface are higher than \c2, solute transport from soil to root is mostly driven by convection and, according to Equations \ref[eq_MM_mod] and \ref[eq_MM_linear], the uptake is passive only, with active uptake equal to zero. 
 %For values of $C_0$ between the two threshold values (\c2 and \clim), the solute flux density is constant and NLU and LU are different only for $C$ values lower than $C_{lim}$ .
 
-According to Equations \ref[eq_MM_mod] and \ref[eq_MM_linear], the difference between LU and NLU occurs only at the condition of concentration values at root surface below $C_{lim}$, due to the different considered boundary condition of each model. 
+According to Equations \ref[eq_MM_mod] and \ref[eq_MM_linear], the difference between LU and NLU only occurs for concentration values at root surface below $C_{lim}$, due to the different boundary condition of each model. 
 In this section, we will analyse whether the difference in the outputs of LU and NLU is significant to decide the situations that one model can be used over the another. 
 For now on, the condition $C_0 < C_{lim}$ will be referred as `limiting concentration condition', or LCC, for short. 
 
@@ -56,15 +56,18 @@ A possible explanation is that, at this point, the solute uptake rate decreases,
 \caption/f {Relative transpiration as a function of time for scenarios 1 to 4. Dashed lines represent the nonlinear model}
 \medskip
 
-There are two ways of making the difference between the two models be relevant: 
-a) increase the value of $C_{lim}$ to make LCC period be achieved faster, or b) look at that difference by a different time scale. 
+%There are two ways of making the difference between the two models be relevant: 
+The difference can be significant either by
+a) increasing the value of $C_{lim}$ as such LCC period is achieved faster, or b) looking at the results by a different time scale. 
 We could not find a scenario that matched the first option. 
 By analysing the Equation \ref[eq_clim2], it is noticeable that the maximum value for $C_{lim}$ is equal to $K_m$ and only if $q_0 \gg Km^2$. 
-But, even if the value of $q_0$ attends this condition, Equation \ref[eq_c2] shows that $C_2$ would be higher and, since the uptake function is a piecewise equation, $C_0$ would have to be decreased until it reaches $C_{lim}$. 
-At that time, the water flux would be low and the LCC period would be still small. 
+But, even if the value of $q_0$ attends this condition, Equation \ref[eq_c2] shows that $C_2$ would be higher and, since the uptake function is a piecewise equation, $C_0$ would have to be decreased until it reaches $C_{lim}$,
+then, at the time of LCC, the water flux would be low and the LCC period 
+%woulld be
+still small. 
 However, by changing the scope and computing the differences between the two models starting from the time where LCC starts, a significant difference is noticed. 
 
-Table \ref[tab_diff] shows the relative difference between the two models for concentration at root surface as function  of time ($C_0(t)$) and for concentration as a function of distance from axial center ($C(r)$) at the end of simulation, considering the shorter time scale only (beginning from the time where LCC starts). 
+Table \ref[tab_diff] shows the relative difference between the two models for concentration at root surface as function  of time ($C_0(t)$), considering the shorter time scale only (beginning from the time where LCC starts), and for concentration as a function of distance from axial center ($C(r)$) at the end of simulation. 
 The Mann-whitney U test showed a significant difference for $C_0(t)$ but not for $C(r)$. 
 The difference ({\it diff.}) between LU and NLU increases with time (Figure \ref[diff_t]),
 %due to the abrupt decrease of solute uptake rate at root surface (that causes the second $T_r$ reduction).
@@ -114,8 +117,8 @@ Scenario 4 never reached the LCC and it is presented in Table \ref[tab_diff] to 
 
 These results mean that although there is indeed a difference between the two models, they are important only if looked in a shorter time scope. 
 If the variable of interest arises from the whole time scope (accumulated uptake, for instance) or it is the concentration as a function of the radial distance, the differences are not important and both models can be used. 
-In that case, it is preferred to use LU since a bigger time step can be used making the simulations faster.
-On the other hand, considering that the metabolic response of the plant for different levels of concentration at root surface is immediate -- only a slightly change in $C_0$ causes a instantaneous plant reaction -- or in situations where the value of $C_0$ is important, it is plausible to consider NLU for the simulations since it is a more realistic model.  
+In that case, it is preferred to use LU since a bigger time step can be used and the simulation runs faster.
+On the other hand, by considering that the metabolic response of the plant for different levels of concentration at root surface is immediate -- only a slightly change in $C_0$ causes a instantaneous plant reaction -- or in situations where the value of $C_0$ at LCC is important, it is plausible to consider NLU for the simulations since it is a more realistic model.  
 In this thesis we choose to use NLU since the values of $C_0$ are important to determine, precisely, the active and passive contribution to the solute uptake, which will be analysed in the next section.
 % and, therefore, the differences between the two models outputs -- according to Equations  \ref[error_abs] and \ref[error_rel] -- were calculated for this time period only. 
 
@@ -198,8 +201,8 @@ According to the piecewise Equation \ref[eq_MM_mod], the solute uptake rate is d
 Let us call them linear uptake phase (LUP) when $C_0>C_2$, constant uptake phase (CUP) when $C_{lim}<C_0<C_2$, and nonlinear uptake phase (NUP) when $C_0<C_{lim}$.
 For the simulation scenarios, the set of input parameters $h_{ini}$ and $C_{ini}$ were chosen in a way that the simulation always starts at LUP, in which $T_r=1$ and solute uptake is done by mass flow of water only (passive uptake).
 In this phase, the water content and concentration in bulk soil are being depleted at the same rate, developing a period of constant concentration in soil water (Figure \ref[fig_C_t]).
-For different soil types, as shown in Figure \ref[fig_C_t](a), although the initial concentration in bulk soil is the same (10 mol m$^{-3}$), initially, the concentrations in soil water at the root surface are different for each soil type. 
-As the input parameter for water content is {\it h}-based, its initial value is calculated according to Equation \ref[eq_theta], that leads to different $\theta$ values for each soil in accordance to their hydraulic parameters.
+For different soil types, although the initial concentration in bulk soil is the same (10 mol m$^{-3}$), initially, the concentrations in soil water at the root surface are different, as shown in Figure \ref[fig_C_t](a). 
+The explanation is that, as the input parameter for water content is {\it h}-based, its initial value is calculated according to Equation \ref[eq_theta], that leads to different $\theta$ values for each soil in accordance to their hydraulic parameters.
 
 \medskip
 \label[fig_C_t]
@@ -217,9 +220,11 @@ which changes with soil type, root density, initial concentration and potential 
 Moreover, in 
 %the constant uptake phase
 CUP, the solute uptake by mass flow does not attend completely the plant demand,
-thus, according to the model assumptions, an active uptake is developed and it becomes higher as passive uptake (driven by mass flow of water) becomes lower in order to maintain the constant uptake rate (Figure \ref[fig_contrib_t]).
+thus, according to the model assumptions, an active uptake is developed and it becomes higher as passive uptake 
+%(driven by mass flow of water) 
+becomes lower in order to maintain the constant uptake rate.
 This constant demand, filled by active and passive uptake, is maintained until $C_0$ reaches $C_{lim}$ which, in turn, increases as $q_0$ decreases, according to Equation \ref[eq_clim].
-Active uptake reaches its maximum value when $C_0=C_{lim}$ (Figure \ref[fig_contrib_t]) and the uptake will be limited by the concentration in the soil in further time steps, starting the nonlinear uptake phase (NUP).
+Active uptake reaches its maximum value when $C_0=C_{lim}$  and the uptake is then limited by the concentration in the soil in further time steps, starting the nonlinear uptake phase (NUP).
 It can be seen in Figure \ref[fig_contrib_t] that the time of the occurrence of the maximum value for active uptake depends on how fast passive uptake 
 %(caused by the depletion of $C_0$ and reduction of $q_0$) 
 decreases, which is 
@@ -246,57 +251,58 @@ The main characteristic of the nonlinear uptake phase (NUP) is a second falling 
 The total head $H$ is not able to fall below $H_{lim}$ and, as the solute uptake rate ($q_{s_0}$) decreases due to the limitation imposed by $C_{lim}$ (Equation~\ref[eq_MM_mod]), a decrease in the water uptake rate ($q_0$) has to occur to maintain $H$ in its limiting value.
 It is the shortest phase because it starts with very low values of $q_0$ and $T_r$, near the end time of simulation ($T_r=0.001$) in which $q_0$ is considered negligible.
 However, it is the phase that the active uptake is dominant, being the major component of the solute uptake. 
-According to \citeonline[tinker], at low concentrations, the ion transport across membranes is limited by the diffusive flux of solute towards the membrane in case of high affinity uptake 
+%According to \citeonline[tinker], at low concentrations, the ion transport across membranes is limited by the diffusive flux of solute towards the membrane in case of high affinity uptake 
 %(low $K_m$ values) 
-and the contribution of the solute uptake by mass flow of water (through the transpiration stream) is estimated to be very low, often below 0.1\%, which corroborates the results.
+%and the contribution of the solute uptake by mass flow of water (through the transpiration stream) is estimated to be very low, often below 0.1\%, which corroborates the results.
 
 The results of active and passive contributions with respect to time and concentration in soil solution are shown respectively in Figures \ref[fig_contrib_t] and \ref[fig_contrib_c], according to Equation \ref[eq_MM_mod] and the model assumptions.
-From the beginning of the simulations (wet soil, $T_r=1$), although it is in LUP, a constant uptake rate is developed. 
+From the beginning of the simulations (wet soil, $T_r=1$), although it initiates in LUP, a constant (instead of a linear) uptake rate is developed. 
 This is due to the fact that the model considers a constant potential transpiration rate through the day and
 %, according to equation XXX, 
 the water flux is directly related to $T_p$.
 In that phase, the solute uptake is determined by $q_0$ and $C_0$ (Equation \ref[eq_case3]) but $C_0$ does not change because of the equal rates of depletion for water and solute.
 A plant regulated process that limits the solute uptake (for example, a reflection coefficient) might be an alternative to regulate the uptake in this phase, however, it is not considered in this model.
-Therefore, according to the model assumptions, the rate of solute uptake at LUP is constant and its value depends on the potential transpiration, soil type, root length density, and initial concentration and it does not depend on ion type (Figure \ref[fig_contrib_t]).
+Therefore, according to the model assumptions, the rate of solute uptake at LUP is constant and its value depends on the potential transpiration, soil type, root length density, and initial concentration and it does not depend on ion type, since $q_{s_0}$ values are the same (Figure \ref[fig_contrib_t]).
 
 %The length of the two subsequent phases (CUP and NUP)
 It is shown in Figure \ref[fig_contrib_c] different behaviours for the active and passive contributions for solute uptake as a function of soil concentration in soil solution.
 Although changing from low to high values of $T_p$ causes changes in the length of the phases (LUP, CUP and NUP), no changes in the active and passive partitioning was detected with the variation of this parameter.
 This result is straightforward 
 %to explain 
-since the potential transpiration affects the rate of the potential water flux and uptake which, consequently, affects the rate of solute uptake.
-In a case that all model parameters of soil type, root density, ion type and solute uptake are the same, it is expected the same results, but in different times.
-The most significant difference can be noticed from the different soil types (specially on clay soil) and root density values.
+since the potential transpiration affects the rate of the potential water flux and water uptake which, consequently, affects the rate of solute uptake.
+In a case that all soil type, root density, ion type and solute uptake parameters are the same, the same results are expected but in different times.
+The most significant difference in the partitioning between active and passive uptake can be noticed from the different soil types (specially on clay soil) and root density values (Figure \ref[fig_contrib_c]).
 
 In the clay soil, the water flux is small due to its hydraulic properties which causes also a small solute transport and uptake by mass flow of water. 
-The diffusive transport in the root surface (active uptake), rapidly becomes dominant (Figure \ref[fig_contrib_c], scenario 7).
-Consequently, $C_0$ is slowly depleted in CUP whereas $\theta_r$ is achieved fast, causing a fast reduction of $q_0$ and $T_r$.
+The diffusive transport in the root surface (active uptake), quickly becomes dominant (Figure \ref[fig_contrib_c], scenario 7).
+Consequently, $C_0$ is slowly depleted in CUP whereas $\theta$ rapidly reduces to $\theta_r$, causing a fast reduction of $q_0$ and $T_r$.
 %The concentration in soil solution at root surface, 
 %Still in the clay soil, 
 When $T_r\approx0$ (end of simulation), $C_0$ value is 17.88~mol~m$^{-3}$ and higher than $C_{lim}$ 
 %(5.97~mol~m$^{-3}$) 
 (Figure \ref[fig_C_r](a)), the active contribution ends in its maximum value  and the NUP never starts (Figures \ref[fig_contrib_t] and \ref[fig_contrib_c], scenario 7).
 
-With high root densities, the same soil volume extracts more water (and solutes) in a given time period, causing a belated but fast reduction in $T_r$. 
+With high root densities, the same soil volume extracts more water in a given time period, causing a belated but fast reduction in $T_r$. 
 As high is the root density, higher is the steepness of the $T_r$ falling rate phase (Figure \ref[fig_Tr_t]). As a consequence, active uptake becomes more important with increasing $R$, as can be seen in Figure \ref[fig_contrib_c] (scenarios 1, 4 and 5).
 
 The final concentration profile and relative transpiration are important model outputs to be analysed. 
 The former is essential to determine the gradient of solute concentration and fluxes. 
 Additionally, it can be used to compute the average concentration in a soil layer, essential for the model upscaling since it is required for one dimensional macroscopic models.
 The later is used to predict water and osmotic stress, which can be related to biomass and yield predictions.
-By default, the concentration profile is set to be stored in a file at the end of each day and in the end of simulation, but the user can choose any time interval to it.
+By default, the concentration profile is set to be stored in a file at the end of each simulated day and in the end of simulation, but the user can select any time interval to it.
 Figure \ref[fig_C_r] shows that the concentration profiles -- and their averages -- in the end of simulation
 are affected by all selected parameters variations, excepting potential transpiration.
-It is expected that decreasing $T_p$ values causes only changes in the times which $C_0$ achieves the limiting values ($C_2$ and \clim) due to the decrease in water and solute fluxes. 
+It is expected that decreasing $T_p$ values causes only changes in the times at which $C_0$ achieves limiting values ($C_2$ and \clim) due to the decrease in water and solute fluxes. 
 Corroborating the results, Figure \ref[fig_contrib_c] shows the same amount of active and passive uptake contributions, according to the actual concentration in the soil, for both scenarios 1 ($T_p=6$ mm) and 2 ($T_p=3$ mm),
 and the $T_r$ falling rate phase initiates at higher times when $T_p$ is increased (Figure \ref[fig_Tr_t]).
 In other words, the simulations showed that reducing $T_p$ might cause the same concentration profiles for every scenario, at different times, if all other parameters remains the same.
-Soil type and root density change the final concentration profile respectively due to the different soil hydraulic properties that affects the water retention in soil and to the greater water and solute uptake per soil unit, as explained before in the active and passive uptake partitioning.
+
+Soil type and root density change the final concentration profile respectively due both to the different soil hydraulic properties that affects the water retention in soil and to the greater water and solute uptake per soil unit (as explained before in the active and passive uptake partitioning).
 Similarly, they affect the steepness of the $T_r$ falling rate phase, also modifying the length of the phases LUP, CUP and NUP.
 The initial concentration, for obvious reasons, changes the final concentration profile as initially they are already different.
 It slightly changes the onset of falling $T_r$ rate phase. 
 The greater variation can be observed in CUP and NUP.
-With low values of $C_0$ (and $h_\pi$), $H_{lim}$ is achieved faster because there is less solute in soil to be taken up.
+With low values of $C_0$ ($h_\pi$ closer to zero), $H_{lim}$ is achieved faster because there is less solute in soil to be taken up.
 This causes a steeper $T_r$ reduction curve, shortening the time needed to $C_0$ be smaller than \clim.
 
 \medskip
@@ -345,7 +351,7 @@ The relative partial sensitivity $\eta$ is the fraction of the relative change i
 A value of $\eta=0.5$ indicates that a 1\% increase of $P$ results in 0.5\% increase in the prediction $Y$.
 The value of $\eta$ found through a variation of a parameter is likely to change with variation of another parameter, 
 %Thus, it is profoundly difficult to make a sensitivity analysis that deals with all combinations of parameters variation of a complex model. 
-making the sensitivity analysis that deals with all combinations of parameters variation of a complex model being profoundly difficult to be done. 
+making a sensitivity analysis that deals with all combinations of parameters variation of a complex model being profoundly difficult to be done. 
 Therefore, the analyses are commonly restricted to a fixed set of parameters. 
 
 Despite the solution to the convection-dispersion equation be the concentration in soil solution as a function of time and distance ($C(r,t)$), the model can give a wide range of another predictions.
@@ -354,13 +360,13 @@ Some of these predictions were selected to check how changes in soil and ion/pla
 The selected predictions $Y$ were end time of simulation ($t_{end}$), osmotic head ($h_{os}$), time at the onset of the $T_r$ falling rate phase ($t_{T_r}$), time at the onset of constant uptake phase ($t_{C_0}$) and accumulated solute uptake ($acc$);
 and $P$ were the ion/plant ($I_m$ and $K_m$) and the soil hydraulic ($\alpha$, $n$, $K_s$, $\lambda$, $\theta_r$ and $\theta_s$) parameters. 
 
-Sensitivities to ion/plant parameters were high for $h_{os}$, that presented an inverse response to $I_m$ variation (Figure \ref[sensitivity_MM_rest]).
-This is due to the fact that, with higher values of $I_m$ there are higher uptake rates of solute in both phases of constant and nonlinear uptake, diminishing the value of concentration at root surface in the end of simulation (less negative values of osmotic head $h_\pi$).
+Sensitivities to ion/plant parameters were high for $h_{os}$ and presented an inverse response (negative values) to $I_m$ variation (Figure \ref[sensitivity_MM_rest]).
+This is due to the fact that with higher values of $I_m$ there are higher uptake rates of solute in both phases of constant and nonlinear uptake, diminishing the value of concentration at root surface in the end of simulation (less negative values of osmotic head $h_\pi$).
 On the contrary, higher values of $K_m$ make higher values of $C_{lim}$ that causes an increase of the nonlinear uptake phase and a decrease in the constant uptake phase.
 With less time of potential solute uptake, the final concentration becomes higher due to a lower amount of extracted solute.   
 Thus, in general, a variation of 1\% in $K_m$ and $I_m$ cause, respectively, a decrease of 1.2\% and a increase of 1\%, approximately, in $h_{os}$. 
 The exception was scenario 7 that showed low $\eta$ values for both parameters.
-The reason is due to the small variation in concentration from the beginning to the end of simulation due to the low water and solute fluxes of the clay soil, explained in last section.
+The reason is the small variation in $C_0$ during the simulation due to the low water and solute fluxes of the clay soil, explained in last section.
 
 \medskip
 \label[sensitivity_MM_rest]
@@ -402,9 +408,8 @@ Figure \ref[fig_wrcs](a) shows how the water retention curve, following the \cit
 It shows that the same value of water content is reached with higher (more negative) values of pressure head and it affects both water retention and hydraulic conductivity. 
 An increase in this parameter causes a more steep decrease in those hydraulic functions.
 Increasing $n$ increases the solute uptake rate because the same initial pressure head originates lower values of water content and, consequently, higher solute concentration values.
-Therefore, due to the higher solute uptake rate, the limiting value $H_{lim}$ is reached at later times, elongating LUP and resulting in less negative values of solute concentration in soil water ($h_\pi$), which
-%That 
-is what occurs in the simulations with loam soil (scenarios 1,2,3,4 and 5) but, despite the higher change in the water retention curve for the clay soil, it does not occur for scenario 7.
+Therefore, due to the higher solute uptake rate, the limiting value $H_{lim}$ is reached at later times, elongating LUP and resulting in less negative values of solute concentration in soil water ($h_\pi$), which is what occurs in the simulations with loam soil (scenarios 1,2,3,4 and 5).
+Nevertheless, despite the higher change in the water retention curve for the clay soil does not affect the $\eta$ value of scenario 7 in the same proportion.
 %(its variation parameter is the soil type: clay).
 Due to the interactions between water retention and hydraulic conductivity curves, the overall effect is hard to be properly analyzed without an empirical test.
 However, the cause for the lower value of $\eta$ in scenario 7 might reside on the fact that the solute uptake rate in this scenario is very low and, even if the variation of 1\% in $n$ causes a bigger change on the retention curve (and consequently in the concentration values), it does not strongly affect the solute uptake rate and, consequently, the change in $h_\pi$ (or $h_{os}$) at the end of simulation is small.
@@ -455,13 +460,13 @@ As a result, the period of highest solute uptake rate is reduced causing, in the
 On the other hand, an increase in $\theta_s$ causes a increase in the available water content, elongating LUP which reflects in lower solute concentration at the root surface (less negative $h_{os}$).
 As the change in the retention curve is similar to the variation of $n$, the effects are also similar.
 The end of simulation presents less negative values of $h_\pi$ due to the higher solute uptake rate.
+The parameter $\alpha$ affects the water retention curve by changing the air entry pressure head.
+An increase in its value makes that the same water content corresponds to a less negative pressure head (Figure \ref[fig_wrcs](b)).
 
 Accumulated solute uptake at the end of simulation ($acc$) presented the lowest sensitivity to all parameters for almost all scenarios. 
 As the majority of the solute uptake is done in LUP (first phase, where $C > C_2$), $acc$ is more affected when the duration of this phase is altered.
 The sensitivity of $t_{T_r}$ serves as an indicator to the shortening/elongation of this phase, in a way that $acc$ responds more strongly when $t_{T_r}$ is also affected.
 %, as Figures \ref[sensitivity_soil_time] to \ref[sensitivity_n] show.
-The parameter $\alpha$ affects the water retention curve by changing the air entry pressure head.
-An increase in its value makes that the same water content corresponds to a less negative pressure head (Figure \ref[fig_wrcs](b)).
 
 
 
@@ -505,10 +510,10 @@ With this simple sensitivity analysis, we can conclude that the parameters that 
 %The differences are shown in this section, together with the constant uptake model developed by \citeonline[willigen1] to 
 %{\localcolor\Red SECTION INTRODUCTION}
 
-As the model developed in this thesis is an addition to the model of \citeonline[liersolute], in which does not considers solute uptake, a comparisson between the two models is necessary.
-Additionally, the results are compared with a model of constant solute uptake (based on the work of \citeonline[willigen1]) to show the differences between these two uptake approaches.
+As the model developed in this thesis will serve as an addition to the model of \citeonline[liersolute], in which does not considers solute uptake, a comparisson between the two models is necessary.
+Additionally, the results are compared with a model of constant solute uptake (based on the work of \citeonline[willigen1]) to show the differences between constant and zero uptake approaches.
 
-Figure \ref[fig_C0] shows the differences in the solute concentration at root surface as a function of time for the three different models. 
+Figure \ref[fig_C0] shows the differences in the solute concentration at root surface as a function of time for the three different models ZU, CU and NLU. 
 In ZU, salt is transported to the roots by convection, causing an accumulation of solutes at root surface. 
 As water flux towards the root starts to decrease, salt is transported slower and carried away from the roots by diffusion. 
 CU presents the same behaviour with a slightly lower $C_0$ value, due to the small solute uptake value. 
@@ -572,13 +577,15 @@ The ZU model obviously does not accumulate any solute and LU model accumulates i
 \caption/f {Cumulative solute uptake as a function of time for constant (CU), zero (ZU) and nonlinear (NLU) uptake models, for scenario 1}
 \medskip
 
-As it is clear in the model assumptions, the plant does not regulate passive uptake (and that is the reason for it is called `passive') and the solute concentration inside the plant does not affect the uptake.
-{\tblue
-Furthermore, based on these assumptions, it can be plausibly inferred that the governing mechanism of the toxic effect is the passive uptake.
+{\tred
+Based on the assumption that the uptake is not regulated by a concentration inside the plant
+, it can be plausibly inferred that the governing mechanism of the toxic effect is the passive uptake.
 }
+{\tred
 If the concentration inside the plant is already at its limiting value (meaning that, for that specific time period, the plant does not need that solute anymore), it can stop the active mechanism (as it is plant regulated by metabolic processes) but it is not allowed to stop the passive process, that would be the closure of stomata to stop the water uptake.
 The plant then has to choose what is physiologically more positive to it: either close the stomata to not enter in a toxicity process or extract more solute and be affected by the toxic effects of the solute excess inside the cells. 
 Therefore, as a further model improvement, the solute concentration inside the plant has to be considered so it can regulate the uptake.
+}
 
 
 %{\tred
