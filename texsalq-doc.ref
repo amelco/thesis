@@ -1,0 +1,281 @@
+%% OPmac - REF file
+\Xpage{-1}
+\Xpage{1}
+\Xpage{2}
+\Xpage{3}
+\Xpage{4}
+\Xpage{5}
+\Xpage{6}
+\Xpage{7}
+\Xpage{8}
+\Xpage{9}
+\Xchap{}{ABSTRACT}{9}
+\Xpage{10}
+\Xpage{11}
+\Xchap{}{RESUMO}{11}
+\Xpage{12}
+\Xpage{13}
+\Xchap{}{LIST OF FIGURES}{13}
+\Xpage{14}
+\Xpage{15}
+\Xpage{16}
+\Xpage{17}
+\Xchap{}{LIST OF TABLES}{17}
+\Xpage{18}
+\Xpage{19}
+\Xchap{}{LIST OF ABREVIATIONS}{19}
+\Xpage{20}
+\Xpage{21}
+\Xchap{}{LIST OF SYMBOLS}{21}
+\Xpage{22}
+\Xpage{23}
+\Xchap{1}{INTRODUCTION }{23}
+\Xpage{24}
+\Xpage{25}
+\Xlabel{literature}{2}
+\Xchap{2}{LITERATURE REVIEW }{25}
+\Xsec{2.1}{Modeling solute transport and uptake by roots }{25}
+\Xpage{26}
+\Xsec{2.2}{Solute mobility in soils }{26}
+\Xpage{27}
+\Xpage{28}
+\Xpage{29}
+\Xlabel{theory}{3}
+\Xchap{3}{THEORETICAL FRAMEWORK (base, foundations) }{29}
+\Xlabel{sec_micro}{3.1}
+\Xsec{3.1}{Microscopic approach }{29}
+\Xlabel{eq_rm}{(1)}
+\Xlabel{eq_L}{(2)}
+\Xlabel{eq_L2}{(3)}
+\Xpage{30}
+\Xlabel{eq_rm2}{(4)}
+\Xlabel{eq_R}{(5)}
+\Xsec{3.2}{Water flow equation }{30}
+\Xlabel{eq_Richards}{(6)}
+\Xlabel{eq_watflux}{(7)}
+\Xlabel{wat_bc1}{(8)}
+\Xpage{31}
+\Xlabel{wat_bc2}{(9)}
+\Xlabel{soil_prop}{3.3}
+\Xsec{3.3}{Soil hydraulic functions }{31}
+\Xlabel{eq_theta}{(10)}
+\Xlabel{eq_K}{(11)}
+\Xpage{32}
+\Xlabel{sol_transp}{3.4}
+\Xsec{3.4}{Solute transport }{32}
+\Xlabel{eq_sol}{(12)}
+\Xlabel{eq_solflux}{(13)}
+\Xlabel{eq_Ds}{(14)}
+\Xpage{33}
+\Xlabel{eq_Dm}{(16)}
+\Xpage{34}
+\Xlabel{sol_uptake}{3.5}
+\Xsec{3.5}{Solute uptake by plant roots }{34}
+\Xlabel{eq_solute_complete}{(18)}
+\Xlabel{eq_boundary_sol}{(19)}
+\Xpage{35}
+\Xlabel{eq_MM1}{(20)}
+\Xfig{orig_MM}{1}{Solute uptake rate as a function of external concentration according to the Michaelis-Menten kinetics (Equation \ref [eq_MM1])}
+\Xlabel{orig_MM}{1}
+\Xpage{36}
+\Xpage{37}
+\Xlabel{methodology}{4}
+\Xchap{4}{METHODOLOGY }{37}
+\Xlabel{model_description}{4.1}
+\Xsec{4.1}{General model description }{37}
+\Xfig{fig_rootzone}{2}{Schematic representation of the spatial distribution of roots in the root zone}
+\Xlabel{fig_rootzone}{2}
+\Xpage{38}
+\Xlabel{eq_disc}{(21)}
+\Xfig{fig_scheme}{3}{Schematic representation of the discretized domain considered in the model. $\Delta r$ is the variable segment size, increasing with the distance from the root surface ($r_0$) to the half-distance between roots ($r_m$), and $n$ is the number of segments}
+\Xlabel{fig_scheme}{3}
+\Xlabel{eq_complete_richards}{(22)}
+\Xpage{39}
+\Xlabel{eq_disc_water}{(23)}
+\Xlabel{eq_complete_solute}{(24)}
+\Xlabel{eq_bcrm}{(25)}
+\Xpage{40}
+\Xlabel{eq_MM_mod}{(26)}
+\Xlabel{eq_case1}{(26.1)}
+\Xlabel{eq_case2}{(26.2)}
+\Xlabel{eq_case3}{(26.3)}
+\Xlabel{eq_clim}{(27)}
+\Xlabel{eq_c2}{(28)}
+\Xpage{41}
+\Xfig{fig_MM_mod}{4}{Solute uptake piecewise equation \ref [eq_MM_mod] after assumptions made over original MM equation \ref [eq_MM1]. The thicker line is the actual uptake, the thiner lines represent active and passive contributions to the actual uptake, and the dotted lines are the plant demand and the potential active uptake}
+\Xlabel{fig_MM_mod}{4}
+\Xlabel{eq_MM_linear}{(29)}
+\Xlabel{eq_inner_bound}{(30)}
+\Xpage{42}
+\Xlabel{numerical_implementation}{4.2}
+\Xsec{4.2}{Numerical implementations of convection-dispersion equation }{42}
+\Xsecc{4.2.1}{Concentration dependent solution (proposed model) }{42}
+\Xlabel{eq_disc_sol}{(32)}
+\Xpage{43}
+\Xlabel{matrix}{(33)}
+\Xseccc{4.2.1.1}{The intermediate nodes ($i = 2\hbox { to }i = n-1$) }{43}
+\Xlabel{eq_int_nodes1}{(35)}
+\Xlabel{eq_int_nodes3}{(37)}
+\Xseccc{4.2.1.2}{The outer boundary ($i=n$) }{43}
+\Xlabel{outer}{(38)}
+\Xpage{44}
+\Xseccc{4.2.1.3}{The inner boundary ($i=1$) }{44}
+\Xlabel{LU}{(41)}
+\Xlabel{NLU}{(44)}
+\Xlabel{b1}{(45)}
+\Xpage{45}
+\Xlabel{ZU}{4.2.2}
+\Xsecc{4.2.2}{Zero uptake model (ZU) }{45}
+\Xseccc{4.2.2.1}{The inner boundary ($i=1$) }{45}
+\Xlabel{lier}{(48)}
+\Xlabel{CU}{4.2.3}
+\Xsecc{4.2.3}{Constant uptake model (CU) }{45}
+\Xpage{46}
+\Xseccc{4.2.3.1}{The inner boundary ($i=1$) }{46}
+\Xlabel{will}{(52)}
+\Xlabel{analytical_models}{4.3}
+\Xsec{4.3}{Comparison with an analytical model }{46}
+\Xlabel{eq_cush}{(56)}
+\Xpage{47}
+\Xlabel{eq_cond_linear}{(60)}
+\Xlabel{eq_bc_cush}{(61)}
+\Xlabel{scenarios}{4.4}
+\Xsec{4.4}{Simulation scenarios }{47}
+\Xtab{soils}{1}{Soil hydraulical parameters used in simulations}
+\Xlabel{soils}{1}
+\Xpage{48}
+\Xtab{general_param}{2}{System parameters used in simulations scenarios}
+\Xlabel{general_param}{2}
+\Xtab{MMparam}{3}{Michaelis-Menten parameters for some solutes}
+\Xlabel{MMparam}{3}
+\Xtab{tab_scenarios}{4}{Simulation scenarios$^*$}
+\Xlabel{tab_scenarios}{4}
+\Xpage{49}
+\Xlabel{lu_nlu_comp}{4.5}
+\Xsec{4.5}{Analysis of linear and nonlinear approaches }{49}
+\Xlabel{error_C}{(62)}
+\Xlabel{error_acc}{(63)}
+\Xsec{4.6}{Statistical difference }{49}
+\Xpage{50}
+\Xlabel{sensitivity}{4.7}
+\Xsec{4.7}{Sensitivity analysis }{50}
+\Xpage{51}
+\Xchap{5}{RESULTS AND DISCUSSION }{51}
+\Xlabel{result_luxnlu}{5.1}
+\Xsec{5.1}{Linear (LU) versus nonlinear (NLU) solutions }{51}
+\Xpage{52}
+\Xfig{accumxt}{5}{Cumulative solute uptake as a function of time for scenario 1. Dashed line represents the nonlinear model}
+\Xlabel{accumxt}{5}
+\Xfig{diff_tr}{6}{Relative transpiration as a function of time for scenarios 1 to 4. Dashed lines represent the nonlinear model}
+\Xlabel{diff_tr}{6}
+\Xpage{53}
+\Xtab{tab_diff}{5}{Relative difference between LU and NLU for the selected model outputs, for the condition $C_0 < C_{lim}$. The sign $^*$ represents a significant difference with confidence interval of 95\% by the Mann-Whitney U test}
+\Xlabel{tab_diff}{5}
+\Xfig{diff_t}{7}{Difference between the solute concentration in soil water at root surface ($C_0$) for LU and NLU and $C_0$ as a function of time; and the relative difference -- Scenario 1}
+\Xpage{54}
+\Xlabel{diff_t}{7}
+\Xfig{diff_r}{8}{Difference between the solute concentration in soil water ($C$) at the end of simulation for LU and NLU and $C$ as a function of distance from axial center; and the relative difference -- Scenario 1}
+\Xlabel{diff_r}{8}
+\Xpage{55}
+\Xsec{5.2}{Model results }{55}
+\Xpage{56}
+\Xfig{fig_C_t}{9}{Concentration in soil water as a function of time with different values of the selected input parameters (a) soil, (b) root density, (c) initial concentration, and (d) potencial transpiration, simulated using the nonlinear uptake model (NLU)}
+\Xlabel{fig_C_t}{9}
+\Xpage{57}
+\Xfig{fig_contrib_t}{10}{Active and passive contributions to the solute uptake as a function of time. Thicker line represents the total solute uptake (active+passive), thinner continuous and dashed lines to active and passive contributions to the solute uptake, respectively. Scenarios according to Table \ref [tab_scenarios] with scenario 1 as default and the others with the variation parameter specified on their titles}
+\Xlabel{fig_contrib_t}{10}
+\Xpage{58}
+\Xfig{fig_contrib_c}{11}{Active, passive and total uptake ($q_{s_0}$) as a function of concentration in soil water. Thicker line represents the total solute uptake (active+passive), thinner continuous and dashed lines to active and passive contributions to the solute uptake, respectively. Scenarios according to Table \ref [tab_scenarios] with scenario 1 as default and the others with the variation parameter specified on their titles}
+\Xlabel{fig_contrib_c}{11}
+\Xpage{59}
+\Xpage{60}
+\Xpage{61}
+\Xfig{fig_C_r}{12}{Concentration in soil water as a function of distance from axial center, at the end of simulation, with different values of the selected input parameters (a) soil, (b) root density, (c) initial concentration, and (d) potencial transpiration. Lighter straight lines are the average concentration}
+\Xlabel{fig_C_r}{12}
+\Xpage{62}
+\Xfig{fig_Tr_t}{13}{Relative transpiration as a function of time, with different values of the selected input parameters (a) soil, (b) root density, (c) initial concentration, and (d) potencial transpiration}
+\Xlabel{fig_Tr_t}{13}
+\Xpage{63}
+\Xsec{5.3}{Sensitivity analysis }{63}
+\Xpage{64}
+\Xfig{sensitivity_MM_rest}{14}{Relative partial sensitivity of osmotic head at root surface in the end of simulation ($h_{os}$) and accumulated solute uptake ($acc$) to MM equation parameters $I_m$ and $K_m$ for scenarios 1 to 7}
+\Xlabel{sensitivity_MM_rest}{14}
+\Xpage{65}
+\Xfig{sensitivity_MM_time}{15}{Relative partial sensitivity of end time of simulation ($t_{end}$), time at the onset of the $T_r$ falling rate phase ($t_{T_r}$) and time at the onset of constant uptake phase ($t_{C_0}$) to MM equation parameters $I_m$ and $K_m$ for scenarios 1 to 7}
+\Xlabel{sensitivity_MM_time}{15}
+\Xpage{66}
+\Xfig{sensitivity_n}{16}{Relative partial sensitivity of end time of simulation ($t_{end}$), osmotic head ($h_{os}$), time at the onset of the $T_r$ falling rate phase ($t_{T_r}$), time at the onset of constant uptake phase ($t_{C_0}$) and accumulated solute uptake ($acc$) to soil hydraulic parameter $n$ for scenarios 1 to 7}
+\Xlabel{sensitivity_n}{16}
+\Xpage{67}
+\Xfig{sensitivity_soil_time}{17}{Relative partial sensitivity of end time of simulation ($t_{end}$), time at the onset of the $T_r$ falling rate phase ($t_{T_r}$) and time at the onset of constant uptake phase ($t_{C_0}$) to soil hydraulic parameters $\theta _r$, $\theta _s$, $\alpha $, $K_s$ and $\lambda $ for scenarios 1 to 7}
+\Xlabel{sensitivity_soil_time}{17}
+\Xpage{68}
+\Xfig{sensitivity_soil_rest}{18}{Relative partial sensitivity of osmotic head at root surface in the end of simulation ($h_{os}$) and accumulated solute uptake ($acc$) to soil hydraulic parameters $\theta _r$, $\theta _s$, $\alpha $, $K_s$ and $\lambda $ for scenarios 1 to 7}
+\Xlabel{sensitivity_soil_rest}{18}
+\Xpage{69}
+\Xfig{fig_wrcs}{19}{ Theoretical water retention curves, according to Equation \ref [eq_theta], (a) for the selected soils from Table \ref [soils] with dashed lines representing a variation of +1\% in parameter $n$; and (b) for the loam soil with dashed line representing a variation of +50\% in parameter $\alpha $; Values of $h$ ranges from the initial value for all simulations $h_{ini}=-1$~m to $-$150 m}
+\Xlabel{fig_wrcs}{19}
+\Xsec{5.4}{Solute uptake models comparison }{69}
+\Xpage{70}
+\Xfig{fig_C0}{20}{Soil solution concentration at root surface as a function of time for constant (CU), zero (ZU) and nonlinear (NLU) uptake models. Gray line is CU with the constant of solute uptake rate 10 times higher}
+\Xlabel{fig_C0}{20}
+\Xpage{71}
+\Xfig{fig_heads1}{21}{Pressure ($h$), osmotic ($h_\pi $) and total ($H$) heads at the root surface as a function of time for constant (CU) and zero (ZU) uptake models, for scenario 1}
+\Xlabel{fig_heads1}{21}
+\Xfig{fig_heads2}{22}{Pressure ($h$), osmotic ($h_\pi $) and total ($H$) heads at the root surface as a function of time for nonlinear (NLU) uptake model, for scenario 1}
+\Xlabel{fig_heads2}{22}
+\Xpage{72}
+\Xfig{fig_qst_detail}{23}{Detail of solute flux at root surface as a function of time for constant (CU), zero (ZU) and nonlinear (NLU) uptake models, for scenario 1}
+\Xlabel{fig_qst_detail}{23}
+\Xfig{fig_accsol}{24}{Cumulative solute uptake as a function of time for constant (CU), zero (ZU) and nonlinear (NLU) uptake models, for scenario 1}
+\Xlabel{fig_accsol}{24}
+\Xpage{73}
+\Xfig{fig_C}{25}{Soil solution concentration as a function of distance from axial root center in the end of simulation for constant (CU), zero (ZU) and nonlinear (NLU) uptake models. Gray line is CU with the constant of solute uptake rate 10 times higher}
+\Xpage{74}
+\Xlabel{fig_C}{25}
+\Xsec{5.5}{Analytical comparison }{74}
+\Xfig{fig_analytic}{26}{Solute concentration profile of the analytical and numerical models, with parameters of scenario 1, at time $t=30$ days. The grey line is the numerical result of the linear model }
+\Xlabel{fig_analytic}{26}
+\Xpage{75}
+\Xpage{76}
+\Xpage{77}
+\Xchap{6}{CONCLUSION }{77}
+\Xpage{78}
+\Xpage{79}
+\Xchap{}{APPENDICES}{79}
+\Xpage{80}
+\Xpage{81}
+\Xlabel{ap_micro}{A}
+\Xlabel{eq_devR}{(64)}
+\Xlabel{eq_devR2}{(65)}
+\Xlabel{eq_devrm}{(66)}
+\Xlabel{eq_devrm2}{(67)}
+\Xpage{82}
+\Xpage{83}
+\Xlabel{ap_water}{B}
+\Xpage{84}
+\Xpage{85}
+\Xlabel{ap_clim}{C}
+\Xfig{fig_MM}{27}{Uptake (influx) rate as a function of concentration in soil water for [a] nonlinear case and [b] linear case. $C_{lim}${} is the limiting concentration in which the uptake is limited by the solute flux and $C_2${} is the concentration where the uptake is governed by convective flow only}
+\Xlabel{fig_MM}{27}
+\Xlabel{eq_relation_beta}{(85)}
+\Xlabel{eq_clim1}{(86)}
+\Xpage{86}
+\Xlabel{eq_clim2}{(87)}
+\Xlabel{eq_beta}{(88)}
+\Xlabel{eq_linear}{(90)}
+\Xpage{87}
+\Xlabel{ap_l_nl_fluxes}{D}
+\Xlabel{cond_1}{(91)}
+\Xlabel{new_alpha}{(92)}
+\Xlabel{cond_2}{(94)}
+\Xlabel{cond_3}{(95)}
+\Xpage{88}
+\Xlabel{cond_clim}{(96)}
+\Xpage{89}
+\Xlabel{ap_flowchart}{E}
+\Xfig{fig_flowchart}{28}{General algorithm to solve combined water and solute transport in soil and uptake by the plant}
+\Xlabel{fig_flowchart}{28}
+\Xpage{90}
+\Xfig{fig_flowchart_sol}{29}{Detail of {\fam \itfam \twelveit solve solution} procedure from the general flowchart}
+\Xlabel{fig_flowchart_sol}{29}
