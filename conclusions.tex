@@ -3,22 +3,42 @@
 
 The partial differential equation of convection-dispersion was numerically solved using a fully implicit scheme, considering a transient state of solute flow and a solute uptake rate that is dependent on the solute concentration in the soil.
 This solution was then incorporated into the model of \citeonline[liersolute] in order to modify it to take into account the root solute uptake.
-After the elaboration of some testing scenarios and analysis of the results, we can take the following conclusions:
+This proposed model has a linear and a nonlinear solution for the solute uptake equation and shows a good agreement with the analytical solution proposed by \citeonline[cushman] which, also considers a concentration dependent uptake as the boundary condition at the root surface.
+The linear and nonlinear solutions are significantly different only when comparing the concentration as a function of time for times where $C_0 < C_{lim}$ (nonlinear uptake phase, NUP).
 
-\begitems
-\style n
-* A solute uptake model was incorporated in the microscopic model of \ref[liersolute].
-* Additionally, it has the ability to partition active and passive contributions to the solute uptake, which can be uses in...
-* The solute uptake can be predicted using linear and nonlinear approaches.
-* It is better to use the nonlinear model since it is closer to the original MM equation, making its behaviour more close to reality (or our assumptions).
-* The disadvantage in using NLU is that it is very sensitive to space and time steps, which can lead to stabilization problems.
-* LU can be used in the case of...
-* The model seems to overestimate the uptake in wet soil conditions.
-* The model results seems to corroborate with the expected variations of soil, plant and atmospheric parameters.
-* However, more tests has to be done, preferably with experimental data.
-* The model is more sensitive to the parameters XXX, XXX... 
-\enditems
+Simulations has shown that a second reduction in the relative transpiration might occur at the NUP, caused by a reduction of the solute uptake rate in this phase that leads to a reduction of water flux due to the decreasing value of pressure head needed to maintain the limiting value of $H=H_{lim}$.
+{\tred This second reduction shows that the limiting value $C_{lim}$ can be a important parameter to determine osmotic stress in low concentration situations and it needs more investigation.}
 
+The model has the ability to partition active and passive contributions to the solute uptake.
+The major part of the uptake is done by passive uptake in the LUP and it is possibly overestimated due to the high solute uptake by mass flow of water which is not regulated by the plant or by another mechanism. 
+Active uptake grows with decreasing concentration until it becomes dominant in the NUP.
+The maximum value for passive uptake depends on soil type, initial concentration, root density and potential transpiration.
+
+All soil hydraulic parameters strongly affect the model outputs, specially $n$ because ...
+The plant/solute related parameters $I_m$ and $K_m$ has also to be carefully measured since they can affect the model in a 1/1 relation.
+They are experimentally difficult to measure and values from literature can be used, with caution.
+
+SOME FINAL CONSIDERATIONS
+
+%{\tred Root length density particularly has to be cautiously measured because it affects the model results very significantly.}
+% 
+%
+%After the elaboration of some testing scenarios and analysis of the results, we can take the following conclusions:
+%
+%\begitems
+%\style n
+%* A solute uptake model was incorporated in the microscopic model of \ref[liersolute].
+%* Additionally, it has the ability to partition active and passive contributions to the solute uptake, which can be uses in...
+%* The solute uptake can be predicted using linear and nonlinear approaches.
+%* It is better to use the nonlinear model since it is closer to the original MM equation, making its behaviour more close to reality (or our assumptions).
+%* The disadvantage in using NLU is that it is very sensitive to space and time steps, which can lead to stabilization problems.
+%* LU can be used in the case of...
+%* The model seems to overestimate the uptake in wet soil conditions.
+%* The model results seems to corroborate with the expected variations of soil, plant and atmospheric parameters.
+%* However, more tests has to be done, preferably with experimental data.
+%* The model is more sensitive to the parameters XXX, XXX... 
+%\enditems
+%
 
 %The proposed model simulates the solute flux and root uptake considering a soil concentration dependent uptake. There was no significant difference between linear and nonlinear solutions for the simulated scenarios. The results of uptake for the proposed model showed that the limiting potential is reached at a higher pressure head, increasing the period of potential transpiration. It also showed a second limiting condition that happens at the time when $C<C_{lim}$ caused by a insufficient supply of solute at the same rate of plant demand. The proposed model is also able to do a partition between active and passive uptake which will be important to simulate the plant stress due to ionic or osmotic components, according to the solute concentration inside the plant.
 %Comparison between the numerical and the analytical solution proposed by Cushman is in process.
