@@ -42,7 +42,10 @@ For example, the amount of solute extracted by the roots at the end of simulatio
 In addition, the LCC occurs at values of relative transpiration around 0.03 or less -- in a situation that the plant is already at high (water and/or osmotic) stress levels -- and close to the end of simulation (that stops when $Tr \leq 0.001$). 
 %Because the difference between the models starts to occur at $T_r$ values around 0.03 or less, close to the end of simulation (that stops when $Tr \leq 0.001$), the time period in which the models to differ is small. 
 A second reduction in the relative transpiration occurs and it can be noticed by an abrupt decrease in the transpiration rate (Figure \ref[diff_tr]).
-A possible explanation is that, at this point, the solute uptake rate decreases, building a more negative value for the osmotic head and, consequently, reducing also the water uptake rate. It can be seen in Figure \ref[diff_tr] that the nonlinear equation causes a smoother $T_r$ reduction, which seems to be more appropriate for a natural phenomenon.
+A possible explanation is that, at this point, the solute uptake rate decreases, building a more negative value for the osmotic head and, consequently, reducing also the water uptake rate.
+Therefore, this reduction depends on the value of $q_0$, which directly affects the $C_{lim}$ value (according to Equation \ref[eq_clim]), and suddenly reduces the relative transpiration due to the coupled water and osmotic stress.
+This limiting concentration, here only numerically computed, might have some physical or physiologic processes that controls it and, therefore, it needs to be investigated.
+It can be seen in Figure \ref[diff_tr] that the nonlinear equation causes a smoother $T_r$ reduction, which seems to be more appropriate for a natural phenomenon.
 
 \medskip
 \label[accumxt]
@@ -577,15 +580,15 @@ The ZU model obviously does not accumulate any solute and LU model accumulates i
 \caption/f {Cumulative solute uptake as a function of time for constant (CU), zero (ZU) and nonlinear (NLU) uptake models, for scenario 1}
 \medskip
 
-{\tred
-Based on the assumption that the uptake is not regulated by a concentration inside the plant
-, it can be plausibly inferred that the governing mechanism of the toxic effect is the passive uptake.
-}
-{\tred
-If the concentration inside the plant is already at its limiting value (meaning that, for that specific time period, the plant does not need that solute anymore), it can stop the active mechanism (as it is plant regulated by metabolic processes) but it is not allowed to stop the passive process, that would be the closure of stomata to stop the water uptake.
-The plant then has to choose what is physiologically more positive to it: either close the stomata to not enter in a toxicity process or extract more solute and be affected by the toxic effects of the solute excess inside the cells. 
-Therefore, as a further model improvement, the solute concentration inside the plant has to be considered so it can regulate the uptake.
-}
+%{\tred
+%Based on the assumption that the uptake is not regulated by a concentration inside the plant
+%, it can be plausibly inferred that the governing mechanism of the toxic effect is the passive uptake.
+%}
+%{\tred
+%If the concentration inside the plant is already at its limiting value (meaning that, for that specific time period, the plant does not need that solute anymore), it can stop the active mechanism (as it is plant regulated by metabolic processes) but it is not allowed to stop the passive process, that would be the closure of stomata to stop the water uptake.
+%The plant then has to choose what is physiologically more positive to it: either close the stomata to not enter in a toxicity process or extract more solute and be affected by the toxic effects of the solute excess inside the cells. 
+%Therefore, as a further model improvement, the solute concentration inside the plant has to be considered so it can regulate the uptake.
+%}
 
 
 %{\tred
