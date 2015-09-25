@@ -8,12 +8,13 @@
 %Solute flow in the soil is directly related to the water flow and uptake by the plants, and they are indissociable.
 %Therefore, studying water flow is a obligated requirement to understand solute flow, which makes pioneer works such as of GARDNER crucial to the further development of the theories. He described the processes of fluxes from soil to plant as a set of resistances that should be overpassed to the flow to happen
 
-Solute transport in soil and uptake by the plants are subjects that have extensively been studied in the last half century and, as a result, several simulation models have been developed to predict water and solute flows within the vadose zone. 
-They are usually classified as being microscopic or macroscopic models, according to the considered scale \cite[feddes]. 
-Microscopic models \cite[barber74,cushman,willigen1,roose] consider a single cylindrical root, of uniform radius and absorption properties \cite[gardner], that extracts water and solute by an axis-symmetric flow according to the defined boundary condition at root surface.
+Solute transport in soil and solute uptake by the plants have extensively been studied in the last half century.
+As a result, several simulation models have been developed to predict water and solute flows within the vadose zone. 
+They are usually classified as microscopic or macroscopic, according to the considered scale \cite[feddes]. 
+Microscopic models \cite[barber74,cushman,willigen1,roose] consider a single cylindrical root, of uniform radius and absorption properties \cite[gardner], that extracts water and solute by an axisymmetric flow according to the defined boundary condition at root surface.
 The water flow is described using the Richards equation and the solute flow using the convection-dispersion equation (CDE), both formulated in radial coordinates.
 The flow towards the root is driven by hydraulic head and concentration gradients between the root and the surrounding soil, proportional to the hydraulic conductivity and solute diffusivity. 
-One of the advantages of the microscopic approach is that it automatically allows water uptake compensation, as the computed local water potential gradients control the uptake for the whole root system \cite[simunek]. 
+One of the advantages of the microscopic approach is that it implicitly simulates water uptake compensation, as the computed local water potential gradients control the uptake for the whole root system \cite[simunek]. 
 Despite the more realistic simulation of soil-root interactions, microscopic models require a large computational effort for the simulations and, therefore, are limited to applications of relatively small scale of a single plant.
 Chapter \ref[theory] shows, in more details, the theory of microscopic models.
 
@@ -22,9 +23,9 @@ This approach neglects the effects of root geometry and flow pathways around ind
 On the other hand, macroscopic models are able to simulate processes at the plot or field scale. They are sometimes incorporated in complete hydrological models that also deal with drainage, crop growth and productivity.
 
 Another classification of models, relates to the experimental approach of the phenomenon, distinguishing between empirical and mechanistic models. 
-Empirical models \cite[chanter,ross,yerokun] are based on the response of a set of experiments and attempt to describe the observed phenomenon without hypothesizing on underlying mechanisms. 
+Empirical models \cite[chanter,ross,yerokun] are based on the response of a set of experiments and attempt to describe the observed phenomenon without hypothesizing about underlying mechanisms. 
 They are usually of stochastic nature and have the advantage of being relatively simple, allowing to predict the results of the processes with a good certainty. 
-The main disadvantage of this kind of model is that the model parameters do note have a clear physical, physiological or biological meaning, limiting interpretation and substantial model improvement. 
+The main disadvantage of this kind of model is that the model parameters do not have a clear physical, physiological or biological meaning, limiting interpretation and substantial model improvement. 
 Furthermore, the application of these models is limited to boundary conditions corresponding to the experiments/observations that they were developed from, and they will probably lead to incorrect or inaccurate predictions in scenarios that were not used for their development.
 Mechanistic models \cite[barber74,cushman,willigen1,roose,simunekHYDRUS,somma,vandam] seek to explain the physical mechanisms that drive the phenomenon, requiring a better understanding and mathematical description of the underlying processes. 
 Although the parameters may be difficult to measure, they have a physical meaning -- they can be explained by the processes and their relationships, and they can be measured independently -- and, therefore, can be adapted to be used in a broad variety of scenarios.
@@ -36,10 +37,10 @@ Solute mobility in soil is described by two processes:
 1) convective transport by water mass flow through the transpiration stream, and 
 2) movement driven by diffusion that depends on the solute concentration gradient in the soil caused by depletion of solutes due to root uptake \cite[barber62]. 
 The first to recognize that solutes move towards the root due to the uptake process was \citeonline[bray].
-Since then, the efforts to describe the solute movement in soils were directed to develop analytical and, with the improvement of computational power, numerical models.
+Since then, the efforts to describe the solute movement in soils were directed to develop analytical models and, when more computational means became available, numerical models.
 %
 The earlier analytical solutions for the CDE were formulated considering a steady-state condition to the water flow and a solute uptake governed by the solute concentration in the soil solution \cite[barber74,cushman,nye] or determined by a constant plant demand \cite[willigen81]. 
-The concentration limiting approach may overestimate the uptake in scenarios where solute supply to the root is not limiting \cite[barraclough] whilst the constant plant demand formulation may overestimate the uptake when the soil is very dry or at low solute concentration at the root surface, when the diffusive flow prevails.
+The concentration limiting (or supply driven) approach may overestimate the uptake in scenarios where solute supply to the root is not limiting \cite[barraclough] whilst the constant plant demand (or demand driven) formulation may overestimate the uptake when the soil is very dry or at low solute concentration at the root surface, when the diffusive flow prevails.
 %(cite papers about MM experiments -- the difference between the constant uptake and MM equation at low concentrations)
 Later, \citeonline[roosephd] formulated analytical solutions for different conditions of uptake, considering a so called `pseudo-steady-state' condition for water flow and the interference of root hairs and mycorrhizae in the uptake process, offering also an analytical solution to upscaling from the single root to a three-dimensional root architecture uptake model.
 
@@ -64,7 +65,8 @@ The values of MM parameters are strongly dependent on the experimental methods u
 Therefore, they have to be determined for each particular experimental scenario.
 Some types of experiments to determine the kinetic parameters $I_m$, $K_m$ and $C_{min}$ include hydroponically-grown plants \cite[barber] and the use of radioisotopes to estimate them directly from soil \cite[nye77]. 
 The latter is more realistic since there is a large difference between a stirred nutrient solution and the complex and dynamic soil medium.
-Measuring $C_{min}$ is particularly difficult \cite[lambers,seeling] because it occurs at very low concentration levels that may be hard to be accurately measured. \citeonline[seeling] shows that $C_{min}$ can be neglected for the cases of high $K_m$ values.
+Measuring $C_{min}$ is particularly difficult \cite[lambers,seeling] because it occurs at very low concentration levels that may be hard to be accurately measured. 
+\citeonline[seeling] show that $C_{min}$ can be neglected for the cases of high $K_m$ values.
 
 %{\localcolor\Red
 %IMPROVE
@@ -88,34 +90,33 @@ Measuring $C_{min}$ is particularly difficult \cite[lambers,seeling] because it 
 %
 %Talk about other uptake functions
 There are other alternatives to describe the solute uptake rate function apart from the MM equation. 
-\citeonline[dalton] proposed a physical-mathematical model that includes active uptake, mass flow and diffusion, and expresses solute uptake as being proportional to root water uptake. 
+\citeonline[dalton] proposed a physical-mathematical model that includes active uptake, mass flow and diffusion, expressing solute uptake as being proportional to root water uptake. 
 \citeonline[bouldin] described the uptake from low and high concentration solutions by two linear equations, thus simplifying the process of solute uptake at the root surface to two diffusion components \cite[rengel].
 \citeonline[tinker] determined the uptake rate as a linear component followed by a constant rate phase where the threshold value is dependent on solute concentration inside the plant.
-Nevertheless, MM equation is the most frequently used equation in root solute uptake models for being physically grounded and for its good agreement with experimental data.
+Nevertheless, the MM equation is the most frequently used equation in root solute uptake models for being physically grounded and for its good agreement with experimental data.
 
 
 %Talk about transpiration reduction functions (water, solute and water+solute). Talk about the quirijn's no uptake model and how it affects the combined water and solute reduction function without assume an additive or multiplicative interaction
-Combined water and solute uptake models compute averages or local pressure and osmotic heads, allowing to estimate plant water and osmotic stress. 
+Combined water and solute uptake models compute averages or local pressure and osmotic heads, allowing estimating plant water and osmotic stress. 
 %\citeonline[feddes78] developed an empirical water stress model relating the actual transpiration to pressure head originating a transpiration reduction function. 
-\citeonline[feddes78] developed an empirical water stress model relating the actual transpiration to pressure head, originating a piecewise transpiration reduction function in which the potential transpiration is linearly reduced according to threshold values of pressure head that accounts for excess and shortage of water in soil.
+\citeonline[feddes78] developed an empirical water stress model relating the actual transpiration to pressure head, originating a piecewise transpiration reduction function in which the potential transpiration decreases linearly according to threshold values of pressure head that account for excess or shortage of soil water.
 %It is a piecewise function in which the potential transpiration is linearly reduced according to threshold values of pressure head that accounts for excess and shortage of water in soil.
-As solute presence in soil solution reduces the total hydraulic head -- decreasing root water uptake -- the effect in transpiration reduction by water and salt stress are commonly related to be either additive 
+As the presence of solutes in the soil solution reduces the total hydraulic head -- affecting root water uptake -- the compound effect in transpiration reduction by water and salt stress are commonly supposed to be either additive 
 %\cite[vangenuchten87] 
-or multiplicative 
+or multiplicative.
 %\cite[vangenuchten87] 
-in many models. 
 However, crops seem to respond to water and salt stress differently. 
 
-\citeonline[shalhevet] found that transpiration of cotton and pepper plants reduces more strongly under water stress then under an equivalent osmotic stress. 
+\citeonline[shalhevet] found that transpiration of cotton and pepper plants reduces more strongly under low pressure head than under an equivalent low osmotic head. 
 Similar results have already been found by \citeonline[sepaskhah] for wheat, and by \citeonline[parra] for beans.
-Thus, empirical weighting factors has been introduced in the transpiration reduction function to account for different response of a crop to osmotic and pressure heads.
+Thus, empirical weighting factors have been introduced in the transpiration reduction function to account for the different response of a crop to osmotic and pressure heads.
 
-Some models treat the combined water and salt stress neither in an additive or in a multiplicative way. \citeonline[homaee] developed a piecewise reduction function similar to the \citeonline[feddes78] and concluded that the function fitted his experimental data better than any additive or multiplicative models.
+Some models treat the combined water and salt stress neither in an additive or in a multiplicative way. \citeonline[homaee] developed a piecewise reduction function similar to the \citeonline[feddes78] and concluded that the function fitted his experimental data better than any additive or multiplicative model.
 \citeonline[liersolute] proposed a microscopic analytical model to estimate relative transpiration as a function of soil and plant parameters. 
 Their mechanistic approach reduces the need of empirical parameters and does not require any explicit assumption (additive or multiplicative) to derive the combined water and salt stress. 
 Results show good agreement with experimental data, although some discrepancies exist, especially under wet conditions. 
 Their model does not consider root solute uptake.
-As being mechanistic, considering it would lead to more realistic simulations and interfere in the solute concentration estimative, leading to different responses of the crop to the combined water and osmotic stress.
+Considering root solute uptake would interfere in solute concentrations estimative, leading to more realistic simulations and to a better prediction of the crop response to the combined water and osmotic stress.
 %One of their conclusions was that the relative transpiration reduces more gradually with combined water and osmotic stress than in a scenario with water stress only
 
 

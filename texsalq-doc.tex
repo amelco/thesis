@@ -50,16 +50,17 @@ Some catch phrase that everyone expect to read.
 \abstractEN {%
 A modification in a water uptake and solute transport numerical model was implemented in order to take into account the solute uptake by the roots.
 The convection-dispersion equation (CDE) was solved numerically, using a complete implicit scheme, considering a transient state for water and solute fluxes and a soil solute concentration dependent boundary for the uptake at the root surface, based on the Michaelis-Menten (MM) equation.
-Additionally, a linear approximation was developed to the MM equation such that the CDE has a linear and a nonlinear solution.
-It was assumed a radial geometry, considering a single root with its surface acting as the uptake boundary and the outer boundary as being the half distance between neighbours roots which depends on root density.
-The proposed solute transport model includes active and passive solute uptake and can predict the solute concentration in soil at any time and distance from the root surface.
-It also estimates the relative transpiration of the plant, that directly affects water and solute uptake and is related to water and osmotic stress status of the plant.
-The simulations has shown that the linear and nonlinear solutions have significant differences in uptake when the concentration in the soil is below a limiting value ($C_{lim}$).
-Consequently, this reduction in uptake at low concentrations can produce a second reduction in the relative transpiration, shortening the time at which the plant ceases the uptake. 
-For the same ion type, the contributions of active and passive uptake vary with changes in plant, atmospheric and soil hydraulic parameters. 
+Additionally, a linear approximation was developed for the MM equation such that the CDE has a linear and a nonlinear solution.
+A radial geometry was assumed, considering a single root with its surface acting as the uptake boundary and the outer boundary being the half distance between neighbouring roots, a function of root density.
+The proposed solute transport model includes active and passive solute uptake and predicts solute concentration as a function of time and distance from the root surface.
+It also estimates the relative transpiration of the plant, on its turn directly affecting water and solute uptake and related to water and osmotic stress status of the plant.
+Performed simulations show that the linear and nonlinear solutions result in significantly different solute uptake predictions when the soil solute concentration is below a limiting value ($C_{lim}$).
+This reduction in uptake at low concentrations may result in a further reduction in the relative transpiration, {\localcolor\Red shortening the time at which the plant ceases the uptake. {\it QM: This is not clear. Change words}}
+The contributions of active and passive uptake vary with parameters related to the ion species, the plant, the atmosphere and the soil hydraulic properties. 
 %{\localcolor\Red As the model has the ability to partition active and passive uptake, it can be improved to differentiate osmotic and ionic stress by including a solute concentration inside the plant variable and compare it with a threshold value of plant concentration, which is regulated by plant age and species, for example.}
-The model showed a good agreement with a analytical model that uses a linear concentration dependent equation as the boundary condition for uptake at the root surface, with the advantage to deal with transient solute and water uptake and, therefore, can be used in a wider range of situations.
-Simulation with different scenarios and experimental results confrontation are needed to verify model weaknesses and to suggest improvements.
+The model showed a good agreement with an analytical model that uses a linear concentration dependent equation as boundary condition for uptake at the root surface.
+The advantage of the numerical model is it allows simulation of transient solute and water uptake and, therefore, can be used in a wider range of situations.
+Simulation with different scenarios and comparison with experimental results is needed to verify model performance and possibly suggest improvements.
 }
 \abstractPT {%
  Aqui o resumo  

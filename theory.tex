@@ -11,19 +11,20 @@ It briefly describes the Richards equation that is applied in water flow models 
 Both flow models are described with emphasis on the microscopic approach.
 Also, a short explanation about the Michaelis-Menten kinetics for nutrient uptake is given.
 %, which is fundamental to understand the work done in this thesis, since it is treated as a boundary condition for the convection-dispersion equation. 
-For those who are familiarized with these theories, the reading starting from Chapter \ref[methodology] is sufficient and this chapter may be skipped, since it does not provide any particular information that is different from what is already known from literature.
-Equations that were presented in this section, and are used further in this thesis, are properly referenced.
+%For those who are familiarized with these theories, the reading starting from Chapter \ref[methodology] is sufficient and this chapter may be skipped, since it does not provide any particular information that is different from what is already known from literature.
+%Equations that were presented in this section, and are used further in this thesis, are properly referenced.
 
 \label[sec_micro]
 \sec Microscopic approach
 
-As mentioned in the previous chapter, the models for water and solute uptake can be divided in macroscopic and microscopic. 
+As mentioned in the previous chapter, models for water and solute uptake can be divided in macroscopic and microscopic ones. 
 The model developed in this thesis is microscopic, and we will present the basic theory behind it.
 
 %Macroscopic models deal with flows in one, two or three spacial dimensions and the use a sink-source therm in the flow equations to deal with solute/water inputs and outputs in the domain. The domain is usually the root-zone but can also consider bigger regions. (maybe this is inside the literature review). According to the objective of this thesis, the developed model was inspired in a microscopic one and, thus, is also microscopic. So, detail in the microscopic approach for modelling water and solute uptakes are described.
 
-Microscopic models consider a single cylindrical root of radius $r_0$ \uhead with an extraction zone being represented by a concentric cylinder of radius $r_m$ (m) that bounds the half-distance between roots. The height of both cylinders is $z$ \uhead and represents the rooted soil depth. 
-The basic assumptions of this type of model is that the root density does not change with depth and there is no difference in extraction power along the root surface. Water and solute flows are axis-symmetric.
+Microscopic root uptake models consider a single cylindrical root of radius $r_0$ \uhead with an extraction zone being represented by a concentric cylinder of radius $r_m$ (m) that bounds the half-distance between roots. The height of both cylinders is $z$ \uhead and represents the rooted soil depth. 
+The basic assumptions of this type of model is that the root density does not change with depth and there is no difference in intensity of extraction along the root surface. 
+Water and solute flows are axis-symmetric.
 
 It is common to report root length density $R$ (m m$^{-3}$) and $r_0$. These are related to $r_m$ and root length $L$ \uhead by the following equations:
 \label[eq_rm]
@@ -59,7 +60,7 @@ The water and solute flow equations in microscopic models are, likewise, present
 \sec Water flow equation
 
 The equation for water flow for a homogeneous and isotropic soil, in saturated and non-saturated conditions, is given by the Richards equation. 
-In radial radial coordinates, it can be written as:
+In radial coordinates, it can be written as:
 \label[eq_Richards]
 $$
 r{\partial \theta \over \partial t} = -{\partial q \over \partial r} \eqmark
@@ -71,14 +72,14 @@ $$
 q = -K(\theta) {dH \over dr} \eqmark
 $$
 %
-where $K$ \uK is the soil hydraulic conductivity and $H$ is the total hydraulic potential. This equation describes the axis-symmetrical laminar water flux for (non)saturated soil. 
+where $K$ \uK is the soil hydraulic conductivity and $H$ is the total hydraulic potential. This equation describes the axisymmetrical laminar water flux for (un)saturated soil. 
 %The role of $K$ is detailed in Section \ref[soil_prop].
 
-The substitution of Equation \ref[eq_watflux] into \ref[eq_Richards] results in a second-order partial differential equation and, therefore, it needs initial and boundary conditions to yield a particular solution. 
+The substitution of Equation \ref[eq_watflux] into \ref[eq_Richards] results in a second-order partial differential equation and, therefore, initial and boundary conditions are required to yield a particular solution. 
 The most commonly employed initial condition is of constant water content or pressure head along the radial distance, although a function of water content (or pressure head) over distance can also be used. 
-In analytical solutions, steady-state conditions with respect to water flow is often used to solve the equation. The high non-linearity of the hydraulic functions (see Section \ref[soil_prop]) makes a transient solution rather complex and, sometimes, impractical.
-In numerical solutions, on the other hand, it is easier to define a transient water flow condition, which allows a more realistic treatment to the equation. 
-Boundaries for both steady-state and transient solutions can be either of prescribed pressure head or water flux, as shown in Equations \ref[wat_bc1] and \ref[wat_bc2] respectively:
+In analytical solutions, a steady-state condition with respect to water flow is often used to solve the equation. The high non-linearity of the hydraulic functions (see Section \ref[soil_prop]) makes a transient solution rather complex and, sometimes, impractical.
+In numerical solutions, on the other hand, it is easy to define a transient water flow condition, allowing more realistic simulations. 
+Boundaries for both steady-state and transient solutions can be either of pressure head or water flux, as shown in Equations \ref[wat_bc1] and \ref[wat_bc2] respectively:
 \label[wat_bc1]
 $$
 h(r_i,t) = f(t) \eqmark
@@ -88,15 +89,15 @@ $$
 \left. K(\theta) {\partial h \over \partial r} \right|_{r=r_i} = g(t) \eqmark
 $$
 %
-where $f(t)$ and $g(t)$ can be either a constant or a time variable function of pressure head and water flux, respectively; and $r_i$ is the distance from axial center to the specific boundary. 
+where $f(t)$ and $g(t)$ is a constant or a time variable function of pressure head and water flux, respectively; and $r_i$ is the distance from axial center to the specific boundary. 
 In the case of microscopic models, $r_i$ can assume values of distance from axial center to root surface (inner boundary) and to the end of the domain (outer boundary). 
 Macroscopic models use the Cartesian coordinate system and, for one-dimension, represent the domain along the $z$ axis (depth) instead of $r$. 
 Thus, $z_i$ values would be of the distance from the soil surface (top boundary) to a certain depth, {\it e.g.} root depth (bottom boundary).
 
 In most microscopic models, the boundary conditions are of flux type, according to Equation \ref[wat_bc2]. 
 At the root surface, flux times area is supposed to match transpiration, and at the outer boundary, a zero flux is often assumed -- meaning inter-root competition for water. 
-Therefore, the only water exit is at root surface through the transpiration stream.
-In macroscopic models, as they deal with the entire root zone, both 
+Therefore, the only water exit is at the root surface through the transpiration stream.
+In macroscopic models that deal with the entire root zone, both 
 %boundaries are located at the soil surface and at a given depth (usually, root depth). 
 %Both 
 boundary types are equally found, depending on the simulation scenario to consider (soil surface evaporation, irrigation or rain, presence of water table, drainage, water root uptake, etc.). 
@@ -104,11 +105,11 @@ A sink-source term is then added to Equation \ref[eq_Richards] to deal with such
 %can be equal to the evaporation rate and of free drainage in the bottom (root depth). The water extraction by plant roots is equal to the plant transpiration encapsulated in a sink term in Richards equation.
 
 The hydraulic potential $H$ is composed of pressure ($h$) and gravitational ($h_g$) heads in models that do not consider the presence or flow of solutes. 
-In order to deal with solutes, the osmotic head ($h_\pi$) must be added to $H$ and its value is calculated through
+In order to deal with solutes, the osmotic head ($h_\pi$) is added to $H$ and its value is calculated through
 %will serve as a {\localcolor \Red `link'} to 
 the solute transport equation, detailed in Section \ref[sol_transp]. 
 %{\localcolor\Red\quic This is not clear -- say exactly what you mean.}
-In microscopic models, $h_g$ is neglected due to its minor relevance.
+In microscopic models, $h_g$ is often neglected due to its minor relevance.
 
 %When no solute is dealt in the solution of Richards equation, $H$ turns out to be pressure head $h$ and, occasionally, the sum of pressure head an gravitational component $h_g$, neglecting the osmotic head $h_\pi$. The link between water movement and solute transport in soil appears when $h_\pi$ is considered in the Richards equation. Researchers try to separate the mechanisms that deals with both transports although they occur sinergically in nature. The flow of water interferes in the solute flow and vice-versa and a link between them should exist. In Section \ref[sol_transp] we deal with transport of solute in more details.
 
@@ -117,7 +118,7 @@ In microscopic models, $h_g$ is neglected due to its minor relevance.
 
 The soil hydraulic properties $K$, $\theta$ and $h$ are interdependent and, as mentioned in the previous section, their relation is highly nonlinear. 
 %Equations \ref[eq_theta] and \ref[eq_K] show their interdependence and their noticeable nonlinearity. 
-Among available models to describe soil hydraulic properties, the \citeonline[genuchten80] equation system is most frequently used:
+Among available models to describe soil hydraulic properties, the \citeonline[genuchten80] equation system is frequently used:
 
 %As mentioned in the previous section, $K$, $\theta$ and $h$ are inter-related soil properties. Their interdependence allows to infer one property in relation to the other two. A common practice is to measure $\theta$ for several $h$ values and make use of a model to know the so called characteristic soil curve or water retention curve. As the function of $K$ is dependent of $\theta$ or $h$, this relation is automatically obtained. Among several $K$--$\theta$--$h$ relationship models, the van Genuchten relations is one of the most used:
 
@@ -171,7 +172,7 @@ The convective flux is accounted for by the second term on the right-hand side o
 Transport by convection occurs due to the movement of diluted solutes carried by mass flow of water proportional to the solute concentration in soil solution. 
 It is noticeable that the convective contribution to solute flux reduces as water flux $q$ becomes small, therefore the convective flux is highly dependent on water content gradients and hydraulic conductivity. Convection also affects the solute flow due to a water velocity gradient originated in the micropore space of the soil. 
 As solutes are carried with different velocities, a concentration gradient develops, allowing a diffusive movement within this micropore space.
-This microscale process is called mechanical dispersion and can be expressed by macroscopic variables as follows:
+This microscale process is called mechanical dispersion and can be expressed by macroscopic variables as:
 
 \label[eq_Ds]
 $$
@@ -181,13 +182,13 @@ $$
 where $D_s$ \udisp is the mechanical dispersion coefficient, $\tau$ \uhead is the dispersivity and the relation $q/\theta$ \uwatflux accounts for the average pore water velocity.
 
 %dispersion-diffusion
-Transport by diffusion is the movement of solutes caused by a concentration gradient in soil solution. It is proportional to the effective diffusion coefficient $D$ which is given by:
+Transport by diffusion is the movement of solutes caused by a concentration gradient in soil solution. It is proportional to the effective diffusion coefficient $D$ given by:
 
 $$
 D = D_m + D_s \eqmark
 $$
 %
-where $D_m$ \udisp is the molecular diffusion coefficient that, as $D_s$, is also a microscale process resulted from the averaged random motion of the molecules in the soil solution in response to the concentration gradient. It can be expressed by macroscopic variables as follows:
+where $D_m$ \udisp is the molecular diffusion coefficient that, like $D_s$, is also a microscale process resulting from the average random motion of the molecules in the soil solution in response to the concentration gradient. It can be expressed by macroscopic variables as:
 
 \label[eq_Dm]
 $$
@@ -195,8 +196,9 @@ D_m=\xi D^0 \eqmark
 $$
 %
 where $\xi$ (--) is the tortuosity factor and $D^0$  \udisp is the diffusion coefficient in water. 
-Values of $D^0$ for ions or molecules can be easily measured and estimated by analytical equations for free water. Soil water content is often below its saturation point, thus, diffusion is often different from that of free water. 
-The tortuosity factor of Equation \ref[eq_Dm] can be calculated, for instance, by the empiric Millington-Quirk relation as follows:
+Values of $D^0$ for ions or molecules can be easily measured and estimated by analytical equations for free water. 
+Soil water is contained in a porous network, usually unsaturated, therefore diffusion will be different from that in free water. 
+The tortuosity factor of Equation \ref[eq_Dm] can be calculated, for instance, by the empiric Millington-Quirk relation as:
 
 $$
 \xi={\theta^{10 \over 3} \over \theta^2_s} \eqmark
@@ -208,13 +210,14 @@ $$
 
 
 %boundary conditions
-The boundary conditions types for solute transport are analogous to those presented for the case of water flow, expressed in terms of concentrations instead of pressure heads. 
+The boundary conditions for solute transport are analogous to those presented for the case of water flow, but expressed in terms of concentrations instead of pressure heads. 
 In microscopic models, commonly assumed boundary conditions are of zero, constant or variable solute flux at the root surface. 
-The choice for one or another boundary condition will be made depending on how the solute uptake by the plant is considered in the model (further details in Section \ref[sol_uptake]).
+The choice for one or another boundary condition depends on the way solute uptake by the plant is dealt with in the model (details in Section \ref[sol_uptake]).
 % Improve that
 %The outer boundary depends on the distance from root surface in which it is considered. 
-For the outer boundary, a zero solute flux condition works well to simulate inter-root competition for solutes since the average distance between roots is 1 cm.
-A constant concentration -- equal to the initial concentration -- can be used in scenarios where the outer boundary is considered at a sufficient distance from the root surface so that competition between neighbouring roots can be considered negligible.
+For the outer boundary, a zero solute flux condition works well to simulate inter-root competition for solutes.
+%since the average distance between roots is 1 cm.
+A constant concentration -- equal to the initial concentration -- can be used in scenarios where the outer boundary is considered at a sufficient distance from the root surface so that competition between neighboring roots can be considered negligible.
 In macroscopic models, a sink-source term is added to Equation \ref[eq_sol] to consider different inputs and outputs of solute in the system ({\it e.g.} plant uptake, mineralization, degradation, etc.), and the top and bottom boundaries are treated according to the scenario (similar to common practice when using the water flow equation).
 
 %accumulation or depletion of solute at root surface dependent on chosen boundaries
@@ -237,7 +240,7 @@ In macroscopic models, a sink-source term is added to Equation \ref[eq_sol] to c
 %In literature review, do a simple description and refer to here for more details.
 
 %The root-soil interface is the boundary that deals with solute uptake by the root.
-The passage of water and solutes from the soil to the root, where plant physiological mechanisms may play a role, occurs at the root-soil interface.
+The passage of water and solutes from soil to root, where plant physiological mechanisms may play a role, occurs at the root-soil interface.
 A correct mathematical treatment of this frontier is crucial for root water-solute uptake modeling.
 Different assumed conditions at this boundary originate distinct solutions for the convection-dispersion equation and, consequently, lead to distinct results. 
 %talk about concentration dependent boundary vs zero and constant uptak
@@ -273,7 +276,8 @@ all conditions of solute uptake rate can be defined by setting to $F$ a specific
 
 The rate of solute uptake by plant roots can be 
 %referred to be similar to that between enzyme and its substrate, 
-described by the MM equation, as seen in Section \ref[literature]. Thus the uptake shape function $\alpha(C)$ can be supposed to follow the concentration dependent MM kinetics, and considering $k$ equal to $I_m$ leads to:
+described by the MM equation, as seen in Section \ref[literature]. 
+The uptake shape function $\alpha(C)$ can be supposed to follow the concentration dependent MM kinetics, and considering $k$ equal to $I_m$ leads to:
 \label[eq_MM1]
 $$
 \alpha(C) = {C \over K_m+C} \Rightarrow F = {C \over K_m+C}\, I_m \eqmark
