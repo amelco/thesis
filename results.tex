@@ -20,7 +20,7 @@
 \chap RESULTS AND DISCUSSION
 
 \label[result_luxnlu]
-\sec Linear (LU) versus nonlinear (NLU) solutions
+\sec Linear (LU) versus non-linear (NLU) solutions
 
 %In all simulated scenarios, the difference between LU and NLU models occurs only at values of solute concentration in soil water ($C$) below the threshold value \clim. This is expected because of the nature of the piecewise MM equation used in the model.
 %{\bf (EXPLAIN THAT THE DIFFERENCE OCCURS ONLY FOR C<Clim IN METHODOLOGY)}
@@ -45,18 +45,18 @@ A second reduction in the relative transpiration occurs and it can be noticed by
 A possible explanation is that, at this point, the solute uptake rate decreases, building a more negative value for the osmotic head and, consequently, reducing also the water uptake rate.
 Therefore, this reduction depends on the value of $q_0$, which directly affects the $C_{lim}$ value (according to Equation \ref[eq_clim]), and suddenly reduces the relative transpiration due to the coupled water and osmotic stress.
 This limiting concentration, here only numerically computed, might have some physical or physiologic processes that controls it and, therefore, it needs to be investigated.
-It can be seen in Figure \ref[diff_tr] that the nonlinear equation causes a smoother $T_r$ reduction, which seems to be more appropriate for a natural phenomenon.
+It can be seen in Figure \ref[diff_tr] that the non-linear equation causes a smoother $T_r$ reduction, which seems to be more appropriate for a natural phenomenon.
 
 \medskip
 \label[accumxt]
 \picw=13cm \cinspic accumxt.pdf
-\caption/f {Cumulative solute uptake as a function of time for scenario 1. Dashed line represents the nonlinear model}
+\caption/f {Cumulative solute uptake as a function of time for scenario 1. Dashed line represents the non-linear model}
 \medskip
 
 \medskip
 \label[diff_tr]
 \picw=17cm \cinspic diffs_tr.pdf
-\caption/f {Relative transpiration as a function of time for scenarios 1 to 4. Dashed lines represent the nonlinear model}
+\caption/f {Relative transpiration as a function of time for scenarios 1 to 4. Dashed lines represent the non-linear model}
 \medskip
 
 %There are two ways of making the difference between the two models be relevant: 
@@ -131,7 +131,7 @@ In this thesis we choose to use NLU since the values of $C_0$ are important to d
 %Figure~\ref[diff_r], however, shows that the final concentration profile is nearly identical, presenting a difference of 0.3\%, and that the difference in the concentration at the root surface does not lead to a significant additional uptake. 
 %Moreover, Figure~\ref[accumxt] shows that the 
 %Nevertheless, in all simulation scenarios, the total solute taken up in the end of simulation was similar in both models, even with the time interval of greater uptake of NLU.
-%%The absolute and relative differences between the estimated solute concentration for the linear (CL) and nonlinear (CNL) model was calculated according to Equations \ref[error_abs] and \ref[error_rel], respectively.
+%%The absolute and relative differences between the estimated solute concentration for the linear (CL) and non-linear (CNL) model was calculated according to Equations \ref[error_abs] and \ref[error_rel], respectively.
 %%From the \diff{} value resulted from Equations \ref[error_abs] and \ref[error_rel], it can be inferred which model had a greater uptake.
 %%For instance, if \diff{}~>~0, then the solute concentration estimated by the linear model (CL) was greater than that of the non-linear model (CNL). 
 %%As the only output of solute is caused by root extraction, a lower concentration indicates a higher uptake so that NLU taken up more solute for this case. 
@@ -166,7 +166,7 @@ In this thesis we choose to use NLU since the values of $C_0$ are important to d
 
 It is important to cite here the issues with stabilization in the numerical solution of NLU.
 %In addition, some part of the differences was due to stability problems with the numerical solution for NLU. 
-The change from equation 21 to equation 25 (change of boundary condition, from constant to nonlinear uptake rate) makes the numerical solution take some time to stabilize at the initial times if the time and space steps are not chosen properly. 
+The change from equation 21 to equation 25 (change of boundary condition, from constant to non-linear uptake rate) makes the numerical solution take some time to stabilize at the initial times if the time and space steps are not chosen properly. 
 Many different time and space steps combinations had to be tested, for each scenario, to eliminate the problem. 
 We found that, as a general rule, a small time step (commonly less than 0.1 s) can be used when the default space step is used. 
 In situations that a finner space step is necessary, smaller values of $\Delta t$ are required. 
@@ -191,7 +191,7 @@ In our simulation scenarios, the time that they took to complete ranged from 40 
 
 \sec Model results
 
-According to the analysis of the differences between the linear (LU) and nonlinear (NLU) solution for the solute uptake equation showed in the last section, the simulations of scenarios 1 to 8 (Table \ref[tab_scenarios]) were made using NLU model. 
+According to the analysis of the differences between the linear (LU) and non-linear (NLU) solution for the solute uptake equation showed in the last section, the simulations of scenarios 1 to 8 (Table \ref[tab_scenarios]) were made using NLU model. 
 In this section, the results of the main output variables ($C_0(t)$, $C(r)$ and $T_r(t)$) are presented for each scenario, as well as the active and passive contributions to solute uptake.
 Simulation results are shown in Figures \ref[fig_C_t]
 to
@@ -201,7 +201,7 @@ All simulations had initial pressure head ($h_{ini}$) values of $-1$~m, so that 
 
 %The general model predictions can be done by analysing scenario 1, chosen to be the default scenario (continuous line in Figures \ref[fig_C_t], \ref[fig_C_r] and \ref[fig_Tr_t]).
 According to the piecewise Equation \ref[eq_MM_mod], the solute uptake rate is divided in three phases. 
-Let us call them linear uptake phase (LUP) when $C_0>C_2$, constant uptake phase (CUP) when $C_{lim}<C_0<C_2$, and nonlinear uptake phase (NUP) when $C_0<C_{lim}$.
+Let us call them linear uptake phase (LUP) when $C_0>C_2$, constant uptake phase (CUP) when $C_{lim}<C_0<C_2$, and non-linear uptake phase (NUP) when $C_0<C_{lim}$.
 For the simulation scenarios, the set of input parameters $h_{ini}$ and $C_{ini}$ were chosen in a way that the simulation always starts at LUP, in which $T_r=1$ and solute uptake is done by mass flow of water only (passive uptake).
 In this phase, the water content and concentration in bulk soil are being depleted at the same rate, developing a period of constant concentration in soil water (Figure \ref[fig_C_t]).
 For different soil types, although the initial concentration in bulk soil is the same (10 mol m$^{-3}$), initially, the concentrations in soil water at the root surface are different, as shown in Figure \ref[fig_C_t](a). 
@@ -210,7 +210,7 @@ The explanation is that, as the input parameter for water content is {\it h}-bas
 \medskip
 \label[fig_C_t]
 \picw=17cm \cinspic C_t.pdf
-\caption/f {Concentration in soil water as a function of time with different values of the selected input parameters (a) soil, (b) root density, (c) initial concentration, and (d) potencial transpiration, simulated using the nonlinear uptake model (NLU)}
+\caption/f {Concentration in soil water as a function of time with different values of the selected input parameters (a) soil, (b) root density, (c) initial concentration, and (d) potencial transpiration, simulated using the non-linear uptake model (NLU)}
 \medskip
 
 The constant uptake phase (CUP) is characterized by the depletion of $C_0$ at a constant rate, which starts some time after the onset of the $T_r$ falling rate phase.
@@ -227,7 +227,7 @@ thus, according to the model assumptions, an active uptake is developed and it b
 %(driven by mass flow of water) 
 becomes lower in order to maintain the constant uptake rate.
 This constant demand, filled by active and passive uptake, is maintained until $C_0$ reaches $C_{lim}$ which, in turn, increases as $q_0$ decreases, according to Equation \ref[eq_clim].
-Active uptake reaches its maximum value when $C_0=C_{lim}$  and the uptake is then limited by the concentration in the soil in further time steps, starting the nonlinear uptake phase (NUP).
+Active uptake reaches its maximum value when $C_0=C_{lim}$  and the uptake is then limited by the concentration in the soil in further time steps, starting the non-linear uptake phase (NUP).
 It can be seen in Figure \ref[fig_contrib_t] that the time of the occurrence of the maximum value for active uptake depends on how fast passive uptake 
 %(caused by the depletion of $C_0$ and reduction of $q_0$) 
 decreases, which is 
@@ -250,7 +250,7 @@ Therefore, the soil type, root density, initial concentration, and potential tra
 \caption/f {Active, passive and total uptake ($q_{s_0}$) as a function of concentration in soil water. \desca \descb}
 \medskip
 
-The main characteristic of the nonlinear uptake phase (NUP) is a second falling rate phase for $T_r$ (as shown in Figure \ref[diff_tr]). 
+The main characteristic of the non-linear uptake phase (NUP) is a second falling rate phase for $T_r$ (as shown in Figure \ref[diff_tr]). 
 The total head $H$ is not able to fall below $H_{lim}$ and, as the solute uptake rate ($q_{s_0}$) decreases due to the limitation imposed by $C_{lim}$ (Equation~\ref[eq_MM_mod]), a decrease in the water uptake rate ($q_0$) has to occur to maintain $H$ in its limiting value.
 It is the shortest phase because it starts with very low values of $q_0$ and $T_r$, near the end time of simulation ($T_r=0.001$) in which $q_0$ is considered negligible.
 However, it is the phase that the active uptake is dominant, being the major component of the solute uptake. 
@@ -364,8 +364,8 @@ The selected predictions $Y$ were end time of simulation ($t_{end}$), osmotic he
 and $P$ were the ion/plant ($I_m$ and $K_m$) and the soil hydraulic ($\alpha$, $n$, $K_s$, $\lambda$, $\theta_r$ and $\theta_s$) parameters. 
 
 Sensitivities to ion/plant parameters were high for $h_{os}$ and presented an inverse response (negative values) to $I_m$ variation (Figure \ref[sensitivity_MM_rest]).
-This is due to the fact that with higher values of $I_m$ there are higher uptake rates of solute in both phases of constant and nonlinear uptake, diminishing the value of concentration at root surface in the end of simulation (less negative values of osmotic head $h_\pi$).
-On the contrary, higher values of $K_m$ make higher values of $C_{lim}$ that causes an increase of the nonlinear uptake phase and a decrease in the constant uptake phase.
+This is due to the fact that with higher values of $I_m$ there are higher uptake rates of solute in both phases of constant and non-linear uptake, diminishing the value of concentration at root surface in the end of simulation (less negative values of osmotic head $h_\pi$).
+On the contrary, higher values of $K_m$ make higher values of $C_{lim}$ that causes an increase of the non-linear uptake phase and a decrease in the constant uptake phase.
 With less time of potential solute uptake, the final concentration becomes higher due to a lower amount of extracted solute.   
 Thus, in general, a variation of 1\% in $K_m$ and $I_m$ cause, respectively, a decrease of 1.2\% and a increase of 1\%, approximately, in $h_{os}$. 
 The exception was scenario 7 that showed low $\eta$ values for both parameters.
@@ -378,8 +378,8 @@ The reason is the small variation in $C_0$ during the simulation due to the low 
 \medskip
 
 Figure \ref[sensitivity_MM_rest] shows that, despite the sensitivity of $h_{os}$, $acc$ presented very low (close to zero) sensitivity to $K_m$ and $I_m$.
-This is due to the fact that $I_m$ and $K_m$ just effectively act in the solute uptake rate in the constant and nonlinear uptake phases, since all the uptake in the linear uptake phase is due to mass flow of water. 
-The period of constant and nonlinear phases are relatively short when compared with the linear phase period, causing a low influence of $I_m$ and $K_m$ in the accumulated solute uptake. 
+This is due to the fact that $I_m$ and $K_m$ just effectively act in the solute uptake rate in the constant and non-linear uptake phases, since all the uptake in the linear uptake phase is due to mass flow of water. 
+The period of constant and non-linear phases are relatively short when compared with the linear phase period, causing a low influence of $I_m$ and $K_m$ in the accumulated solute uptake. 
 
 Figure \ref[sensitivity_MM_time] shows low sensitivity of the time related predictions to $I_m$ and no sensitivity to $K_m$.
 As the model deals with constant potential transpiration only, the time at the onset of the $T_r$ falling rate phase is the exact time when $q_0$ decreases.
@@ -529,7 +529,7 @@ As higher is the value of the constant uptake rate and as lower is $T_p$ in CU, 
 \label[fig_C0]
 %\picw=11cm \cinspic cxt1.pdf
 \picw=13cm \cinspic cxt_comp.pdf
-\caption/f {Soil solution concentration at root surface as a function of time for constant (CU), zero (ZU) and nonlinear (NLU) uptake models. \descc}
+\caption/f {Soil solution concentration at root surface as a function of time for constant (CU), zero (ZU) and non-linear (NLU) uptake models. \descc}
 \medskip
 
 For ZU and CU, $C_0$ 
@@ -552,7 +552,7 @@ For the case of CU and ZU, $T_r$ starts to diminish around the 21th day whilst f
 \medskip
 \label[fig_heads2]
 \picw=13cm \cinspic headsNLxt.pdf
-\caption/f {Pressure ($h$), osmotic ($h_\pi$) and total ($H$) heads at the root surface as a function of time for nonlinear (NLU) uptake model, for scenario 1}
+\caption/f {Pressure ($h$), osmotic ($h_\pi$) and total ($H$) heads at the root surface as a function of time for non-linear (NLU) uptake model, for scenario 1}
 \medskip
 
 Figure \ref[fig_qst_detail] shows the solute uptake rate (solute flux at root surface $q_{s_0}$) as a function of time for each model.
@@ -564,7 +564,7 @@ This result must be compared with experimental data of solute uptake of non-stre
 \medskip
 \label[fig_qst_detail]
 \picw=11cm \cinspic qsxt1_detail.pdf
-\caption/f {Detail of solute flux at root surface as a function of time for constant (CU), zero (ZU) and nonlinear (NLU) uptake models, for scenario 1}
+\caption/f {Detail of solute flux at root surface as a function of time for constant (CU), zero (ZU) and non-linear (NLU) uptake models, for scenario 1}
 \medskip
 
 
@@ -577,7 +577,7 @@ The ZU model obviously does not accumulate any solute and LU model accumulates i
 \medskip
 \label[fig_accsol]
 \picw=11cm \cinspic accumxt_models.pdf
-\caption/f {Cumulative solute uptake as a function of time for constant (CU), zero (ZU) and nonlinear (NLU) uptake models, for scenario 1}
+\caption/f {Cumulative solute uptake as a function of time for constant (CU), zero (ZU) and non-linear (NLU) uptake models, for scenario 1}
 \medskip
 
 %{\tred
@@ -606,7 +606,7 @@ The ZU model obviously does not accumulate any solute and LU model accumulates i
 %\medskip
 %\label[fig_Tr]
 %\picw=11cm \cinspic Trxt_comp.pdf
-%\caption/f {Relative transpiration as a function of time for constant (CU), zero (ZU) and nonlinear (NLU) uptake models, for scenario 1}
+%\caption/f {Relative transpiration as a function of time for constant (CU), zero (ZU) and non-linear (NLU) uptake models, for scenario 1}
 %\medskip
 
 As explained before, the LU model might develop a period of accumulation of solute near the root surface depending on the potential transpiration rate and solute uptake rate values.
@@ -619,26 +619,26 @@ It is also shown that the models that consider solute uptake (CU and NLU) presen
 \label[fig_C]
 %\picw=11cm \cinspic cxr1.pdf
 \picw=11cm \cinspic cxr_comp.pdf
-\caption/f {Soil solution concentration as a function of distance from axial root center in the end of simulation for constant (CU), zero (ZU) and nonlinear (NLU) uptake models. \descc}
+\caption/f {Soil solution concentration as a function of distance from axial root center in the end of simulation for constant (CU), zero (ZU) and non-linear (NLU) uptake models. \descc}
 \medskip
 
 %\medskip
 %\label[fig_qst]
 %\picw=11cm \cinspic qxt1.pdf
-%\caption/f {Water flux at root surface as a function of time for constant (CU), zero (ZU) and nonlinear (NLU) uptake models, for scenario 1}
+%\caption/f {Water flux at root surface as a function of time for constant (CU), zero (ZU) and non-linear (NLU) uptake models, for scenario 1}
 %\medskip
 
 %\vfill\break
 %\medskip
 %%\label[Trs]
 %\picw=11cm \cinspic qxt1.pdf
-%%\caption/f {Relative transpiration as a function of time and pressure head for no uptake (NU), constant (CU) and nonlinear (NLU) uptake models}
+%%\caption/f {Relative transpiration as a function of time and pressure head for no uptake (NU), constant (CU) and non-linear (NLU) uptake models}
 %\medskip
 
 %\medskip
 %\label[fig_Tr_detail]
 %\picw=11cm \cinspic Trxt1_detail.pdf
-%\caption/f {Detail of Relative transpiration as a function of time, at times when $C_0<C_{lim}$, for linear (LU) and nonlinear (NLU) uptake models}
+%\caption/f {Detail of Relative transpiration as a function of time, at times when $C_0<C_{lim}$, for linear (LU) and non-linear (NLU) uptake models}
 %\medskip
 
 %\vfill\break
@@ -668,25 +668,25 @@ It is also shown that the models that consider solute uptake (CU and NLU) presen
 %\medskip
 %\label[cxt]
 %\picw=13cm \cinspic cxt.pdf
-%\caption/f {Solute concentration in soil water at root surface as a function of time for no uptake (NU), constant (CU) and nonlinear (NLU) uptake models}
+%\caption/f {Solute concentration in soil water at root surface as a function of time for no uptake (NU), constant (CU) and non-linear (NLU) uptake models}
 %\medskip
 %
 %\medskip
 %\label[cxr]
 %\picw=13cm \cinspic cxr.pdf
-%\caption/f {Solute concentration in soil water as a function of distance from axial center for no uptake (NU), constant (CU) and nonlinear (NLU) uptake models}
+%\caption/f {Solute concentration in soil water as a function of distance from axial center for no uptake (NU), constant (CU) and non-linear (NLU) uptake models}
 %\medskip
 %
 %\medskip
 %\label[fluxesxt]
 %\picw=13cm \cinspic fluxesxt.pdf
-%\caption/f {Solute and water fluxes at root surface as a function of time for no uptake (NU), constant (CU) and nonlinear (NLU) uptake models}
+%\caption/f {Solute and water fluxes at root surface as a function of time for no uptake (NU), constant (CU) and non-linear (NLU) uptake models}
 %\medskip
 %
 %\medskip
 %\label[Trs]
 %\picw=13cm \cinspic Trs.pdf
-%\caption/f {Relative transpiration as a function of time and pressure head for no uptake (NU), constant (CU) and nonlinear (NLU) uptake models}
+%\caption/f {Relative transpiration as a function of time and pressure head for no uptake (NU), constant (CU) and non-linear (NLU) uptake models}
 %\medskip
 
 %{\tred 
