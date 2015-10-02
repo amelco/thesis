@@ -293,9 +293,9 @@ c_1 &= -{r_{1+1/2} \Delta t \over 2 \Delta r_1 (r_2-r_1)} (2D^{j+1}_{1+1/2} - q_
 $$
 % bs(1) = dt/(2.*dr(1)) * ((Imm/c_lim*dr(1)+q(0)*dr(1))/(2.*PI*Lrv*z*r(0)) + rsup(1)/(r(2)-r(1)) * (2*D(1)+q(1)*dr(2)) )+ r(1)*theta(1)
 
-* {\bf Nonlinear concentration dependent model (NLU)}
+* {\bf Non-linear concentration dependent model (NLU)}
 
-Applying boundary conditions of nonlinear concentration dependent solute flux, the first and second term of the right-hand side of Eq. \ref[eq_disc_sol] are equal to $-({I_m \over 2 \pi r_0 L(K_m +C^{j+1}_1)} + q_0)C^{j+1}_1 \Delta r_1$ while $C < C_{lim}$ and $C > C_2$:
+Applying boundary conditions of non-linear concentration dependent solute flux, the first and second term of the right-hand side of Eq. \ref[eq_disc_sol] are equal to $-({I_m \over 2 \pi r_0 L(K_m +C^{j+1}_1)} + q_0)C^{j+1}_1 \Delta r_1$ while $C < C_{lim}$ and $C > C_2$:
 $$
 \eqalignno{
 \label[NLU]
@@ -399,7 +399,7 @@ Active uptake happens here only in low concentrations. For cases with \clim \ ha
 The linearization proposed in the model is very similar to that of Tinker and Nye (pg.116)
 
 %METHODOLOGY INTRODUCTION
-Here is explained how water flow and solute transport equations were solved with its respective assumptions and boundary conitions, as well as the methodology in the comparisson for the linear and nonlinear uptake rate cases and the comparissons with the other solute uptake models.
+Here is explained how water flow and solute transport equations were solved with its respective assumptions and boundary conitions, as well as the methodology in the comparisson for the linear and non-linear uptake rate cases and the comparissons with the other solute uptake models.
 
 % General introduction
 The partial differential equations for water movement and solute transport in soil are solve numerically in a fully implicit way. Both water and solute flow are considered to have transient condition. 
@@ -462,12 +462,12 @@ We assume that the diffusive and convective parts of the original equation is si
 \medskip
 \label[fig_MM]
 \picw=10cm \cinspic I_and_Linear.pdf
-\caption/f {Uptake (influx) rate as a function of concentration in soil water for [a] nonlinear case and [b] linear case }
+\caption/f {Uptake (influx) rate as a function of concentration in soil water for [a] non-linear case and [b] linear case }
 \medskip
 
 %EXPLAIN ACTIVE AND PASSIVE
  
-%Figure 0. Uptake rate (influx rate) as a function of concentration in soil water for [a] nonlinear case and [b] linear case
+%Figure 0. Uptake rate (influx rate) as a function of concentration in soil water for [a] non-linear case and [b] linear case
 
 In the linearized equation (Figure 0b), the slope $\beta$ of the total uptake line (continuous line), for concentration values smaller than $C_{lim}$, can be found by the relation $I_m/C{lim}$, since the line starts at the origin. According to the MM equation, for values smaller than $C_{lim}$, the solute uptake is concentration dependent and the uptake is smaller than $I_m$. For values greater than $C_2$ the uptake is also concentration dependent but due to transport of mass by water flow only, i.e, active uptake is zero and the overall uptake is passive.
 
@@ -519,7 +519,7 @@ The equation \ref[eq_linear] is, therefore, the linearization of equation \ref[e
 
 The solute flux density at the outermost compartment (half distance between roots, i.e., $r = r_m$) is set to zero. 
 The boundary conditions at innermost compartment (root surface, i.e, $r=r_0$) are set according to the model type, which are: 
-no solute uptake model (de Jong van Lier, 2009), constant uptake model (de Willigen, 1994) and linear and nonlinear concentration--dependent model (proposed).
+no solute uptake model (de Jong van Lier, 2009), constant uptake model (de Willigen, 1994) and linear and non-linear concentration--dependent model (proposed).
 For short, let us call them NU, CU, LU and NLU models, respectivelly.
 
 {\bf For no solute uptake (NU) model type}: the solute flux density is set to zero
@@ -540,7 +540,7 @@ $$
 q_{s0} = -D {dC \over dr} + q_0C = -(\alpha + q_0) C_0  \eqmark
 $$
 
-{\bf For nonlinear concentration--dependent uptake (NLU) model type}: the solute flux density is set to the MM equation
+{\bf For non-linear concentration--dependent uptake (NLU) model type}: the solute flux density is set to the MM equation
 \label[qs_nl]
 $$
 q_{s0} = -D {dC \over dr} + q_0C = -\left({I_m \over 2 \pi r_0 L (K_m + C_0)} + q_0 \right) C_0 \eqmark
@@ -731,9 +731,9 @@ c_1 &= -{r_{1+1/2} \Delta t \over 2 \Delta r_1 (r_2-r_1)} (2D^{j+1}_{1+1/2} - q_
 $$
 % bs(1) = dt/(2.*dr(1)) * ((Imm/c_lim*dr(1)+q(0)*dr(1))/(2.*PI*Lrv*z*r(0)) + rsup(1)/(r(2)-r(1)) * (2*D(1)+q(1)*dr(2)) )+ r(1)*theta(1)
 
-* {\bf Nonlinear concentration dependent model (NLU)}
+* {\bf Non-linear concentration dependent model (NLU)}
 
-Applying boundary conditions of nonlinear concentration dependent solute flux, the first and second term of the right-hand side of Eq. \ref[main_eq] are equal to $-({I_m \over 2 \pi r_0 L(K_m +C^{j+1}_1)} + q_0)C^{j+1}_1 \Delta r_1$ while $C < C_{lim}$ and $C > C_2$:
+Applying boundary conditions of non-linear concentration dependent solute flux, the first and second term of the right-hand side of Eq. \ref[main_eq] are equal to $-({I_m \over 2 \pi r_0 L(K_m +C^{j+1}_1)} + q_0)C^{j+1}_1 \Delta r_1$ while $C < C_{lim}$ and $C > C_2$:
 $$
 \eqalignno{
 \label[NLU]
@@ -762,9 +762,9 @@ The value of $C^{j+1}_1$ in Equation \ref[b1] is found using the iterative Newto
 
 \sec Other models
 
-\sec Analysis of linear and nonlinear approaches
+\sec Analysis of linear and non-linear approaches
 
-To analyze the differences between the two proposed models (linear and nonlinear), the absolute and relative differences were calculated as follows:
+To analyze the differences between the two proposed models (linear and non-linear), the absolute and relative differences were calculated as follows:
 
 $$
 \eqalignno{
@@ -779,7 +779,7 @@ where $C\!L_t$ and $C\!N\!L_t$ are the solute concentration in soil water for LU
 
 The equations are the same of absolute and relative errors but since we are analyzing differences instead of errors (there is not a right or standard model), we called it differences.
 
-This section describes how the linear (LU) and nonlinear (NLU) solutions simulate the transport of water and solutes in the soil, plant and atmosphere system. The analysis of the results was made in order to choose one out of the two models in further simulations. The nonlinear solution uses the original MM equation but it takes longer to run due to an additional iterative process that has to be made. NLU is also more susceptible to stabilization problems in the results. The linear model is a simplified version of the MM equation in which the solute uptake rate for the situation $C<C_{lim}$ is smaller when compared to the original nonlinear equation, it has no stabilization problems and runs faster. Therefore, the objective of this section is to analyze the differences between the results of the two models and check if those differences are significant. For that, four different general scenarios were chosen (using the parameters listed in Table 2, with  loam soil) as listed below:
+This section describes how the linear (LU) and non-linear (NLU) solutions simulate the transport of water and solutes in the soil, plant and atmosphere system. The analysis of the results was made in order to choose one out of the two models in further simulations. The non-linear solution uses the original MM equation but it takes longer to run due to an additional iterative process that has to be made. NLU is also more susceptible to stabilization problems in the results. The linear model is a simplified version of the MM equation in which the solute uptake rate for the situation $C<C_{lim}$ is smaller when compared to the original non-linear equation, it has no stabilization problems and runs faster. Therefore, the objective of this section is to analyze the differences between the results of the two models and check if those differences are significant. For that, four different general scenarios were chosen (using the parameters listed in Table 2, with  loam soil) as listed below:
 
 \begitems
 %\style i
@@ -796,7 +796,7 @@ Also, the Mann--Whitney U test was made with two datasets (concentration and cum
 
 \sec Model comparissons
 
-The scenario of this simulation is of loam soil, medium root length density, high potential transpiration and high initial concentration (Table \ref[general_param]). We compare all model types (no solute uptake -- NU; constant -- CU; linear -- LU and nonlinear -- NLU concentration dependent uptake rates). All simulations were made until the value of relative transpiration was equal or less than 0.001. The time step is dynamical (depends on the number of iterations for water and solute equations) and was set to vary between 0.1 and 2 seconds. The simulation for NU ended within near 3 days; for CU, LU and NLU, about 5 days.
+The scenario of this simulation is of loam soil, medium root length density, high potential transpiration and high initial concentration (Table \ref[general_param]). We compare all model types (no solute uptake -- NU; constant -- CU; linear -- LU and non-linear -- NLU concentration dependent uptake rates). All simulations were made until the value of relative transpiration was equal or less than 0.001. The time step is dynamical (depends on the number of iterations for water and solute equations) and was set to vary between 0.1 and 2 seconds. The simulation for NU ended within near 3 days; for CU, LU and NLU, about 5 days.
 
 %CONSIDERATIONS:
 %•	It is not considered root growth

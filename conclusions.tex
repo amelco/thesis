@@ -3,8 +3,8 @@
 
 The partial differential equation of convection-dispersion was numerically solved using a fully implicit scheme, considering a transient state of solute flow and a solute uptake rate that is dependent on the solute concentration in the soil.
 This solution was then incorporated into the model of \citeonline[liersolute] in order to modify it to take into account the root solute uptake.
-This proposed model has a linear and a nonlinear solution for the solute uptake equation and shows a good agreement with the analytical solution proposed by \citeonline[cushman] which, also considers a concentration dependent uptake as the boundary condition at the root surface.
-The linear and nonlinear solutions are significantly different only when comparing the concentration as a function of time for times where $C_0 < C_{lim}$ (nonlinear uptake phase, NUP).
+This proposed model has a linear and a non-linear solution for the solute uptake equation and shows a good agreement with the analytical solution proposed by \citeonline[cushman] which, also considers a concentration dependent uptake as the boundary condition at the root surface.
+The linear and non-linear solutions are significantly different only when comparing the concentration as a function of time for times where $C_0 < C_{lim}$ (non-linear uptake phase, NUP).
 
 Simulations has shown that a second reduction in the relative transpiration might occur at the NUP, caused by a reduction of the solute uptake rate in this phase that leads to a reduction of water flux due to the decreasing value of pressure head needed to maintain the limiting value of $H=H_{lim}$.
 This second reduction shows that the limiting value $C_{lim}$ can be a important parameter to determine changes in the coupled water and osmotic stress in low concentration situations and it needs more investigation.
@@ -33,8 +33,8 @@ Therefore, this particular model is just one of the possible ways of simulate th
 %\style n
 %* A solute uptake model was incorporated in the microscopic model of \ref[liersolute].
 %* Additionally, it has the ability to partition active and passive contributions to the solute uptake, which can be uses in...
-%* The solute uptake can be predicted using linear and nonlinear approaches.
-%* It is better to use the nonlinear model since it is closer to the original MM equation, making its behaviour more close to reality (or our assumptions).
+%* The solute uptake can be predicted using linear and non-linear approaches.
+%* It is better to use the non-linear model since it is closer to the original MM equation, making its behaviour more close to reality (or our assumptions).
 %* The disadvantage in using NLU is that it is very sensitive to space and time steps, which can lead to stabilization problems.
 %* LU can be used in the case of...
 %* The model seems to overestimate the uptake in wet soil conditions.
@@ -44,6 +44,6 @@ Therefore, this particular model is just one of the possible ways of simulate th
 %\enditems
 %
 
-%The proposed model simulates the solute flux and root uptake considering a soil concentration dependent uptake. There was no significant difference between linear and nonlinear solutions for the simulated scenarios. The results of uptake for the proposed model showed that the limiting potential is reached at a higher pressure head, increasing the period of potential transpiration. It also showed a second limiting condition that happens at the time when $C<C_{lim}$ caused by a insufficient supply of solute at the same rate of plant demand. The proposed model is also able to do a partition between active and passive uptake which will be important to simulate the plant stress due to ionic or osmotic components, according to the solute concentration inside the plant.
+%The proposed model simulates the solute flux and root uptake considering a soil concentration dependent uptake. There was no significant difference between linear and non-linear solutions for the simulated scenarios. The results of uptake for the proposed model showed that the limiting potential is reached at a higher pressure head, increasing the period of potential transpiration. It also showed a second limiting condition that happens at the time when $C<C_{lim}$ caused by a insufficient supply of solute at the same rate of plant demand. The proposed model is also able to do a partition between active and passive uptake which will be important to simulate the plant stress due to ionic or osmotic components, according to the solute concentration inside the plant.
 %Comparison between the numerical and the analytical solution proposed by Cushman is in process.
 

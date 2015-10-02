@@ -163,8 +163,8 @@ real(8) :: Imm, Kmm, c_lim1, c_lim2, c_lim, c_2
 real(8) :: Imm_input, qs_calc
 real(8) :: alpha_s
 
-! nonlinear MM equation variables
-logical :: nonlinear
+! non-linear MM equation variables
+logical :: non-linear
 real(8) :: c_old
 integer :: c1_num_it
 
@@ -856,7 +856,7 @@ implicit none
   read(11,*) show_on_screen
   read(11,*)
   read(11,*) model
-  read(11,*) nonlinear
+  read(11,*) non-linear
   ! Chose rm according to Root density
   select case (Rd) 
     case (1)		! Low root density
@@ -1391,7 +1391,7 @@ real(8),parameter :: precis = 1E-10
       cs(1) = -rsup(1)*dt/(2.*(r(2)-r(1))*dr(1)) * (2.*D(1)-q(1)*dr(1))
       fs(1) = r(1)*thetaL(1)*c_water(1) - rsup(0)/(r(1)-r(0))*Imm*dt*Ap/(4.*PI*r(0)*RootLength)
     else                        ! concentration dependent part (for c < c_lim and for c > c_2)
-      if (nonlinear .eqv. .TRUE.) then
+      if (non-linear .eqv. .TRUE.) then
         c_old = c_water(1)
         if (c_water(1) <=c_lim) then
 	  ! Put a very small time step to avoid stabilization problems!!
@@ -1442,8 +1442,8 @@ real(8),parameter :: precis = 1E-10
 
   ! Iteration to find the value from concentration at root surface in the
   ! non-linearized MM equation case
-  !if (model == 3 .and. (c_water(1) <= c_lim .or. c_water(1) > c_2) .and. nonlinear .eqv. .TRUE.) then
-  if (model == 3 .and. (c_water(1) <= c_lim) .and. nonlinear .eqv. .TRUE.) then
+  !if (model == 3 .and. (c_water(1) <= c_lim .or. c_water(1) > c_2) .and. non-linear .eqv. .TRUE.) then
+  if (model == 3 .and. (c_water(1) <= c_lim) .and. non-linear .eqv. .TRUE.) then
   !  c1_num_it = 1
   !  !res = (bs(1)+cs(1)) * c_water(1) - fs(1)
 
