@@ -67,10 +67,10 @@ A fully implicit numerical treatment was given to the water and solute balance e
 The Richards equation \ref[eq_Richards] for one-dimensional axisymmetric flow can be written as
 \label[eq_complete_richards]
 $$
-{\partial \theta \over \partial t} = {\partial \theta \over \partial H} {\partial H \over \partial t} = C_w(H) {\partial H \over \partial t} = {1 \over r}{\partial \over \partial r} \left( r K(H,\theta) {\partial H \over \partial r} \right) \eqmark
+{\partial \theta \over \partial t} = {\partial \theta \over \partial H} {\partial H \over \partial t} = C_w(H) {\partial H \over \partial t} = {1 \over r}{\partial \over \partial r} \left( r K(h) {\partial H \over \partial r} \right) \eqmark
 $$
 %
-where the total hydraulic head ($H$) is the sum of pressure ($h$) and osmotic ($h_\pi$) heads and $C_w$ (m$^{-1}$) is the differential water capacity (${\partial H \over \partial\theta}$).
+where the total hydraulic head ($H$) is the sum of pressure ($h$) and osmotic ($h_\pi$) heads and $C_w$ (m$^{-1}$) is the differential water capacity $\displaystyle{\partial H \over \partial\theta}$.
 Relations between $K$, $\theta$ and $h$ are described by the \citeonline[genuchten80] equation system (Equations \ref[eq_theta] and \ref[eq_K]).
 Analogous to \citeonline[vandam_feddes], Equation \ref[eq_complete_richards] can be solved using an implicit scheme of finite differences with the Picard iterative process:
 $$
@@ -89,8 +89,19 @@ where $i$ ($1 \leq i \leq n$) refers to the segment number, $j$ is the time step
 The Picard's method is used to reduce inaccuracies in the implicit numerical solution for the $h$-based Equation \ref[eq_complete_richards] \cite[celia].
 
 The solution for Equation \ref[eq_disc_water] results in prediction of pressure head in soil as a function of time and distance from the root surface. 
-{\localcolor\Red The boundary conditions considered were of flux density entering the root determined by the transpiration rate, for the inner segment; and of zero flux, for the outer segment. {\it QM: Melhor representar essas boundary conditions de forma matematica.}}
-The computer algorithm that solves the equation and applied boundary conditions are found on Appendix \ref[ap_water].
+The boundary conditions considered were of flux density entering the root determined by the transpiration rate, for the inner segment; and of zero flux, for the outer segment,
+according respectively to Equations \ref[eq_bcw1] and \ref[eq_bcw2] as follows:
+$$
+\eqalignno{
+\label[eq_bcw1]
+K(h) {\partial h \over \partial r} &= q_0 = {T_p \over 2 \pi r_0 R z}\;{\rm ,} \quad &r=r_0 \quad\quad\quad\quad\quad\eqmark \cr\cr
+\label[eq_bcw2]
+K(h) {\partial h \over \partial r} &= q = 0\;{\rm ,} \quad &r=r_m \quad\quad\quad\quad\quad\eqmark
+}
+$$
+
+%{\it QM: Melhor representar essas boundary conditions de forma matematica.}}
+The computer algorithm that solves the Equation \ref [eq_disc_water] and applied boundary conditions \ref[eq_bcw1] and \ref[eq_bcw2] are found on Appendix \ref[ap_water].
 
 The convection-dispersion equation \ref[eq_sol] for one-dimensional axisymmetric flow can be written as
 \label[eq_complete_solute]
@@ -98,12 +109,19 @@ $$
 r {\partial(\theta C) \over \partial t} = -{\partial \over \partial r} \biggl(r q C \biggr) + {\partial  \over \partial r} \left( r D {\partial C \over \partial r} \right). \eqmark
 $$
 %
+with initial condition corresponding to constant solute concentration ($C_{ini}$) in all segments:
+$$
+C = C_{ini}\;, \quad t=0,\; r=r_i,\; 1 \leq i \leq n. \eqmark
+$$
+%
 
 Both boundary conditions are of the flux type, according to Equation \ref[eq_boundary_sol].
 From the assumed geometry (Figure \ref[fig_scheme]) it follows that the boundary condition at the outer segment corresponds to zero solute flux ($q_s$):
-\label[eq_bcrm]
 $$
--D(\theta) {\partial C \over \partial r} + q C = q_s = 0\;{\rm ,} \quad t>0,\; r=r_m .\eqmark
+\eqalignno{
+\label[eq_bcrm]
+D(\theta) {\partial C \over \partial r} - q C &= q_s = 0\;{\rm ,} \quad &r=r_m. \quad\quad\quad\quad\quad\eqmark
+}
 $$
 
 The boundary condition for solute transport at the root surface represents the concentration dependent solute uptake, described by the MM equation \ref[eq_MM1], with the following assumptions:
@@ -136,13 +154,14 @@ This might, in certain situations, lead to an overestimated prediction of uptake
 
 A piecewise non-linear uptake function that considers these explicit boundary conditions was formulated as:
 \label[eq_MM_mod]
-\numcases{q_{s0} =}
+%\numcases{q_{s0} =}
+\numcases{F =}
 \label[eq_case1]
 {I_m C_0 \over K_m+C_0}+q_0 C_0,&if $C_0 < C_{lim}$ \\
 \label[eq_case2]
-I_m, 				&if $C_{lim} \leq C \leq C_2$ \\
+I_m, 				&if $C_{lim} \leq C_0 \leq C_2$ \\
 \label[eq_case3]
-q_0 C, 				&if $C > C_2$
+q_0 C_0, 				&if $C_0 > C_2$
 \endnumcases
 %
 with \clim{} determined by the positive root of
@@ -170,7 +189,7 @@ As implicit numerical implementations of non-linear functions may result in solu
 %Due to the difficulty of implement a numerical algorithm to the non-linear Equation \ref[eq_case1], a linearization was made, resulting in:
 \label[eq_MM_linear]
 $$
-q_{s0} = (\alpha + q_0)\,C_0,\,\,\,\,{\rm if }\, C_0 < C_{lim}  \eqmark
+F = (\alpha + q_0)\,C_0,\,\,\,\,{\rm if }\, C_0 < C_{lim}  \eqmark
 $$
 %
 where $\alpha$ (m s$^{-1}$) and $q_0$ (m s$^{-1}$) are the active and passive contributions for the solute uptake slope $(\alpha+q_0)$.
@@ -178,22 +197,15 @@ where $\alpha$ (m s$^{-1}$) and $q_0$ (m s$^{-1}$) are the active and passive co
 This linearization is very similar to the one proposed by \citeonline[tinker], but does not consider the solute concentration inside the plant.
 The derivation of Equations \ref[eq_clim] to \ref[eq_MM_linear] is shown in Appendix \ref[ap_clim].
 
-Finally, the boundary condition at the inner segment refers to the concentration dependent solute flux at the root surface ($q_{s0}$, mol m$^{-2}$ d$^{-1}$) in agreement to Equation \ref[eq_MM_mod] and \ref[eq_MM_linear] for the non-linear and linear case, respectively.
-The uptake of each root equals $-q_{s0}/R$ (mol d$^{-1}$, the negative sign indicating solute depletion), thus, the condition at root surface is described by:
-\label[eq_inner_bound]
+Finally, the boundary condition at the inner segment refers to the concentration dependent solute flux at the root surface ($F$, mol m$^{-2}$ d$^{-1}$) in agreement to Equation \ref[eq_MM_mod] and \ref[eq_MM_linear] for the non-linear and linear case, respectively.
+The uptake of each root equals $-F/R$ (mol d$^{-1}$, the negative sign indicating solute depletion), thus, the condition at root surface is described by:
 $$
--D(\theta) {\partial C \over \partial r} + q_0 C_0 = -{q_{s0} \over 2\pi r_0 R z}, \eqmark
-%= {I_m C_0 \over K_m+C_0}+q_0 C_0\;{\rm .} \quad t>0,\; r=r_0 \eqmark
+\eqalignno{
+\label[eq_inner_bound]
+-D(\theta) {\partial C \over \partial r} + q_0 C_0 = q_{s_0} &= -{F \over 2\pi r_0 R z}\;{\rm ,} \quad &r=r_0 \quad\quad\quad\quad\quad \eqmark
+}
 $$
 
-{\localcolor\Red
-The initial condition corresponds to constant solute concentration ($C_{ini}$) in all segments:
-$$
-C = C_{ini}\;, \quad t=0,\; r=r_i,\; 1 \leq i \leq n. \eqmark
-$$
-%
-{\it QM:Nao seria melhor colocar isso antes do tudo (comecar com isso)? Ficou um pouco perdido aqui.}
-}
 
 \label[numerical_implementation]
 \sec Numerical implementations of the convection-dispersion equation
@@ -474,10 +486,21 @@ D{\partial C \over \partial r}+q_0 C = kC. \eqmark
 $$
 
 The non-dimensional variables 
-{\localcolor\Red $\eta$, $\mu$, $\tau$, $\Theta$, $v$ and $a$ account for time, distance, root ability to absorb solute by convective flux, solute concentration in soil solution, ratio of convective to diffusive flux and outer influence of the root, respectively.
-Parameter $k$, inside the equation $\tau=k/q_0$, is the root absorbing power and equal to $K_m$ in the nomenclature of this thesis.
-{\it QM: Adicionar unidades ou dimensoes ajudaria nessa secao.}}
-
+$\eta$, $\mu$, $\tau$, $\Theta$, $v$ and $a$ account for time, distance, root ability to absorb solute by convective flux, solute concentration in soil solution, ratio of convective to diffusive flux and outer influence of the root, respectively,
+and they are related to the dimensional variables as follows:
+$$
+\eqalignno{
+\eta &= t {D \over {r_0}^2}& \eqmark\cr
+\mu &= {r \over r_0}& \eqmark\cr
+\Theta(\mu,\eta) &= {C_{ini} - C_s(r,t) \over C_{ini}}& \eqmark\cr
+v &= -{r_0 q_0 \over 2 D b}& \eqmark\cr
+\tau &= {k \over q_0}& \eqmark\cr
+a &= r_m/r_0& \eqmark
+}
+$$
+%
+where $t$ (T) is time, $D$ (L$^2$ T$^{-1}$) is the diffusion coefficient, $r_0$ (L) is the root radius, $r$ (L) is the distance from root center, $C_{ini}$ (M L$^{-3}$) is the initial solute concentration, $C_s$ (M L$^{-3}$) is the solute concentration in bulk soil, $q_0$ (L T$^{-1}$) is the flux of water, $b$ (${dC_s \over dC}$) is the differential buffer power, $C$ (M L$^{-3}$) is the solute concentration in soil solution, and $k$ (L T$^{-1}$) is the root absorbing power (equal to $K_m$ in the nomenclature of this thesis).
+A more detailed description of the model and its variables and boundary conditions is found in \citeonline[cushman] and in \citeonline[nye].
 
 %Here we present the analytical models used in the comparisons to the proposed model. An computational implementation were made to each model.
 
