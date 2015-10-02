@@ -213,6 +213,7 @@ to
 %The general model predictions can be done by analysing scenario 1, chosen to be the default scenario (continuous line in Figures \ref[fig_C_t], \ref[fig_C_r] and \ref[fig_Tr_t]).
 According to the piecewise Equation \ref[eq_MM_mod], the solute uptake rate occurs according to three phases. 
 They will be abbreviated LUP -- linear uptake phase when $C_0>C_2$, CUP -- constant uptake phase when $C_{lim}<C_0<C_2$, and NUP -- non-linear uptake phase when $C_0<C_{lim}$.
+{\tblue Figure \ref[fig_phases] shows how they are represented. {\it IMPROVE IT !!}}
 {\tred For the simulation scenarios, the set of input parameters $h_{ini}$ and $C_{ini}$ were chosen for the simulations to start always starts at LUP, when relative transpiration  $T_r=1$ and solute uptake occurs by mass flow of the solution only (passive uptake).{\it QM: Isso tambem parece mais M\&M. Nao tem problema repetir aqui, mas deve estar no M\&M tb.}}
 In this phase, the water content and concentration in bulk soil deplete at the same rate, resulting in a period of constant solute concentration.
 Results from these simulations are shown in Figure \ref[fig_C_t] for scenarios involving different textures (different soil hydraulic properties), different root length densities, different initial solute concentrations and different potential transpiration rates.
@@ -220,12 +221,18 @@ For different soil types, although the initial concentration in bulk soil is the
 This occurs due to the fact that the initial condition refers to a fixed pressure head, resulting in different water contents for each soil in accordance to their hydraulic parameters.
 
 \medskip
+\label[fig_phases]
+\picw=12cm \cinspic MM_phases.pdf
+\caption/f {{\tblue Schematic representation of the phases LUP, CUP and NUP}}
+\medskip
+
+\medskip
 \label[fig_C_t]
 \picw=17cm \cinspic C_t.pdf
 \caption/f {{\tred Solute concentration in soil water as a function of time predicted by the non-linear uptake model (NLU) for scenarios differing in (a) soil hydraulic parameters (according to texture class), (b) root length density, (c) initial solute concentration, and (d) potential transpiration rate {\it QM: Essa figura ficaria melhor colocando a mesma escala em todos os 4 graficos}}}
 \medskip
 
-{\tred The constant uptake phase (CUP) is characterized by the depletion of $C_0$ at a constant rate, which starts some time after the onset of the $T_r$ falling rate phase.{\it QM: Isso nao da para entender assim. Da para ver isso na figura? Deve explicar melhor. Talvez mais uma figura?Pois nessa fig. 9 da para ver quando comeca o falling rate de Tr?}}
+{\tred The constant uptake phase (CUP) is characterized by the depletion of $C_0$ at a constant rate, which starts some time after the onset of the $T_r$ falling rate phase.{\it QM: Isso nao da para entender assim. Da para ver isso na figura? Deve explicar melhor. Talvez mais uma figura?Pois nessa fig. 9 da para ver quando comeca o falling rate de Tr?}}{\tblue, as shown in Figure \ref[fig_TrC0xt].}
 %, when the total head reaches its limit value $H_{lim}$. 
 The reduction in $q_0$ (reflected in $T_r$) increases $C_2$ value according to Equation \ref[eq_c2], therefore, the time that CUP initiates depends on the rate that $q_0$ decreases,
 %According to the results showed in Figure \ref[fig_C_t], 
@@ -245,6 +252,12 @@ decreases, which is
 as fast as $q_0$ and $C_0$ decreases depending on the rate of solute uptake \im{} (according to Equation \ref[eq_MM_mod] and model assumptions).
 Therefore, the soil type, root density, initial concentration, and potential transpiration also affects the time for the maximum active uptake value and, consequently, the time at which NUP starts.
 
+\medskip
+\label[fig_TrC0xt]
+\picw=14cm \cinspic Tr_C0xt.pdf
+\caption/f {{\tblue Relative transpiration and solute concentration at the root surface as a function of time. (1)~indicates the onset of the $T_r$ falling rate phase and (2)~indicates the onset of the $C_0$ falling rate phase}}
+\medskip
+
 \def\desca{Bold line represents the total solute uptake (active+passive), the thin line represents active contributions to the solute uptake, and the dashed line represents the passive contribution. }
 \def\descb{Simulated scenarios according to Table \ref[tab_scenarios]}
 
@@ -257,9 +270,7 @@ Therefore, the soil type, root density, initial concentration, and potential tra
 \medskip
 \label[fig_contrib_c]
 \picw=17cm \cinspic all_contributionsxc.pdf
-\caption/f {Active, passive and 
-{\tred total {\it QM: Sugestao: na figura, escrever active, passive, e total (e nao: qs0). O eixo-Y, retirar qs0 da descricao, qs0 e somente uma das tres linhas}} 
-uptake ($q_{s_0}$) as a function of solute concentration. \desca \descb}
+\caption/f {Active, passive and total uptake as a function of solute concentration. \desca \descb}
 \medskip
 
 An important feature of the non-linear uptake phase (NUP) is a second falling rate phase for $T_r$ (as shown in Figure \ref[diff_tr]). 

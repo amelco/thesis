@@ -28,7 +28,7 @@ set style line 5 dt 5  lc -1
 set style line 6 dt 6  lc -1
 
 
-plot [0:250][0:1] I(x) ls 1, ls 2
+#plot [0:250][0:1] I(x) ls 1, ls 2
 
 
 
@@ -97,8 +97,57 @@ set arrow from 17,0.88 to clim/2, Im lt 1 lc -1
 
 #plot [0:350][0:] I(x), qs(x)
 plot [0:100][0:1] \
-(x<clim?qs(x):x>clim&&x<c2?Im:q*x) lt 1 lc -1 lw 4, \
-(x<clim?A(x):x>clim&&x<c2?Im-P(x):0) lt 1 lc -1 lw 1, \
+(x<clim?qs(x):x>clim&&x<c2?Im:q*x) lt 1 lc -1 lw 2, \
+(x<clim?A(x):x>clim&&x<c2?Im-P(x):0) lt 4 lc -1 lw 1, \
 P(x) lt 1 lc -1 lw 1, \
-Im lt 0 lc -1 lw 1, \
-A(x) lt 0 lc -1 lw 1
+Im dt 4 lc -1 lw 1, \
+A(x) dt 4 lc -1 lw 1
+
+
+
+
+set out '../figuras/MM_phases.pdf'
+
+unset arrow
+unset label
+unset xtics
+unset ytics
+
+qs(x)=Im*x/(Km+x) + q*x
+Im=0.76
+Km=3.7
+q=0.01
+clim=0
+c2=Im/q
+
+A(x)=Im*x/(Km+x)
+P(x)=q*x
+
+clim1=(-Km+(Km**2+4*Im*Km/q)**0.5)/2
+clim2=(-Km-(Km**2+4*Im*Km/q)**0.5)/2
+
+if ( clim1>0 ) clim=clim1
+if ( clim2>0 ) clim=clim2
+
+print clim
+print c2
+set xtics ("0" 0, "C_{lim}" clim, "C_2" c2) nomirror
+#set ytics ("0" 0, "I_m" Im) nomirror
+set xlabel "Concentration at root surface (mol)"
+set ylabel "Solute uptake rate (mol m^{-2} s^{-1})"
+
+set label "NUP" at clim/3.0,Im+0.15 font ",18"
+set label "CUP" at   c2/2.0,Im+0.15 font ",18"
+set label "LUP" at   c2+2.0,Im+0.15 font ",18"
+set label "total uptake" at (c2)/2.0,Im-0.05
+set label "active uptake" at c2-2*clim,Im-0.65
+set label "passive uptake" at c2-1.5*clim,Im-0.25
+
+set arrow from clim,0 to clim,1 nohead dt 2
+set arrow from c2,0 to c2,1 nohead dt 2
+
+#plot [0:350][0:] I(x), qs(x)
+plot [0:100][0:1] \
+(x<clim?qs(x):x>clim&&x<c2?Im:q*x) lt 1 lc -1 lw 2, \
+(x<clim?A(x):x>clim&&x<c2?Im-P(x):0) lt 1 lc -1 lw 1, \
+P(x) lt 1 lc -1 lw 1
