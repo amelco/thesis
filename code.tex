@@ -34,14 +34,14 @@ real(8),dimension(:),allocatable :: dr     	! spacestep vector
 real(8),dimension(:),allocatable :: VolSeg     	
 
 ! Water model parameters
-real(8) :: q0					! Water flux at root surface
+real(8) :: q0					! Water flux at the root surface
 real(8) :: Ks				  	! Saturated hydraulic conductivity
 real(8) :: theta_r				! Residual water content
 real(8) :: theta_s				! Saturated water content
 real(8) :: n, alpha, lambda			! Empirical parameters
 real(8) :: h_ini				! Initial pressure head
 real(8) :: theta_ini				! Initial water content
-real(8) :: h_lim				! Limiting pressure head at root surface
+real(8) :: h_lim				! Limiting pressure head at the root surface
 real(8) :: Kmh					! Mean hydraulic conductivity between current and previous segment
 real(8) :: Kph					! Mean hydraulic conductivity between current and next segment
 real(8) :: Avtheta				! Mean theta
@@ -55,7 +55,7 @@ real(8),dimension(:),allocatable :: Km		! Mean hydraulic conductivity between se
 real(8),dimension(:),allocatable :: h_tot	! Total pressure head
 
 ! Solute model parameters
-real(8) :: q0_ws				! Water flux at root surface considering osmotic head
+real(8) :: q0_ws				! Water flux at the root surface considering osmotic head
 real(8) :: Dm					! Molecular diffusion coefficient
 real(8) :: c_ini				! Initial soil concentration
 real(8) :: disp					! Dispersivity
@@ -65,8 +65,8 @@ real(8) :: Dmh					! Mean effective dispersion between current and previous segm
 real(8) :: Dph                                  ! Mean effective dispersion between current and next segment
 real(8) :: thetasup
 real(8) :: h_os_ini				! Initial osmotic pressure
-real(8) :: h_osm				! Osmotic pressure at root surface
-real(8) :: h_osmL				! Osmotic pressure at root surface from previuos iteration
+real(8) :: h_osm				! Osmotic pressure at the root surface
+real(8) :: h_osmL				! Osmotic pressure at the root surface from previuos iteration
 integer :: Rd					! Root density choice [1,2,3 -> low,medium,high]
 real(8) :: Lrv					! Root density value [m/m3]
 logical :: Im_whole_plant			! Flag. Im was measured for the whole plant?
@@ -155,7 +155,7 @@ integer :: picard, picard_max
 integer :: n_arg				! Number of argunents
 character(50) :: fname				! File name of inpuit file
 
-real(8) :: qs 					! Solute flux at root surface
+real(8) :: qs 					! Solute flux at the root surface
 real(8),dimension(:),allocatable :: qs_array  	! solute flux at each segment
 
 ! MM parameters
@@ -358,7 +358,7 @@ do while ((runmode .ne. 2 .and.t <= tend) .or. (runmode == 2 .and. Trel >= 1E-3)
   !  write(14,'(F5.2,F10.2,F5.2,E12.4)') sc, t, dt, D(1)
   !endif
   
-  ! Potential flux of water at root surface. Depends on transpiration
+  ! Potential flux of water at the root surface. Depends on transpiration
   q0 = Tp*Ap/(2*PI*r0*RootLength)
 
   ! Averaging K between segments
@@ -466,7 +466,7 @@ do while ((runmode .ne. 2 .and.t <= tend) .or. (runmode == 2 .and. Trel >= 1E-3)
     endif
 
 
-    ! Update flux at root surface to the calculated loss
+    ! Update flux at the root surface to the calculated loss
     q(0) = -loss/(RootLength*dt*2*PI*r0)
     if (q(0) > 0.0) then
       q(0) = 0.0
@@ -590,7 +590,7 @@ do while ((runmode .ne. 2 .and.t <= tend) .or. (runmode == 2 .and. Trel >= 1E-3)
   ! Total of extracted solute
   acum_solute = acum_solute + s_loss
 
-  ! Calculate solute flux at root surface
+  ! Calculate solute flux at the root surface
   qs_calc = -s_loss/(2.*PI*RootLength*r(0)*dt)		! mol/m2soil/s
 
   !Check if losses are negative (means movement of water/solute from root to soil)
@@ -1440,7 +1440,7 @@ real(8),parameter :: precis = 1E-10
     c_water(1) = 0.0
   endif
 
-  ! Iteration to find the value from concentration at root surface in the
+  ! Iteration to find the value from concentration at the root surface in the
   ! non-linearized MM equation case
   !if (model == 3 .and. (c_water(1) <= c_lim .or. c_water(1) > c_2) .and. non-linear .eqv. .TRUE.) then
   if (model == 3 .and. (c_water(1) <= c_lim) .and. non-linear .eqv. .TRUE.) then

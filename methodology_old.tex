@@ -97,7 +97,7 @@ described by MM equation \ref[eq_MM1], with the following assumptions:
 * There is a soil solution concentration value (\clim, mol) that the solute flux limits the uptake.
 \enditems
 
-We assume that the plant demand for solute is constant, but not the uptake, in a way that solute uptake can be either greater or lesser than the demand, depending on the concentration in the soil solution at root surface (Figure \ref[fig_MM_mod]). 
+We assume that the plant demand for solute is constant, but not the uptake, in a way that solute uptake can be either greater or lesser than the demand, depending on the concentration in the soil solution at the root surface (Figure \ref[fig_MM_mod]). 
 If the concentration is bellow a certain limiting value (\clim), the uptake is limited by the solute flux, {\it i.e.} solute flux can not attend plant demand even with potential values of active uptake.
 Additionally, solute uptake by mass flow of water can be higher than the plant demand in situations of high transpiration rate and/or for high soil water content. 
 %IMPROVE
@@ -321,7 +321,7 @@ $$
 
 \secc Zero uptake solution
 
-The zero uptake solution is the original model presented by \citeonline[liersolute]. The numerical discretization is according to Equation \ref[eq_disc_sol] and the intermediate nodes are analogous to Equations \ref[eq_int_nodes1] to \ref[eq_int_nodes3]. The only difference is the boundary at root surface.
+The zero uptake solution is the original model presented by \citeonline[liersolute]. The numerical discretization is according to Equation \ref[eq_disc_sol] and the intermediate nodes are analogous to Equations \ref[eq_int_nodes1] to \ref[eq_int_nodes3]. The only difference is the boundary at the root surface.
 
 \seccc The inner boundary ($i=1$)
 
@@ -346,7 +346,7 @@ $$
 
 \secc Constant uptake solution
 
-The constant uptake solution is was proposed by \citeonline[willigen1]. The numerical discretization is according to Equation \ref[eq_disc_sol] and the intermediate nodes are analogous to Equations \ref[eq_int_nodes1] to \ref[eq_int_nodes3]. The only difference is the boundary at root surface.
+The constant uptake solution is was proposed by \citeonline[willigen1]. The numerical discretization is according to Equation \ref[eq_disc_sol] and the intermediate nodes are analogous to Equations \ref[eq_int_nodes1] to \ref[eq_int_nodes3]. The only difference is the boundary at the root surface.
 
 \seccc The inner boundary ($i=1$)
 
@@ -445,13 +445,13 @@ where $C$ (mol m$^{-3}$) is the solute concentration in the soil solution, $q$ (
 
 \secc Michaelis-Menten equation
 
-The solute flux density at root surface ($q_{s0}$) can be related to the Michaelis-Menten (MM) equation as the following:
+The solute flux density at the root surface ($q_{s0}$) can be related to the Michaelis-Menten (MM) equation as the following:
 \label[eq_solute]
 $$
 q_{s0} = -D {dC \over dr} + q_0 C \simeq {I_m C_0 \over K_m + C_0} + q_0 C_0 \eqmark
 $$
 %
-where $D$ (m$^2$ s$^{-1}$) is the effective diffusion-dispersion coefficient; $q_0$ (m$^2$ s$^{-1}$) is the water flux density at the root surface; $I_m$ (mol m$^2$ s$^{-1}$) and $K_m$ (mol m$^{-3}$) are the MM parameters that represent the maximum solute uptake rate and the affinity of the plant to the solute type, respectively; and $C_0$ (mol m$^{-3}$) is the solute concentration in the soil solution at root surface.
+where $D$ (m$^2$ s$^{-1}$) is the effective diffusion-dispersion coefficient; $q_0$ (m$^2$ s$^{-1}$) is the water flux density at the root surface; $I_m$ (mol m$^2$ s$^{-1}$) and $K_m$ (mol m$^{-3}$) are the MM parameters that represent the maximum solute uptake rate and the affinity of the plant to the solute type, respectively; and $C_0$ (mol m$^{-3}$) is the solute concentration in the soil solution at the root surface.
 
 
 %Ions and water move into the plant independently, reflecting entirely different physical-chemical forces; nevertheless, the water moving to the root carries ions in it. A portion of these ions is taken up by the plant by an independent mechanism. The remainder is left behind at the root surface or on the soil particles in the vicinity of the root where they represent a subsequent source of supply. 81.pdf, pg. 98
@@ -559,7 +559,7 @@ The implicit numerical discretization and the solution for the Eq. \ref[partial_
 \style i
 * there is no sink (the only water exit is the root surface located at the inner side of the first compartment)
 * water flux density at the outermost compartment is set to zero
-* water flux density at the innermost compartment (at root surface) is set equal to water flux density entering the root, which is determined by transpiration rate and total root area
+* water flux density at the innermost compartment (at the root surface) is set equal to water flux density entering the root, which is determined by transpiration rate and total root area
 %* if the pressure head in the innermost compartment drops below a critical value $h_{lim}$ (in this study $h_{lim}=-150$ m), pressure head is fixed to this critical value and the water flux density adjusted to that
 \enditems
 
@@ -801,7 +801,7 @@ The scenario of this simulation is of loam soil, medium root length density, hig
 %CONSIDERATIONS:
 %•	It is not considered root growth
 %•	It is not considered movement of solute inside the plant
-%•	There is no maximum uptake. The Im value is considered to be the plant demand. The maximum flux is dependent on water flux times concentration in soil solution at root surface
+%•	There is no maximum uptake. The Im value is considered to be the plant demand. The maximum flux is dependent on water flux times concentration in soil solution at the root surface
 %•	The model does not act like as an infinite sink (all solute that arrives the root is extracted)
 %•	The model does not include extraction by root hairs. In some cases (like extraction of P) it can contribute 60% to 90% of the uptake
 %•	It does not consider complementary ion effects

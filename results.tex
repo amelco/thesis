@@ -76,7 +76,7 @@ On the other hand, if only the predictions during the occurrence of LCC are comp
 Table \ref[tab_diff] shows the relative difference between the model predictions for concentration at the root surface as function of time ($C_0(t)$), considering the period of LCC only (beginning from the time where LCC starts), and for the solute concentration as a function of distance from the axial center ($C(r)$) at the end of the simulation. 
 The Mann-Whitney U test showed a significant difference for $C_0(t)$ but not for $C(r)$. 
 The difference ({\tred {\it diff. QM: Nao poderia chamar isso pelo simbolo DELTA ou algo assim?}}) between LU and NLU increases with time (Figure \ref[diff_t]).
-%due to the abrupt decrease of solute uptake rate at root surface (that causes the second $T_r$ reduction).
+%due to the abrupt decrease of solute uptake rate at the root surface (that causes the second $T_r$ reduction).
 %The change in $C_0$ root surface concentrations happens rapidly due to the decrease in solute uptake rate and it increases with time 
 Concentration as a function of radial distance (Figure \ref[diff_r]) shows a different behaviour, as solutes in each segment are replenished by the neighboring segment, making the difference smaller with increasing distance. 
 Scenario 4 never reached the LCC and Table \ref[tab_diff] shows the differences only to occur when starting from a $C_0 < C_{lim}$ condition.
@@ -129,7 +129,7 @@ Scenario 4 never reached the LCC and Table \ref[tab_diff] shows the differences 
 These results indicate that the difference in predictions of both models are relevant only {\tred during LCC. {\it QM: Acho que eh isso? Descreva melhor isso, simplesmente dizer que depende da escala de tempo nao eh correto. Depende de qual parte do tempo voce esta analisando.}} 
 For predictions that result from the entire simulation period, like accumulated uptake, or for concentration as a function of the radial distance, the differences are very small and both models perform equally. 
 In these cases, LU may be preferred since it allows larger time steps making simulation to run faster.
-On the other hand, by considering that the metabolic response of the plant for different levels of concentration at root surface is immediate -- only a slightly change in $C_0$ causes a instantaneous plant reaction -- or in situations where the value of $C_0$ during LCC is important, NLU could be preferred as the mechanistically most correct model.  
+On the other hand, by considering that the metabolic response of the plant for different levels of concentration at the root surface is immediate -- only a slightly change in $C_0$ causes a instantaneous plant reaction -- or in situations where the value of $C_0$ during LCC is important, NLU could be preferred as the mechanistically most correct model.  
 In this thesis we chose to use NLU since the values of $C_0$ are important to determine, precisely, the active and passive contributions to the solute uptake, which will be analyzed in the next section.
 % and, therefore, the differences between the two models outputs -- according to Equations  \ref[error_abs] and \ref[error_rel] -- were calculated for this time period only. 
 
@@ -388,7 +388,7 @@ The selected predictions $Y$ were: ending time of simulation ($t_{end}$), osmoti
 Varying parameter $P$ were the ion/plant ($I_m$ and $K_m$) and the soil hydraulic ($\alpha$, $n$, $K_s$, $\lambda$, $\theta_r$ and $\theta_s$) parameters. {\it QM: Isso seria tipicamente M\&M}}
 
 Sensitivities to ion/plant parameters were high for $h_{os}$ and presented an inverse response (negative values) to $I_m$ variation (Figure \ref[sensitivity_MM_rest]).
-This is due to the fact that, with higher values of $I_m$, there are higher uptake rates of solute in both phases of constant and non-linear uptake, diminishing the value of concentration at root surface in the end of simulation (less negative values of osmotic head $h_\pi$).
+This is due to the fact that, with higher values of $I_m$, there are higher uptake rates of solute in both phases of constant and non-linear uptake, diminishing the value of concentration at the root surface in the end of simulation (less negative values of osmotic head $h_\pi$).
 On the contrary, higher values of $K_m$ make higher values of $C_{lim}$ that causes an increase of the non-linear uptake phase and a decrease in the constant uptake phase.
 With less time of potential solute uptake, the final concentration becomes higher due to a lower amount of extracted solute.   
 Thus, in general, a variation of 1\% in $K_m$ and $I_m$ cause, respectively, a decrease of 1.2\% and a increase of 1\%, approximately, in $h_{os}$. 
@@ -398,7 +398,7 @@ The reason is the small variation in $C_0$ during the simulation due to the low 
 \medskip
 \label[sensitivity_MM_rest]
 \picw=15cm \cinspic final_everybar_MM_rest.pdf
-\caption/f {Relative partial sensitivity of osmotic head at root surface in the end of simulation ($h_{os}$) and accumulated solute uptake ($acc$) to MM equation parameters $I_m$ and $K_m$ for scenarios 1 to 7}
+\caption/f {Relative partial sensitivity of osmotic head at the root surface in the end of simulation ($h_{os}$) and accumulated solute uptake ($acc$) to MM equation parameters $I_m$ and $K_m$ for scenarios 1 to 7}
 \medskip
 
 Figure \ref[sensitivity_MM_rest] shows that, despite the sensitivity of $h_{os}$, $acc$ presented very low (close to zero) sensitivity to $K_m$ and $I_m$.
@@ -501,7 +501,7 @@ The sensitivity of $t_{T_r}$ serves as an indicator to the duration of this phas
 \medskip
 \label[sensitivity_soil_rest]
 \picw=15cm \cinspic final_every_bar_soil_rest.pdf
-\caption/f {Relative partial sensitivity of osmotic head at root surface in the end of simulation ($h_{os}$) and accumulated solute uptake ($acc$) to soil hydraulic parameters $\theta_r$, $\theta_s$, $\alpha$, $K_s$ and $\lambda$ for scenarios 1 to 7}
+\caption/f {Relative partial sensitivity of osmotic head at the root surface in the end of simulation ($h_{os}$) and accumulated solute uptake ($acc$) to soil hydraulic parameters $\theta_r$, $\theta_s$, $\alpha$, $K_s$ and $\lambda$ for scenarios 1 to 7}
 \medskip
 
 \medskip
@@ -517,7 +517,7 @@ Theoretical water retention curves, according to Equation \ref[eq_theta],
 Values of $h$ ranges from the initial value for all simulations $h_{ini}=-1$~m to $-$150 m}
 \medskip
 
-{\tred From this sensitivity analysis, we can conclude that the quantities that need to be carefully parameterized are: $\theta_r$, $\theta_s$, $\alpha$, $I_m$ and $K_m$ which affects more strongly the solute concentration at root surface in the end of simulation, $\theta_s$ which strongly affects the time at the limiting values are reached, and $n$ which strongly affects all selected predictions, mainly $h_{os}$. {\it QM: Isso cabe (melhor) nas conclusoes finais?}}
+{\tred From this sensitivity analysis, we can conclude that the quantities that need to be carefully parameterized are: $\theta_r$, $\theta_s$, $\alpha$, $I_m$ and $K_m$ which affects more strongly the solute concentration at the root surface in the end of simulation, $\theta_s$ which strongly affects the time at the limiting values are reached, and $n$ which strongly affects all selected predictions, mainly $h_{os}$. {\it QM: Isso cabe (melhor) nas conclusoes finais?}}
 
 
 
@@ -543,7 +543,7 @@ Values of $h$ ranges from the initial value for all simulations $h_{ini}=-1$~m t
 (2) the CU model by \citeonline[willigen1]. {\it QM: Isso eh Material e metodos.}}
 
 Figure \ref[fig_C0] shows predictions of solute concentration at the root surface as a function of time for three different models ZU, CU and NLU. 
-According to ZU, solutes are transported to the roots by convection, causing an accumulation of solutes at root surface. 
+According to ZU, solutes are transported to the roots by convection, causing an accumulation of solutes at the root surface. 
 As water flux towards the root starts to decrease, salt is transported slower and carried away from the roots by diffusion. 
 CU results in a similar prediction with a slightly lower $C_0$ value due to {\tred a small solute uptake value {\it QM: Qual eh esse valor? Isso estah claramente no M\&M?}}. 
 %The difference between ZU and CU concentrations increases as the water flux towards the root decreases, making the transport by diffusion away from the root becomes more important than by convection towards the roots.
@@ -555,12 +555,12 @@ The higher the value of the constant uptake rate and the lower $T_p$ in CU, less
 \label[fig_C0]
 %\picw=11cm \cinspic cxt1.pdf
 \picw=13cm \cinspic cxt_comp.pdf
-\caption/f {Soil solution concentration at root surface as a function of time for constant (CU), zero (ZU) and non-linear (NLU) uptake models. \descc}
+\caption/f {Soil solution concentration at the root surface as a function of time for constant (CU), zero (ZU) and non-linear (NLU) uptake models. \descc}
 \medskip
 
 For ZU and CU, $C_0$ 
 %the concentration 
-starts to diminish (corresponding to less negative values of $h_\pi$) as soon as $T_r<1$, because $H$ at root surface reached the limiting value of $-$150 m (Figure~\ref[fig_heads1]).
+starts to diminish (corresponding to less negative values of $h_\pi$) as soon as $T_r<1$, because $H$ at the root surface reached the limiting value of $-$150 m (Figure~\ref[fig_heads1]).
 %due to $H_0=-150$ m (Figure \ref[fig_heads1]).
 In CU, as the solute uptake is constant and does not depend on the solute concentration, the solute transport by convection becomes less important than the movement by diffusion as the water flux towards the root diminishes.
 Thus, the solute depletion at the root surface is due both to the uptake and to the diffusive transport away from the roots.
@@ -581,7 +581,7 @@ For the case of CU and ZU, reduction of $T_r$ starts around the 21th day whilst 
 \caption/f {Pressure ($h$), osmotic ($h_\pi$) and total hydraulic ($H$) heads at the root surface as a function of time predicted by the non-linear (NLU) uptake model, for scenario 1}
 \medskip
 
-Figure \ref[fig_qst_detail] shows the solute uptake rate (solute flux at root surface $q_{s_0}$) as a function of time for each model.
+Figure \ref[fig_qst_detail] shows the solute uptake rate (solute flux at the root surface $q_{s_0}$) as a function of time for each model.
 It shows the three uptake phases for NLU (LUP, CUP and NUP), the constant uptake rate for CU, and the zero uptake rate for ZU, according to their respective boundary conditions.
 This figure shows that, during the LUP phase the solute uptake rate is higher than during CUP and NUP due to the constant potential transpiration rates and the absence of a plant controlled mechanism of solute uptake.
 This result is compatible with the model assumption 1, stating that the plant does not control the solute taken up by mass flow of water.
@@ -590,7 +590,7 @@ These results need confrontation with experimental data of {\tred solute uptake 
 \medskip
 \label[fig_qst_detail]
 \picw=11cm \cinspic qsxt1_detail.pdf
-\caption/f {Detail of solute flux at root surface as a function of time for constant (CU), zero (ZU) and non-linear (NLU) uptake models, for scenario 1}
+\caption/f {Detail of solute flux at the root surface as a function of time for constant (CU), zero (ZU) and non-linear (NLU) uptake models, for scenario 1}
 \medskip
 
 
@@ -651,7 +651,7 @@ It is also shown that the models that consider solute uptake (CU and NLU) presen
 %\medskip
 %\label[fig_qst]
 %\picw=11cm \cinspic qxt1.pdf
-%\caption/f {Water flux at root surface as a function of time for constant (CU), zero (ZU) and non-linear (NLU) uptake models, for scenario 1}
+%\caption/f {Water flux at the root surface as a function of time for constant (CU), zero (ZU) and non-linear (NLU) uptake models, for scenario 1}
 %\medskip
 
 %\vfill\break
@@ -671,17 +671,17 @@ It is also shown that the models that consider solute uptake (CU and NLU) presen
 %\medskip
 %\label[fig_Im_sensit_curve]
 %\picw=11cm \cinspic Im_x_C0.pdf
-%\caption/f {Response of the time at the onset of concentration reduction at root surface for different values of $I_m$ parameter}
+%\caption/f {Response of the time at the onset of concentration reduction at the root surface for different values of $I_m$ parameter}
 %\medskip
 
-%In NU, salt is transported to the roots by convection, causing an accumulation of solutes at root surface. As water flux towards the root starts to decrease, salt is transported slower and carried away from the roots by diffusion (Figure \ref[cxt]). Because of the accumulation of salt in the root surface, the total head becomes limiting very fast and the transpiration is reduced faster than the other models (Figure \ref[Trs]).
+%In NU, salt is transported to the roots by convection, causing an accumulation of solutes at the root surface. As water flux towards the root starts to decrease, salt is transported slower and carried away from the roots by diffusion (Figure \ref[cxt]). Because of the accumulation of salt in the root surface, the total head becomes limiting very fast and the transpiration is reduced faster than the other models (Figure \ref[Trs]).
 %
-%In CU, as the salt uptake rate is constant (Figure \ref[fluxesxt]), the concentration at root surface will decrease only if the uptake rate is larger than convection to the root surface. In the simulation, it happens in about half of the first day (Figure \ref[cxt]). This is very dependent on the uptake rate and water flux since for different conditions, the outcome could be different. Once the concentration at root surface is zero, the root behaves as a zero-sink, taking up solute at the same rate as which it arrives at the root, keeping the concentration there zero.
+%In CU, as the salt uptake rate is constant (Figure \ref[fluxesxt]), the concentration at the root surface will decrease only if the uptake rate is larger than convection to the root surface. In the simulation, it happens in about half of the first day (Figure \ref[cxt]). This is very dependent on the uptake rate and water flux since for different conditions, the outcome could be different. Once the concentration at the root surface is zero, the root behaves as a zero-sink, taking up solute at the same rate as which it arrives at the root, keeping the concentration there zero.
 %
-%In NLU, the concentration at root surface remains constant (Figure \ref[cxt]) until the convection to the root decreases as the water flux decreases (Figure \ref[fluxesxt]). This behavior is really dependent of initial concentration and water flux values since, in this case, $C_0$ at the beginning of simulation is greater than $C_2$, thus the solute uptake equals the convection of solutes to the root. At around day 1, convection starts to decrease but the solute uptake is yet greater than the plant demand (\im) due to convection. The solute uptake becomes constant (and equal to \im) after concentration in root surface is less than \c2. This is clear in XXXFigure 3a, where osmotic head continues constant for a period of time after the beginning of the falling transpiration rate. At this point, active uptake starts since convection only is not capable to maintain solute uptake rate at \im. The concentration keeps decreasing at this constant rate until its value is less than \clim. It is assumed that, at this point, the uptake is not equal to the plant demand for solute (\im) due to the concentration dependence of the MM equation (Figure \ref[fig_MM]). The water flux and the concentration are small as well as the active uptake, that can not maintain the uptake rate at \im. Therefore, a second limiting condition occurs when $C<C_{lim}$ causing another fast decrease in transpiration (Figure \ref[Trs]).
+%In NLU, the concentration at the root surface remains constant (Figure \ref[cxt]) until the convection to the root decreases as the water flux decreases (Figure \ref[fluxesxt]). This behavior is really dependent of initial concentration and water flux values since, in this case, $C_0$ at the beginning of simulation is greater than $C_2$, thus the solute uptake equals the convection of solutes to the root. At around day 1, convection starts to decrease but the solute uptake is yet greater than the plant demand (\im) due to convection. The solute uptake becomes constant (and equal to \im) after concentration in root surface is less than \c2. This is clear in XXXFigure 3a, where osmotic head continues constant for a period of time after the beginning of the falling transpiration rate. At this point, active uptake starts since convection only is not capable to maintain solute uptake rate at \im. The concentration keeps decreasing at this constant rate until its value is less than \clim. It is assumed that, at this point, the uptake is not equal to the plant demand for solute (\im) due to the concentration dependence of the MM equation (Figure \ref[fig_MM]). The water flux and the concentration are small as well as the active uptake, that can not maintain the uptake rate at \im. Therefore, a second limiting condition occurs when $C<C_{lim}$ causing another fast decrease in transpiration (Figure \ref[Trs]).
 %The calculated concentrations $C_{lim}$ (Eq. \ref[eq_clim]) and \c2 (Eq. \ref[eq_c2]) depend on water flux and ion type (MM parameters $I_m$ and \km) meaning that the results can be quite different for other ion types and different values of initial water content.
 %
-%Figure \ref[fluxesxt] also shows the changes in solute flux at root surface for all models. At low concentrations (or at the second falling rate stage: $C<C_{lim}$), in NLU, the solute flux decreases gradually over time until the value of concentration is zero, where it will assume the zero-sink behavior.
+%Figure \ref[fluxesxt] also shows the changes in solute flux at the root surface for all models. At low concentrations (or at the second falling rate stage: $C<C_{lim}$), in NLU, the solute flux decreases gradually over time until the value of concentration is zero, where it will assume the zero-sink behavior.
 %
 %The concentration profile through the distance from root axial center is shown in Figure \ref[cxr]. The different approaches (NU, CU and NLU) result in different final concentrations profiles. The concentration dependent model NLU takes up more solute from soil solution due to the higher uptake rate in the constant transpiration phase.
 %
@@ -694,7 +694,7 @@ It is also shown that the models that consider solute uptake (CU and NLU) presen
 %\medskip
 %\label[cxt]
 %\picw=13cm \cinspic cxt.pdf
-%\caption/f {Solute concentration in soil water at root surface as a function of time for no uptake (NU), constant (CU) and non-linear (NLU) uptake models}
+%\caption/f {Solute concentration in soil water at the root surface as a function of time for no uptake (NU), constant (CU) and non-linear (NLU) uptake models}
 %\medskip
 %
 %\medskip
@@ -706,7 +706,7 @@ It is also shown that the models that consider solute uptake (CU and NLU) presen
 %\medskip
 %\label[fluxesxt]
 %\picw=13cm \cinspic fluxesxt.pdf
-%\caption/f {Solute and water fluxes at root surface as a function of time for no uptake (NU), constant (CU) and non-linear (NLU) uptake models}
+%\caption/f {Solute and water fluxes at the root surface as a function of time for no uptake (NU), constant (CU) and non-linear (NLU) uptake models}
 %\medskip
 %
 %\medskip

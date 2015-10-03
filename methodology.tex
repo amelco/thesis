@@ -133,12 +133,12 @@ The boundary condition for solute transport at the root surface represents the c
 %* There is a soil solution concentration value (\clim, mol) that the solute flux limits the uptake.
 {\localcolor\Red * Solute uptake by mass flow of water is only controlled by the transpiration flow, a convective flow is considered passive;
 * Plant regulated active uptake corresponds to diffusion;
-* Plant demand is equal to the $I_m$ (mol m$^{-2}$ s$^{-1}$) parameter from the MM equation;
-* At a soil solution concentration value \clim (mol), the solute flux limits the uptake. {\it QM: Ainda pode melhorar. Nao sei se estah 100\% claro.}}
+* Plant demand is equal to the $I_m$ parameter from the MM equation;
+* At a soil solution concentration value \clim, the solute flux limits the uptake. {\it QM: Ainda pode melhorar. Nao sei se estah 100\% claro.}}
 \enditems
 
 We assume that the plant demand for solute is constant in time.
-The uptake, however, can be higher or lower than the demand, depending on the concentration in the soil solution at root surface (Figure \ref[fig_MM_mod]). 
+The uptake, however, can be higher or lower than the demand, depending on the concentration in the soil solution at the root surface (Figure \ref[fig_MM_mod]). 
 If the concentration is bellow a certain limiting value (\clim), the uptake is limited by the solute flux, {\it i.e.} solute flux can not attend plant demand even with potential values of active uptake.
 Additionally, solute uptake by mass flow of water can be higher than the plant demand in situations of high transpiration rate and/or for high soil water content. 
 In these cases, we assume that active uptake is zero and all uptake occurs by the passive process. A concentration \c2 (mol) for this situation is calculated.
@@ -198,7 +198,7 @@ This linearization is very similar to the one proposed by \citeonline[tinker], b
 The derivation of Equations \ref[eq_clim] to \ref[eq_MM_linear] is shown in Appendix \ref[ap_clim].
 
 Finally, the boundary condition at the inner segment refers to the concentration dependent solute flux at the root surface ($F$, mol m$^{-2}$ d$^{-1}$) in agreement to Equation \ref[eq_MM_mod] and \ref[eq_MM_linear] for the non-linear and linear case, respectively.
-The uptake of each root equals $-F/R$ (mol d$^{-1}$, the negative sign indicating solute depletion), thus, the condition at root surface is described by:
+The uptake of each root equals $-F/R$ (mol d$^{-1}$, the negative sign indicating solute depletion), thus, the condition at the root surface is described by:
 $$
 \eqalignno{
 \label[eq_inner_bound]
@@ -379,7 +379,7 @@ The value of $C^{j+1}_1$ in Equation \ref[b1] is found using the iterative Newto
 \secc Zero uptake model (ZU)
 
 The zero uptake solution is the original model presented by \citeonline[liersolute]. The numerical discretization is according to Equation \ref[eq_disc_sol] and the intermediate nodes are analogous to Equations \ref[eq_int_nodes1] to \ref[eq_int_nodes3]. 
-The only difference is the boundary at root surface (Equation~\ref[eq_inner_bound]), which is of zero solute flux:
+The only difference is the boundary at the root surface (Equation~\ref[eq_inner_bound]), which is of zero solute flux:
 $$
 q_{s0}=0 \eqmark
 $$
@@ -542,7 +542,7 @@ $$
 %
 where $C\!L_x$ and $C\!N\!L_x$, are the solute concentration in soil water, and $AcL_t$ and $AcN\!L_t$ the accumulated uptake, for LU and NLU, respectively.  
 $x$ can be the time ($t$) or the distance from the axial center ($r$). 
-The relative difference between three outputs was computed: two relative to time -- concentration at root surface $C_0(t)$ and accumulated solute uptake $Ac(t)$ -- and one relative to radial distance -- concentration $C(r)$.
+The relative difference between three outputs was computed: two relative to time -- concentration at the root surface $C_0(t)$ and accumulated solute uptake $Ac(t)$ -- and one relative to radial distance -- concentration $C(r)$.
 
 %The analysis of the results was made in order to choose one out of the two models in further simulations. 
 NLU solution uses the non-linear MM equation \ref[eq_MM_mod] and, due to an additional iterative process in the numerical implementation, more time is needed to compute the results when compared with the linear solution LU. 
@@ -597,7 +597,7 @@ The interpretation of test results allows to decide in which cases a particular 
 %%CONSIDERATIONS:
 %%•	It is not considered root growth
 %%•	It is not considered movement of solute inside the plant
-%%•	There is no maximum uptake. The Im value is considered to be the plant demand. The maximum flux is dependent on water flux times concentration in soil solution at root surface
+%%•	There is no maximum uptake. The Im value is considered to be the plant demand. The maximum flux is dependent on water flux times concentration in soil solution at the root surface
 %%•	The model does not act like as an infinite sink (all solute that arrives the root is extracted)
 %%•	The model does not include extraction by root hairs. In some cases (like extraction of P) it can contribute 60% to 90% of the uptake
 %%•	It does not consider complementary ion effects
@@ -631,7 +631,7 @@ The analyzed predicted variables ($Y$) were: end time of simulation $t_{end}$, o
 %
 %Since the sensitivity analisys is just to analise the derivative of the function prediction X parameter values, we are interested in the slope of this function. So, an infinitesimal variation of $P$ ($dP$) is straight-forward manner to do it.
 %
-%A variation of 1\% (dP/P=0.01) of $I_m$ and $K_m$ where made from the default values of K$^+$ ion and the relative partial sensitivity was calculated for: end time of simulation ($t_{end}$, s); pressure ($h_{end}$, m) and osmotic ($h_{\pi_{end}}$, m) heads at root surface in the end time of simulation.
+%A variation of 1\% (dP/P=0.01) of $I_m$ and $K_m$ where made from the default values of K$^+$ ion and the relative partial sensitivity was calculated for: end time of simulation ($t_{end}$, s); pressure ($h_{end}$, m) and osmotic ($h_{\pi_{end}}$, m) heads at the root surface in the end time of simulation.
 %
 %
 %\medskip

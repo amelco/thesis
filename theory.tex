@@ -220,13 +220,13 @@ For the outer boundary, a zero solute flux condition works well to simulate inte
 A constant concentration -- equal to the initial concentration -- can be used in scenarios where the outer boundary is considered at a sufficient distance from the root surface so that competition between neighboring roots can be considered negligible.
 In macroscopic models, a sink-source term is added to Equation \ref[eq_sol] to consider different inputs and outputs of solute in the system ({\it e.g.} plant uptake, mineralization, degradation, etc.), and the top and bottom boundaries are treated according to the scenario (similar to common practice when using the water flow equation).
 
-%accumulation or depletion of solute at root surface dependent on chosen boundaries
+%accumulation or depletion of solute at the root surface dependent on chosen boundaries
 %Focusing in microscopic modelling, 
 %Different boundary conditions result in distinct solutions for the partial differential equation and, consequently, lead to different results. 
-%For a situation of zero solute flux at root surface, the solute would accumulate there due to the transport by convection. 
+%For a situation of zero solute flux at the root surface, the solute would accumulate there due to the transport by convection. 
 %A consequent diffusion of solutes away from the roots would occur due to a difference of gradient until it achieves an equilibrium. 
-%On the other hand, considering a constant or a variable solute flux at root surface, an accumulation of solute would occur uniquely if the root uptake is less than the solute flux arriving at root surface. 
-%The opposite would cause a decrease in concentration at root surface until a zero concentration value. 
+%On the other hand, considering a constant or a variable solute flux at the root surface, an accumulation of solute would occur uniquely if the root uptake is less than the solute flux arriving at the root surface. 
+%The opposite would cause a decrease in concentration at the root surface until a zero concentration value. 
 %What differs from constant to variable solute flux boundary condition is the rate of solute uptake.
 
 %Explanation of the 3 models
@@ -244,17 +244,17 @@ The passage of water and solutes from soil to root, where plant physiological me
 A correct mathematical treatment of this frontier is crucial for root water-solute uptake modeling.
 Different assumed conditions at this boundary originate distinct solutions for the convection-dispersion equation and, consequently, lead to distinct results. 
 %talk about concentration dependent boundary vs zero and constant uptak
-For a zero solute flux condition at root surface, the solute will accumulate 
+For a zero solute flux condition at the root surface, the solute will accumulate 
 %there 
 at the root surface
 due to convective flow. 
 A consequent diffusion of solutes away from the root will result due to the formed concentration gradient and an equilibrium between convective and diffusive fluxes will establish. 
-Differently, in the case of a constant or a variable solute uptake at root surface, an accumulation of solute will result only if the uptake is less than the convective flow towards the root surface. 
+Differently, in the case of a constant or a variable solute uptake at the root surface, an accumulation of solute will result only if the uptake is less than the convective flow towards the root surface. 
 If uptake exceeds convection, solute concentrations will decrease and eventually reach a zero (or limiting) concentration value. 
 It is noticeable that the overall result of the model is highly dependent to the initial and boundary conditions, resulting in a wide range of possibilities.
 %What differs from constant to variable solute flux boundary condition is the rate of solute uptake.
 
-%In this section, only boundary conditions at root surface for microscopic models will be treated. 
+%In this section, only boundary conditions at the root surface for microscopic models will be treated. 
 %More specifically, the boundaries of the models used in this thesis. They are of zero and constant solute flow. 
 %The boundary of concentration dependent solute flow is also described and is one of the objectives of this thesis. 
 %Its application is detailed in Chapter \ref[methodology].
@@ -265,7 +265,7 @@ $$
 r{\partial (\theta C) \over \partial t} = {\partial \over \partial r} \left[ D(\theta) {\partial C \over \partial r} - qC\right] \eqmark
 $$
 %
-%being $r_0$ \uhead the distance from root center to the root surface and knowing that solute flux is represented by Equation \ref[eq_solflux], the boundary condition at root surface can be written in the form:
+%being $r_0$ \uhead the distance from root center to the root surface and knowing that solute flux is represented by Equation \ref[eq_solflux], the boundary condition at the root surface can be written in the form:
 and with a flux type boundary condition at $r_0$ and $r_m$ of
 \label[eq_boundary_sol]
 $$
@@ -295,7 +295,7 @@ The uptake rate according to Equation \ref[eq_MM1] is of asymptotic shape tendin
 \caption/f {Solute uptake rate as a function of external concentration according to the Michaelis-Menten kinetics (Equation \ref[eq_MM1])}
 \medskip
 
-%An analytical solution to the Equation \ref[eq_solute_complete], using Equation \ref[eq_MM1] as a boundary at root surface and a zero flux at the outer boundary and considering a steady-state condition for water flow, is presented by \citeonline[cushman]. A solution for the same equation but considering a constant solute uptake as the boundary of root surface is presented by \citeonline[willigen1]. (THIS PART GOES TO LITERATURE REVIEW)
+%An analytical solution to the Equation \ref[eq_solute_complete], using Equation \ref[eq_MM1] as a boundary at the root surface and a zero flux at the outer boundary and considering a steady-state condition for water flow, is presented by \citeonline[cushman]. A solution for the same equation but considering a constant solute uptake as the boundary of root surface is presented by \citeonline[willigen1]. (THIS PART GOES TO LITERATURE REVIEW)
 
 
 
