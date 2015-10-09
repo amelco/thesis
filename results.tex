@@ -1,8 +1,6 @@
 \cleardoublepage
 
 \def\diff{{\it diff}}
-\def\tred {\localcolor\Red}
-\def\tblue {\localcolor\Blue}
 
 % COMMENTS FOR FURTHER DISCUSSION
 
@@ -39,17 +37,23 @@ In scenario 1, for instance, the duration of occurrence of LCC is about 3\% of t
 Moreover, due to the low value of $C_{lim}$, the LCC always coincides to very low solute uptake rates in all simulation scenarios. 
 As a consequence, the difference in predictions for the two models are of minor relevance at this time scale.
 Figure \ref[accumxt] gives an example of this: the cumulated amount of solute extracted by the roots until the end of the simulation is shown to be nearly the same for both models. 
-In addition, the LCC occurs at values of relative transpiration ($T_r$, the ratio between actual and potential transpiration) around 0.03 or less -- a condition in which the plant is at high (water and/or osmotic) stress levels -- and close to the end of simulation 
-{\tred (that stops when $Tr \leq 0.001$). {\it QM: Isso deveria estar tambem dos Material e metodos, e acho que nao esta?}}
-%Because the difference between the models starts to occur at $T_r$ values around 0.03 or less, close to the end of simulation (that stops when $Tr \leq 0.001$), the time period in which the models to differ is small. 
-{\tred A second reduction {\it QM: Mas voce nem explicou porque ocorreu a primeira reducaoo. Explique melhor isso. Ideia: indicar as reducoes na figura (numerar) e no texto explicar porque elas ocorrem}} 
-in the relative transpiration occurs and it can be noticed by an abrupt decrease in the transpiration rate (Figure \ref[diff_tr]).
-A possible explanation is that, at this point, 
-{\tred the solute uptake rate decreases, resulting in a decreasing (more negative) value for the osmotic head {\it QM: Isso me lembra algo que descrevi tb no trabalho de 2009? E voce poderia citar/comparar aqui.}}
- and, consequently, reducing also the water uptake rate.
-Therefore, this reduction depends on the value of $q_0$, which directly affects the $C_{lim}$ value (Equation \ref[eq_clim]), and abruptly reduces the relative transpiration due to the combined water and osmotic stress.
+In addition, the LCC occurs at values of relative transpiration ($T_r$, the ratio between actual and potential transpiration) around 0.03 or less -- a condition in which the plant is at high (combined water and osmotic) stress levels -- and close to the end of simulation 
+(that stops when $Tr \leq 0.001$).
+{\tblue
+Figure \ref[diff_tr] shows that transpiration reductions (abrupt decrease in the transpiration rate) may occur for the two models, resulting from two distinct processes:
+(1) the first is caused by the combined water and osmotic stress caused by the decreasing water flux towards the root when the total hydraulic head $H$ reaches the limiting value $H_{lim}$ of $-150$ m (as occurred in the \citeonline[liersolute] model);
+and
+(2) the second due to the decrease of the solute uptake rate resulted from the change in the boundary condition when LCC starts, causing a decreasing (more negative) value for the osmotic head $h_\pi$.
+%{\it QM: Mas voce nem explicou porque ocorreu a primeira reducaoo. Explique melhor isso. Ideia: indicar as reducoes na figura (numerar) e no texto explicar porque elas ocorrem} 
+%in the relative transpiration occurs and it can be noticed by an abrupt decrease in the transpiration rate (Figure \ref[diff_tr]).
+%A possible explanation is that, at this point, 
+%{\tred the solute uptake rate decreases, resulting in a decreasing (more negative) value for the osmotic head {\it QM: Isso me lembra algo que descrevi tb no trabalho de 2009? E voce poderia citar/comparar aqui.}}
+%, consequently, reducing also the water uptake rate.
+As $H$ is not allowed to reduce below $H_{lim}$, the model predicts lower $h$ values (less negative) which leads to smaller water flux rates at the root surface $q_0$, reflected in $T_r$.
+}
+Therefore, this second reduction depends on the value of $q_0$, which directly affects the $C_{lim}$ value (Equation \ref[eq_clim]), and abruptly reduces the relative transpiration due to the combined water and osmotic stress.
 This limiting concentration, here only numerically computed, may be controlled by physical or physiologic processes and needs to be investigated.
-The NLU causes a smoother $T_r$ reduction over time (Figure \ref[diff_tr]), apparently more appropriate for a natural phenomenon.
+The NLU causes a smoother $T_r$ reduction over time in the second reduction (Figure \ref[diff_tr]), apparently more appropriate for a natural phenomenon.
 
 \medskip
 \label[accumxt]
@@ -60,17 +64,20 @@ The NLU causes a smoother $T_r$ reduction over time (Figure \ref[diff_tr]), appa
 \medskip
 \label[diff_tr]
 \picw=17cm \cinspic diffs_tr.pdf
-\caption/f {Relative transpiration as a function of time for scenarios 1 to 4, predicted by the linear (solid line) and the non-linear (dashed line) model}
+\caption/f {Relative transpiration as a function of time for scenarios 1 to 4, predicted by the linear (solid line) and the non-linear (dashed line) model. {\tblue Numbers inside circles represent the first and the second $T_r$ reduction}}
 \medskip
 
 %There are two ways of making the difference between the two models be relevant: 
 Differences between both model predictions can become more  significant either by
 a) increasing the value of $C_{lim}$ making LCC to be reached in a earlier stage, or b) looking at the results on a different time scale. 
-{\tred We could not find a scenario that matched the first option. {\it QM: Nao entendi isso. Nao eh possivel um cenario assim?}}
-{\tblue {\it My answer: The reason is that \clim{} value can not be chosen. It is numerically calculated by Equation \ref[eq_clim] and its value changes with $q_0$ variation.}}
-The value of $C_{lim}$ will be less or equal $K_m$ if and only if $q_0 \gg Km^2$. 
-But, even if the value of $q_0$ satisfies this condition, Equation \ref[eq_c2] shows that $C_2$ would be higher and, since the uptake function is a piecewise equation, $C_0$ would have to be decreased until it reaches $C_{lim}$ {\tblue for LCC to occur}.
-Then, at occurrence of LCC, the water flux would be low and the LCC period still small, {\tblue which would, again, result in a non-significant difference between the models}. 
+We could not find a scenario that matched the first option {\tblue for the following reason: 
+%{\it QM: Nao entendi isso. Nao eh possivel um cenario assim?}
+%{\tblue {\it My answer: The reason is that \clim{} value can not be chosen. It is numerically calculated by Equation \ref[eq_clim] and its value only changes with $q_0$ variation.}}
+the value of $C_{lim}$ is computed by Equation \ref[eq_clim] and it varies only with $q_0$ variation (it is not an input parameter).
+It will be less or equal $K_m$ if and only if $q_0 \gg Km^2$. 
+However, even if the value of $q_0$ satisfies this condition, Equation \ref[eq_c2] shows that $C_2$ would be higher and, since the uptake function is a piecewise equation, $C_0$ would have to be decreased until it reaches $C_{lim}$ {\tblue for LCC to occur}.
+Then, at occurrence of LCC, the water flux would be low and the LCC period still small, which would, again, result in a non-significant difference between the models. 
+Thus, it is not possible to chose a proper $C_{lim}$ value to force the desired situation of a faster LCC occurrence in the current model.}
 On the other hand, if only the predictions during the occurrence of LCC are computed, differences become significant. 
 
 Table \ref[tab_diff] shows the relative difference between the model predictions for concentration at the root surface as function of time ($C_0(t)$), considering the period of LCC only (beginning from the time where LCC starts), and for the solute concentration as a function of distance from the axial center ($C(r)$) at the end of the simulation. 
@@ -94,9 +101,10 @@ Scenario 4 never reached the LCC and Table \ref[tab_diff] shows the differences 
 \medskip
 \label[diff_t]
 \picw=13cm \cinspic diffs_t.pdf
-\caption/f {
-{\tred (bottom) Solute concentration at the root surface as a function of time for scenario 1 during LCC occurrence predicted by the linear (solid line) and non-linear (dashed line) model;
-(top) absolute difference between the two models and its relative difference value according to Equation \ref[error_C] {\it QM: Nao entendo a figura de cima. Ela eh um dividido pelo outro? Nao parece.}} {\tblue {\it My answer: a linha de cima eh a diferenca absoluta, e o valor em porcentagem, a relativa}}
+\caption/f {(bottom) Solute concentration at the root surface as a function of time for scenario 1 during LCC occurrence predicted by the linear (solid line) and non-linear (dashed line) model;
+(top) absolute difference between the two models and its relative difference value according to Equation \ref[error_C] 
+%{\it QM: Nao entendo a figura de cima. Ela eh um dividido pelo outro? Nao parece.} 
+%{\tblue {\it My answer: a linha de cima eh a diferenca absoluta, e o valor em porcentagem, a relativa}}
 }
 \medskip
 
@@ -126,8 +134,12 @@ Scenario 4 never reached the LCC and Table \ref[tab_diff] shows the differences 
 %The U test corroborates with the visual analysis.
 %The results for scenarios 2 to 4 were similar and it is not showed in the plots.
 
-These results indicate that the difference in predictions of both models are relevant only {\tred during LCC. {\it QM: Acho que eh isso? Descreva melhor isso, simplesmente dizer que depende da escala de tempo nao eh correto. Depende de qual parte do tempo voce esta analisando.}} 
-For predictions that result from the entire simulation period, like accumulated uptake, or for concentration as a function of the radial distance, the differences are very small and both models perform equally. 
+{\tblue These results indicate that the difference in predictions of both models are relevant only during LCC,
+%{\tred during LCC. {\it QM: Acho que eh isso? Descreva melhor isso, simplesmente dizer que depende da escala de tempo nao eh correto. Depende de qual parte do tempo voce esta analisando.}} 
+or, in other words, the difference between linear and non-linear boundary conditions is significant during LCC, for concentration at root surface predictions as a function of time ($C_0(t)$).
+For the concentration as a function of distance from axial center ($C(r)$), there is no significant difference.
+}
+Therefore, for predictions that result from the entire simulation period, like accumulated uptake, or for concentration as a function of the radial distance, the differences are very small and both models perform equally. 
 In these cases, LU may be preferred since it allows larger time steps making simulation to run faster.
 On the other hand, by considering that the metabolic response of the plant for different levels of concentration at the root surface is immediate -- only a slightly change in $C_0$ causes a instantaneous plant reaction -- or in situations where the value of $C_0$ during LCC is important, NLU could be preferred as the mechanistically most correct model.  
 In this thesis we chose to use NLU since the values of $C_0$ are important to determine, precisely, the active and passive contributions to the solute uptake, which will be analyzed in the next section.
@@ -172,12 +184,17 @@ In this thesis we chose to use NLU since the values of $C_0$ are important to de
 %%The Mann--Whitney U test results corroborates with the differences analysis. Assuming a confidence interval of 95\%, {\it p}-values below 0.05 indicates that the two models are different (one has greater values than the other), i.e. the hypothesis $H_0$ is rejected. Table \ref[Utest] shows that, for scenarios 2, 3 and 4, concentration $C_0$ is significantly different for LU and NLU, but when analysing the cumulative uptake (for the same period of time where $C<C_{lim}$) the difference is not significant.
 %
 
-It is important mention some issues with stabilization in the numerical solution of NLU.
+It is important to mention some issues with stabilization in the numerical solution of NLU.
 %In addition, some part of the differences was due to stability problems with the numerical solution for NLU. 
 The introduction of the non-linear uptake rate boundary condition Equation~\ref[eq_MM_mod] causes some numerical instability at the initial times if time and space steps are not chosen carefully.
 Many different time and space step combinations had to be tested, for each scenario, until satisfying results were obtained. 
-We found that, as a rule, a small time step (commonly smaller than 0.1 s) can be used when the {\tred default space step {\it QM: How much is this?}} is used. 
-{\tred When a smaller space step is necessary, smaller values of $\Delta t$ are required. {\it QM: Aqui vc deveria entrar um pouco na teoria, isso tem a ver com o criterio de estabilidade de Von Neumann. Veja eq. 11 em \begtt https://en.wikipedia.org/wiki/Von_Neumann_stability_analysis \endtt Onde alfa eh a difusividade. Daria para aplicar isso no seu caso? De qq forma, mostra que, quanto menor dt, menor dx.}}
+We found that, as a rule, a small time step of 0.01 s can be used when the default space step (Section \ref[scenarios]) is used. 
+{\tred When a smaller space step is necessary, smaller values of $\Delta t$ are required. 
+{\tblue
+The Von Neumann stability analysis \cite[neumann] shows that a good criteria to chose space and time steps is $\displaystyle{D \Delta t \over {\Delta r}^2} \leq \displaystyle{ 1 \over 2}$ (using the symbology of this thesis).
+
+}
+{\it QM: Aqui vc deveria entrar um pouco na teoria, isso tem a ver com o criterio de estabilidade de Von Neumann. Veja eq. 11 em \begtt https://en.wikipedia.org/wiki/Von_Neumann_stability_analysis \endtt Onde alfa eh a difusividade. Daria para aplicar isso no seu caso? De qq forma, mostra que, quanto menor dt, menor dx.}}
 As mentioned before, decreasing the time step leads to an increase of the number of calculations requiring more computing time. 
 In our simulation scenarios, the time to complete a simulation run ranged from 40 minutes to 1.5 days using a {\tred Intel Core i5 [specifications].}
 %It needs to be found an optimal value for time and space step relation. 

@@ -4,6 +4,10 @@
 \def\im{$I_m$}
 \def\km{$K_m$}
 
+%definition to colorize the text
+\def\tred {\localcolor\Red}
+\def\tblue {\localcolor\Blue}
+
 % For numbering piecewise equations
 \input cases
 
@@ -524,8 +528,9 @@ In this way, the effect of variation in soil hydraulic properties is exemplified
 
 \input tables/scenarios
 
-Values of $\Delta r_{min}$, $\Delta r_{max}$ and $S$ in Equation \ref[eq_disc] were 10$^{-5}$ m, 5~10$^{-4}$ m and 0.5, resulting in 22, 68 and 213 segments for the high, medium and low root density simulations, respectively.
+The default values of $\Delta r_{min}$, $\Delta r_{max}$ and $S$ in Equation \ref[eq_disc] were 10$^{-5}$ m, 5~10$^{-4}$ m and 0.5, resulting in 22, 68 and 213 segments for the high, medium and low root density simulations, respectively.
 To guarantee complete convergence for the non-linear model, a time step of 0.01 s was used when $C_0 < C_{lim}$.
+{\tblue All simulation scenarios ended when $T_r \leq 0.001$ where the water uptake is considered negligible.}
 
 \label[lu_nlu_comp]
 \sec Analysis of linear and non-linear approaches
