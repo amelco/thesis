@@ -136,7 +136,7 @@ Scenario 4 never reached the LCC and Table \ref[tab_diff] shows the differences 
 
 {\tblue These results indicate that the difference in predictions of both models are relevant only during LCC,
 %{\tred during LCC. {\it QM: Acho que eh isso? Descreva melhor isso, simplesmente dizer que depende da escala de tempo nao eh correto. Depende de qual parte do tempo voce esta analisando.}} 
-or, in other words, the difference between linear and non-linear boundary conditions is significant during LCC, for concentration at root surface predictions as a function of time ($C_0(t)$).
+or, in other words, the difference between linear and non-linear boundary conditions is significant during LCC for concentration at root surface predictions as a function of time ($C_0(t)$).
 For the concentration as a function of distance from axial center ($C(r)$), there is no significant difference.
 }
 Therefore, for predictions that result from the entire simulation period, like accumulated uptake, or for concentration as a function of the radial distance, the differences are very small and both models perform equally. 
@@ -188,22 +188,31 @@ It is important to mention some issues with stabilization in the numerical solut
 %In addition, some part of the differences was due to stability problems with the numerical solution for NLU. 
 The introduction of the non-linear uptake rate boundary condition Equation~\ref[eq_MM_mod] causes some numerical instability at the initial times if time and space steps are not chosen carefully.
 Many different time and space step combinations had to be tested, for each scenario, until satisfying results were obtained. 
-We found that, as a rule, a small time step of 0.01 s can be used when the default space step (Section \ref[scenarios]) is used. 
-{\tred When a smaller space step is necessary, smaller values of $\Delta t$ are required. 
+We found that, as a rule, a small time step of 0.01 s can be used when the default values of space parameters $\Delta r_{min}$ and $\Delta r_{max}$ (Section \ref[scenarios]) are used. 
 {\tblue
-The Von Neumann stability analysis \cite[neumann] shows that a good criteria to chose space and time steps is $\displaystyle{D \Delta t \over {\Delta r}^2} \leq \displaystyle{ 1 \over 2}$ (using the symbology of this thesis).
-
+When a smaller space step is necessary, smaller values of $\Delta t$ are required. 
+The Von Neumann stability analysis \cite[neumann] shows that, for a hydrodynamical equation, a good criteria to chose the time step is $\displaystyle{\Delta t \leq {{\Delta r}^2 \over 2 D} }$ (using the symbology of this thesis).
+However, to show stable solutions, the model required smaller values of $\Delta t$ than the ones suggested by the Von Neumann stability criteria.
+The reason must reside on the fact that the criteria accounts for constant values of $D$ and $\Delta r$.
+In the proposed model, the space step increases with increasing distance in a way that a variable space discretization is formed rather than a fixed size set of space steps.
+For a medium root length density scenario, for example, $\Delta r$ values ranged from $0.005 \cdot 10^{-4}$ to $2.8 \cdot 10^{-4}$ m when using the default values of space parameters.
+Similarly, the diffusion coefficient $D$ is not constant as it is computed for each space step according to the water flux and the water content of the respective segment.
 }
-{\it QM: Aqui vc deveria entrar um pouco na teoria, isso tem a ver com o criterio de estabilidade de Von Neumann. Veja eq. 11 em \begtt https://en.wikipedia.org/wiki/Von_Neumann_stability_analysis \endtt Onde alfa eh a difusividade. Daria para aplicar isso no seu caso? De qq forma, mostra que, quanto menor dt, menor dx.}}
-As mentioned before, decreasing the time step leads to an increase of the number of calculations requiring more computing time. 
-In our simulation scenarios, the time to complete a simulation run ranged from 40 minutes to 1.5 days using a {\tred Intel Core i5 [specifications].}
+%{\it QM: Aqui vc deveria entrar um pouco na teoria, isso tem a ver com o criterio de estabilidade de Von Neumann. Veja eq. 11 em \begtt https://en.wikipedia.org/wiki/Von_Neumann_stability_analysis \endtt Onde alfa eh a difusividade. Daria para aplicar isso no seu caso? De qq forma, mostra que, quanto menor dt, menor dx.}
 %It needs to be found an optimal value for time and space step relation. 
 %Stabilization problems were not found in LU.
 
 %Since the differences between LU and NLU occurs for low concentration values and low solute flux, changes in relative transpiration are also negligible. The oscillation in the results due to the stabilization problem of the numerical solution is more likely to be noticed than the difference between the models. Figure \ref[diff_tr] shows the relative transpiration as a function of time and details the part where the oscillation occurs for each scenario. The absolute and relative differences are all due to oscillation problem, since $T_r$ turns out to be the same after complete convergence.
 
-{\tred \citeonline[roose2009] stated that, for numerical solutions of convection-dispersion equation, the convective part might use an explicit scheme because convection, unlike diffusion, occurs only in one direction thus the solution at the following time step depends only on the values within the domain of influence of the previous time step. This set bounds on time and space steps, with a condition of stability given by ${r_0 q_0 \Delta t \over D} < \Delta r$. As the proposed model uses a fully implicit scheme, that might be the cause of the stabilization problems. 
-{\it QM: Elaborar mais isso a luz do comentario no paragrafo anterior}}
+\citeonline[roose2009] stated that, for numerical solutions of convection-dispersion equation, the convective part might use an explicit scheme because convection, unlike diffusion, occurs only in one direction thus the solution at the following time step depends only on the values within the domain of influence of the previous time step. 
+This set bounds on time and space steps, with a condition of stability given by $\displaystyle{r_0 q_0 \Delta t \over D} < \Delta r$. 
+{\tblue As the proposed model uses a fully implicit scheme, that might be an additional cause of the stability problems. 
+A stability analysis that considers the use of a implicit scheme for the numerical solution together with variable space steps and diffusion coefficients is a further step of this work, with an objective of reaching more efficient and reliable calculations.
+%{\it QM: Elaborar mais isso a luz do comentario no paragrafo anterior}
+}
+{\tblue As a result of the selected time step value (0.01 s) that does not cause stability problems, the time to complete a simulation run ranged from 40 minutes to 1.5 days, in our simulation scenarios, using a computer with a 3.2 GHz processor clock.
+Increasing $\Delta t$ leads to an increase of the number of calculations and requires more computing time.
+}
 
 %No significant difference between LU and NLU was verified in all output files (water and solute flux, concentration profile, heads and relative transpiration – Figures 1a, 2a, 3, 4, 5 and 6), but a more detailed analysis was made by analyzing the overall results (values of solute concentration for all output times -- Figure 9b) and low concentration results (values of solute concentration for output times where $C<C_{lim}$ -- Figures 8 and 9a).
 
@@ -225,13 +234,12 @@ Simulation results for these scenarios are shown in Figures \ref[fig_C_t]
 to
 %, \ref[fig_C_r] and 
 \ref[fig_Tr_t]. 
-{\tred All simulations started at pressure head ($h_{ini}$) of $-1$~m {\it QM: Isso deve constar tb do M\&M, nao sei se consta}}, so that both wet and dry soil conditions occurred in the simulated period.
+All simulations started at pressure head ($h_{ini}$) of $-1$~m, so that both wet and dry soil conditions occurred in the simulated period.
 
 %The general model predictions can be done by analysing scenario 1, chosen to be the default scenario (continuous line in Figures \ref[fig_C_t], \ref[fig_C_r] and \ref[fig_Tr_t]).
 According to the piecewise Equation \ref[eq_MM_mod], the solute uptake rate occurs according to three phases. 
-They will be abbreviated LUP -- linear uptake phase when $C_0>C_2$, CUP -- constant uptake phase when $C_{lim}<C_0<C_2$, and NUP -- non-linear uptake phase when $C_0<C_{lim}$.
-{\tblue Figure \ref[fig_phases] shows how they are represented. {\it IMPROVE IT !!}}
-{\tred For the simulation scenarios, the set of input parameters $h_{ini}$ and $C_{ini}$ were chosen for the simulations to start always starts at LUP, when relative transpiration  $T_r=1$ and solute uptake occurs by mass flow of the solution only (passive uptake).{\it QM: Isso tambem parece mais M\&M. Nao tem problema repetir aqui, mas deve estar no M\&M tb.}}
+They will be abbreviated LUP -- linear uptake phase when $C_0>C_2$, CUP -- constant uptake phase when $C_{lim}<C_0<C_2$, and NUP -- non-linear uptake phase when $C_0<C_{lim}$, as shown in Figure \ref[fig_phases].
+For the simulation scenarios, the set of input parameters $h_{ini}$ and $C_{ini}$ were chosen for the simulations to start always at LUP, when relative transpiration  $T_r=1$ and solute uptake occurs by mass flow of the solution only (passive uptake).
 In this phase, the water content and concentration in bulk soil deplete at the same rate, resulting in a period of constant solute concentration.
 Results from these simulations are shown in Figure \ref[fig_C_t] for scenarios involving different textures (different soil hydraulic properties), different root length densities, different initial solute concentrations and different potential transpiration rates.
 For different soil types, although the initial concentration in bulk soil is the same (10 mol m$^{-3}$), initially, the predicted concentrations at the root surface are different, as shown in Figure \ref[fig_C_t](a). 
@@ -240,16 +248,18 @@ This occurs due to the fact that the initial condition refers to a fixed pressur
 \medskip
 \label[fig_phases]
 \picw=12cm \cinspic MM_phases.pdf
-\caption/f {{\tblue Schematic representation of the phases LUP, CUP and NUP}}
+\caption/f {Schematic representation of the phases LUP ($C_0>C_2$), CUP ($C_{lim}<C_0<C_2$) and NUP ($C_0<C_{lim}$)}
 \medskip
 
 \medskip
 \label[fig_C_t]
 \picw=17cm \cinspic C_t.pdf
-\caption/f {{\tred Solute concentration in soil water as a function of time predicted by the non-linear uptake model (NLU) for scenarios differing in (a) soil hydraulic parameters (according to texture class), (b) root length density, (c) initial solute concentration, and (d) potential transpiration rate {\it QM: Essa figura ficaria melhor colocando a mesma escala em todos os 4 graficos}}}
+\caption/f {Solute concentration in soil water as a function of time predicted by the non-linear uptake model (NLU) for scenarios differing in (a) soil hydraulic parameters (according to texture class), (b) root length density, (c) initial solute concentration, and (d) potential transpiration rate}
 \medskip
 
-{\tred The constant uptake phase (CUP) is characterized by the depletion of $C_0$ at a constant rate, which starts some time after the onset of the $T_r$ falling rate phase.{\it QM: Isso nao da para entender assim. Da para ver isso na figura? Deve explicar melhor. Talvez mais uma figura?Pois nessa fig. 9 da para ver quando comeca o falling rate de Tr?}}{\tblue, as shown in Figure \ref[fig_TrC0xt].}
+The constant uptake phase (CUP) is characterized by the depletion of $C_0$ at a constant rate, which starts some time after the onset of the $T_r$ falling rate phase,
+%{\it QM: Isso nao da para entender assim. Da para ver isso na figura? Deve explicar melhor. Talvez mais uma figura?Pois nessa fig. 9 da para ver quando comeca o falling rate de Tr?}
+as shown in Figure \ref[fig_TrC0xt].
 %, when the total head reaches its limit value $H_{lim}$. 
 The reduction in $q_0$ (reflected in $T_r$) increases $C_2$ value according to Equation \ref[eq_c2], therefore, the time that CUP initiates depends on the rate that $q_0$ decreases,
 %According to the results showed in Figure \ref[fig_C_t], 
@@ -272,7 +282,7 @@ Therefore, the soil type, root density, initial concentration, and potential tra
 \medskip
 \label[fig_TrC0xt]
 \picw=14cm \cinspic Tr_C0xt.pdf
-\caption/f {{\tblue Relative transpiration and solute concentration at the root surface as a function of time. (1)~indicates the onset of the $T_r$ falling rate phase and (2)~indicates the onset of the $C_0$ falling rate phase}}
+\caption/f {{\tblue Relative transpiration and solute concentration at the root surface as a function of time predicted by the non-linear model for scenario 1. (1)~indicates the onset of the $T_r$ falling rate phase and (2)~indicates the onset of the $C_0$ falling rate phase}}
 \medskip
 
 \def\desca{Bold line represents the total solute uptake (active+passive), the thin line represents active contributions to the solute uptake, and the dashed line represents the passive contribution. }
@@ -301,7 +311,12 @@ In this phase, however, the active component of uptake dominates, being the majo
 Predictions of active and passive contributions as a function of time and concentration in soil solution are shown respectively in Figures \ref[fig_contrib_t] and \ref[fig_contrib_c], according to Equation \ref[eq_MM_mod] and the model assumptions.
 From the onset of simulations (wet condition, $T_r=1$), although scenarios start in LUP, a constant (instead of a linearly decreasing) uptake rate is developed. 
 This is due to the fact that the model considers a constant potential transpiration rate over time, therefore, the solute uptake is determined by (constant) water flow $q_0$ and solute concentration $C_0$ (Equation \ref[eq_case3]), also constant because passive uptake by mass flow is the dominating process.
-A plant controlled process allowing the reduction of solute uptake (for example, a {\tred reflection coefficient {\it QM: Acho que voce ainda nao introduziu/mencionou esse termo, poderia explicar um pouco mais. Ou citar algum trabalho que faz isso}}) might be a modeling alternative to describe controlled uptake in this phase.
+A plant controlled process allowing the reduction of solute uptake (for example, a 
+{\tred 
+reflection coefficient that indicates how effectively the osmotic pressure of a solute can be exerted across a membrane \cite[nobel])
+%{\it QM: Acho que voce ainda nao introduziu/mencionou esse termo, poderia explicar um pouco mais. Ou citar algum trabalho que faz isso}
+}
+might be a modeling alternative to describe controlled uptake in this phase.
 In our model such a feature was not included and, according to model assumptions, the rate of solute uptake at LUP is constant and its value depends on the potential transpiration, soil hydraulic properties, root length density, and initial solute concentration.
 It does not depend on ion type, since $q_{s_0}$ values were equally predicted (Figure \ref[fig_contrib_t]).
 
