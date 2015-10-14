@@ -236,20 +236,23 @@ to
 \ref[fig_Tr_t]. 
 All simulations started at pressure head ($h_{ini}$) of $-1$~m, so that both wet and dry soil conditions occurred in the simulated period.
 
-%The general model predictions can be done by analysing scenario 1, chosen to be the default scenario (continuous line in Figures \ref[fig_C_t], \ref[fig_C_r] and \ref[fig_Tr_t]).
 According to the piecewise Equation \ref[eq_MM_mod], the solute uptake rate occurs according to three phases. 
 They will be abbreviated LUP -- linear uptake phase when $C_0>C_2$, CUP -- constant uptake phase when $C_{lim}<C_0<C_2$, and NUP -- non-linear uptake phase when $C_0<C_{lim}$, as shown in Figure \ref[fig_phases].
-For the simulation scenarios, the set of input parameters $h_{ini}$ and $C_{ini}$ were chosen for the simulations to start always at LUP, when relative transpiration  $T_r=1$ and solute uptake occurs by mass flow of the solution only (passive uptake).
-In this phase, the water content and concentration in bulk soil deplete at the same rate, resulting in a period of constant solute concentration.
-Results from these simulations are shown in Figure \ref[fig_C_t] for scenarios involving different textures (different soil hydraulic properties), different root length densities, different initial solute concentrations and different potential transpiration rates.
-For different soil types, although the initial concentration in bulk soil is the same (10 mol m$^{-3}$), initially, the predicted concentrations at the root surface are different, as shown in Figure \ref[fig_C_t](a). 
-This occurs due to the fact that the initial condition refers to a fixed pressure head, resulting in different water contents for each soil in accordance to their hydraulic parameters.
 
 \medskip
 \label[fig_phases]
 \picw=12cm \cinspic MM_phases.pdf
 \caption/f {Schematic representation of the phases LUP ($C_0>C_2$), CUP ($C_{lim}<C_0<C_2$) and NUP ($C_0<C_{lim}$)}
 \medskip
+
+\secc {\tblue Concentration at the root surface as a function of time \pmb{$C_0(t)$}}
+
+For the simulation scenarios, the set of input parameters $h_{ini}$ and $C_{ini}$ were chosen for the simulations to start always at LUP, when relative transpiration  $T_r=1$ and solute uptake occurs by mass flow of the solution only (passive uptake).
+In this phase, the water content and concentration in bulk soil deplete at the same rate, resulting in a period of constant solute concentration.
+Results from these simulations are shown in Figure \ref[fig_C_t] for scenarios involving different textures (different soil hydraulic properties), different root length densities, different initial solute concentrations and different potential transpiration rates.
+For different soil types, although the initial concentration in bulk soil is the same (10 mol m$^{-3}$), initially, the predicted concentrations at the root surface are different, as shown in Figure \ref[fig_C_t](a). 
+This occurs due to the fact that the initial condition refers to a fixed pressure head, resulting in different water contents for each soil in accordance to their hydraulic parameters.
+
 
 \medskip
 \label[fig_C_t]
@@ -411,13 +414,15 @@ For example, $\eta=0.5$ means that a 1\% increase of $P$ results in 0.5\% increa
 The value of $\eta$ found through a variation of a parameter is likely to change with variation of another parameter, 
 %Thus, it is profoundly difficult to make a sensitivity analysis that deals with all combinations of parameters variation of a complex model. 
 making a sensitivity analysis that deals with all combinations of parameters variation of a complex model being profoundly difficult to be done. 
-Therefore, the analyses are commonly {\tred restricted to a fixed set of parameters. {\it QM: Citar aqui trabalho de Drechsler (que voce deve ter?)}} 
+Therefore, the analyses are commonly restricted to a fixed set of parameters \cite[drechsler].
 
-{\tred Besides modeling results expressed as solute concentration as a function of time and distance ($C(r,t)$), the model can give a wide range of another predictions.
+Besides modeling results expressed as solute concentration as a function of time and distance ($C(r,t)$), the model can give a wide range of another predictions.
 For instance: relative transpiration, pressure and osmotic potentials, water and solute uptake rates, and accumulated solute uptake.
 Some of these predictions were selected to check how changes in soil and ion/plant parameters would affect them. 
 The selected predictions $Y$ were: ending time of simulation ($t_{end}$), osmotic head ($h_{os}$), time at the onset of the $T_r$ falling rate phase ($t_{T_r}$), time at the onset of constant uptake phase ($t_{C_0}$) and accumulated solute uptake ($acc$).
-Varying parameter $P$ were the ion/plant ($I_m$ and $K_m$) and the soil hydraulic ($\alpha$, $n$, $K_s$, $\lambda$, $\theta_r$ and $\theta_s$) parameters. {\it QM: Isso seria tipicamente M\&M}}
+Varying parameter $P$ were the ion/plant ($I_m$ and $K_m$) and the soil hydraulic ($\alpha$, $n$, $K_s$, $\lambda$, $\theta_r$ and $\theta_s$) parameters. 
+{\tred \it QM: Isso seria tipicamente M\&M.}
+{\tblue\it Andre: Est\'a em M\&M, repetido aqui.}
 
 Sensitivities to ion/plant parameters were high for $h_{os}$ and presented an inverse response (negative values) to $I_m$ variation (Figure \ref[sensitivity_MM_rest]).
 This is due to the fact that, with higher values of $I_m$, there are higher uptake rates of solute in both phases of constant and non-linear uptake, diminishing the value of concentration at the root surface in the end of simulation (less negative values of osmotic head $h_\pi$).
@@ -482,9 +487,18 @@ Therefore, even with a variation of 1\% in $n$ causing a change in the retention
 
 For the predictions at specific times ($t_{end}$, $t_{T_r}$ and $t_{C_0}$), the parameters $\theta_s$ and $\lambda$ presented the highest (absolute) $\eta$ values.
 Increasing values of $\theta_s$ increases the available water content and increases at about the same proportion ($\approx$1\%) $t_{T_r}$, $t_{end}$ and $t_{C_0}$ due to a prolongated water uptake at $T_p$.
-{\tblue Parameter $\lambda$ affects the shape of the hydraulic conductivity function (a higher $\lambda$ results in a more intense decrease of hydraulic conductivity with decreasing water content).}
+{\tblue 
+Parameter $\lambda$ affects the shape of the hydraulic conductivity function such as a higher $\lambda$ results in a more intense decrease of hydraulic conductivity with decreasing water content, resulting in a prolongated water uptake at $T_p$, increasing the time at the onset of $T_r$ falling rate phase.
+On the other hand, the steeper decrease in hydraulic conductivity causes a more intense decrease in the water flux which, on your turn, decreases the end of the simulation time.
+With a smaller water flux, the $C_2$ value increases faster, decreasing the time at the onset of $C_0$ falling rate phase and... 
+}
+Water flux therefore decreases faster reducing the onset of $T_r$ and $C_0$ falling phases consequently reducing $t_{end}$.
 % causes an inverse response in $t_{end}$ prediction.
-{\tred Higher values of $\lambda$ causes higher hydraulic conductivities with the same value of water content, which increases the water flux and uptake and decreases the time that the root surface {\it QM: Rever isso, o que afirmei na frase anterior eh o correto}} reaches the limiting value $H_{lim}$, reducing the time of $T_r$ and $C_0$ falling phases, consequently reducing $t_{end}$.
+{\tred 
+Higher values of $\lambda$ cause higher hydraulic conductivities with the same value of water content, which increases the water flux and uptake and decreases the time that the root surface 
+%{\it QM: Rever isso, o que afirmei na frase anterior eh o correto}
+}
+reaches the limiting value $H_{lim}$, reducing the time of $T_r$ and $C_0$ falling phases, consequently reducing $t_{end}$.
 Thus, sensitivities to $\lambda$ and $\theta_s$ are expected to be negative and positive, respectively, for the selected time predictions, corroborating the results (Figure \ref[sensitivity_soil_time]).
 The higher sensitivity to $\theta_s$ can be explained due to the fact that the model has a powerful (possibly overestimated) solute extraction at LUP, either due to the lack of a plant regulated process for solute uptake at this phase or because the model does not consider a regulation in the solute uptake according to solute concentration inside the plant.
 
