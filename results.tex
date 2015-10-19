@@ -39,19 +39,20 @@ As a consequence, the difference in predictions for the two models are of minor 
 Figure \ref[accumxt] gives an example of this: the cumulated amount of solute extracted by the roots until the end of the simulation is shown to be nearly the same for both models. 
 In addition, the LCC occurs at values of relative transpiration ($T_r$, the ratio between actual and potential transpiration) around 0.03 or less -- a condition in which the plant is at high (combined water and osmotic) stress levels -- and close to the end of simulation 
 (that stops when $Tr \leq 0.001$).
+
 {\tblue
 Figure \ref[diff_tr] shows that transpiration reductions (abrupt decrease in the transpiration rate) may occur for the two models, resulting from two distinct processes:
 (1) the first is caused by the combined water and osmotic stress caused by the decreasing water flux towards the root when the total hydraulic head $H$ reaches the limiting value $H_{lim}$ of $-150$ m (as occurred in the \citeonline[liersolute] model);
 and
-(2) the second due to the decrease of the solute uptake rate resulted from the change in the boundary condition when LCC starts, causing a decreasing (more negative) value for the osmotic head $h_\pi$.
+(2) the second is due to the decrease of the solute uptake rate resulted from the change in the boundary condition when LCC starts, causing a decreasing (more negative) value for the osmotic head $h_\pi$.
 %{\it QM: Mas voce nem explicou porque ocorreu a primeira reducaoo. Explique melhor isso. Ideia: indicar as reducoes na figura (numerar) e no texto explicar porque elas ocorrem} 
 %in the relative transpiration occurs and it can be noticed by an abrupt decrease in the transpiration rate (Figure \ref[diff_tr]).
 %A possible explanation is that, at this point, 
 %{\tred the solute uptake rate decreases, resulting in a decreasing (more negative) value for the osmotic head {\it QM: Isso me lembra algo que descrevi tb no trabalho de 2009? E voce poderia citar/comparar aqui.}}
 %, consequently, reducing also the water uptake rate.
-As $H$ is not allowed to reduce below $H_{lim}$, the model predicts lower $h$ values (less negative) which leads to smaller water flux rates at the root surface $q_0$, reflected in $T_r$.
+As $H$ at the root surface is not allowed to reduce below $H_{lim}$, the model predicts lower (less negative) $h$ values resulting in smaller water flux rates at the root surface ($q_0$), reflected in $T_r$.
 }
-Therefore, this second reduction depends on the value of $q_0$, which directly affects the $C_{lim}$ value (Equation \ref[eq_clim]), and abruptly reduces the relative transpiration due to the combined water and osmotic stress.
+Therefore, this second reduction depends on the value of $q_0$, which directly affects the $C_{lim}$ value (Equation \ref[eq_clim]), and it abruptly reduces the relative transpiration due to the combined water and osmotic stress.
 This limiting concentration, here only numerically computed, may be controlled by physical or physiologic processes and needs to be investigated.
 The NLU causes a smoother $T_r$ reduction over time in the second reduction (Figure \ref[diff_tr]), apparently more appropriate for a natural phenomenon.
 
@@ -67,22 +68,27 @@ The NLU causes a smoother $T_r$ reduction over time in the second reduction (Fig
 \caption/f {Relative transpiration as a function of time for scenarios 1 to 4, predicted by the linear (solid line) and the non-linear (dashed line) model. {\tblue Numbers inside circles represent the first and the second $T_r$ reduction}}
 \medskip
 
-%There are two ways of making the difference between the two models be relevant: 
-Differences between both model predictions can become more  significant either by
-a) increasing the value of $C_{lim}$ making LCC to be reached in a earlier stage, or b) looking at the results on a different time scale. 
-We could not find a scenario that matched the first option {\tblue for the following reason: 
-%{\it QM: Nao entendi isso. Nao eh possivel um cenario assim?}
-%{\tblue {\it My answer: The reason is that \clim{} value can not be chosen. It is numerically calculated by Equation \ref[eq_clim] and its value only changes with $q_0$ variation.}}
-the value of $C_{lim}$ is computed by Equation \ref[eq_clim] and it varies only with $q_0$ variation (it is not an input parameter).
-It will be less or equal $K_m$ if and only if $q_0 \gg Km^2$. 
-However, even if the value of $q_0$ satisfies this condition, Equation \ref[eq_c2] shows that $C_2$ would be higher and, since the uptake function is a piecewise equation, $C_0$ would have to be decreased until it reaches $C_{lim}$ {\tblue for LCC to occur}.
-Then, at occurrence of LCC, the water flux would be low and the LCC period still small, which would, again, result in a non-significant difference between the models. 
-Thus, it is not possible to chose a proper $C_{lim}$ value to force the desired situation of a faster LCC occurrence in the current model.}
+{\tblue Differences between both model predictions can become more significant by increasing the value of $C_{lim}$ making LCC to be reached in a earlier stage and making its duration of occurrence be a bigger fraction of time.
+%, or b) looking at the results on a different time scale. 
+As \clim{} is not an input parameter, the only way to increase it is decreasing water flux (Figure \ref[fig_climxq]) by changing the initial water content, for example.
+%We could not find a scenario that matched the first option {\tblue for the following reason: 
+%the value of $C_{lim}$ is computed by Equation \ref[eq_clim] (it is not an input parameter) and it varies only with $q_0$ variation.
+%It will be less or equal $K_m$ if and only if $q_0 \gg Km^2$. 
+%However, even if the value of $q_0$ satisfies this condition, Equation \ref[eq_c2] shows that $C_2$ would be higher and, since the uptake function is a piecewise equation, $C_0$ would have to be decreased until it reaches $C_{lim}$ {\tblue for LCC to occur}.
+%Then, at occurrence of LCC, the water flux would be low and the LCC period still small, which would, again, result in a non-significant difference between the models. 
+%Thus, it is not possible to chose a proper $C_{lim}$ value to force the desired situation of a faster LCC occurrence in the current model.}
 On the other hand, if only the predictions during the occurrence of LCC are computed, differences become significant. 
+}
+
+\medskip
+\label[fig_climxq]
+\picw=13cm \cinspic climxq.pdf
+\caption/f {Representative curve of the limiting concentration as a function of water flux, according to Equation \ref[eq_clim] (black line). Grey lines represent equal increases in (a) $K_m$ and (b) $I_m$ parameters}
+\medskip
 
 Table \ref[tab_diff] shows the relative difference between the model predictions for concentration at the root surface as function of time ($C_0(t)$), considering the period of LCC only (beginning from the time where LCC starts), and for the solute concentration as a function of distance from the axial center ($C(r)$) at the end of the simulation. 
 The Mann-Whitney U test showed a significant difference for $C_0(t)$ but not for $C(r)$. 
-The difference ({\tred {\it diff. QM: Nao poderia chamar isso pelo simbolo DELTA ou algo assim?}}) between LU and NLU increases with time (Figure \ref[diff_t]).
+The absolute difference ($\delta$) between LU and NLU increases with time (Figure \ref[diff_t]).
 %due to the abrupt decrease of solute uptake rate at the root surface (that causes the second $T_r$ reduction).
 %The change in $C_0$ root surface concentrations happens rapidly due to the decrease in solute uptake rate and it increases with time 
 Concentration as a function of radial distance (Figure \ref[diff_r]) shows a different behaviour, as solutes in each segment are replenished by the neighboring segment, making the difference smaller with increasing distance. 
@@ -467,7 +473,11 @@ Therefore, due to the high number of soil hydraulic parameters, the discussion w
 The parameter $n$ showed the highest (absolute) values of $\eta$ among the soil hydraulic properties, mainly for $h_{os}$ in the end of simulation, reaching the value of $-$23 for scenario 2 (Figure~\ref[sensitivity_n]).
 Similar result was found by \citeonline[quirijn_sens], where the yield predictions of the evaluated model had higher sensitivity for the $n$ parameter.
 %, also with one order of magnitude higher.
-Figure \ref[fig_wrcs](a) shows how the water retention curve, following the \citeonline[genuchten80] model, changes with the {\tred variation of 1\% in $n$ parameter. {\it QM: N afeta ambas a retencaoo e a condutividade.Eh importante dizer isso tambem.}}
+Figure \ref[fig_wrcs] 
+{\tblue shows how the water retention curve (a) and the hydraulic conductivity (b), following the \citeonline[genuchten80] model, change with the 
+%{\tred variation of 1\% in $n$ parameter. {\it QM: N afeta ambas a retencaoo e a condutividade.Eh importante dizer isso tambem.}}
+variation of the $n$ parameter.
+}
 It shows that the same value of water content is reached with higher (more negative) values of pressure head and it affects both water retention and hydraulic conductivity. 
 An increase in this parameter causes a more steep decrease in those hydraulic functions.
 Increasing $n$ makes the solute uptake rate to increase because the same initial pressure head originates lower values of water content and, consequently, higher solute concentration values.
@@ -553,14 +563,14 @@ The sensitivity of $t_{T_r}$ serves as an indicator to the duration of this phas
 \medskip
 \label[fig_wrcs]
 %\picw=12cm \cinspic wrcs.pdf
-\picw=17cm \cinspic wrcs_changes.pdf
-%\caption/f {Theoretical water retention curves, according to Equation \ref[eq_theta], for the selected soils from Table \ref[soils]. The lower value of $h$ matches the initial value for all simulations $h_{ini}=-1$~m. Dashed lines represent the variation of 1\% in $n$ parameter}
-\caption/f {
-Theoretical water retention curves, according to Equation \ref[eq_theta], 
-(a) for the selected soils from Table \ref[soils] with dashed lines representing a variation of +1\% in parameter $n$; and
-(b) for the loam soil with dashed line representing a variation of +50\% in parameter $\alpha$;
+%\picw=17cm \cinspic wrcs_changes.pdf
+\picw=17cm \cinspic wrcs2.pdf
+\caption/f {(a) Water content from Equation \ref[eq_theta], for three combinations of values for $\alpha$ and $n$, and
+(b) relative hydraulic conductivity from Equation \ref[eq_K] for three combinations of values for $\lambda$ and $n$, with $\alpha = 0.75$ m$^{-1}$
+% loam soil with dashed line representing a variation of +50\% in parameter $\alpha$;
 %(c) hydraulic conductivity function, according to Equation \ref[eq_K], for the loam soil with dashed line representing a variation of +50\% in parameter $\lambda$.
-Values of $h$ ranges from the initial value for all simulations $h_{ini}=-1$~m to $-$150 m}
+%Values of $h$ ranges from the initial value for all simulations $h_{ini}=-1$~m to $-$150 m
+}
 \medskip
 
 {\tred From this sensitivity analysis, we can conclude that the quantities that need to be carefully parameterized are: $\theta_r$, $\theta_s$, $\alpha$, $I_m$ and $K_m$ which affects more strongly the solute concentration at the root surface in the end of simulation, $\theta_s$ which strongly affects the time at the limiting values are reached, and $n$ which strongly affects all selected predictions, mainly $h_{os}$. {\it QM: Isso cabe (melhor) nas conclusoes finais?}}
@@ -591,11 +601,15 @@ Values of $h$ ranges from the initial value for all simulations $h_{ini}=-1$~m t
 Figure \ref[fig_C0] shows predictions of solute concentration at the root surface as a function of time for three different models ZU, CU and NLU. 
 According to ZU, solutes are transported to the roots by convection, causing an accumulation of solutes at the root surface. 
 As water flux towards the root starts to decrease, salt is transported slower and carried away from the roots by diffusion. 
-CU results in a similar prediction with a slightly lower $C_0$ value due to {\tred a small solute uptake value {\it QM: Qual eh esse valor? Isso estah claramente no M\&M?}}. 
+{\tblue CU results in a similar prediction with a slightly lower $C_0$ value because the convective solute flux towards the root is much higher than its constant uptake rate $I_m$, resulting in a solute accumulation at the root surface.
+%due to {\tred a small solute uptake value {\it QM: Qual eh esse valor? Isso estah claramente no M\&M?}}. 
 %The difference between ZU and CU concentrations increases as the water flux towards the root decreases, making the transport by diffusion away from the root becomes more important than by convection towards the roots.
-The higher the value of the constant uptake rate and the lower $T_p$ in CU, less solute will predicted to accumulate at the root surface by the CU model and more similar CU and NLU predictions will be, as can be seen in the gray line of Figure \ref[fig_C0].
+With higher $I_m$ values,
+%The higher the value of the constant uptake rate and the lower $T_p$ in CU, 
+less solute will be predicted to accumulate at the root surface by the CU model and more similar CU and NLU predictions will be, as seen in the gray line of Figure \ref[fig_C0] for demonstration purpose.
+}
 
-\def\descc{Gray line is CU with the constant of solute uptake rate {\tred 10 times higher {\it QM: Mas qual eh o valor original?}}}
+\def\descc{Gray line is CU with the constant of solute uptake rate $I_m$ {\tred 10 times higher {\it QM: Mas qual eh o valor original?}}}
 
 \medskip
 \label[fig_C0]

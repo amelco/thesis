@@ -536,13 +536,14 @@ All simulation scenarios ended when $T_r \leq 0.001$ where the water uptake is c
 \label[lu_nlu_comp]
 \sec Analysis of linear and non-linear approaches
 
-To analyze the differences between the two proposed models (linear and non-linear solutions), the relative differences in the predicted concentrations ($di\!f\!\!f_{C}$) and accumulated uptake ($di\!f\!\!f_{Ac}$), for both models, were calculated as follows:
+To analyze the differences between the two proposed models (linear and non-linear solutions), the relative differences in the predicted concentrations ($\delta_{C}$) and accumulated uptake ($\delta_{Ac}$), for both models, were calculated as follows:
 $$
 \eqalignno{
 \label[error_C]
-di\!f\!\!f_{C}  &= {\sum_{x=1}^{x_{end}} C\!L_x - C\!N\!L_x \over \sum_{x=1}^{x_{end}} C\!L_x} & \eqmark \cr
+%di\!f\!\!f_{C}  &= {\sum_{x=1}^{x_{end}} C\!L_x - C\!N\!L_x \over \sum_{x=1}^{x_{end}} C\!L_x} & \eqmark \cr
+\delta_C  &= {\sum_{x=1}^{x_{end}} C\!L_x - C\!N\!L_x \over \sum_{x=1}^{x_{end}} C\!L_x} & \eqmark \cr
 \label[error_acc] 
-di\!f\!\!f_{Ac} &= {\sum_{t=1}^{t_{end}} AcL_t - AcN\!L_t \over \sum_{t=1}^{t_{end}} AcL_t} & \eqmark \cr
+\delta_{Ac} &= {\sum_{t=1}^{t_{end}} AcL_t - AcN\!L_t \over \sum_{t=1}^{t_{end}} AcL_t} & \eqmark \cr
 }
 $$
 %
