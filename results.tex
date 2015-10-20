@@ -481,7 +481,7 @@ variation of the $n$ parameter.
 It shows that the same value of water content is reached with higher (more negative) values of pressure head and it affects both water retention and hydraulic conductivity. 
 An increase in this parameter causes a more steep decrease in those hydraulic functions.
 Increasing $n$ makes the solute uptake rate to increase because the same initial pressure head originates lower values of water content and, consequently, higher solute concentration values.
-Therefore, due to the higher solute uptake rate, the limiting value $H_{lim}$ is reached at later times, elongating LUP and resulting in less negative values of solute concentration in soil water ($h_\pi$), which is what occurs in the simulations with loam soil (scenarios 1,2,3,4 and 5).
+Therefore, due to the higher solute uptake rate, the limiting value $H_{lim}$ is reached at later times, elongating LUP and resulting in less negative values of solute concentration in soil water ($h_\pi$), which is what occurs in the simulations with loam soil (scenarios 1, 2, 3, 4 and 5).
 Nevertheless, despite the higher change in the water retention curve for the clay soil it does not affect the $\eta$ value of scenario 7 in the same proportion.
 %(its variation parameter is the soil type: clay).
 Due to the interactions between water retention and hydraulic conductivity curves, the overall effect is difficult to be properly analyzed without an empirical test.
@@ -498,19 +498,18 @@ Therefore, even with a variation of 1\% in $n$ causing a change in the retention
 For the predictions at specific times ($t_{end}$, $t_{T_r}$ and $t_{C_0}$), the parameters $\theta_s$ and $\lambda$ presented the highest (absolute) $\eta$ values.
 Increasing values of $\theta_s$ increases the available water content and increases at about the same proportion ($\approx$1\%) $t_{T_r}$, $t_{end}$ and $t_{C_0}$ due to a prolongated water uptake at $T_p$.
 {\tblue 
-Parameter $\lambda$ affects the shape of the hydraulic conductivity function such as a higher $\lambda$ results in a more intense decrease of hydraulic conductivity with decreasing water content, resulting in a prolongated water uptake at $T_p$, increasing the time at the onset of $T_r$ falling rate phase.
-On the other hand, the steeper decrease in hydraulic conductivity causes a more intense decrease in the water flux which, on your turn, decreases the end of the simulation time.
-With a smaller water flux, the $C_2$ value increases faster, decreasing the time at the onset of $C_0$ falling rate phase and... 
-}
-Water flux therefore decreases faster reducing the onset of $T_r$ and $C_0$ falling phases consequently reducing $t_{end}$.
+Parameter $\lambda$ affects the shape of the hydraulic conductivity function such as a higher $\lambda$ results in a more intense decrease of hydraulic conductivity with decreasing water content (Figure~\ref[fig_wrcs](b)), resulting in a prolongated water uptake at $T_p$, increasing the time at the onset of $T_r$ falling rate phase ($t_{T_r}$).
+On the other hand, the steeper decrease in hydraulic conductivity causes a more intense decrease in the water flux which, on your turn, decreases the end of the simulation time ($t_{end}$) value (Figure \ref[sensitivity_soil_time]).
+%With a smaller water flux, the $C_2$ value increases faster, decreasing the time at the onset of $C_0$ falling rate phase and... 
+%Water flux therefore decreases faster reducing the onset of $T_r$ and $C_0$ falling phases consequently reducing $t_{end}$.
 % causes an inverse response in $t_{end}$ prediction.
-{\tred 
-Higher values of $\lambda$ cause higher hydraulic conductivities with the same value of water content, which increases the water flux and uptake and decreases the time that the root surface 
+%{\tred 
+%Higher values of $\lambda$ cause higher hydraulic conductivities with the same value of water content, which increases the water flux and uptake and decreases the time that the root surface 
 %{\it QM: Rever isso, o que afirmei na frase anterior eh o correto}
 }
-reaches the limiting value $H_{lim}$, reducing the time of $T_r$ and $C_0$ falling phases, consequently reducing $t_{end}$.
-Thus, sensitivities to $\lambda$ and $\theta_s$ are expected to be negative and positive, respectively, for the selected time predictions, corroborating the results (Figure \ref[sensitivity_soil_time]).
-The higher sensitivity to $\theta_s$ can be explained due to the fact that the model has a powerful (possibly overestimated) solute extraction at LUP, either due to the lack of a plant regulated process for solute uptake at this phase or because the model does not consider a regulation in the solute uptake according to solute concentration inside the plant.
+%reaches the limiting value $H_{lim}$, reducing the time of $T_r$ and $C_0$ falling phases, consequently reducing $t_{end}$.
+%Thus, sensitivities to $\lambda$ and $\theta_s$ are expected to be negative and positive, respectively, for the selected time predictions, corroborating the results (Figure \ref[sensitivity_soil_time]).
+The higher sensitivity to $\theta_s$ can be explained due to the fact that the model has a powerful (possibly overestimated) solute extraction at the LUP, either due to the lack of a plant regulated process for solute uptake at this phase or because the model does not consider a regulation in the solute uptake according to solute concentration inside the plant.
 
 %The model sensitivity for the parameter $\theta_r$ was the lowest in the selected time predictions.
 %An increase in $\theta_r$ decreases the available water content decreasing the time of $T_r$ and $C_0$ falling phases, consequently reducing $t_{end}$. 
@@ -545,7 +544,8 @@ On the other hand, an increase in $\theta_s$ causes an increase in the available
 As the change in the retention curve is similar to the variation of $n$, the effects are also similar.
 The end of simulation presents less negative values of $h_\pi$ due to the higher solute uptake rate.
 On its turn, parameter $\alpha$ affects the shape of the water retention curve by changing the air entry pressure head.
-An increase in its value makes that the same water content corresponds to a less negative pressure head {\tred (Figure \ref[fig_wrcs](b)) {\it QM: Figura 19, legal, porem nao precisa mostrar diferencas proporcionais dos parametros. Mostre simplesmente o efeito de mudanca no n e no alfa. Faca uma figura semelhante para o Krelativo, mostrando o efeito de n e de lambda. P.e., mostre n=2 vs n=3, lambda=-1 vs lambda = 1, e alfa = 0.015 cm-1 vs alfa=0.03 cm-1.}}.
+An increase in its value makes that the same water content corresponds to a less negative pressure head (Figure \ref[fig_wrcs](a)).
+%{\it QM: Figura 19, legal, porem nao precisa mostrar diferencas proporcionais dos parametros. Mostre simplesmente o efeito de mudanca no n e no alfa. Faca uma figura semelhante para o Krelativo, mostrando o efeito de n e de lambda. P.e., mostre n=2 vs n=3, lambda=-1 vs lambda = 1, e alfa = 0.015 cm-1 vs alfa=0.03 cm-1.}.
 
 Accumulated solute uptake at the end of simulation ($acc$) presented the lowest sensitivity to all parameters for almost all scenarios. 
 As the major part of solute uptake occurs during LUP (the initial phase, when $C > C_2$), $acc$ is most affected when the duration of this phase is altered.
@@ -594,9 +594,9 @@ The sensitivity of $t_{T_r}$ serves as an indicator to the duration of this phas
 %The differences are shown in this section, together with the constant uptake model developed by \citeonline[willigen1] to 
 %{\localcolor\Red SECTION INTRODUCTION}
 
-{\tred The model developed in this thesis is compared to 
-(1) the ZU model of \citeonline[liersolute]; and
-(2) the CU model by \citeonline[willigen1]. {\it QM: Isso eh Material e metodos.}}
+{\tblue In this section, the predictions of the ZU, the CU and the analytical model are shown, for Scenario 1, in comparison to the nonlinear model. }
+
+\secc Numerical models
 
 Figure \ref[fig_C0] shows predictions of solute concentration at the root surface as a function of time for three different models ZU, CU and NLU. 
 According to ZU, solutes are transported to the roots by convection, causing an accumulation of solutes at the root surface. 
@@ -606,16 +606,16 @@ As water flux towards the root starts to decrease, salt is transported slower an
 %The difference between ZU and CU concentrations increases as the water flux towards the root decreases, making the transport by diffusion away from the root becomes more important than by convection towards the roots.
 With higher $I_m$ values,
 %The higher the value of the constant uptake rate and the lower $T_p$ in CU, 
-less solute will be predicted to accumulate at the root surface by the CU model and more similar CU and NLU predictions will be, as seen in the gray line of Figure \ref[fig_C0] for demonstration purpose.
+less solute will be predicted to accumulate at the root surface by the CU model and more similar CU and NLU predictions will be, as seen in the gray line of Figure \ref[fig_C0] (for demonstration purpose).
 }
 
-\def\descc{Gray line is CU with the constant of solute uptake rate $I_m$ {\tred 10 times higher {\it QM: Mas qual eh o valor original?}}}
+\def\descc{Gray line is CU with an arbitrary larger (10 times) value for the constant of solute uptake rate ($I_m = 2 \cdot 10^{-5}$ mol cm$^{-2}$ s$^{-1}$)}
 
 \medskip
 \label[fig_C0]
 %\picw=11cm \cinspic cxt1.pdf
 \picw=13cm \cinspic cxt_comp.pdf
-\caption/f {Soil solution concentration at the root surface as a function of time for constant (CU), zero (ZU) and non-linear (NLU) uptake models. \descc}
+\caption/f {Soil solution concentration at the root surface as a function of time predicted by the constant (CU), zero (ZU) and non-linear (NLU) uptake models for scenario 1. \descc}
 \medskip
 
 For ZU and CU, $C_0$ 
@@ -624,8 +624,8 @@ starts to diminish (corresponding to less negative values of $h_\pi$) as soon as
 %due to $H_0=-150$ m (Figure \ref[fig_heads1]).
 In CU, as the solute uptake is constant and does not depend on the solute concentration, the solute transport by convection becomes less important than the movement by diffusion as the water flux towards the root diminishes.
 Thus, the solute depletion at the root surface is due both to the uptake and to the diffusive transport away from the roots.
-For the case of NLU (Figure \ref[fig_heads2]), an accumulation period does not develop due to the high solute uptake rate in LUP (as can be seen in Figure \ref[fig_qst_detail], all solute carried by mass flow of water is taken up).
-The time to reach $C_2$ increases {\tred until it becomes higher than $C_0$ (explained in the previous section) generates a delay between the onset of the $T_r$ falling rate phase and the time that $C_0$ starts to diminish. {\it QM: Explicar melhor, nao estah claro}}
+For the case of NLU (Figure \ref[fig_heads2]), an accumulation period does not develop due to the high solute uptake rate in LUP (Figure \ref[fig_qst_detail]), resulting from the model assumption that all solute carried by mass flow of water (convective transport) that reaches the root surface is taken up.
+%The time to reach $C_2$ increases {\tred until it becomes higher than $C_0$ (explained in the previous section) generates a delay between the onset of the $T_r$ falling rate phase and the time that $C_0$ starts to diminish. {\it QM: Explicar melhor, nao estah claro}}
 Moreover, the higher uptake of NLU causes lower values of osmotic head ($h_\pi$) and results in a prediction of a longer period of potential transpiration ($T_r=1$).
 For the case of CU and ZU, reduction of $T_r$ starts around the 21th day whilst for NLU it onsets on about the 24th day.
 
@@ -695,10 +695,14 @@ The ZU model, due to its boundary conditions, does not accumulate any solute and
 %\caption/f {Relative transpiration as a function of time for constant (CU), zero (ZU) and non-linear (NLU) uptake models, for scenario 1}
 %\medskip
 
-The LU model may show a period of accumulation of solute near the root surface depending on the potential transpiration rate and solute uptake rate values.
+The CU model may show a period of accumulation of solute near the root surface depending on the potential transpiration rate and solute uptake rate values.
 This period is then followed by a period of diffusion of solute away from the roots which, together with the solute uptake, are responsible for the depletion of solute at the root surface.
 This behavior causes a different solute concentration profile at the end of simulation when compared with the proposed solute uptake model (NLU).
-{\tred The line in Figure \ref[fig_C] representing CU model for a tenfold higher uptake rate shows that the diffusion of solute away from the roots generates a higher concentration somewhere between $r_0$ and $r_m$ in the CU model {\it QM: Porque precisa aumentar em 10x? No NLU vc nao faz isso. Dah para comparar assim? Nao muito claro. Explicar melhor.}}, as opposed to the NLU model, which has no solute accumulation period and its concentration profile diminishes when approaching $r_0$.
+{\tblue However, CU and NLU models predict similar concentration profiles as the value of $I_m$ for CU model is increased.
+The line in Figure \ref[fig_C] representing CU model for a arbitrary tenfold higher uptake rate shows similar predictions of concentration profiles, with differences due to the diffusion of solute away from the roots, resulting from the solute accumulation period that generates a higher concentration somewhere between $r_0$ and $r_m$ at the end of simulation.
+%{\it QM: Porque precisa aumentar em 10x? No NLU vc nao faz isso. Dah para comparar assim? Nao muito claro. Explicar melhor.}}
+%as opposed to the NLU model, which has no solute accumulation period and its concentration profile diminishes when approaching $r_0$.
+}
 It is also shown that the models that consider solute uptake (CU and NLU) present a smaller concentration at $r_m$ due to the higher solute transport towards the root generated by the gradient caused by the solute uptake at $r_0$.
 
 \medskip
@@ -790,7 +794,8 @@ It is also shown that the models that consider solute uptake (CU and NLU) presen
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\sec Comparison to an analytical model
+%\sec Comparison to an analytical model
+\secc Analytical model
 
 The proposed numerical model is compared to the analytical model of \citeonline[cushman], in Figure \ref[fig_analytic], with input parameters of scenario 1.
 The boundary conditions of the analytical model constrain it constant water uptake and dispersion coefficient (steady-state condition).
@@ -801,7 +806,7 @@ The simulated time to evaluate the concentration profile in the analytical model
 \medskip
 \label[fig_analytic]
 \picw=13cm \cinspic analytic_cushman.pdf
-\caption/f {Solute concentration profile of the analytical model by \citeonline[cushman] and the {\tred numerical models, with parameters of scenario 1, at time $t=30$ days. The grey line is the numerical result of the linear model {\it QM: Dizer claramente qual linha eh qual modelo numerico.}} }
+\caption/f {Solute concentration profile predicted by the analytical model of \citeonline[cushman] (bold line) and by the nonlinear (thin black line) and linear (thin grey line) numerical models, with parameters of scenario 1, at time $t=30$ days}
 \medskip
 
 {\tred The differences between the two models is mostly due to the consideration of steady-state condition in respect to water flow in the analytical model {\it QM: Para fazer uma comparacao justa, deveria rodar o modelo numerico para as condicoes de contorm do modelo analitoco. Assim, daria para, realmente comparar.}} as opposed to the proposed numerical model that deals with transient water and solute fluxes.
