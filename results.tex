@@ -216,7 +216,7 @@ This set bounds on time and space steps, with a condition of stability given by 
 A stability analysis that considers the use of a implicit scheme for the numerical solution together with variable space steps and diffusion coefficients is a further step of this work, with an objective of reaching more efficient and reliable calculations.
 %{\it QM: Elaborar mais isso a luz do comentario no paragrafo anterior}
 }
-{\tblue As a result of the selected time step value (0.01 s) that does not cause stability problems, the time to complete a simulation run ranged from 40 minutes to 1.5 days, in our simulation scenarios, using a computer with a 3.2 GHz processor clock.
+{\tblue As a result of the selected time step value (0.01 s) that does not cause stability problems, the time to complete a simulation run ranged from 40 minutes to 1.5 days, in our simulation scenarios, using a modern computer with a 3.2 GHz processor.
 Increasing $\Delta t$ leads to an increase of the number of calculations and requires more computing time.
 }
 
@@ -320,9 +320,9 @@ In this phase, however, the active component of uptake dominates, being the majo
 Predictions of active and passive contributions as a function of time and concentration in soil solution are shown respectively in Figures \ref[fig_contrib_t] and \ref[fig_contrib_c], according to Equation \ref[eq_MM_mod] and the model assumptions.
 From the onset of simulations (wet condition, $T_r=1$), although scenarios start in LUP, a constant (instead of a linearly decreasing) uptake rate is developed. 
 This is due to the fact that the model considers a constant potential transpiration rate over time, therefore, the solute uptake is determined by (constant) water flow $q_0$ and solute concentration $C_0$ (Equation \ref[eq_case3]), also constant because passive uptake by mass flow is the dominating process.
-A plant controlled process allowing the reduction of solute uptake (for example, a 
-{\tred 
-reflection coefficient that indicates how effectively the osmotic pressure of a solute can be exerted across a membrane \cite[nobel])
+A plant controlled process allowing the reduction of solute uptake
+{\tblue 
+(for example, a reflection coefficient that indicates how effectively the osmotic pressure of a solute can be exerted across a membrane \cite[nobel])
 %{\it QM: Acho que voce ainda nao introduziu/mencionou esse termo, poderia explicar um pouco mais. Ou citar algum trabalho que faz isso}
 }
 might be a modeling alternative to describe controlled uptake in this phase.
@@ -336,13 +336,19 @@ This result is straightforward since the potential transpiration affects the rat
 Keeping soil hydraulic properties, root length density, ion type and solute uptake parameters the same, similar results are expected, although on a different time scale.
 The most significant alteration in the partitioning between active and passive uptake is predicted when changing hydraulic properties (especially for the clay soil) and root length density values (Figure \ref[fig_contrib_c]).
 
-In the clay soil, {\tred the water flux is smaller due to its hydraulic properties {\it QM: Entao a Tr nesse solo tb eh menor? Explicar melhor isso.}} causing a small solute transport and uptake by mass flow. 
-The diffusive transport in the root surface (active uptake), quickly becomes dominant (Figure \ref[fig_contrib_c], scenario 7).
-Consequently, $C_0$ is slowly depleted in CUP whereas $\theta$ rapidly reduces to very low values, causing a fast reduction of $q_0$ and $T_r$.
-When $T_r\approx0$ (end of simulation), 
-{\tred $C_0$ equals 17.88~mol~m$^{-3}$ and is higher than $C_{lim}$ 
+
+%In the clay soil, {\tred the water flux is smaller due to its hydraulic properties 
+%{\it QM: Entao a Tr nesse solo tb eh menor? Explicar melhor isso.}} 
+%causing a small solute transport and uptake by mass flow. 
+{\tblue In the clay soil, the solute uptake is smaller due to the smaller initial concentration in soil solution calculated according to its hydraulic parameters.
+The low hydraulic conductivity of this soil makes the limiting potential $H_{lim}$ to be reached in a earlier stage, reducing the time at the onset of the $T_r$ falling rate phase and, consequently, the uptake caused by the convective transport (passive uptake).
+As a result, the diffusive transport in the root surface (active uptake) quickly becomes dominant (Figure \ref[fig_contrib_c], scenario 7).
+}
+%Consequently, $C_0$ is slowly depleted in CUP whereas $\theta$ rapidly reduces to very low values, causing a fast reduction of $q_0$ and $T_r$.
+%When $T_r\approx0$ (end of simulation), 
+%{\tred $C_0$ equals 17.88~mol~m$^{-3}$ and is higher than $C_{lim}$ 
 %(5.97~mol~m$^{-3}$) 
-(Figure \ref[fig_C_r](a)), and the active contribution ends in its maximum value  and the NUP does not occur {\it QM: Nao muito facil para entender}} (Figures \ref[fig_contrib_t] and \ref[fig_contrib_c], scenario 7).
+%(Figure \ref[fig_C_r](a)), and the active contribution ends in its maximum value  and the NUP does not occur {\it QM: Nao muito facil para entender}} (Figures \ref[fig_contrib_t] and \ref[fig_contrib_c], scenario 7).
 
 At high root densities, more water is extracted from the same soil volume during a given time period, causing a delay in the onset of $T_r$ reduction. 
 The higher {\tred root length density results in a steeper falling rate phase {\it QM: Isso esta em um dos meus papers tb (2006? 2008? , que poderia ser citado aqui}} (Figure \ref[fig_Tr_t]). 
@@ -352,7 +358,7 @@ The final concentration profile and relative transpiration are important modelin
 The former is essential to determine the gradient of solute concentration and fluxes. 
 Additionally, it can be used to compute the average solute concentration in a soil layer, important for model upscaling since it is required for one-dimensional macroscopic models.
 The latter is used to predict water and osmotic stress, which can be related to biomass accumulation and yield predictions.
-{\tred By default, the concentration profile is set to be stored in a file at the end of each simulated day and in the end of simulation, but the user can select any time interval to it. {\it QM: Isso nao eh cientificamente relevante.}}
+%{\tred By default, the concentration profile is set to be stored in a file at the end of each simulated day and in the end of simulation, but the user can select any time interval to it. {\it QM: Isso nao eh cientificamente relevante.}}
 Figure \ref[fig_C_r] shows that, at the end of simulations, the concentration profiles and profile average solute concentration are affected by all selected parameters, except potential transpiration.
 As expected, a change in $T_p$ causes changes only in the time at which $C_0$ reaches limiting values ($C_2$ and \clim) due to the decrease in water and solute fluxes. 
 Corroborating with these results, Figure \ref[fig_contrib_c] shows the same amount of active and passive uptake contributions, according to the actual concentration in the soil, for both scenarios 1 ($T_p=6$ mm) and 2 ($T_p=3$ mm),
@@ -383,7 +389,7 @@ This causes a steeper $T_r$ reduction curve, shortening the time needed to $C_0$
 %Even so, $C_0$ becomes so close to zero that it can be consider zero and, consequently, solute uptake also zero.
 
 Figures \ref[fig_contrib_t] and \ref[fig_contrib_c], referring to scenarios 1 to 7, show that with the same values of $I_m$ and $K_m$ (same solute), different sets of active and passive contributions can be observed just due to changes in soil, root and atmospheric parameters. 
-{\tred All of these changes occurred in drying out simulations, with constant atmospheric demand. {\it QM: Esse tipo de observacao confunde. Todas as suas simulacoes nao se referem a esse tipo de cenario?}}
+%{\tred All of these changes occurred in drying out simulations, with constant atmospheric demand. {\it QM: Esse tipo de observacao confunde. Todas as suas simulacoes nao se referem a esse tipo de cenario?}}
 {\tred 
 Different than simulated scenarios, real systems soil water contents changes due to rain or irrigation, and the solute concentration may be altered by the addition of nutrients to the soil.
 The atmospheric demand is far to be constant. {\it QM: Esse tipo de coisa poderia ser discutido numa secao especifica, onde discute a relevancia dos cenarios simulados comparados com a realidade}}
