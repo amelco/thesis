@@ -230,11 +230,241 @@ Increasing $\Delta t$ leads to an increase of the number of calculations and req
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\sec Solute uptake models comparison
+
+%The incorporation of solute uptake in the model of \citeonline[liersolute] shows to be very complex according to the results that has been shown. 
+%The differences are shown in this section, together with the constant uptake model developed by \citeonline[willigen1] to 
+%{\localcolor\Red SECTION INTRODUCTION}
+
+{\tblue In this section, the predictions of the ZU, the CU and the analytical model are shown in comparison to the non-linear model (NLU), for Scenario 1.}
+
+%\sec Comparison to an analytical model
+\secc Analytical model
+
+The proposed non-linear numerical model is compared to the analytical model of \citeonline[cushman], in Figure \ref[fig_analytic], with input parameters of scenario 1.
+The boundary conditions of the analytical model constrain it constant water uptake and dispersion coefficient (steady-state condition).
+Therefore, averages for the simulated water flux and dispersion coefficient of scenario 1 were calculated to serve as inputs in the analytical model.
+%The maximum rate of solute uptake of both models were the same ($J_{max}=I_m$), as well as the root absorbing power was equal to the plant affinity to the solute ($k=K_m$).
+The simulated time to evaluate the concentration profile in the analytical model was the same of the numerical model for scenario 1 ($t_{end}=30$ days).
+
+\medskip
+\label[fig_analytic]
+\picw=13cm \cinspic analytic_cushman.pdf
+\caption/f {Solute concentration profile predicted by the analytical model of \citeonline[cushman] (bold line) and by the non-linear (thin black line) and linear (thin grey line) numerical models, with parameters of scenario 1, at time $t=30$ days}
+\medskip
+
+{\tred The differences between the two models is mostly due to the consideration of steady-state condition in respect to water flow in the analytical model {\it QM: Para fazer uma comparacao justa, deveria rodar o modelo numerico para as condicoes de contorm do modelo analitoco. Assim, daria para, realmente comparar.}} as opposed to the proposed numerical model that deals with transient water and solute fluxes.
+It is shown in the discussion of Section \ref[result_luxnlu] that there is no significant difference between the results of concentration profile of LU and NLU models.
+Nevertheless, Figure \ref[fig_analytic] also shows the concentration profile for the LU model, considering that the analytical model has a linear solute uptake rate as the boundary condition at the root surface.
+With the assumption of linearity (Equation \ref[eq_cond_linear]), the boundary condition equation has 1 ($k$) instead of 2 ($J_{max}$ and $k$) parameters, which can overestimate the uptake at high concentrations.
+
+Despite the differences in the assumptions and input values of each model, the numerical model shows good agreement with the analytical solution by \citeonline[cushman], which is plausible as they are simulating the same phenomenon over a almost identical scenario.
+The proposed numerical model can then be used as an alternative to the analytical model, with the advantage of simulate transient water and solute fluxes, giving the possibility to predict the solute uptake of a wider range of scenarios.
+
+\secc Numerical models
+
+Figure \ref[fig_C0] shows predictions of solute concentration at the root surface as a function of time for three different models ZU, CU and NLU. 
+According to ZU, solutes are transported to the roots by convection, causing an accumulation of solutes at the root surface. 
+As water flux towards the root starts to decrease, salt is transported slower and carried away from the roots by diffusion. 
+{\tblue CU results in a similar prediction with a slightly lower $C_0$ value because the convective solute flux towards the root is much higher than its constant uptake rate $I_m$, resulting in a solute accumulation at the root surface.
+%due to {\tred a small solute uptake value {\it QM: Qual eh esse valor? Isso estah claramente no M\&M?}}. 
+%The difference between ZU and CU concentrations increases as the water flux towards the root decreases, making the transport by diffusion away from the root becomes more important than by convection towards the roots.
+With higher $I_m$ values,
+%The higher the value of the constant uptake rate and the lower $T_p$ in CU, 
+less solute will be predicted to accumulate at the root surface by the CU model and more similar CU and NLU predictions will be, as seen in the gray line of Figure \ref[fig_C0] (for demonstration purpose).
+}
+
+\def\descc{Gray line is CU with an arbitrary larger (10 times) value for the constant of solute uptake rate ($I_m = 2 \cdot 10^{-5}$ mol cm$^{-2}$ s$^{-1}$)}
+
+\medskip
+\label[fig_C0]
+%\picw=11cm \cinspic cxt1.pdf
+\picw=13cm \cinspic cxt_comp.pdf
+\caption/f {Soil solution concentration at the root surface as a function of time predicted by the constant (CU), zero (ZU) and non-linear (NLU) uptake models for scenario 1. \descc}
+\medskip
+
+For ZU and CU, $C_0$ 
+%the concentration 
+starts to diminish (corresponding to less negative values of $h_\pi$) as soon as $T_r<1$, because $H$ at the root surface reached the limiting value of $-$150 m (Figure~\ref[fig_heads1]).
+%due to $H_0=-150$ m (Figure \ref[fig_heads1]).
+In CU, as the solute uptake is constant and does not depend on the solute concentration, the solute transport by convection becomes less important than the movement by diffusion as the water flux towards the root diminishes.
+Thus, the solute depletion at the root surface is due both to the uptake and to the diffusive transport away from the roots.
+For the case of NLU (Figure \ref[fig_heads2]), an accumulation period does not develop due to the high solute uptake rate in LUP (Figure \ref[fig_qst_detail]), resulting from the model assumption that all solute carried by mass flow of water (convective transport) that reaches the root surface is taken up.
+%The time to reach $C_2$ increases {\tred until it becomes higher than $C_0$ (explained in the previous section) generates a delay between the onset of the $T_r$ falling rate phase and the time that $C_0$ starts to diminish. {\it QM: Explicar melhor, nao estah claro}}
+Moreover, the higher uptake of NLU causes lower values of osmotic head ($h_\pi$) and results in a prediction of a longer period of potential transpiration ($T_r=1$).
+For the case of CU and ZU, reduction of $T_r$ starts around the 21th day whilst for NLU it onsets on about the 24th day.
+
+\medskip
+\label[fig_heads1]
+\picw=13cm \cinspic headsxt.pdf
+\caption/f {Pressure ($h$), osmotic ($h_\pi$) and total hydraulic ($H$) heads at the root surface as a function of time predicted by the constant (CU) and the zero (ZU) uptake models, for scenario 1}
+\medskip
+
+\medskip
+\label[fig_heads2]
+\picw=13cm \cinspic headsNLxt.pdf
+\caption/f {Pressure ($h$), osmotic ($h_\pi$) and total hydraulic ($H$) heads at the root surface as a function of time predicted by the non-linear (NLU) uptake model, for scenario 1}
+\medskip
+
+Figure \ref[fig_qst_detail] shows the solute uptake rate (solute flux at the root surface $q_{s_0}$) as a function of time for each model.
+It shows the three uptake phases for NLU (LUP, CUP and NUP), the constant uptake rate for CU, and the zero uptake rate for ZU, according to their respective boundary conditions.
+This figure shows that, during the LUP phase the solute uptake rate is higher than during CUP and NUP due to the constant potential transpiration rates and the absence of a plant controlled mechanism of solute uptake.
+This result is compatible with the model assumption 1, stating that the plant does not control the solute taken up by mass flow of water.
+These results need confrontation with experimental data of {\tred solute uptake of non-stressed plants to verify whether a plant regulated mechanism of uptake should be added to the model. {\it QM: There must be literature on these mechanisms. Cite some.}}
+ 
+\medskip
+\label[fig_qst_detail]
+\picw=11cm \cinspic qsxt1_detail.pdf
+\caption/f {Detail of solute flux at the root surface as a function of time for constant (CU), zero (ZU) and non-linear (NLU) uptake models, for scenario 1}
+\medskip
+
+
+The predicted cumulative amount of solute extracted by the plant is shown in Figure \ref[fig_accsol].
+It can be interpreted as the amount of solute accumulated inside the plant.
+The high uptake rate at LUP, according to the NLU model, causes a fast accumulation of solute inside the plant due to passive uptake.
+According to the model assumptions, the plant does not regulate passive uptake (or the uptake caused by mass flow of water), which, for the case of NLU model in all simulated scenarios, is the greatest contribution to the uptake.
+The ZU model, due to its boundary conditions, does not accumulate any solute and the LU model accumulates solute, at a constant rate.
+
+\medskip
+\label[fig_accsol]
+\picw=11cm \cinspic accumxt_models.pdf
+\caption/f {Cumulative solute uptake as a function of time for constant (CU), zero (ZU) and non-linear (NLU) uptake models, for scenario 1}
+\medskip
+
+%{\tred
+%Based on the assumption that the uptake is not regulated by a concentration inside the plant
+%, it can be plausibly inferred that the governing mechanism of the toxic effect is the passive uptake.
+%}
+%{\tred
+%If the concentration inside the plant is already at its limiting value (meaning that, for that specific time period, the plant does not need that solute anymore), it can stop the active mechanism (as it is plant regulated by metabolic processes) but it is not allowed to stop the passive process, that would be the closure of stomata to stop the water uptake.
+%The plant then has to choose what is physiologically more positive to it: either close the stomata to not enter in a toxicity process or extract more solute and be affected by the toxic effects of the solute excess inside the cells. 
+%Therefore, as a further model improvement, the solute concentration inside the plant has to be considered so it can regulate the uptake.
+%}
+
+
+%{\tred
+%Thus, in a further improvement of the model to separate ionic and osmotic stress, it can be assumed that the plant will enter in a stage of toxicity by means of passive uptake since active uptake is plant regulated.
+%In the current proposed model, in a situation that the plant is in osmotic stress, it is in CUP with $T_r < 1$ and with passive and active uptake contributions working.
+%Once the plant concentration is accounted into the model and the concentration inside the plant already reached the critical level (value the above it, the solute will start to produce toxicity effects), the plant can eliminate the active uptake (because it is plant regulated) but can not eliminate passive uptake.
+%Therefore, in this situation, all solute that is extracted by the plant will contribute to a unavoidable accumulation of solute inside the plant, causing the toxicity effects of the ionic stress.
+%}
+%
+%{\tred
+%When solute uptake is considered, the value of $H$ diminishes (becomes more negative) slower either because $h_\pi$ becomes less negative or more negative at a smaller rate, which causes that the limiting value of $H$ be achieved on a later time, according to the solute uptake rate.
+%Figure \ref[fig_Tr] shows that the onset of the falling $T_r$ phase, for NLU model, occurs in a later time when compared with ZU or CU (which has a smaller solute uptake rate) models.
+%}
+%
+%\medskip
+%\label[fig_Tr]
+%\picw=11cm \cinspic Trxt_comp.pdf
+%\caption/f {Relative transpiration as a function of time for constant (CU), zero (ZU) and non-linear (NLU) uptake models, for scenario 1}
+%\medskip
+
+The CU model may show a period of accumulation of solute near the root surface depending on the potential transpiration rate and solute uptake rate values.
+This period is then followed by a period of diffusion of solute away from the roots which, together with the solute uptake, are responsible for the depletion of solute at the root surface.
+This behavior causes a different solute concentration profile at the end of simulation when compared with the proposed solute uptake model (NLU).
+{\tblue However, CU and NLU models predict similar concentration profiles as the value of $I_m$ for CU model is increased.
+The line in Figure \ref[fig_C] representing CU model for a arbitrary tenfold higher uptake rate shows similar predictions of concentration profiles, with differences due to the diffusion of solute away from the roots, resulting from the solute accumulation period that generates a higher concentration somewhere between $r_0$ and $r_m$ at the end of simulation.
+%{\it QM: Porque precisa aumentar em 10x? No NLU vc nao faz isso. Dah para comparar assim? Nao muito claro. Explicar melhor.}}
+%as opposed to the NLU model, which has no solute accumulation period and its concentration profile diminishes when approaching $r_0$.
+}
+It is also shown that the models that consider solute uptake (CU and NLU) present a smaller concentration at $r_m$ due to the higher solute transport towards the root generated by the gradient caused by the solute uptake at $r_0$.
+
+\medskip
+\label[fig_C]
+%\picw=11cm \cinspic cxr1.pdf
+\picw=11cm \cinspic cxr_comp.pdf
+\caption/f {Soil solution concentration as a function of distance from axial root center in the end of simulation for constant (CU), zero (ZU) and non-linear (NLU) uptake models. \descc}
+\medskip
+
+%\medskip
+%\label[fig_qst]
+%\picw=11cm \cinspic qxt1.pdf
+%\caption/f {Water flux at the root surface as a function of time for constant (CU), zero (ZU) and non-linear (NLU) uptake models, for scenario 1}
+%\medskip
+
+%\vfill\break
+%\medskip
+%%\label[Trs]
+%\picw=11cm \cinspic qxt1.pdf
+%%\caption/f {Relative transpiration as a function of time and pressure head for no uptake (NU), constant (CU) and non-linear (NLU) uptake models}
+%\medskip
+
+%\medskip
+%\label[fig_Tr_detail]
+%\picw=11cm \cinspic Trxt1_detail.pdf
+%\caption/f {Detail of Relative transpiration as a function of time, at times when $C_0<C_{lim}$, for linear (LU) and non-linear (NLU) uptake models}
+%\medskip
+
+%\vfill\break
+%\medskip
+%\label[fig_Im_sensit_curve]
+%\picw=11cm \cinspic Im_x_C0.pdf
+%\caption/f {Response of the time at the onset of concentration reduction at the root surface for different values of $I_m$ parameter}
+%\medskip
+
+%In NU, salt is transported to the roots by convection, causing an accumulation of solutes at the root surface. As water flux towards the root starts to decrease, salt is transported slower and carried away from the roots by diffusion (Figure \ref[cxt]). Because of the accumulation of salt in the root surface, the total head becomes limiting very fast and the transpiration is reduced faster than the other models (Figure \ref[Trs]).
+%
+%In CU, as the salt uptake rate is constant (Figure \ref[fluxesxt]), the concentration at the root surface will decrease only if the uptake rate is larger than convection to the root surface. In the simulation, it happens in about half of the first day (Figure \ref[cxt]). This is very dependent on the uptake rate and water flux since for different conditions, the outcome could be different. Once the concentration at the root surface is zero, the root behaves as a zero-sink, taking up solute at the same rate as which it arrives at the root, keeping the concentration there zero.
+%
+%In NLU, the concentration at the root surface remains constant (Figure \ref[cxt]) until the convection to the root decreases as the water flux decreases (Figure \ref[fluxesxt]). This behavior is really dependent of initial concentration and water flux values since, in this case, $C_0$ at the beginning of simulation is greater than $C_2$, thus the solute uptake equals the convection of solutes to the root. At around day 1, convection starts to decrease but the solute uptake is yet greater than the plant demand (\im) due to convection. The solute uptake becomes constant (and equal to \im) after concentration in root surface is less than \c2. This is clear in XXXFigure 3a, where osmotic head continues constant for a period of time after the beginning of the falling transpiration rate. At this point, active uptake starts since convection only is not capable to maintain solute uptake rate at \im. The concentration keeps decreasing at this constant rate until its value is less than \clim. It is assumed that, at this point, the uptake is not equal to the plant demand for solute (\im) due to the concentration dependence of the MM equation (Figure \ref[fig_MM]). The water flux and the concentration are small as well as the active uptake, that can not maintain the uptake rate at \im. Therefore, a second limiting condition occurs when $C<C_{lim}$ causing another fast decrease in transpiration (Figure \ref[Trs]).
+%The calculated concentrations $C_{lim}$ (Eq. \ref[eq_clim]) and \c2 (Eq. \ref[eq_c2]) depend on water flux and ion type (MM parameters $I_m$ and \km) meaning that the results can be quite different for other ion types and different values of initial water content.
+%
+%Figure \ref[fluxesxt] also shows the changes in solute flux at the root surface for all models. At low concentrations (or at the second falling rate stage: $C<C_{lim}$), in NLU, the solute flux decreases gradually over time until the value of concentration is zero, where it will assume the zero-sink behavior.
+%
+%The concentration profile through the distance from root axial center is shown in Figure \ref[cxr]. The different approaches (NU, CU and NLU) result in different final concentrations profiles. The concentration dependent model NLU takes up more solute from soil solution due to the higher uptake rate in the constant transpiration phase.
+%
+%Figure \ref[Trs] shows the relative transpiration as a function of time for the three model types. The proposed model is able to maintain the potential transpiration for a longer period of time due to the extraction by passive uptake only ($C>C_2$) that keeps the osmotic head constant, allowing pressure head to reach smaller values at the onset of the limiting hydraulic conditions, as can be seen in Figure 6.
+%
+%Figure \ref[Trs] shows that CU and NLU have a more negative pressure head value for the onset of limiting hydraulic condition when compared to NU due to solute uptake that causes a increase in osmotic head (becomes less negative) and, in turn, decreases pressure head. Thus, the first falling rate phase of relative transpiration extends in time. The solute uptake at the beginning of the simulation (for concentrations greater than \c2) caused a greater accumulation of solute in the plant and also influenced the final solute profile, in which LU and NLU have less solute left in the soil profile (Figure 13).
+%
+%At the onset of the second falling rate phase ($C<C_{lim}$), water and solute fluxes decreases rapidly. In Figures XXX10 and 20 we can see that from day 4 to day 5, the fluxes are rapidly reduced, the water flux is near zero in the whole profile, meaning zero or really small convection. Thus, within this period, the transport of solute is made mainly by diffusion and the results of this diffusive transport can be visualized in Figures XXX17 and 18.
+
+%\medskip
+%\label[cxt]
+%\picw=13cm \cinspic cxt.pdf
+%\caption/f {Solute concentration in soil water at the root surface as a function of time for no uptake (NU), constant (CU) and non-linear (NLU) uptake models}
+%\medskip
+%
+%\medskip
+%\label[cxr]
+%\picw=13cm \cinspic cxr.pdf
+%\caption/f {Solute concentration in soil water as a function of distance from axial center for no uptake (NU), constant (CU) and non-linear (NLU) uptake models}
+%\medskip
+%
+%\medskip
+%\label[fluxesxt]
+%\picw=13cm \cinspic fluxesxt.pdf
+%\caption/f {Solute and water fluxes at the root surface as a function of time for no uptake (NU), constant (CU) and non-linear (NLU) uptake models}
+%\medskip
+%
+%\medskip
+%\label[Trs]
+%\picw=13cm \cinspic Trs.pdf
+%\caption/f {Relative transpiration as a function of time and pressure head for no uptake (NU), constant (CU) and non-linear (NLU) uptake models}
+%\medskip
+
+%{\tred 
+%The effects of the MM-based uptake model applied in the convection-dispersion equation are noticed in very low concentration values.
+%This is due to the selected model assumptions but they are acceptable.
+%}
+%{\tred
+%The addition of a solute uptake function to the already existent model of solute transport was able to improve it, giving more realistic results to the simulations.
+%Moreover, it is possible to, in further developments, add a more realistic plant concentration model to improve the proposed model, in a way that the uptake will also depend on the concentration inside the plant, and not only on concentration in soil.
+%In that way, the active and passive partitioning would be essential to determine the stress status of the plant, separating osmotic and toxicity effects on biomass production and yield.
+%Irrigation and nutrition management would then be improved.
+%}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \sec {\tred Model results}
 
 {\tred{\it QM: Esse item ficou muito longo, poderia ser subdividido em subitens 5.2.1, 5.2.2, etc., para organizar mais essa discussao.}}
 
-After analysis of solute uptake predictions by the linear (LU) and non-linear (NLU) uptake model discussed the previous section, the simulations of scenarios 1 to 8 (Table \ref[tab_scenarios]) were performed using the NLU model. 
+After analysis of solute uptake predictions by the linear (LU) and non-linear (NLU) uptake model discussed in Section \ref[result_luxnlu], the simulations of scenarios 1 to 8 (Table~\ref[tab_scenarios]) were performed using the NLU model. 
 In this section, the results of the main output variables ($C_0(t)$, $C(r)$ and $T_r(t)$) are presented for each scenario, as well as the predicted active and passive contributions to solute uptake.
 Simulation results for these scenarios are shown in Figures \ref[fig_C_t]
 to
@@ -317,6 +547,8 @@ In this phase, however, the active component of uptake dominates, being the majo
 %(low $K_m$ values) 
 %and the contribution of the solute uptake by mass flow of water (through the transpiration stream) is estimated to be very low, often below 0.1\%, which corroborates the results.
 
+\secc Active and passive uptake
+
 Predictions of active and passive contributions as a function of time and concentration in soil solution are shown respectively in Figures \ref[fig_contrib_t] and \ref[fig_contrib_c], according to Equation \ref[eq_MM_mod] and the model assumptions.
 From the onset of simulations (wet condition, $T_r=1$), although scenarios start in LUP, a constant (instead of a linearly decreasing) uptake rate is developed. 
 This is due to the fact that the model considers a constant potential transpiration rate over time, therefore, the solute uptake is determined by (constant) water flow $q_0$ and solute concentration $C_0$ (Equation \ref[eq_case3]), also constant because passive uptake by mass flow is the dominating process.
@@ -354,6 +586,8 @@ At high root densities, more water is extracted from the same soil volume during
 The higher {\tred root length density results in a steeper falling rate phase {\it QM: Isso esta em um dos meus papers tb (2006? 2008? , que poderia ser citado aqui}} (Figure \ref[fig_Tr_t]). 
 Therefore, active uptake becomes more important with increasing $R$, as can be seen in Figure \ref[fig_contrib_c] (scenarios 1, 4 and 5).
 
+\secc Concentration profile \pmb{$C(r)$}
+
 The final concentration profile and relative transpiration are important modeling results. 
 The former is essential to determine the gradient of solute concentration and fluxes. 
 Additionally, it can be used to compute the average solute concentration in a soil layer, important for model upscaling since it is required for one-dimensional macroscopic models.
@@ -387,6 +621,8 @@ This causes a steeper $T_r$ reduction curve, shortening the time needed to $C_0$
 
 %The $C_0$ value at the end of simulation is never absolutely zero due to the asymptotic behaviour of $q_{s_0}$ function in response to decreasing $C_0$ values (Equation \ref[eq_case1]). 
 %Even so, $C_0$ becomes so close to zero that it can be consider zero and, consequently, solute uptake also zero.
+
+\secc General comments
 
 Figures \ref[fig_contrib_t] and \ref[fig_contrib_c], referring to scenarios 1 to 7, show that with the same values of $I_m$ and $K_m$ (same solute), different sets of active and passive contributions can be observed just due to changes in soil, root and atmospheric parameters. 
 %{\tred All of these changes occurred in drying out simulations, with constant atmospheric demand. {\it QM: Esse tipo de observacao confunde. Todas as suas simulacoes nao se referem a esse tipo de cenario?}}
@@ -589,240 +825,9 @@ The sensitivity of $t_{T_r}$ serves as an indicator to the duration of this phas
 %The same prediction can have positive or negative sensitivity to a variation of a parameter depending on the chosen scenario.
 %In other words, it is proven that the value of $\eta$ calculated through a variation of a parameter can change with the variation of another parameter and shows the complexity of the model and, therefore, of its sensitivity analysis.
 }
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\sec Solute uptake models comparison
-
-%The incorporation of solute uptake in the model of \citeonline[liersolute] shows to be very complex according to the results that has been shown. 
-%The differences are shown in this section, together with the constant uptake model developed by \citeonline[willigen1] to 
-%{\localcolor\Red SECTION INTRODUCTION}
-
-{\tblue In this section, the predictions of the ZU, the CU and the analytical model are shown, for Scenario 1, in comparison to the nonlinear model. }
-
-\secc Numerical models
-
-Figure \ref[fig_C0] shows predictions of solute concentration at the root surface as a function of time for three different models ZU, CU and NLU. 
-According to ZU, solutes are transported to the roots by convection, causing an accumulation of solutes at the root surface. 
-As water flux towards the root starts to decrease, salt is transported slower and carried away from the roots by diffusion. 
-{\tblue CU results in a similar prediction with a slightly lower $C_0$ value because the convective solute flux towards the root is much higher than its constant uptake rate $I_m$, resulting in a solute accumulation at the root surface.
-%due to {\tred a small solute uptake value {\it QM: Qual eh esse valor? Isso estah claramente no M\&M?}}. 
-%The difference between ZU and CU concentrations increases as the water flux towards the root decreases, making the transport by diffusion away from the root becomes more important than by convection towards the roots.
-With higher $I_m$ values,
-%The higher the value of the constant uptake rate and the lower $T_p$ in CU, 
-less solute will be predicted to accumulate at the root surface by the CU model and more similar CU and NLU predictions will be, as seen in the gray line of Figure \ref[fig_C0] (for demonstration purpose).
-}
-
-\def\descc{Gray line is CU with an arbitrary larger (10 times) value for the constant of solute uptake rate ($I_m = 2 \cdot 10^{-5}$ mol cm$^{-2}$ s$^{-1}$)}
-
-\medskip
-\label[fig_C0]
-%\picw=11cm \cinspic cxt1.pdf
-\picw=13cm \cinspic cxt_comp.pdf
-\caption/f {Soil solution concentration at the root surface as a function of time predicted by the constant (CU), zero (ZU) and non-linear (NLU) uptake models for scenario 1. \descc}
-\medskip
-
-For ZU and CU, $C_0$ 
-%the concentration 
-starts to diminish (corresponding to less negative values of $h_\pi$) as soon as $T_r<1$, because $H$ at the root surface reached the limiting value of $-$150 m (Figure~\ref[fig_heads1]).
-%due to $H_0=-150$ m (Figure \ref[fig_heads1]).
-In CU, as the solute uptake is constant and does not depend on the solute concentration, the solute transport by convection becomes less important than the movement by diffusion as the water flux towards the root diminishes.
-Thus, the solute depletion at the root surface is due both to the uptake and to the diffusive transport away from the roots.
-For the case of NLU (Figure \ref[fig_heads2]), an accumulation period does not develop due to the high solute uptake rate in LUP (Figure \ref[fig_qst_detail]), resulting from the model assumption that all solute carried by mass flow of water (convective transport) that reaches the root surface is taken up.
-%The time to reach $C_2$ increases {\tred until it becomes higher than $C_0$ (explained in the previous section) generates a delay between the onset of the $T_r$ falling rate phase and the time that $C_0$ starts to diminish. {\it QM: Explicar melhor, nao estah claro}}
-Moreover, the higher uptake of NLU causes lower values of osmotic head ($h_\pi$) and results in a prediction of a longer period of potential transpiration ($T_r=1$).
-For the case of CU and ZU, reduction of $T_r$ starts around the 21th day whilst for NLU it onsets on about the 24th day.
-
-\medskip
-\label[fig_heads1]
-\picw=13cm \cinspic headsxt.pdf
-\caption/f {Pressure ($h$), osmotic ($h_\pi$) and total hydraulic ($H$) heads at the root surface as a function of time predicted by the constant (CU) and the zero (ZU) uptake models, for scenario 1}
-\medskip
-
-\medskip
-\label[fig_heads2]
-\picw=13cm \cinspic headsNLxt.pdf
-\caption/f {Pressure ($h$), osmotic ($h_\pi$) and total hydraulic ($H$) heads at the root surface as a function of time predicted by the non-linear (NLU) uptake model, for scenario 1}
-\medskip
-
-Figure \ref[fig_qst_detail] shows the solute uptake rate (solute flux at the root surface $q_{s_0}$) as a function of time for each model.
-It shows the three uptake phases for NLU (LUP, CUP and NUP), the constant uptake rate for CU, and the zero uptake rate for ZU, according to their respective boundary conditions.
-This figure shows that, during the LUP phase the solute uptake rate is higher than during CUP and NUP due to the constant potential transpiration rates and the absence of a plant controlled mechanism of solute uptake.
-This result is compatible with the model assumption 1, stating that the plant does not control the solute taken up by mass flow of water.
-These results need confrontation with experimental data of {\tred solute uptake of non-stressed plants to verify whether a plant regulated mechanism of uptake should be added to the model. {\it QM: There must be literature on these mechanisms. Cite some.}}
- 
-\medskip
-\label[fig_qst_detail]
-\picw=11cm \cinspic qsxt1_detail.pdf
-\caption/f {Detail of solute flux at the root surface as a function of time for constant (CU), zero (ZU) and non-linear (NLU) uptake models, for scenario 1}
-\medskip
-
-
-The predicted cumulative amount of solute extracted by the plant is shown in Figure \ref[fig_accsol].
-It can be interpreted as the amount of solute accumulated inside the plant.
-The high uptake rate at LUP, according to the NLU model, causes a fast accumulation of solute inside the plant due to passive uptake.
-According to the model assumptions, the plant does not regulate passive uptake (or the uptake caused by mass flow of water), which, for the case of NLU model in all simulated scenarios, is the greatest contribution to the uptake.
-The ZU model, due to its boundary conditions, does not accumulate any solute and the LU model accumulates solute, at a constant rate.
-
-\medskip
-\label[fig_accsol]
-\picw=11cm \cinspic accumxt_models.pdf
-\caption/f {Cumulative solute uptake as a function of time for constant (CU), zero (ZU) and non-linear (NLU) uptake models, for scenario 1}
-\medskip
-
-%{\tred
-%Based on the assumption that the uptake is not regulated by a concentration inside the plant
-%, it can be plausibly inferred that the governing mechanism of the toxic effect is the passive uptake.
-%}
-%{\tred
-%If the concentration inside the plant is already at its limiting value (meaning that, for that specific time period, the plant does not need that solute anymore), it can stop the active mechanism (as it is plant regulated by metabolic processes) but it is not allowed to stop the passive process, that would be the closure of stomata to stop the water uptake.
-%The plant then has to choose what is physiologically more positive to it: either close the stomata to not enter in a toxicity process or extract more solute and be affected by the toxic effects of the solute excess inside the cells. 
-%Therefore, as a further model improvement, the solute concentration inside the plant has to be considered so it can regulate the uptake.
-%}
-
-
-%{\tred
-%Thus, in a further improvement of the model to separate ionic and osmotic stress, it can be assumed that the plant will enter in a stage of toxicity by means of passive uptake since active uptake is plant regulated.
-%In the current proposed model, in a situation that the plant is in osmotic stress, it is in CUP with $T_r < 1$ and with passive and active uptake contributions working.
-%Once the plant concentration is accounted into the model and the concentration inside the plant already reached the critical level (value the above it, the solute will start to produce toxicity effects), the plant can eliminate the active uptake (because it is plant regulated) but can not eliminate passive uptake.
-%Therefore, in this situation, all solute that is extracted by the plant will contribute to a unavoidable accumulation of solute inside the plant, causing the toxicity effects of the ionic stress.
-%}
-%
-%{\tred
-%When solute uptake is considered, the value of $H$ diminishes (becomes more negative) slower either because $h_\pi$ becomes less negative or more negative at a smaller rate, which causes that the limiting value of $H$ be achieved on a later time, according to the solute uptake rate.
-%Figure \ref[fig_Tr] shows that the onset of the falling $T_r$ phase, for NLU model, occurs in a later time when compared with ZU or CU (which has a smaller solute uptake rate) models.
-%}
-%
-%\medskip
-%\label[fig_Tr]
-%\picw=11cm \cinspic Trxt_comp.pdf
-%\caption/f {Relative transpiration as a function of time for constant (CU), zero (ZU) and non-linear (NLU) uptake models, for scenario 1}
-%\medskip
-
-The CU model may show a period of accumulation of solute near the root surface depending on the potential transpiration rate and solute uptake rate values.
-This period is then followed by a period of diffusion of solute away from the roots which, together with the solute uptake, are responsible for the depletion of solute at the root surface.
-This behavior causes a different solute concentration profile at the end of simulation when compared with the proposed solute uptake model (NLU).
-{\tblue However, CU and NLU models predict similar concentration profiles as the value of $I_m$ for CU model is increased.
-The line in Figure \ref[fig_C] representing CU model for a arbitrary tenfold higher uptake rate shows similar predictions of concentration profiles, with differences due to the diffusion of solute away from the roots, resulting from the solute accumulation period that generates a higher concentration somewhere between $r_0$ and $r_m$ at the end of simulation.
-%{\it QM: Porque precisa aumentar em 10x? No NLU vc nao faz isso. Dah para comparar assim? Nao muito claro. Explicar melhor.}}
-%as opposed to the NLU model, which has no solute accumulation period and its concentration profile diminishes when approaching $r_0$.
-}
-It is also shown that the models that consider solute uptake (CU and NLU) present a smaller concentration at $r_m$ due to the higher solute transport towards the root generated by the gradient caused by the solute uptake at $r_0$.
-
-\medskip
-\label[fig_C]
-%\picw=11cm \cinspic cxr1.pdf
-\picw=11cm \cinspic cxr_comp.pdf
-\caption/f {Soil solution concentration as a function of distance from axial root center in the end of simulation for constant (CU), zero (ZU) and non-linear (NLU) uptake models. \descc}
-\medskip
-
-%\medskip
-%\label[fig_qst]
-%\picw=11cm \cinspic qxt1.pdf
-%\caption/f {Water flux at the root surface as a function of time for constant (CU), zero (ZU) and non-linear (NLU) uptake models, for scenario 1}
-%\medskip
-
-%\vfill\break
-%\medskip
-%%\label[Trs]
-%\picw=11cm \cinspic qxt1.pdf
-%%\caption/f {Relative transpiration as a function of time and pressure head for no uptake (NU), constant (CU) and non-linear (NLU) uptake models}
-%\medskip
-
-%\medskip
-%\label[fig_Tr_detail]
-%\picw=11cm \cinspic Trxt1_detail.pdf
-%\caption/f {Detail of Relative transpiration as a function of time, at times when $C_0<C_{lim}$, for linear (LU) and non-linear (NLU) uptake models}
-%\medskip
-
-%\vfill\break
-%\medskip
-%\label[fig_Im_sensit_curve]
-%\picw=11cm \cinspic Im_x_C0.pdf
-%\caption/f {Response of the time at the onset of concentration reduction at the root surface for different values of $I_m$ parameter}
-%\medskip
-
-%In NU, salt is transported to the roots by convection, causing an accumulation of solutes at the root surface. As water flux towards the root starts to decrease, salt is transported slower and carried away from the roots by diffusion (Figure \ref[cxt]). Because of the accumulation of salt in the root surface, the total head becomes limiting very fast and the transpiration is reduced faster than the other models (Figure \ref[Trs]).
-%
-%In CU, as the salt uptake rate is constant (Figure \ref[fluxesxt]), the concentration at the root surface will decrease only if the uptake rate is larger than convection to the root surface. In the simulation, it happens in about half of the first day (Figure \ref[cxt]). This is very dependent on the uptake rate and water flux since for different conditions, the outcome could be different. Once the concentration at the root surface is zero, the root behaves as a zero-sink, taking up solute at the same rate as which it arrives at the root, keeping the concentration there zero.
-%
-%In NLU, the concentration at the root surface remains constant (Figure \ref[cxt]) until the convection to the root decreases as the water flux decreases (Figure \ref[fluxesxt]). This behavior is really dependent of initial concentration and water flux values since, in this case, $C_0$ at the beginning of simulation is greater than $C_2$, thus the solute uptake equals the convection of solutes to the root. At around day 1, convection starts to decrease but the solute uptake is yet greater than the plant demand (\im) due to convection. The solute uptake becomes constant (and equal to \im) after concentration in root surface is less than \c2. This is clear in XXXFigure 3a, where osmotic head continues constant for a period of time after the beginning of the falling transpiration rate. At this point, active uptake starts since convection only is not capable to maintain solute uptake rate at \im. The concentration keeps decreasing at this constant rate until its value is less than \clim. It is assumed that, at this point, the uptake is not equal to the plant demand for solute (\im) due to the concentration dependence of the MM equation (Figure \ref[fig_MM]). The water flux and the concentration are small as well as the active uptake, that can not maintain the uptake rate at \im. Therefore, a second limiting condition occurs when $C<C_{lim}$ causing another fast decrease in transpiration (Figure \ref[Trs]).
-%The calculated concentrations $C_{lim}$ (Eq. \ref[eq_clim]) and \c2 (Eq. \ref[eq_c2]) depend on water flux and ion type (MM parameters $I_m$ and \km) meaning that the results can be quite different for other ion types and different values of initial water content.
-%
-%Figure \ref[fluxesxt] also shows the changes in solute flux at the root surface for all models. At low concentrations (or at the second falling rate stage: $C<C_{lim}$), in NLU, the solute flux decreases gradually over time until the value of concentration is zero, where it will assume the zero-sink behavior.
-%
-%The concentration profile through the distance from root axial center is shown in Figure \ref[cxr]. The different approaches (NU, CU and NLU) result in different final concentrations profiles. The concentration dependent model NLU takes up more solute from soil solution due to the higher uptake rate in the constant transpiration phase.
-%
-%Figure \ref[Trs] shows the relative transpiration as a function of time for the three model types. The proposed model is able to maintain the potential transpiration for a longer period of time due to the extraction by passive uptake only ($C>C_2$) that keeps the osmotic head constant, allowing pressure head to reach smaller values at the onset of the limiting hydraulic conditions, as can be seen in Figure 6.
-%
-%Figure \ref[Trs] shows that CU and NLU have a more negative pressure head value for the onset of limiting hydraulic condition when compared to NU due to solute uptake that causes a increase in osmotic head (becomes less negative) and, in turn, decreases pressure head. Thus, the first falling rate phase of relative transpiration extends in time. The solute uptake at the beginning of the simulation (for concentrations greater than \c2) caused a greater accumulation of solute in the plant and also influenced the final solute profile, in which LU and NLU have less solute left in the soil profile (Figure 13).
-%
-%At the onset of the second falling rate phase ($C<C_{lim}$), water and solute fluxes decreases rapidly. In Figures XXX10 and 20 we can see that from day 4 to day 5, the fluxes are rapidly reduced, the water flux is near zero in the whole profile, meaning zero or really small convection. Thus, within this period, the transport of solute is made mainly by diffusion and the results of this diffusive transport can be visualized in Figures XXX17 and 18.
-
-%\medskip
-%\label[cxt]
-%\picw=13cm \cinspic cxt.pdf
-%\caption/f {Solute concentration in soil water at the root surface as a function of time for no uptake (NU), constant (CU) and non-linear (NLU) uptake models}
-%\medskip
-%
-%\medskip
-%\label[cxr]
-%\picw=13cm \cinspic cxr.pdf
-%\caption/f {Solute concentration in soil water as a function of distance from axial center for no uptake (NU), constant (CU) and non-linear (NLU) uptake models}
-%\medskip
-%
-%\medskip
-%\label[fluxesxt]
-%\picw=13cm \cinspic fluxesxt.pdf
-%\caption/f {Solute and water fluxes at the root surface as a function of time for no uptake (NU), constant (CU) and non-linear (NLU) uptake models}
-%\medskip
-%
-%\medskip
-%\label[Trs]
-%\picw=13cm \cinspic Trs.pdf
-%\caption/f {Relative transpiration as a function of time and pressure head for no uptake (NU), constant (CU) and non-linear (NLU) uptake models}
-%\medskip
-
-%{\tred 
-%The effects of the MM-based uptake model applied in the convection-dispersion equation are noticed in very low concentration values.
-%This is due to the selected model assumptions but they are acceptable.
-%}
-%{\tred
-%The addition of a solute uptake function to the already existent model of solute transport was able to improve it, giving more realistic results to the simulations.
-%Moreover, it is possible to, in further developments, add a more realistic plant concentration model to improve the proposed model, in a way that the uptake will also depend on the concentration inside the plant, and not only on concentration in soil.
-%In that way, the active and passive partitioning would be essential to determine the stress status of the plant, separating osmotic and toxicity effects on biomass production and yield.
-%Irrigation and nutrition management would then be improved.
-%}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%\sec Comparison to an analytical model
-\secc Analytical model
-
-The proposed numerical model is compared to the analytical model of \citeonline[cushman], in Figure \ref[fig_analytic], with input parameters of scenario 1.
-The boundary conditions of the analytical model constrain it constant water uptake and dispersion coefficient (steady-state condition).
-Therefore, averages for the simulated water flux and dispersion coefficient of scenario 1 were calculated to serve as inputs in the analytical model.
-%The maximum rate of solute uptake of both models were the same ($J_{max}=I_m$), as well as the root absorbing power was equal to the plant affinity to the solute ($k=K_m$).
-The simulated time to evaluate the concentration profile in the analytical model was the same of the numerical model for scenario 1 ($t_{end}=30$ days).
-
-\medskip
-\label[fig_analytic]
-\picw=13cm \cinspic analytic_cushman.pdf
-\caption/f {Solute concentration profile predicted by the analytical model of \citeonline[cushman] (bold line) and by the nonlinear (thin black line) and linear (thin grey line) numerical models, with parameters of scenario 1, at time $t=30$ days}
-\medskip
-
-{\tred The differences between the two models is mostly due to the consideration of steady-state condition in respect to water flow in the analytical model {\it QM: Para fazer uma comparacao justa, deveria rodar o modelo numerico para as condicoes de contorm do modelo analitoco. Assim, daria para, realmente comparar.}} as opposed to the proposed numerical model that deals with transient water and solute fluxes.
-It is shown in the discussion of Section \ref[result_luxnlu] that there is no significant difference between the results of concentration profile of LU and NLU models.
-Nevertheless, Figure \ref[fig_analytic] also shows the concentration profile for the LU model, considering that the analytical model has a linear solute uptake rate as the boundary condition at the root surface.
-With the assumption of linearity (Equation \ref[eq_cond_linear]), the boundary condition equation has 1 ($k$) instead of 2 ($J_{max}$ and $k$) parameters, which can overestimate the uptake at high concentrations.
-
-Despite the differences in the assumptions and input values of each model, the numerical model shows good agreement with the analytical solution by \citeonline[cushman], which is plausible as they are simulating the same phenomenon over a almost identical scenario.
-The proposed numerical model can then be used as an alternative to the analytical model, with the advantage of simulate transient water and solute fluxes, giving the possibility to predict the solute uptake of a wider range of scenarios.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
