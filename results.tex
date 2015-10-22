@@ -108,7 +108,7 @@ Scenario 4 never reached the LCC and Table \ref[tab_diff] shows the differences 
 \label[diff_t]
 \picw=13cm \cinspic diffs_t.pdf
 \caption/f {(bottom) Solute concentration at the root surface as a function of time for scenario 1 during LCC occurrence predicted by the linear (solid line) and non-linear (dashed line) model;
-(top) absolute difference between the two models and its relative difference value according to Equation \ref[error_C] 
+(top) absolute difference ($\delta$) between the two models and its relative difference ($\delta_c$) value according to Equation \ref[error_C] 
 %{\it QM: Nao entendo a figura de cima. Ela eh um dividido pelo outro? Nao parece.} 
 %{\tblue {\it My answer: a linha de cima eh a diferenca absoluta, e o valor em porcentagem, a relativa}}
 }
@@ -118,7 +118,7 @@ Scenario 4 never reached the LCC and Table \ref[tab_diff] shows the differences 
 \label[diff_r]
 \picw=13cm \cinspic diffs_r.pdf
 \caption/f {(bottom) Solute concentration as a function of distance from axial center for scenario 1 during LCC occurrence predicted by the linear (solid line) and non-linear (dashed line) model;
-(top) absolute difference between the two models and its relative difference value according to Equation \ref[error_C] 
+(top) absolute difference ($\delta$) between the two models and its relative difference ($\delta_c$) value according to Equation \ref[error_C] 
 }
 \medskip
 
@@ -148,7 +148,7 @@ For the concentration as a function of distance from axial center ($C(r)$), ther
 Therefore, for predictions that result from the entire simulation period, like accumulated uptake, or for concentration as a function of the radial distance, the differences are very small and both models perform equally. 
 In these cases, LU may be preferred since it allows larger time steps making simulation to run faster.
 On the other hand, by considering that the metabolic response of the plant for different levels of concentration at the root surface is immediate -- only a slightly change in $C_0$ causes a instantaneous plant reaction -- or in situations where the value of $C_0$ during LCC is important, NLU could be preferred as the mechanistically most correct model.  
-In this thesis we chose to use NLU since the values of $C_0$ are important to determine, precisely, the active and passive contributions to the solute uptake, which will be analyzed in the next section.
+In this thesis we chose to use NLU since the values of $C_0$ are important to determine, precisely, the active and passive contributions to the solute uptake, which will be analyzed in Section \ref[model_results].
 % and, therefore, the differences between the two models outputs -- according to Equations  \ref[error_abs] and \ref[error_rel] -- were calculated for this time period only. 
 
 %%For the Scenario 1, this situation occurred at nearly the fourth simulated day. 
@@ -253,6 +253,7 @@ The simulated time to evaluate the concentration profile in the analytical model
 \caption/f {Solute concentration profile predicted by the analytical model of \citeonline[cushman] (bold line) and by the non-linear (thin black line) and linear (thin grey line) numerical models, with parameters of scenario 1, at time $t=30$ days}
 \medskip
 
+%
 {\tred The differences between the two models is mostly due to the consideration of steady-state condition in respect to water flow in the analytical model {\it QM: Para fazer uma comparacao justa, deveria rodar o modelo numerico para as condicoes de contorm do modelo analitoco. Assim, daria para, realmente comparar.}} as opposed to the proposed numerical model that deals with transient water and solute fluxes.
 It is shown in the discussion of Section \ref[result_luxnlu] that there is no significant difference between the results of concentration profile of LU and NLU models.
 Nevertheless, Figure \ref[fig_analytic] also shows the concentration profile for the LU model, considering that the analytical model has a linear solute uptake rate as the boundary condition at the root surface.
@@ -263,7 +264,16 @@ The proposed numerical model can then be used as an alternative to the analytica
 
 \secc Numerical models
 
-Figure \ref[fig_C0] shows predictions of solute concentration at the root surface as a function of time for three different models ZU, CU and NLU. 
+According to the piecewise Equation \ref[eq_MM_mod], the solute uptake rate occurs according to three phases. 
+They will be abbreviated LUP -- linear uptake phase when $C_0>C_2$, CUP -- constant uptake phase when $C_{lim}<C_0<C_2$, and NUP -- non-linear uptake phase when $C_0<C_{lim}$, as shown in Figure \ref[fig_phases].
+
+\medskip
+\label[fig_phases]
+\picw=12cm \cinspic MM_phases.pdf
+\caption/f {Schematic representation of the phases LUP ($C_0>C_2$), CUP ($C_{lim}<C_0<C_2$) and NUP ($C_0<C_{lim}$)}
+\medskip
+
+Predictions of solute concentration at the root surface as a function of time for three different models ZU, CU and NLU are shown in Figure \ref[fig_C0]. 
 According to ZU, solutes are transported to the roots by convection, causing an accumulation of solutes at the root surface. 
 As water flux towards the root starts to decrease, salt is transported slower and carried away from the roots by diffusion. 
 {\tblue CU results in a similar prediction with a slightly lower $C_0$ value because the convective solute flux towards the root is much higher than its constant uptake rate $I_m$, resulting in a solute accumulation at the root surface.
@@ -460,26 +470,18 @@ It is also shown that the models that consider solute uptake (CU and NLU) presen
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\label [model_results]
 \sec {\tred Model results}
 
 {\tred{\it QM: Esse item ficou muito longo, poderia ser subdividido em subitens 5.2.1, 5.2.2, etc., para organizar mais essa discussao.}}
 
 After analysis of solute uptake predictions by the linear (LU) and non-linear (NLU) uptake model discussed in Section \ref[result_luxnlu], the simulations of scenarios 1 to 8 (Table~\ref[tab_scenarios]) were performed using the NLU model. 
-In this section, the results of the main output variables ($C_0(t)$, $C(r)$ and $T_r(t)$) are presented for each scenario, as well as the predicted active and passive contributions to solute uptake.
 Simulation results for these scenarios are shown in Figures \ref[fig_C_t]
 to
 %, \ref[fig_C_r] and 
 \ref[fig_Tr_t]. 
 All simulations started at pressure head ($h_{ini}$) of $-1$~m, so that both wet and dry soil conditions occurred in the simulated period.
-
-According to the piecewise Equation \ref[eq_MM_mod], the solute uptake rate occurs according to three phases. 
-They will be abbreviated LUP -- linear uptake phase when $C_0>C_2$, CUP -- constant uptake phase when $C_{lim}<C_0<C_2$, and NUP -- non-linear uptake phase when $C_0<C_{lim}$, as shown in Figure \ref[fig_phases].
-
-\medskip
-\label[fig_phases]
-\picw=12cm \cinspic MM_phases.pdf
-\caption/f {Schematic representation of the phases LUP ($C_0>C_2$), CUP ($C_{lim}<C_0<C_2$) and NUP ($C_0<C_{lim}$)}
-\medskip
+In this section, the results of the main output variables ($C_0(t)$, $C(r)$ and $T_r(t)$) are presented for each scenario, as well as the predicted active and passive contributions to solute uptake.
 
 \secc {\tblue Concentration at the root surface as a function of time \pmb{$C_0(t)$}}
 
@@ -505,7 +507,7 @@ The reduction in $q_0$ (reflected in $T_r$) increases $C_2$ value according to E
 %the rate of decreasing $q_0$ is modified by
 which changes with soil type, root density, initial concentration and potential transpiration (Figure \ref[fig_C_t]).
 %(WE CAN SEE IT IN THE DIFFERENT SOIL TYPES)
-{\tred Moreover, during the CUP, the solute uptake by mass flow does not attend completely the plant demand, {\it QM: Como da para ver isso na figura?}}
+{\tred Moreover, during the CUP, the solute uptake by mass flow (passive uptake) does not attend completely the plant demand, {\it QM: Como da para ver isso na figura?}}
 thus, according to the model assumptions, an active uptake is developed and it becomes higher as passive uptake 
 %(driven by mass flow of water) 
 becomes lower in order to maintain the constant uptake rate.

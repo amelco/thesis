@@ -133,8 +133,8 @@ print clim
 print c2
 set xtics ("0" 0, "C_{lim}" clim, "C_2" c2) nomirror
 #set ytics ("0" 0, "I_m" Im) nomirror
-set xlabel "Concentration at the root surface (mol)"
-set ylabel "Solute uptake rate (mol m^{-2} s^{-1})"
+set xlabel "solute concentration at the root surface (C_0), mol m^{-3}"
+set ylabel "solute uptake rate at the root surface\n(q_{s_0}), mol m^{-2} s^{-1}"
 
 set label "NUP" at clim/3.0,Im+0.15 font ",18"
 set label "CUP" at   c2/2.0,Im+0.15 font ",18"
