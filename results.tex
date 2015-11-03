@@ -216,7 +216,9 @@ This set bounds on time and space steps, with a condition of stability given by 
 A stability analysis that considers the use of a implicit scheme for the numerical solution together with variable space steps and diffusion coefficients is a further step of this work, with an objective of reaching more efficient and reliable calculations.
 %{\it QM: Elaborar mais isso a luz do comentario no paragrafo anterior}
 }
-{\tblue As a result of the selected time step value (0.01 s) that does not cause stability problems, the time to complete a simulation run ranged from 40 minutes to 1.5 days, in our simulation scenarios, using a modern computer with a 3.2 GHz processor.
+{\tblue As a result of the selected time step value (0.01 s),
+%that does not cause stability problems, 
+the time to complete a simulation run ranged from 40 minutes to 1.5 days, in our simulation scenarios, using a modern computer with a 3.2 GHz processor (with a theoretical performance of 12.8 GFLOPS -- billion floating-point operations per second).
 Increasing $\Delta t$ leads to an increase of the number of calculations and requires more computing time.
 }
 
@@ -253,13 +255,16 @@ The simulated time to evaluate the concentration profile in the analytical model
 \caption/f {Solute concentration profile predicted by the analytical model of \citeonline[cushman] (bold line) and by the non-linear (thin black line) and linear (thin grey line) numerical models, with parameters of scenario 1, at time $t=30$ days}
 \medskip
 
-%
-{\tred The differences between the two models is mostly due to the consideration of steady-state condition in respect to water flow in the analytical model {\it QM: Para fazer uma comparacao justa, deveria rodar o modelo numerico para as condicoes de contorm do modelo analitoco. Assim, daria para, realmente comparar.}} as opposed to the proposed numerical model that deals with transient water and solute fluxes.
+
+The differences between the two models is mostly due to the consideration of steady-state condition in respect to water flow in the analytical model 
+{\tred\it QM: Para fazer uma comparacao justa, deveria rodar o modelo numerico para as condicoes de contorm do modelo analitoco. Assim, daria para, realmente comparar.}
+{\tblue\it Andre: Nao foi possivel realizar simulacoes em steady-state para o fluxo de agua utilizando o modelo proposto. Uma nova equacao referente a nova condicao de contorno teria que ser resolvida e nao houve tempo habil para isso. Essa discussao, entao, nao tem validade?}
+ as opposed to the proposed numerical model that deals with transient water and solute fluxes.
 It is shown in the discussion of Section \ref[result_luxnlu] that there is no significant difference between the results of concentration profile of LU and NLU models.
 Nevertheless, Figure \ref[fig_analytic] also shows the concentration profile for the LU model, considering that the analytical model has a linear solute uptake rate as the boundary condition at the root surface.
 With the assumption of linearity (Equation \ref[eq_cond_linear]), the boundary condition equation has 1 ($k$) instead of 2 ($J_{max}$ and $k$) parameters, which can overestimate the uptake at high concentrations.
 
-Despite the differences in the assumptions and input values of each model, the numerical model shows good agreement with the analytical solution by \citeonline[cushman], which is plausible as they are simulating the same phenomenon over a almost identical scenario.
+Despite the differences in the assumptions and input values of each model, the numerical model shows good agreement with the analytical solution by \citeonline[cushman], which is plausible as they are simulating the same phenomenon over an almost identical scenario.
 The proposed numerical model can then be used as an alternative to the analytical model, with the advantage of simulate transient water and solute fluxes, giving the possibility to predict the solute uptake of a wider range of scenarios.
 
 \secc Numerical models
@@ -320,7 +325,18 @@ Figure \ref[fig_qst_detail] shows the solute uptake rate (solute flux at the roo
 It shows the three uptake phases for NLU (LUP, CUP and NUP), the constant uptake rate for CU, and the zero uptake rate for ZU, according to their respective boundary conditions.
 This figure shows that, during the LUP phase the solute uptake rate is higher than during CUP and NUP due to the constant potential transpiration rates and the absence of a plant controlled mechanism of solute uptake.
 This result is compatible with the model assumption 1, stating that the plant does not control the solute taken up by mass flow of water.
-These results need confrontation with experimental data of {\tred solute uptake of non-stressed plants to verify whether a plant regulated mechanism of uptake should be added to the model. {\it QM: There must be literature on these mechanisms. Cite some.}}
+Similar result was found by \citeonline[simunek] in simulations using a macroscopic model that considers active and passive uptake of solutes.
+Their predictions resulted in high solute uptake rates at high concentrations when passive uptake was occurring (their Figure 12), with a concave reduction of uptake with decreasing solute concentration, as shown in Figure \ref[fig_qst_detail].
+Additionally, \citeonline[robinson] concluded, in his review, that there is no limit for the uptake of some ions like NO$^-_3$ and K$^+$, making the predictions of the model in accordance to the phenomena.
+However, the model does not consider any mechanism of solute uptake regulation for the high concentration range.
+These results, therefore, need confrontation with experimental data of solute uptake of non-stressed plants to verify whether a plant regulated mechanism of uptake should be considered.
+A good amount of data can be found in \citeonline[robinson] and in \citeonline[willigen_thesis].
+%He concluded that uptake per unit of root is faster in the nutrient-rich zone of the soil and that there is no limit for the uptake of some ions like NO$^-_3$ and K$^+$. 
+
+%made a review that assesses how various attributes like root growth and development, uptake rates, nutrient contents and root-shoot interactions respond to localized supplies of nutrients.
+%{\it QM: There must be literature on these mechanisms. Cite some.}
+
+ used the model HYDRUS to simulate solute uptake considering active and passive uptake
  
 \medskip
 \label[fig_qst_detail]
@@ -518,11 +534,13 @@ which changes with soil type, root density, initial concentration and potential 
 \def\desca{Bold line represents the total solute uptake (active+passive), the thin line represents active contributions to the solute uptake, and the dashed line represents the passive contribution. }
 \def\descb{Simulated scenarios according to Table \ref[tab_scenarios]}
 
+\label[active_passive]
 \secc Active and passive uptake
 
 Predictions of active and passive contributions as a function of time and concentration in soil solution are shown respectively in Figures \ref[fig_contrib_t] and \ref[fig_contrib_c], according to Equation \ref[eq_MM_mod] and the model assumptions.
 From the onset of simulations (wet condition, $T_r=1$), although scenarios start in LUP, a constant (instead of a linearly decreasing) uptake rate is developed. 
 This is due to the fact that the model considers a constant potential transpiration rate over time, therefore, the solute uptake is determined by (constant) water flow $q_0$ and solute concentration $C_0$ (Equation \ref[eq_case3]), also constant because passive uptake by mass flow is the dominating process.
+The constant concentration in soil solution also occurs in the simulations of \citeonline[simunek] when only passive uptake is considered.
 A plant controlled process allowing the reduction of solute uptake
 {\tblue 
 (for example, a reflection coefficient that indicates how effectively the osmotic pressure of a solute can be exerted across a membrane \cite[nobel])
@@ -610,11 +628,13 @@ In other words, these simulations show that a reduction of $T_p$ results in the 
 \caption/f {Solute concentration in soil water as a function of distance from axial center, at the end of simulations, for different scenarios regarding (a) hydraulic properties, (b) root length density, (c) initial solute concentration, and (d) potencial transpiration. Thin lines indicates the average concentration}
 \medskip
 
-Soil hydraulic properties and root length density change the final concentration profile respectively due both to the different soil hydraulic properties that affect water movement and to the greater water and solute uptake per soil volume unit (see earlier discussion).
+Soil hydraulic properties and root length density change the final concentration profile respectively due both to the different soil hydraulic properties that affect water movement and to the greater water and solute uptake per soil volume unit (see earlier discussion in Section \ref[active_passive]).
 Similarly, they affect the steepness of the $T_r$ falling rate phase, also modifying the length of the phases LUP, CUP and NUP.
 The initial concentration, for obvious reasons, changes the final concentration profile as well.
-It slightly changes the onset of falling {\tred $T_r$ rate phase due to the osmotic hydraulic head component. {\it QM: Aqui poderia citar meu 2010 paper.}}
-The highest variation can be observed in CUP and NUP.
+It slightly changes the onset of falling $T_r$ rate phase due to the osmotic hydraulic head component. 
+These results, showed in Figure \ref[fig_Tr_t], are in accordance to the findings of \citeonline[liersolute] model which states that the onset of the falling $T_r$ rate phase is a function of potential transpiration, solute initial concentration and root density.
+%{\it QM: Aqui poderia citar meu 2010 paper.}
+The highest variation caused by changes in initial concentration can be observed in CUP and NUP.
 With low values of $C_0$ ($h_\pi$ closer to zero), $H_{lim}$ is achieved faster because there is less solute in soil to be taken up.
 This causes a steeper $T_r$ reduction curve, shortening the time needed to $C_0$ be smaller than \clim.
 
@@ -669,8 +689,8 @@ For instance: relative transpiration, pressure and osmotic potentials, water and
 Some of these predictions were selected to check how changes in soil and ion/plant parameters would affect them. 
 The selected predictions $Y$ were: ending time of simulation ($t_{end}$), osmotic head ($h_{os}$), time at the onset of the $T_r$ falling rate phase ($t_{T_r}$), time at the onset of constant uptake phase ($t_{C_0}$) and accumulated solute uptake ($acc$).
 Varying parameter $P$ were the ion/plant ($I_m$ and $K_m$) and the soil hydraulic ($\alpha$, $n$, $K_s$, $\lambda$, $\theta_r$ and $\theta_s$) parameters. 
-{\tred \it QM: Isso seria tipicamente M\&M.}
-{\tblue\it Andre: Est\'a em M\&M, repetido aqui.}
+%{\tred \it QM: Isso seria tipicamente M\&M.}
+%{\tblue\it Andre: Est\'a em M\&M, repetido aqui.}
 
 Sensitivities to ion/plant parameters were high for $h_{os}$ and presented an inverse response (negative values) to $I_m$ variation (Figure \ref[sensitivity_MM_rest]).
 This is due to the fact that, with higher values of $I_m$, there are higher uptake rates of solute in both phases of constant and non-linear uptake, diminishing the value of concentration at the root surface in the end of simulation (less negative values of osmotic head $h_\pi$).
