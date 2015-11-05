@@ -1,32 +1,30 @@
 \cleardoublepage
-\chap CONCLUSION
+\chap CONCLUSIONS
 
 The partial differential equation of convection-dispersion was numerically solved using a fully implicit scheme, considering a transient state of solute flow and a solute uptake rate that is dependent on the solute concentration in the soil.
 This solution was then incorporated into the model of \citeonline[liersolute] in order to modify it to take into account the root solute uptake.
 This proposed model has a linear and a non-linear solution for the solute uptake equation and shows a good agreement with the analytical solution proposed by \citeonline[cushman] which, also considers a concentration dependent uptake as the boundary condition at the root surface.
 The linear and non-linear solutions are significantly different only when comparing the concentration as a function of time for times where $C_0 < C_{lim}$ (non-linear uptake phase, NUP).
 
-{\tblue The model did not present stability issues in the simulations of the selected scenarios for a $\Delta t$ value of 0.01 s.
-However, a more detailed study of stability issue of the proposed model that considers a implicit scheme for the numerical solution of the convection-dispersion equation that uses variable space steps and diffusion coefficients has to be done in further work.
-}
-
 Simulations has shown that a second reduction in the relative transpiration might occur at the NUP, caused by a reduction of the solute uptake rate in this phase that leads to a reduction of water flux due to the decreasing value of pressure head needed to maintain the limiting value of $H=H_{lim}$.
 This second reduction shows that the limiting value $C_{lim}$ can be a important parameter to determine changes in the combined water and osmotic stress in low concentration situations and it needs more investigation.
 
-The model has the ability to partition active and passive contributions to the solute uptake.
-The major part of the uptake is done passively  in the LUP and it is possibly overestimated due to the high solute uptake by mass flow of water which is not regulated by the plant. 
-Active uptake grows with decreasing concentration until it becomes dominant in the NUP.
-The maximum value for passive and active uptake depends on soil type, initial concentration, root density and potential transpiration.
+The model was shown to be able to quantify the active and passive contributions to the solute uptake, which can be used to distinguish osmotic and ionic stressors in further works.
+Soil hydraulic properties, root length density, initial concentration and potential transpiration are factors that change the time that the concentration at the root surface starts to decrease and the time that the active uptake is maximum. 
 
-All soil hydraulic parameters affect in an average relation of 1/1 the model outputs.
-The parameter $n$ showed to strongly affect the predictions with one order of magnitude higher than the others.
-As it belongs to both hydraulic conductivity and water retention equations, it is hard to explain this result without an empirical test.
-Similarly, the plant/solute related parameters $I_m$ and $K_m$ affects the model in a 1/1 relation, making them important parameters of the model, requiring precise measurements at its aquisition.
+%The model has the ability to partition active and passive contributions to the solute uptake.
+%The major part of the uptake is done passively  in the LUP and it is possibly overestimated due to the high solute uptake by mass flow of water which is not regulated by the plant. 
+%Active uptake grows with decreasing concentration until it becomes dominant in the NUP.
+%The maximum value for passive and active uptake depends on soil type, initial concentration, root density and potential transpiration.
 
-Although the model showed acceptable results, it has to be more heavily tested with different scenarios and its results also must be confronted with experimental data to check for discrepancies and flaws that will expose its weaknesses.
-There are a number of other models (analytical or numerical) that has the same purpose and each of them has its own weaknesses.
-Simulating a phenomenon of nature is a quite complicated processes and it will always be limited by the human knowledge, by the form that he sees and abstract it.
-Therefore, this particular model is just one of the possible ways of simulate the complex processes that occur in the SPA system, narrowed by the knowledge limitation of its author and, thus, must be used with caution.
+From the sensitivity analysis, we can conclude that the quantities that need to be carefully parameterized are: $\theta_r$, $\theta_s$, $\alpha$, $I_m$ and $K_m$ which affects more strongly the solute concentration at the root surface in the end of simulation, $\theta_s$ which strongly affects the time at the limiting values are reached, and $n$ which strongly affects all selected predictions, mainly $h_{os}$. 
+
+%All soil hydraulic parameters affect in an average relation of 1/1 the model outputs.
+%The parameter $n$ showed to strongly affect the predictions with one order of magnitude higher than the others.
+%As it belongs to both hydraulic conductivity and water retention equations, it is hard to explain this result without an empirical test.
+%Similarly, the plant/solute related parameters $I_m$ and $K_m$ affects the model in a 1/1 relation, making them important parameters of the model, requiring precise measurements at its aquisition.
+
+A more detailed study of stability issue of the proposed model that considers a implicit scheme for the numerical solution of the convection-dispersion equation that uses variable space steps and diffusion coefficients has to be done in further work.
 
 %{\tred Root length density particularly has to be cautiously measured because it affects the model results very significantly.}
 % 
@@ -51,14 +49,11 @@ Therefore, this particular model is just one of the possible ways of simulate th
 %The proposed model simulates the solute flux and root uptake considering a soil concentration dependent uptake. There was no significant difference between linear and non-linear solutions for the simulated scenarios. The results of uptake for the proposed model showed that the limiting potential is reached at a higher pressure head, increasing the period of potential transpiration. It also showed a second limiting condition that happens at the time when $C<C_{lim}$ caused by a insufficient supply of solute at the same rate of plant demand. The proposed model is also able to do a partition between active and passive uptake which will be important to simulate the plant stress due to ionic or osmotic components, according to the solute concentration inside the plant.
 %Comparison between the numerical and the analytical solution proposed by Cushman is in process.
 
+%The model did not present stability issues in the simulations of the selected scenarios for a $\Delta t$ value of 0.01 s.
+%However, 
 
-{\tred Concluding, the model was shown to be able to quantify the active and passive contributions to the solute uptake, which can be used to distinguish osmotic and ionic stressors in further works.
-Soil hydraulic properties, root length density, initial concentration and potential transpiration are factors that change the time that the concentration at the root surface starts to decrease and the time that the active uptake is maximum. 
-%{\it QM: OK, mas isso poderia simplesmente estar na secao ``conclusions''}
-}
 
-{\tred From this sensitivity analysis, we can conclude that the quantities that need to be carefully parameterized are: $\theta_r$, $\theta_s$, $\alpha$, $I_m$ and $K_m$ which affects more strongly the solute concentration at the root surface in the end of simulation, $\theta_s$ which strongly affects the time at the limiting values are reached, and $n$ which strongly affects all selected predictions, mainly $h_{os}$. 
-%{\it QM: Isso cabe (melhor) nas conclusoes finais?}
-}
+
+
 
 

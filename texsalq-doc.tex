@@ -54,23 +54,36 @@ Additionally, a linear approximation was developed for the MM equation such that
 A radial geometry was assumed, considering a single root with its surface acting as the uptake boundary and the outer boundary being the half distance between neighbouring roots, a function of root density.
 The proposed solute transport model includes active and passive solute uptake and predicts solute concentration as a function of time and distance from the root surface.
 It also estimates the relative transpiration of the plant, on its turn directly affecting water and solute uptake and related to water and osmotic stress status of the plant.
-{\localcolor\Blue Performed simulations show that the linear and non-linear solutions result in significantly different solute uptake predictions when the soil solute concentration is below a limiting value ($C_{lim}$). {\it Verify this conclusion. There is or there is not difference?}}
-This reduction in uptake at low concentrations may result in a further reduction in the relative transpiration, {\localcolor\Red shortening the time at which the plant ceases the uptake. {\it QM: This is not clear. Change words}}
+Performed simulations show that the linear and non-linear solutions result in significantly different solute uptake predictions when the soil solute concentration is below a limiting value ($C_{lim}$).
+This reduction in uptake at low concentrations may result in a further reduction in the relative transpiration.
+%, {\localcolor\Red shortening the time at which the plant ceases the uptake. {\it QM: This is not clear. Change words}}
 The contributions of active and passive uptake vary with parameters related to the ion species, the plant, the atmosphere and the soil hydraulic properties. 
 %{\localcolor\Red As the model has the ability to partition active and passive uptake, it can be improved to differentiate osmotic and ionic stress by including a solute concentration inside the plant variable and compare it with a threshold value of plant concentration, which is regulated by plant age and species, for example.}
 The model showed a good agreement with an analytical model that uses a linear concentration dependent equation as boundary condition for uptake at the root surface.
 The advantage of the numerical model is it allows simulation of transient solute and water uptake and, therefore, can be used in a wider range of situations.
-Simulation with different scenarios and comparison with experimental results is needed to verify model performance and possibly suggest improvements.
+Simulation with different scenarios and comparison with experimental results are needed to verify model performance and possibly suggest improvements.
 }
 \abstractPT {%
- Aqui o resumo  
+ Uma modificação em um modelo de extração de água e transporte de solutos foi realizada com o objetivo de incluir a extração de soluto pelas raízes.
+Uma solução numérica para a equação de convecção-dispersão (ECD), que utiliza um esquema de resolução completamente implícito, foi elaborada e considera o fluxo transiente de água e solutos com uma condição de contorno à superfície da raiz de extração de soluto dependente de sua concentração no solo, baseada na equação de Michaelis-Menten (MM).
+Uma aproximação linear para a equação de MM foi implementada de tal forma que a ECD tem uma solução linear e outra não-linear.
+O modelo considera uma raíz singular com geometria radial sendo sua superfície a condição de contorno (limite) de extração e o limite extremo sendo a meia-distância entre raízes vizinhas e função da densidade radicular.
+O modelo de transporte de soluto proposto inclui extração de soluto ativa e passiva e prediz a concentração de soluto como uma função do tempo e da distância à superfície da raiz,
+além de estimar a transpiração relativa da planta, que por sua vez afeta a extração de água e solutos e é relacionado com a condição de estresse da planta.
+Simulações mostram que as soluções linear e não-linear resultam em predições de extração de solutos significativamente diferentes quando a concentração de solutos no solo está abaixo de um valor limitante ($C_{lim}$).
+A redução da extração em baixas concentrações pode resultar em uma redução adicional na transpiração relativa.
+As contribuições ativa e passiva da extração de solutos variam com parâmetros relacionados à espécie de ion, à planta, à atmosfera e às propriedades hidráulicas do solo.
+O modelo apresentou uma boa concordância com um modelo analítico que usa uma condição de contorno linear, à superfície da raiz, de extração de solutos dependente da concentração no solo.
+A vantagem do modelo numérico sobre o analítico é que ele permite simular fluxos transientes de água e solutos, sendo, portanto, possível simular uma maior gama de situações.
+Se faz necessário simulações com diferentes cenários e comparações com dados experimentais para se verificar a performance do modelo e, possivelmente, sugerir melhorias.
+
 }
 
 \keywordsEN {%
 Solute transport; Michaelis-Menten; transient solute flux
 }
 \keywordsPT {%
-
+Transporte de solutos; Michaelis-Menten; Fluxo transiente de solutos
 }
 
 
