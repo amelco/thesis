@@ -42,7 +42,7 @@ In addition, the LCC occurs at values of relative transpiration ($T_r$, the rati
 
 {\tblue
 Figure \ref[diff_tr] shows that transpiration reductions (abrupt decrease in the transpiration rate) may occur for the two models, resulting from two distinct processes:
-(1) the first is caused by the combined water and osmotic stress caused by the decreasing water flux towards the root when the total hydraulic head $H$ reaches the limiting value $H_{lim}$ of $-150$ m (as occurred in the \citeonline[liersolute] model);
+(1) the first is caused by the combined water and osmotic stress resulted from the decreasing water flux towards the root when the total hydraulic head $H$ reaches the limiting value $H_{lim}$ of $-150$ m (as occurred in the \citeonline[liersolute] model);
 and
 (2) the second is due to the decrease of the solute uptake rate resulted from the change in the boundary condition when LCC starts, causing a decreasing (more negative) value for the osmotic head $h_\pi$.
 %{\it QM: Mas voce nem explicou porque ocorreu a primeira reducaoo. Explique melhor isso. Ideia: indicar as reducoes na figura (numerar) e no texto explicar porque elas ocorrem} 
@@ -70,7 +70,10 @@ The NLU causes a smoother $T_r$ reduction over time in the second reduction (Fig
 
 {\tblue Differences between both model predictions can become more significant by increasing the value of $C_{lim}$ making LCC to be reached in a earlier stage and making its duration of occurrence be a bigger fraction of time.
 %, or b) looking at the results on a different time scale. 
-As \clim{} is not an input parameter, the only way to increase it is decreasing water flux (Figure \ref[fig_climxq]) by changing the initial water content, for example.
+As \clim{} is not an input parameter, the only way to increase it, not changing the ion specie, is decreasing water flux (Figure \ref[fig_climxq]) by changing the initial water content, for example. Another alternative would be to consider another ion or plant specie, which would modify the $I_m$ and $K_m$ parameters.
+Due to the nature of Equation \ref[eq_clim], the $C_{lim}$ value asymptotically grows, tending to infinity, with decreasing $q_0$.
+Therefore, a value of $C_{lim}$ that would cause a more significant difference between LU and NLU is acquired with close to zero values of $q_0$, resulting in low (also close to zero) relative transpiration values. 
+As a result of this dependence of $C_{lim}$ to the $q_0$ value, it was not possible to find any combination of initial parameters that would lead to a significant increase of the difference between LU and NLU. 
 %We could not find a scenario that matched the first option {\tblue for the following reason: 
 %the value of $C_{lim}$ is computed by Equation \ref[eq_clim] (it is not an input parameter) and it varies only with $q_0$ variation.
 %It will be less or equal $K_m$ if and only if $q_0 \gg Km^2$. 
@@ -262,7 +265,7 @@ The differences between the two models is mostly due to the consideration of ste
  as opposed to the proposed numerical model that deals with transient water and solute fluxes.
 It is shown in the discussion of Section \ref[result_luxnlu] that there is no significant difference between the results of concentration profile of LU and NLU models.
 Nevertheless, Figure \ref[fig_analytic] also shows the concentration profile for the LU model, considering that the analytical model has a linear solute uptake rate as the boundary condition at the root surface.
-With the assumption of linearity (Equation \ref[eq_cond_linear]), the boundary condition equation has 1 ($k$) instead of 2 ($J_{max}$ and $k$) parameters, which can overestimate the uptake at high concentrations.
+With the assumption of linearity (Equation \ref[eq_cond_linear]) in the analytical solution, the boundary condition equation has 1 ($k$) instead of 2 ($J_{max}$ and $k$) parameters, which can overestimate the uptake at high concentrations.
 
 Despite the differences in the assumptions and input values of each model, the numerical model shows good agreement with the analytical solution by \citeonline[cushman], which is plausible as they are simulating the same phenomenon over an almost identical scenario.
 The proposed numerical model can then be used as an alternative to the analytical model, with the advantage of simulate transient water and solute fluxes, giving the possibility to predict the solute uptake of a wider range of scenarios.
@@ -335,8 +338,6 @@ A good amount of data can be found in \citeonline[robinson] and in \citeonline[w
 
 %made a review that assesses how various attributes like root growth and development, uptake rates, nutrient contents and root-shoot interactions respond to localized supplies of nutrients.
 %{\it QM: There must be literature on these mechanisms. Cite some.}
-
- used the model HYDRUS to simulate solute uptake considering active and passive uptake
  
 \medskip
 \label[fig_qst_detail]
@@ -605,9 +606,12 @@ As a result, the diffusive transport in the root surface (active uptake) quickly
 %(5.97~mol~m$^{-3}$) 
 %(Figure \ref[fig_C_r](a)), and the active contribution ends in its maximum value  and the NUP does not occur {\it QM: Nao muito facil para entender}} (Figures \ref[fig_contrib_t] and \ref[fig_contrib_c], scenario 7).
 
-At high root densities, more water is extracted from the same soil volume during a given time period, causing a delay in the onset of $T_r$ reduction. 
-The higher {\tred root length density results in a steeper falling rate phase {\it QM: Isso esta em um dos meus papers tb (2006? 2008? , que poderia ser citado aqui}} (Figure \ref[fig_Tr_t]). 
+At high root densities, more water is extracted from the same soil volume during a given time period, causing a delay in the onset of $T_r$ reduction.
+The higher root length density results in a steeper falling rate phase 
+%{\it QM: Isso esta em um dos meus papers tb (2006? 2008? , que poderia ser citado aqui} 
+(Figure \ref[fig_Tr_t]). 
 Therefore, active uptake becomes more important with increasing $R$, as can be seen in Figure \ref[fig_contrib_c] (scenarios 1, 4 and 5).
+This modeling result conforms to the simulations performed by \citeonline[lierwater] that show the time of first occurrence of limiting water potential increasing with higher root densities.
 
 \secc Concentration profile \pmb{$C(r)$}{} and relative transpiration \pmb{$T_r(t)$}
 
