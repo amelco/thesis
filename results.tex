@@ -272,7 +272,7 @@ The proposed numerical model can then be used as an alternative to the analytica
 
 \secc Numerical models
 
-According to the piecewise Equation \ref[eq_MM_mod], the solute uptake rate occurs according to three phases. 
+According to the piecewise Equation \ref[eq_MM_mod], the solute uptake rate occurs in three phases. 
 They will be abbreviated LUP -- linear uptake phase when $C_0>C_2$, CUP -- constant uptake phase when $C_{lim}<C_0<C_2$, and NUP -- non-linear uptake phase when $C_0<C_{lim}$, as shown in Figure \ref[fig_phases].
 
 \medskip
@@ -548,7 +548,7 @@ A plant controlled process allowing the reduction of solute uptake
 %{\it QM: Acho que voce ainda nao introduziu/mencionou esse termo, poderia explicar um pouco mais. Ou citar algum trabalho que faz isso}
 }
 might be a modeling alternative to describe controlled uptake in this phase.
-In our model such a feature was not included and, according to model assumptions, the rate of solute uptake at LUP is constant and its value depends on the potential transpiration, soil hydraulic properties, root length density, and initial solute concentration.
+In our model such a feature was not included and, according to model assumptions, LUP has a period of constant solute uptake rate and its value depends on the potential transpiration, soil hydraulic properties, root length density, and initial solute concentration.
 It does not depend on ion type, since $q_{s_0}$ values were equally predicted (Figure \ref[fig_contrib_t]).
 
 \medskip
@@ -560,7 +560,8 @@ It does not depend on ion type, since $q_{s_0}$ values were equally predicted (F
 During the CUP, the solute uptake by mass flow (passive uptake) does not attend completely the plant demand (Figure \ref[fig_phases]), thus, according to the model assumptions, an active uptake is developed and it becomes higher as passive uptake 
 %(driven by mass flow of water) 
 becomes lower in order to maintain the constant uptake rate.
-This constant demand, filled by active and passive uptake, is maintained until $C_0$ reaches $C_{lim}$ which, in turn, increases as $q_0$ decreases, according to Equation \ref[eq_clim].
+It is a different approach than that of \citeonline[simunek] that use a assumption of independent responses of active and passive uptake.
+In the proposed model, the constant demand at CUP, filled by active and passive uptake, is maintained until $C_0$ reaches $C_{lim}$ which, in turn, increases as $q_0$ decreases, according to Equation \ref[eq_clim].
 Active uptake reaches its maximum value when $C_0=C_{lim}$  and the uptake is then limited by the concentration in the soil in further time steps, starting the non-linear uptake phase (NUP).
 It can be seen in Figure \ref[fig_contrib_t] 
 %{\it QM: Separar melhor a discussao das figuras. Assim fica pouco claro. Discuta primeiro a fig. 9, depois a 10; ou as duas juntas. Essa parte nao ficou claro.} 
@@ -641,7 +642,7 @@ These results, showed in Figure \ref[fig_Tr_t], are in accordance to the finding
 %{\it QM: Aqui poderia citar meu 2010 paper.}
 The highest variation caused by changes in initial concentration can be observed in CUP and NUP.
 With low values of $C_0$ ($h_\pi$ closer to zero), $H_{lim}$ is achieved faster because there is less solute in soil to be taken up.
-This causes a steeper $T_r$ reduction curve, shortening the time needed to $C_0$ be smaller than \clim.
+This causes a steeper $T_r$ reduction curve, shortening the time needed to $C_0$ be smaller than \clim{} (condition that onsets NUP).
 
 \medskip
 \label[fig_Tr_t]
@@ -656,8 +657,7 @@ This causes a steeper $T_r$ reduction curve, shortening the time needed to $C_0$
 
 Figures \ref[fig_contrib_t] and \ref[fig_contrib_c], referring to scenarios 1 to 7, show that with the same values of $I_m$ and $K_m$ (same solute), different sets of active and passive contributions can be observed just due to changes in soil, root and atmospheric parameters. 
 %{\tred All of these changes occurred in drying out simulations, with constant atmospheric demand. {\it QM: Esse tipo de observacao confunde. Todas as suas simulacoes nao se referem a esse tipo de cenario?}}
-Different than simulated scenarios, real systems soil water contents changes due to rain or irrigation, and the solute concentration may be altered by the addition of nutrients to the soil.
-The atmospheric demand is far to be constant. 
+Different than simulated scenarios, real systems soil water contents changes due to rain or irrigation, the solute concentration may be altered by the addition of nutrients to the soil, and the atmospheric demand is far to be constant. 
 %{\it QM: Esse tipo de coisa poderia ser discutido numa secao especifica, onde discute a relevancia dos cenarios simulados comparados com a realidade}}
 The variation of all model parameters due to the natural changes that occur in a real system would generate a wide range of different responses of root uptake and its passive and active contributions, being hard to be predicted even with a more complex model.
 This reveals the system complexity to be simulated and how much is still missing to come to a more complete understanding of the dynamics of these phenomena.
@@ -788,7 +788,7 @@ On the other hand, the steeper decrease in hydraulic conductivity causes a more 
 }
 %reaches the limiting value $H_{lim}$, reducing the time of $T_r$ and $C_0$ falling phases, consequently reducing $t_{end}$.
 %Thus, sensitivities to $\lambda$ and $\theta_s$ are expected to be negative and positive, respectively, for the selected time predictions, corroborating the results (Figure \ref[sensitivity_soil_time]).
-The higher sensitivity to $\theta_s$ can be explained due to the fact that the model has a powerful (possibly overestimated) solute extraction at the LUP, either due to the lack of a plant regulated process for solute uptake at this phase or because the model does not consider a regulation in the solute uptake according to solute concentration inside the plant.
+The higher sensitivity to $\theta_s$ can be explained due to the fact that the model has a powerful (possibly overestimated) solute extraction at the LUP, either due to the absence of a plant regulated process for solute uptake at this phase or because the model does not consider a regulation in the solute uptake according to solute concentration inside the plant.
 
 %The model sensitivity for the parameter $\theta_r$ was the lowest in the selected time predictions.
 %An increase in $\theta_r$ decreases the available water content decreasing the time of $T_r$ and $C_0$ falling phases, consequently reducing $t_{end}$. 
