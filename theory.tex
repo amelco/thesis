@@ -1,6 +1,6 @@
 \cleardoublepage
 \label[theory]
-\chap THEORETICAL FRAMEWORK (base, foundations)
+\chap THEORETICAL FRAMEWORK 
 % Describe:
 % * water flow (briefly)
 % * solute transport equations that will be used in the comparisons
@@ -72,14 +72,14 @@ $$
 q = -K(\theta) {dH \over dr} \eqmark
 $$
 %
-where $K$ \uK is the soil hydraulic conductivity and $H$ is the total hydraulic potential. This equation describes the axisymmetrical laminar water flux for (un)saturated soil. 
+where $K$ \uK is the soil hydraulic conductivity and $H$ is the total hydraulic potential. This equation describes the axis-symmetric laminar water flux for (un)saturated soil. 
 %The role of $K$ is detailed in Section \ref[soil_prop].
 
 The substitution of Equation \ref[eq_watflux] into \ref[eq_Richards] results in a second-order partial differential equation and, therefore, initial and boundary conditions are required to yield a particular solution. 
 The most commonly employed initial condition is of constant water content or pressure head along the radial distance, although a function of water content (or pressure head) over distance can also be used. 
-In analytical solutions, a steady-state condition with respect to water flow is often used to solve the equation. The high non-linearity of the hydraulic functions (see Section \ref[soil_prop]) makes a transient solution rather complex and, sometimes, impractical.
+In analytical solutions, a steady state condition with respect to water flow is often used to solve the equation. The high non-linearity of the hydraulic functions (see Section \ref[soil_prop]) makes a transient solution rather complex and, sometimes, impractical.
 In numerical solutions, on the other hand, it is easy to define a transient water flow condition, allowing more realistic simulations. 
-Boundaries for both steady-state and transient solutions can be either of pressure head or water flux, as shown in Equations \ref[wat_bc1] and \ref[wat_bc2] respectively:
+Boundaries for both steady state and transient solutions can be either of pressure head or water flux, as shown in Equations \ref[wat_bc1] and \ref[wat_bc2] respectively:
 \label[wat_bc1]
 $$
 h(r_i,t) = f(t) \eqmark
@@ -91,7 +91,7 @@ $$
 %
 where $f(t)$ and $g(t)$ is a constant or a time variable function of pressure head and water flux, respectively; and $r_i$ is the distance from axial center to the specific boundary. 
 In the case of microscopic models, $r_i$ can assume values of distance from axial center to root surface (inner boundary) and to the end of the domain (outer boundary). 
-Macroscopic models use the Cartesian coordinate system and, for one-dimension, represent the domain along the $z$ axis (depth) instead of $r$. 
+Macroscopic models use the Cartesian coordinate system and, for one-dimension, represent the domain along the $z$-axis (depth) instead of $r$. 
 Thus, $z_i$ values would be of the distance from the soil surface (top boundary) to a certain depth, {\it e.g.} root depth (bottom boundary).
 
 In most microscopic models, the boundary conditions are of flux type, according to Equation \ref[wat_bc2]. 
@@ -295,7 +295,7 @@ The uptake rate according to Equation \ref[eq_MM1] is of asymptotic shape tendin
 \caption/f {Solute uptake rate as a function of external concentration according to the Michaelis-Menten kinetics (Equation \ref[eq_MM1])}
 \medskip
 
-%An analytical solution to the Equation \ref[eq_solute_complete], using Equation \ref[eq_MM1] as a boundary at the root surface and a zero flux at the outer boundary and considering a steady-state condition for water flow, is presented by \citeonline[cushman]. A solution for the same equation but considering a constant solute uptake as the boundary of root surface is presented by \citeonline[willigen1]. (THIS PART GOES TO LITERATURE REVIEW)
+%An analytical solution to the Equation \ref[eq_solute_complete], using Equation \ref[eq_MM1] as a boundary at the root surface and a zero flux at the outer boundary and considering a steady state condition for water flow, is presented by \citeonline[cushman]. A solution for the same equation but considering a constant solute uptake as the boundary of root surface is presented by \citeonline[willigen1]. (THIS PART GOES TO LITERATURE REVIEW)
 
 
 

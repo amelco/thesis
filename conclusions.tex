@@ -2,14 +2,14 @@
 \chap CONCLUSIONS
 
 The partial differential equation of convection-dispersion was numerically solved using a fully implicit scheme, considering a transient state of solute flow and a solute uptake rate that is dependent on the solute concentration in the soil.
-This solution was then incorporated into the model of \citeonline[liersolute] in order to modify it to take into account the root solute uptake.
-This proposed model has a linear and a non-linear solution for the solute uptake equation and shows a good agreement with the analytical solution proposed by \citeonline[cushman] which, also considers a concentration dependent uptake as the boundary condition at the root surface.
+This solution was then incorporated into the model of \citeonline[liersolute] including the root solute uptake.
+The resulting model has a linear and a non-linear solution for the solute uptake equation and shows a good agreement with the analytical solution proposed by \citeonline[cushman] which also considers a concentration dependent uptake as the boundary condition at the root surface.
 The linear and non-linear solutions are significantly different only when comparing the concentration as a function of time for times where $C_0 < C_{lim}$ (non-linear uptake phase, NUP).
 
-Simulations has shown that a second reduction in the relative transpiration might occur caused by a reduction of the solute uptake rate resulting in a reduction of water flux due to the decreasing value of pressure head needed to maintain the limiting value of $H=H_{lim}$.
-This second reduction shows that the limiting value $C_{lim}$ can be a important parameter to determine changes in the combined water and osmotic stress in low concentration situations and it needs more investigation.
+Simulations results show that a second reduction in the relative transpiration may occur by a reduction of the solute uptake rate resulting in a reduction of water flux due to the decreasing value of pressure head needed to maintain the limiting value of $H=H_{lim}$.
+This second reduction shows that the limiting value $C_{lim}$ can be an important parameter to determine changes in the combined water and osmotic stress in low concentration situations, suggesting it requires more investigation.
 
-The model was shown to be able to quantify the active and passive contributions to the solute uptake, which can be used to distinguish osmotic and ionic stressors in further works.
+The model showed able to be able to quantify the active and passive contributions to the solute uptake, which can be used to distinguish osmotic and ionic stressors in further works.
 Soil hydraulic properties, root length density, initial concentration and potential transpiration are factors that change the time that the concentration at the root surface starts to decrease and the time that the active uptake is maximum. 
 
 %The model has the ability to partition active and passive contributions to the solute uptake.
@@ -17,14 +17,15 @@ Soil hydraulic properties, root length density, initial concentration and potent
 %Active uptake grows with decreasing concentration until it becomes dominant in the NUP.
 %The maximum value for passive and active uptake depends on soil type, initial concentration, root density and potential transpiration.
 
-From the sensitivity analysis, we can conclude that the quantities that need to be carefully parameterized are: $\theta_r$, $\theta_s$, $\alpha$, $I_m$ and $K_m$ which affects more strongly the solute concentration at the root surface in the end of simulation, $\theta_s$ which strongly affects the time at the limiting values are reached, and $n$ which strongly affects all selected predictions, mainly $h_\pi$. 
+From the sensitivity analysis, we conclude that the quantities requiring a careful parameterization are: $\theta_r$, $\theta_s$, $\alpha$, $I_m$ and $K_m$, affecting strongly the solute concentration at the root surface at completion of simulation, $\theta_s$ affecting the time at wich limiting values of solute concentration are reached, and $n$ which strongly affects all selected predictions, mainly $h_\pi$. 
 
 %All soil hydraulic parameters affect in an average relation of 1/1 the model outputs.
 %The parameter $n$ showed to strongly affect the predictions with one order of magnitude higher than the others.
 %As it belongs to both hydraulic conductivity and water retention equations, it is hard to explain this result without an empirical test.
 %Similarly, the plant/solute related parameters $I_m$ and $K_m$ affects the model in a 1/1 relation, making them important parameters of the model, requiring precise measurements at its aquisition.
 
-A more detailed study of stability issue of the proposed model that considers a implicit scheme for the numerical solution of the convection-dispersion equation that uses variable space steps and diffusion coefficients has to be done in a further work.
+The proposed model uses an implicit scheme for the numerical solution of the convection-dispersion, including variable space steps and diffusion coefficients.
+A more detailed investigation of stability issues for this kind of model would benefit its applicability and is suggested as a future work.
 
 %{\tred Root length density particularly has to be cautiously measured because it affects the model results very significantly.}
 % 
@@ -36,7 +37,7 @@ A more detailed study of stability issue of the proposed model that considers a 
 %* A solute uptake model was incorporated in the microscopic model of \ref[liersolute].
 %* Additionally, it has the ability to partition active and passive contributions to the solute uptake, which can be uses in...
 %* The solute uptake can be predicted using linear and non-linear approaches.
-%* It is better to use the non-linear model since it is closer to the original MM equation, making its behaviour more close to reality (or our assumptions).
+%* It is better to use the non-linear model since it is closer to the original MM equation, making its behavior more close to reality (or our assumptions).
 %* The disadvantage in using NLU is that it is very sensitive to space and time steps, which can lead to stabilization problems.
 %* LU can be used in the case of...
 %* The model seems to overestimate the uptake in wet soil conditions.

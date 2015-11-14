@@ -43,7 +43,7 @@ Figure~\ref[fig_scheme] shows the discretization resulted from Equation \ref[eq_
 \caption/f {Schematic representation of the discretized domain considered in the model}
 \medskip
 
-The Richards equation \ref[eq_Richards] for one-dimensional axis-symetric flow can be writen as
+The Richards equation \ref[eq_Richards] for one-dimensional axis-symmetric flow can be writen as
 \label[eq_complete_richards]
 $$
 {\partial \theta \over \partial t} = {\partial \theta \over \partial H} {\partial H \over \partial t} = C_w(H) {\partial H \over \partial t} = {1 \over r}{\partial \over \partial r} \left[ r K(H,\theta) {\partial H \over \partial r} \right] \eqmark
@@ -70,7 +70,7 @@ The solution for Equation \ref[eq_disc_water] results in prediction of pressure 
 The boundary conditions considered were of flux density entering the root determined by the transpiration rate, for the inner segment; and of zero flux, for the outer segment.
 The computer algorithm that solves the equation and applied boundary conditions are found on Appendix \ref[ap_water].
 
-The convection-dispersion equation \ref[eq_sol], also for one-dimensional axis-symetric flow, can be writen as
+The convection-dispersion equation \ref[eq_sol], also for one-dimensional axis-symmetric flow, can be writen as
 \label[eq_complete_solute]
 $$
 r {\partial(\theta C) \over \partial t} = -{\partial \over \partial r} \biggl(r q C \biggr) + {\partial  \over \partial r} \left( r D {\partial C \over \partial r} \right). \eqmark
@@ -164,7 +164,7 @@ $$
 \sec Numerical implementations of convection-dispersion equation
 
 Here, we present the numerical discretization and the applied boundary conditions, together with the algorithm to find the solution for Equation \ref[eq_complete_solute].
-In this thesis, we will compare the proposed model with the original one \cite[liersolute], and  with the analytical models of constant uptake \cite[willigen1] and concentration dependent (MM) uptake \cite[cushman], both considering steady-state condition with respect to water flow. 
+In this thesis, we will compare the proposed model with the original one \cite[liersolute], and  with the analytical models of constant uptake \cite[willigen1] and concentration dependent (MM) uptake \cite[cushman], both considering steady state condition with respect to water flow. 
 A numerical implementation of the constant uptake was made, therefore, the numerical solutions for the concentration dependent, zero uptake and constant uptake models are shown.
 
 %MODIFY IT. Copyied from quirijn
@@ -404,14 +404,14 @@ Here is explained how water flow and solute transport equations were solved with
 % General introduction
 The partial differential equations for water movement and solute transport in soil are solve numerically in a fully implicit way. Both water and solute flow are considered to have transient condition. 
 
-The water and solute differential equations for one-dimensional axisymetric flow were solved numerically and simulated iteratively as described in the following.
+The water and solute differential equations for one-dimensional axis-symmetric flow were solved numerically and simulated iteratively as described in the following.
 The algorithm was based on the solution proposed by \citeonline[lierwater] and \citeonline[liersolute].
 
 \sec Water movement equation
 
 USE IT: In this thesis, we will consider $H$ as being the sum of pressure and osmotic heads ($h$ and $h_\pi$, respectively) since the gravitational component can be neglected due to the scale of the chosen domain (region around a single root with XXX m$^2$).
 
-The Richards equation for one-dimensional axisymetric flow, assuming no sink or source and no gravitational component, can be written as:
+The Richards equation for one-dimensional axis-symmetric flow, assuming no sink or source and no gravitational component, can be written as:
 \label[partial_water]
 $$
 {\partial \theta \over \partial H} {\partial H \over \partial t} = {1 \over r}{\partial \over \partial r} \left( r K {\partial H \over \partial r} \right) \eqmark
@@ -433,7 +433,7 @@ where $\theta_r$ and $\theta_s$ (m$^3$ m$^{-3}$) are residual water content and 
 
 \sec Solute transport equation
 
-The differential equation for convection-dispersion for transient one-dimensional axisymetric flow can be written as:
+The differential equation for convection-dispersion for transient one-dimensional axis-symmetric flow can be written as:
 \label[partial_eq]
 $$
 r {\partial(\theta C) \over \partial t} = -{\partial \over \partial r} \biggl(r q C \biggr) + {\partial  \over \partial r} \left( r D {\partial C \over \partial r} \right) \eqmark
