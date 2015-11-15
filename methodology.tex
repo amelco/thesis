@@ -1,15 +1,6 @@
-\def\clim{$C_{lim}$}
-\def\hlim{$H_{lim}$}
-\def\c2{$C_2$}
-\def\im{$I_m$}
-\def\km{$K_m$}
-
-%definition to colorize the text
-\def\tred {\localcolor\Red}
-\def\tblue {\localcolor\Blue}
-
 % For numbering piecewise equations
 \input cases
+%\catcode `@=11 
 
 % Fancy fractions: \displaystyle
 
@@ -158,14 +149,10 @@ This might, in certain situations, lead to an overestimated prediction of uptake
 
 A piecewise non-linear uptake function that considers these explicit boundary conditions was formulated as:
 \label[eq_MM_mod]
-%\numcases{q_{s0} =}
 \numcases{F =}
-\label[eq_case1]
-{I_m C_0 \over K_m+C_0}+q_0 C_0,&if $C_0 < C_{lim}$ \\
-\label[eq_case2]
-I_m, 				&if $C_{lim} \leq C_0 \leq C_2$ \\
-\label[eq_case3]
-q_0 C_0, 				&if $C_0 > C_2$
+{I_m C_0 \over K_m+C_0}+q_0 C_0,&if $C_0 < C_{lim}$ \label[eq_case1]\\
+I_m, 				&if $C_{lim} \leq C_0 \leq C_2$ \label[eq_case2]\\
+q_0 C_0, 				&if $C_0 > C_2$ \label[eq_case3]
 \endnumcases
 %
 with \clim{} determined by the positive root of

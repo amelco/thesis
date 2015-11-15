@@ -365,9 +365,12 @@ FUNCTION {bbl.no.address.no.publisher} {"[S.l.: s.n.]"}
 FUNCTION {bbl.no.publisher} {"[s.n.]"}
 FUNCTION {bbl.number} { iso.abbreviation {"no."} {"n."} if$ }
 FUNCTION {bbl.nr} { "n." }
-FUNCTION {bbl.of} { "de" }
-FUNCTION {bbl.phd} { "Doutorado" }
-FUNCTION {bbl.phdthesis} { "Tese" }
+%FUNCTION {bbl.of} { "de" }
+%FUNCTION {bbl.phd} { "Doutorado" }
+%FUNCTION {bbl.phdthesis} { "Tese" }
+FUNCTION {bbl.of} {"-"}
+FUNCTION {bbl.phd} { "PhD" }
+FUNCTION {bbl.phdthesis} { "Thesis" }
 FUNCTION {bbl.pages}
   {pagename empty$
     { "p." }
@@ -382,23 +385,24 @@ FUNCTION {bbl.techrep} { "Rel. Tec." }
 FUNCTION {bbl.url.accessdate}
   {iso.abbreviation { "Cited "} {"Acesso em: "} if$}
 FUNCTION {bbl.url.available}
-{ iso.abbreviation {"Available from Internet: "} {"Dispon{\'\i}vel em: "} if$}
+%{ iso.abbreviation {"Available from Internet: "} {"Dispon{\'\i}vel em: "} if$}
+{ iso.abbreviation {"Available from Internet: "} {"Available from:: "} if$}
 FUNCTION {bbl.void} {""}
 FUNCTION {bbl.volume} { iso.abbreviation {"vol."} {"v."} if$ }
 
 
 MACRO {jan} {"jan."}
-MACRO {feb} {"fev."}
+MACRO {feb} {"feb."}
 MACRO {mar} {"mar."}
-MACRO {apr} {"abr."}
-MACRO {may} {"maio"}
+MACRO {apr} {"apr."}
+MACRO {may} {"may"}
 MACRO {jun} {"jun."}
 MACRO {jul} {"jul."}
-MACRO {aug} {"ago."}
-MACRO {sep} {"set."}
-MACRO {oct} {"out."}
+MACRO {aug} {"aug."}
+MACRO {sep} {"sep."}
+MACRO {oct} {"oct."}
 MACRO {nov} {"nov."}
-MACRO {dec} {"dez."}
+MACRO {dec} {"dec."}
 
 
 FUNCTION {is.num}
@@ -2176,7 +2180,8 @@ FUNCTION {search.reprinted}
 }
 ITERATE {search.reprinted}
 FUNCTION {abntreprintinfo}
-{"\ifx\abntreprintinfo\@undefined" write$ newline$
+{"\catcode`@=11" write$ newline$
+"\ifx\abntreprintinfo\@undefined" write$ newline$
  " \long\def\abntreprintinfo#1{\citeonline{#1}}" write$ newline$
  "\fi" write$ newline$}
 EXECUTE {abntreprintinfo}

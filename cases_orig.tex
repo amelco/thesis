@@ -1,0 +1,131 @@
+%  C A S E S . S T Y             ver 1.0
+%% Modified by Luciano R Silveira for plain TeX use, 18/04/2015
+%%% Problems with undefined appearing at references - Andre Herman 14/11/2015
+%
+%  Copyright (C) 1993 by Donald Arseneau
+%  These macros may be freely transmitted, reproduced, or modified 
+%  provided that this notice is left intact.  Sub-equation numbering
+%  is based on subeqn.sty by Stephen Gildea.
+%
+%  LaTeX environment "numcases" to produce multi-case equations with
+%  a separate equation number for each case.  Also, "subnumcases"
+%  gives each case numbered with the equation number plus a letter 
+%  [8a, 8b, etc.]   The syntax is
+%
+%  \begin{numcases}{left_side}
+%  case_1 & explanation \\
+%  case_2 & explanation \\
+%  ...
+%  case_n & explanation
+%  \end{numcases}
+%
+%  Each case is a math formula, and each explanation is a piece of
+%  lr mode text (which may contain math mode).  The explanations are
+%  optional.  Equation numbers are inserted automatically, just as for
+%  the eqnarray environment.  In particular, the \nonumber command 
+%  suppresses an equation number, and the \label command allows 
+%  reference to a particular equation.  In a subnumcases environment, 
+%  a \label in the left_side of the equation gives the overall equation 
+%  number, without any letter.
+%
+% - - - - -   
+%  A simple example is:
+%    \begin{numcases}{|x|=}
+%    x, & for $x \geq 0$\\
+%    -x, & for $x < 0$
+%    \end{numcases}
+%
+%                    / x   for x > 0              (1)
+%             |x| = <            -
+%                    \ -x  for x < 0              (2)
+% 
+% - - - - -   
+%  Another:
+%    \begin{subnumcases}{f(x)=\label{f(x)}}
+%    1/3 & if $0 < x < 1$;\\
+%    2/3 & if $3 < x < 4$;\label{.6666}\\
+%    0   & elsewhere.
+%    \end{subnumcases}
+% 
+%                   /  1/3   if 0 < x < 1;      (18.23a)
+%                   |
+%           f(x) = <   2/3   if 3 < x < 4;      (18.23b)   
+%                   |
+%                   \  0     elsewhere.         (18.23c)
+%
+%  and \ref{f(x)} will then give (18.23) while \ref{.6666} gives (18.23b)
+%
+%  - - -  begin definitions - - - 
+
+% Sub number a equation
+\newcount\dsubnum
+\newcount\dnumold
+\dsubnum=0
+\def\thedsubnum{(\the\dnum.\the\dsubnum)}
+\def\thednumold{(\the\dnumold)}
+\def\eqsubmark{%
+\ifnum\dsubnum=0 \global\advance\dnum by1 \fi
+\global\advance\dsubnum by1
+\ifinner\else\eqno \fi
+\wlabel\thedsubnum \thedsubnum
+}%
+
+\catcode`@=11
+\newskip\@centering
+\@centering = 0pt plus 1000pt
+\newcount\@eqcnt
+\def\@eqncr{& \eqsubmark\cr}
+\def\@@eqncr{& \eqsubmark\cr}
+\def\m@th{\mathsurround\z@}
+\def\numcases#1{%
+ \dnumold\dnum%
+ \global\advance\dnumold by1%
+ \wlabel\thednumold%
+ $$%
+ \setbox\z@\hbox{ % local
+  $\displaystyle {#1}\m@th\mskip\medmuskip$}%
+%\numc@setsub
+\dimen@ii\displaywidth
+\setbox\tw@\vbox\bgroup
+% \stepcounter{equation}\let\@currentlabel\theequation
+% \global\@eqnswtrue\m@th
+ \tabskip\@centering\let\\\@eqncr
+ \halign to\dimen@ii
+ \bgroup
+   \kern\wd\z@ \kern13\p@ \global\@eqcnt\@ne$\displaystyle\tabskip\z@{##}$\hfil 
+   &\global\@eqcnt\tw@ \quad ##\unskip \hfil\tabskip\@centering
+   &\llap{##}\tabskip\z@\cr}
+
+\def\endnumcases{\@@eqncr
+ \egroup % end \halign, which does not contain first column or brace
+% \global\advance\c@equation\m@ne 
+% \unskip\unpenalty\unskip\unpenalty
+ \setbox\z@\lastbox \nointerlineskip \copy\z@ % grab last line, then put it back
+ \g@tboxedwidth\z@ % box \z@ destroyed, width of columns -> \dimen@i
+\egroup% end \vbox (\box\tw@)
+\hbox to\displaywidth{% assemble the whole equation
+ \hskip\@centering \hbox to\dimen@i{$\displaystyle \box\z@ % parameter #1
+  \dimen@\ht\tw@ \advance\dimen@\dp\tw@ % get size of brace
+  \left\{\vcenter to\dimen@{\vfil}\right.\n@space % make brace
+  $\hfil}\hskip\@centering % finished first part (filled whole line)
+ \kern-\displaywidth $\vcenter{\box\tw@}$% overlay the alignment
+}% end the \hbox
+%\numc@resetsub
+\global\dsubnum=0
+$$}
+
+% Get width of all boxes on a line, ignoring the glue between them.
+% Return total width in \dimen@i (global).
+\def\g@tboxedwidth#1{\setbox#1\hbox{\unhbox#1\global\dimen@i\z@ 
+  \G@tBoxedWidth}}
+\def\G@tBoxedWidth{\unskip\unskip\unskip \setbox\z@\lastbox 
+ \ifvoid\z@\else \global\advance\dimen@i\wd\z@ \expandafter\G@tBoxedWidth \fi}
+\catcode`@=12
+
+% Send problem reports to asnd@Reg.TRIUMF.CA
+%
+% test integrity:
+% brackets:  round, square, curly, angle:   () [] {} <>
+% backslash, slash, vertical, at, dollar, and: \ / | @ $ &
+% hat, grave, acute (apostrophe), quote, tilde, under:   ^ ` ' " ~ _
+
