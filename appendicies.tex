@@ -15,73 +15,73 @@
 \input ap_clim
 
 
-\cleardoublepage
-\label[ap_l_nl_fluxes]
-\app Finding whether the solute flux for the linear model can be greater than from the non-linear model
-
-The subscripts $L$ and $NL$ are relative to linear and non-linear models, respectively. From Equations \ref[eq_MM_mod] and \ref[eq_MM_linear] we have:
-$$
-\eqalignno{
-q_{sL}&=-(\alpha + q_{0L})C_{0L} \cr
-q_{sNL}&=-\left({I_m \over (K_m+C_{0NL})} + q_{0NL}\right)C_{0NL}
-}
-$$
-
-We will check if there is any situation where $q_{sL}>q_{sNL}$. Then
-\label[cond_1]
-$$
-(\alpha + q_{0L})C_{0L} > \left({I_m \over K_m+C_{0NL}} + q_{0NL}\right)C_{0NL} \eqmark
+%\cleardoublepage
+%\label[ap_l_nl_fluxes]
+%\app Finding whether the solute flux for the linear model can be greater than from the non-linear model
+%
+%The subscripts $L$ and $NL$ are relative to linear and non-linear models, respectively. From Equations \ref[eq_MM_mod] and \ref[eq_MM_linear] we have:
+%$$
+%\eqalignno{
+%q_{sL}&=-(\alpha + q_{0L})C_{0L} \cr
+%q_{sNL}&=-\left({I_m \over (K_m+C_{0NL})} + q_{0NL}\right)C_{0NL}
+%}
+%$$
+%
+%We will check if there is any situation where $q_{sL}>q_{sNL}$. Then
+%\label[cond_1]
+%$$
+%(\alpha + q_{0L})C_{0L} > \left({I_m \over K_m+C_{0NL}} + q_{0NL}\right)C_{0NL} \eqmark
+%%\;\;\Rightarrow\;\;
+%%\alpha > {I_m \over K_m+C_0} \eqmark
+%$$
+%
+%For Equation \ref[cond_1] to be true, there must exist at least one situation in which the inequality is true. From Equations \ref[eq_beta] and \ref[eq_linear], we know that:
+%\label[new_alpha]
+%$$
+%\alpha = \beta-q_{0L} = {I_m \over C_{limL}}-q_{0L} \eqmark
+%$$
+%
+%Substituting Equation \ref[new_alpha] into \ref[cond_1], we have:
+%$$
+%{I_m \over C_{limL}}C_{0L} > \left({I_m \over K_m+C_{0NL}} + q_{0NL}\right)C_{0NL} \eqmark
+%$$
+%
+%By knowing that the solute fluxes for linear and non-linear models are different only for values of $C_0$ lower than \clim, we can set the value of $C_0$ to \clim \ and the equation is still valid. Thus:
+%$$
+%{I_m \over C_{limL}}C_{limL} > \left({I_m \over K_m+C_{limNL}} + q_{0NL}\right)C_{limNL}
+%%{I_m \over C_{lim}} > {I_m \over K_m+C_{lim}}+q_0 \eqmark
+%$$
+%
+%With some algebraic operations, we have:
+%\label[cond_2]
+%$$
+%{I_m \over C_{limNL}} > \left({I_m \over K_m+C_{limNL}} + q_{0NL}\right) \eqmark
+%$$
+%
+%Since $I_m$ and $K_m$ are constants and greater than zero, and $C_{limNL}$ and $q_{0NL}$ are also greater than zero, it can be easily seen that ${I_m \over C_{limNL}}$ is always greater than ${I_m \over K_m+C_{limNL}}$. 
+%Therefore, Equation \ref[cond_2] is true for all situations, except for the case:
+%$$
+%q_{0NL} > {I_m \over C_{limNL}} - {I_m \over K_m+C_{limNL}}
+%$$
+%
+%Simplifying:
+%\label[cond_3]
+%$$
+%q_{0NL} > {I_m K_m \over C_{limNL}(K_m+C_{limNL})} \eqmark
+%$$
+%
+%We can solve Equation \ref[cond_3] for $C_{limNL}$ to find the value in which the inequality is true:
+%\label[cond_clim]
+%$$
+%C_{limNL}^2 + K_m C_{limNL} - {I_m K_m \over q_{0NL}} > 0
 %\;\;\Rightarrow\;\;
-%\alpha > {I_m \over K_m+C_0} \eqmark
-$$
-
-For Equation \ref[cond_1] to be true, there must exist at least one situation in which the inequality is true. From Equations \ref[eq_beta] and \ref[eq_linear], we know that:
-\label[new_alpha]
-$$
-\alpha = \beta-q_{0L} = {I_m \over C_{limL}}-q_{0L} \eqmark
-$$
-
-Substituting Equation \ref[new_alpha] into \ref[cond_1], we have:
-$$
-{I_m \over C_{limL}}C_{0L} > \left({I_m \over K_m+C_{0NL}} + q_{0NL}\right)C_{0NL} \eqmark
-$$
-
-By knowing that the solute fluxes for linear and non-linear models are different only for values of $C_0$ lower than \clim, we can set the value of $C_0$ to \clim \ and the equation is still valid. Thus:
-$$
-{I_m \over C_{limL}}C_{limL} > \left({I_m \over K_m+C_{limNL}} + q_{0NL}\right)C_{limNL}
-%{I_m \over C_{lim}} > {I_m \over K_m+C_{lim}}+q_0 \eqmark
-$$
-
-With some algebraic operations, we have:
-\label[cond_2]
-$$
-{I_m \over C_{limNL}} > \left({I_m \over K_m+C_{limNL}} + q_{0NL}\right) \eqmark
-$$
-
-Since $I_m$ and $K_m$ are constants and greater than zero, and $C_{limNL}$ and $q_{0NL}$ are also greater than zero, it can be easily seen that ${I_m \over C_{limNL}}$ is always greater than ${I_m \over K_m+C_{limNL}}$. 
-Therefore, Equation \ref[cond_2] is true for all situations, except for the case:
-$$
-q_{0NL} > {I_m \over C_{limNL}} - {I_m \over K_m+C_{limNL}}
-$$
-
-Simplifying:
-\label[cond_3]
-$$
-q_{0NL} > {I_m K_m \over C_{limNL}(K_m+C_{limNL})} \eqmark
-$$
-
-We can solve Equation \ref[cond_3] for $C_{limNL}$ to find the value in which the inequality is true:
-\label[cond_clim]
-$$
-C_{limNL}^2 + K_m C_{limNL} - {I_m K_m \over q_{0NL}} > 0
-\;\;\Rightarrow\;\;
-C_{limNL} > -{K_m \pm \left( {K_m}^2-4{I_m K_m \over q_{0NL}} \right)^{1 \over 2} \over 2} \eqmark
-$$
-
-Equation \ref[cond_clim] is the same as Equation \ref[eq_clim]. Therefore, the condition \ref[cond_1] will never be satisfied since the affirmative  $C_{limNL}>C_{limNL}$ is logicaly wrong.
-
-It has been proved mathematically what was already possible to be noticed in Figure \ref[fig_MM], that non-linear uptake is always greater than linear and, therefore, that the linearization of the MM equation can be considered reasonable.
-
+%C_{limNL} > -{K_m \pm \left( {K_m}^2-4{I_m K_m \over q_{0NL}} \right)^{1 \over 2} \over 2} \eqmark
+%$$
+%
+%Equation \ref[cond_clim] is the same as Equation \ref[eq_clim]. Therefore, the condition \ref[cond_1] will never be satisfied since the affirmative  $C_{limNL}>C_{limNL}$ is logicaly wrong.
+%
+%It has been proved mathematically what was already possible to be noticed in Figure \ref[fig_MM], that non-linear uptake is always greater than linear and, therefore, that the linearization of the MM equation can be considered reasonable.
+%
 \cleardoublepage
 \label[ap_flowchart]
 \input ap_flowcharts

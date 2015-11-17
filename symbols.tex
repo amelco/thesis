@@ -28,45 +28,68 @@
 \symb $c_i$ Tridiagonal matrix coefficient 
 \symb $f_i$ Tridiagonal matrix coefficient 
 
+\symb $A_p$	Plant area (m$^2$)
 \symb $C$	Solute concentration in soil water \uconc
 \symb $C_0$	Solute concentration in soil water at the root surface \uconc
-\symb $C_{lim}$	Limiting solute concentration for potential solute uptake \uconc
-\symb $C_{min}$	Minimum solute concentration for zero uptake \uconc
 \symb $C_2$	Solute concentration threshold for active uptake \uconc
 \symb $C_{ini}$	Initial solute concentration in soil water \uconc
+\symb $C_{lim}$	Limiting solute concentration for potential solute uptake \uconc
+\symb $C_{min}$	Minimum solute concentration for zero uptake \uconc
+\symb $C_s$	Solute concentration in bulk soil \uconc
+\symb $C_w$	Differential water capacity (--)
 \symb $C\!L$	Solute concentration in soil water for linear model \uconc
 \symb $C\!N\!L$	Solute concentration in soil water for non-linear model \uconc
 \symb $D$	Effective diffusion-dispersion coefficient \udisp
-\symb $D_{m,w}$	Diffusion coefficient in water \udisp
-\symb $dif\!f$	Difference between linear and non-linear models for concentration \uconc \ and cumulative uptake \usol
+\symb $D_{m,w}$	Molecular diffusion coefficient in water \udisp
+\symb $D_s$	Mechanical dispersion coefficient \udisp
+\symb $d_s$	Soil density (g m$^{-3}$)
+\symb $dP$	Increment quantity of model parameter in sensitivity analysis
+\symb $dY$	Response in model output when applied $dP$
+\symb $F$	Solute extraction equation (--)
 \symb $H$	Total hydraulic head \uhead
+\symb $H_{lim}$	Limiting total hydraulic head \uhead
 \symb $h$	Pressure head \uhead
 \symb $h_\pi$	Osmotic head \uhead
 \symb $h_{lim}$	Limiting pressure head \uhead
+\symb $h_g$	Gravitational head \uhead
 \symb $I_m$	Coefficient of Michaelis-Menten equation (plant solute demand) \usolflux
+\symb $i$	Segment position index (--)
+\symb $j$	Time step index (--)
 \symb $k$	Linear component of Michaelis-Menten equation for high concentrations (--)
 \symb $K$	Hydraulic conductivity \uK
 \symb $K_m$	Coefficient of Michaelis-Menten equation (plant affinity to the solute type) \uconc
 \symb $K_s$	Saturated hydraulic conductivity \uK
-\symb $L$	Root length density \uhead
+\symb $L$	Root length \uhead
+\symb $m_s$	Soil mass (g)
 \symb $n$	Empirical parameter of \citeonline[genuchten80] equation (--, Section \ref[soil_prop]) or number of elements of the discretized domain (--, Section \ref[methodology])
+\symb $P$	Model parameter in sensitivity analysis
+\symb $p$	Iteration level index (--)
 \symb $q$	Water flux density \uwatflux
 \symb $q_0$	Water flux density at the root surface \uwatflux
 \symb $q_s$	Solute flux density \usolflux
 \symb $q_{s0}$	Solute flux density at the root surface \usolflux
+\symb $R$	Root length density (m m$^{-3}$)
 \symb $r$	Distance from axial center \uhead
 \symb $r_0$	Root radius \uhead
 \symb $r_m$	Half distance between roots \uhead
+\symb $S$	Rate at which the segment size increases (--)
 \symb $t$	Time \utime
 \symb $T_p$	Potential transpiration (--)
 \symb $T_r$	Relative transpiration (--)
+\symb $Y$	Model output in sensitivity analysis
+\symb $z$	Rooted soil depth \uhead
 
 \vskip 10pt
 
-\symb $\alpha$		Empirical parameter of \citeonline[genuchten80] equation (m$^{-1}$)
+\symb $\alpha$		Empirical parameter of \citeonline[genuchten80] equation (m$^{-1}$, Section \ref[soil_prop]) or active contribution to solute uptake (--, Section \ref[sol_uptake])
+\symb $\alpha (C)$	Solute uptake shape function (--)
 \symb $\beta$		Passive uptake slope \uwatflux
 \symb $\Delta r$	Space step \uhead
+\symb $\Delta r_{max}$	Maximum space step \uhead
+\symb $\Delta r_{min}$	Minimum space step \uhead
 \symb $\Delta t$	Time step \utime
+\symb $\delta$		Difference between linear and non-linear models for concentration \uconc \ and cumulative uptake \usol
+\symb $\eta$		Relative partial sensitivity (--)
 \symb $\theta$		Soil water content \uwc
 \symb $\Theta$		Effective saturation (--)
 \symb $\theta_r$	Residual water content \uwc
@@ -74,6 +97,7 @@
 \symb $\lambda$		Empirical parameter of \citeonline[genuchten80] equation (--)
 \symb $\tau$		Solute dispersivity \uhead
 \symb $\psi$		Active uptake slope \uwatflux
+\symb $\xi$		Tortuosity factor (--)
 
 %end of spacing
 }
