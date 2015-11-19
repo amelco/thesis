@@ -47,6 +47,23 @@ Some catch phrase that everyone expect to read.
    }
 
 }
+\abstractPT {%
+Uma modificação em um modelo existente de extração de água e transporte de solutos foi realizada com o objetivo de incluir nele a possibilidade de simular a extração de soluto pelas raízes.
+Uma solução numérica para a equação de convecção-dispersão (ECD), que utiliza um esquema de resolução completamente implícito, foi elaborada e considera o fluxo transiente de água e solutos com uma condição de contorno à superfície da raiz de extração de soluto dependente de sua concentração no solo, baseada na equação de Michaelis-Menten (MM).
+Uma aproximação linear para a equação de MM foi implementada de tal forma que a ECD tem uma solução linear e outra não-linear.
+O modelo considera uma raiz singular com geometria radial sendo sua superfície a condição de contorno (limite) de extração e sendo o limite extremo a meia-distância entre raízes vizinhas, função da densidade radicular.
+O modelo de transporte de soluto proposto inclui extração de soluto ativa e passiva e prediz a concentração de soluto como uma função do tempo e da distância à superfície da raiz,
+além de estimar a transpiração relativa da planta, que por sua vez afeta a extração de água e solutos e é relacionado com a condição de estresse da planta.
+Simulações mostram que as soluções linear e não-linear resultam em predições de extração de solutos significativamente diferentes quando a concentração de solutos no solo está abaixo de um valor limitante ($C_{lim}$).
+A redução da extração em baixas concentrações pode resultar em uma redução adicional na transpiração relativa.
+As contribuições ativa e passiva da extração de solutos variam com parâmetros relacionados à espécie de íon, à planta, à atmosfera e às propriedades hidráulicas do solo.
+O modelo apresentou uma boa concordância com um modelo analítico que aplica uma condição de contorno linear, à superfície da raiz, de extração de solutos dependente da concentração no solo.
+A vantagem do modelo numérico sobre o analítico é que ele permite simular fluxos transientes de água e solutos, sendo, portanto, possível simular uma maior gama de situações.
+Se faz necessário simulações com diferentes cenários e comparações com dados experimentais para se verificar a performance do modelo e, possivelmente, sugerir melhorias.
+}
+\keywordsPT {%
+Transporte de solutos; Michaelis-Menten; Fluxo transiente de solutos
+}
 \abstractEN {%
 A modification in an existing water uptake and solute transport numerical model was implemented in order to allow the model to simulate solute uptake by the roots.
 The convection-dispersion equation (CDE) was solved numerically, using a complete implicit scheme, considering a transient state for water and solute fluxes and a soil solute concentration dependent boundary for the uptake at the root surface, based on the Michaelis-Menten (MM) equation.
@@ -63,28 +80,10 @@ The model showed a good agreement with an analytical model that uses a linear co
 The advantage of the numerical model is it allows simulation of transient solute and water uptake and, therefore, can be used in a wider range of situations.
 Simulation with different scenarios and comparison with experimental results are needed to verify model performance and possibly suggest improvements.
 }
-\abstractPT {%
-Uma modificação em um modelo existente de extração de água e transporte de solutos foi realizada com o objetivo de incluir nele a possibilidade de simular a extração de soluto pelas raízes.
-Uma solução numérica para a equação de convecção-dispersão (ECD), que utiliza um esquema de resolução completamente implícito, foi elaborada e considera o fluxo transiente de água e solutos com uma condição de contorno à superfície da raiz de extração de soluto dependente de sua concentração no solo, baseada na equação de Michaelis-Menten (MM).
-Uma aproximação linear para a equação de MM foi implementada de tal forma que a ECD tem uma solução linear e outra não-linear.
-O modelo considera uma raiz singular com geometria radial sendo sua superfície a condição de contorno (limite) de extração e sendo o limite extremo a meia-distância entre raízes vizinhas, função da densidade radicular.
-O modelo de transporte de soluto proposto inclui extração de soluto ativa e passiva e prediz a concentração de soluto como uma função do tempo e da distância à superfície da raiz,
-além de estimar a transpiração relativa da planta, que por sua vez afeta a extração de água e solutos e é relacionado com a condição de estresse da planta.
-Simulações mostram que as soluções linear e não-linear resultam em predições de extração de solutos significativamente diferentes quando a concentração de solutos no solo está abaixo de um valor limitante ($C_{lim}$).
-A redução da extração em baixas concentrações pode resultar em uma redução adicional na transpiração relativa.
-As contribuições ativa e passiva da extração de solutos variam com parâmetros relacionados à espécie de íon, à planta, à atmosfera e às propriedades hidráulicas do solo.
-O modelo apresentou uma boa concordância com um modelo analítico que aplica uma condição de contorno linear, à superfície da raiz, de extração de solutos dependente da concentração no solo.
-A vantagem do modelo numérico sobre o analítico é que ele permite simular fluxos transientes de água e solutos, sendo, portanto, possível simular uma maior gama de situações.
-Se faz necessário simulações com diferentes cenários e comparações com dados experimentais para se verificar a performance do modelo e, possivelmente, sugerir melhorias.
-
-}
-
 \keywordsEN {%
 Solute transport; Michaelis-Menten; transient solute flux
 }
-\keywordsPT {%
-Transporte de solutos; Michaelis-Menten; Fluxo transiente de solutos
-}
+
 
 
 %%%%% <--   % The place for your own macros is here.
