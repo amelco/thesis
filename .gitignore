@@ -8,7 +8,7 @@ plots/*.pdf
 # inkscape projects
 #*.svg
 
-texsalq-doc.pdf
+#texsalq-doc.pdf
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
