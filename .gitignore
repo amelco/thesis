@@ -2,7 +2,7 @@
 *.doc
 *.docx
 #correcoes/
-texsalq-doc.pdf
+#texsalq-doc.pdf
 plots/*.pdf
 
 # inkscape projects
