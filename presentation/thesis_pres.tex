@@ -1,6 +1,6 @@
 \documentclass[compress]{beamer}  % compress diminui o tamanho da barra de navegacao
 \mode<presentation>
-\graphicspath{ {images/} }
+\graphicspath{ {../figuras/} }
 %\usetheme{Madrid}
 %\usetheme{Copenhagen}
 \usetheme{Dresden}
@@ -50,76 +50,13 @@ Results
 Conclusion
 \end{frame}
 
-\section{Introduction}
-\subsection{Solute movement modeling}
-\begin{frame}
-\frametitle{Importance}
-Importance of modeling solute uptake by plant roots
-\end{frame}
-\begin{frame}
-\frametitle{Objectives of this thesis}
-The objectives are...
-\end{frame}
+\include{introduction}
 
-\section{Methodology}
-\subsection{General model description}
-\begin{frame}
-\frametitle{Domain characteristics}
+\include{methodology}
 
-The domain is represented by concentric cylinders of radius $r_0$ and $r_m$.
+\include{results}
 
-\begin{tabular}{cl}  
-  \begin{tabular}{c}
-    \includegraphics[height=5cm]{domain}
-  \end{tabular}
-  & \begin{tabular}{l}
-    \parbox{0.5\linewidth}{%  change the parbox width as appropiate
-    Some descriptions:}
-  \end{tabular}  \\
-\end{tabular}
-\end{frame}
-
-\subsection{Numerical implementation of CDE equation}
-\begin{frame}
-\end{frame}
-
-\subsection{Other solute uptake models}
-\begin{frame}
-\end{frame}
-
-\subsection{Scenarios}
-\begin{frame}
-\end{frame}
-
-\subsection{Other analysis}
-\begin{frame}
-\frametitle{Other analysis}
-Sensitivity analysis
-
-Statistical difference
-\end{frame}
-
-\section{Results}
-
-\subsection{Linear VS non-linear}
-\begin{frame}
-\end{frame}
-
-\subsection{Models comparison}
-\begin{frame}
-\end{frame}
-
-\subsection{Models results}
-\begin{frame}
-\end{frame}
-
-\subsection{Sensitivity analysis}
-\begin{frame}
-\end{frame}
-
-\section{Conclusions}
-\subsection{Conclusions}
-\begin{frame}
-\end{frame}
+{\scriptsize 
+\include{conclusions}}
 
 \end{document}
