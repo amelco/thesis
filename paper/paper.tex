@@ -1,0 +1,56 @@
+\RequirePackage{lineno}
+\documentclass[10pt,a4paper,titlepage]{article}
+\usepackage{setspace}	% to use \doublespace
+\usepackage{amsmath}
+\usepackage{cases}
+\usepackage{graphicx}
+\usepackage{natbib}	% citations
+  \bibpunct{(}{)}{;}{a}{,}{,}	% https://en.wikibooks.org/wiki/LaTeX/Bibliography_Management#Citations
+\graphicspath{ {../figuras/} }
+
+\usepackage{lineno}	% for line numbering
+\renewcommand\linenumberfont{\normalfont\bfseries\small}	% change font of line number
+
+\usepackage{caption} 
+\captionsetup[table]{singlelinecheck=false}			% to left align table caption
+
+\renewcommand*{\thefootnote}{\fnsymbol{footnote}}		% change footnote from number to symbol *
+%\renewcommand*{\thefootnote}{\arabic{footnote}}		% switch back to arabic number
+
+
+\title{Mechanistic numerical modeling of solute uptake by plant roots}
+\date{January, 2016}
+\author{Andre Herman Freire Bezerra
+  \thanks{
+  Bezerra, A.H.F. and Q. de Jong van Lier, Exact Sciences Dep., ESALQ--Univ. of S\~ao Paulo, 13418-900 Piracicaba (SP), Brazil;
+  S.E.A.T.M. van der Zee and P. Willingen, Dep. of Environmental Sciences, Wageningen Univ., Droevendaalsesteeg 4, 6708 PB Wageningen, the Netherlands.
+  }
+\and Quirijn de Jong van Lier \and Sjoerd E.A.T.M van der Zee \and Peter de Willingen}
+
+
+%% BEGIN DOCUMENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\linenumbers
+\maketitle
+
+\section*{Core ideas}
+\begin{itemize}
+  \item idea 1
+  \item idea 2
+  \item idea 3
+  \item optional idea 4
+  \item optional idea 5
+\end{itemize}
+
+\input{abstract}
+
+\input{intro}
+
+\input{method}
+
+\bibliographystyle{plainnat}
+\bibliography{../mybib} 
+\pagebreak
+\input{figures}
+
+\end{document}

@@ -1,0 +1,20 @@
+% Table with soil types
+
+% macro pmb to bold math symbols
+\long\def\pmb#1{\setbox0=\hbox{#1}\copy0\kern-\wd0%
+\kern0.02em\raise0.02ex\copy0\kern-\wd0\kern0.02em\box0}
+
+\begin{table}[htbp]
+\caption{Soil hydraulic parameters used in simulations}
+\small
+\begin{tabular}{lccccccccc}
+\hline
+\multicolumn{1}{c}{\textbf{Staring}} & \multicolumn{1}{c}{\textbf{Textural}} & \multicolumn{1}{c}{\textbf{Reference}} & \multicolumn{ 1}{c}{\textbf{\pmb{$\theta_r$}}} & \multicolumn{1}{c}{\textbf{\pmb{$\theta_s$}}} & \multicolumn{1}{c}{\textbf{\pmb{$\alpha$}}} & \multicolumn{1}{c}{\textbf{\pmb{$\lambda$}}} & \multicolumn{1}{c}{\textbf{n}} & \multicolumn{1}{c}{\textbf{\pmb{$K_s$}}} \\ \cline{ 4- 9}
+\multicolumn{1}{c}{\textbf{soil ID}} & \multicolumn{1}{c}{\textbf{class}} & \multicolumn{1}{c}{\textbf{in this paper}} & \multicolumn{2}{c}{\textbf{$\rm{m^3\,m^{-3}}$}}  & \multicolumn{1}{c}{\textbf{$\rm{m^{-1}}$}} & \multicolumn{1}{c}{\textbf{--}} & \multicolumn{1}{c}{\textbf{--}} & \multicolumn{1}{c}{\textbf{$\rm{m\,d^{-1}}$}} \\ \hline
+B3	& Loamy sand	& Sand		 	& 0.02			& 0.46			& 1.44		& -0.215	& 1.534 	& 0.1542 \\
+B11	& Heavy clay	& Clay		 	& 0.01			& 0.59			& 1.95		& -5.901	& 1.109 	& 0.0453 \\
+B13	& Sandy loam	& Loam		 	& 0.01			& 0.42			& 0.84		& -1.497	& 1.441 	& 0.1298 \\ \hline
+\end{tabular}
+\label{tab_soil}
+\end{table}
+

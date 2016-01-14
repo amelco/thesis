@@ -1,0 +1,170 @@
+\def\clim{$C_{lim}$}
+\def\c2{$C_2$}
+\def\uwc{(m$^3$ m$^{-3}$) }
+
+
+\section*{MATERIAL AND METHODS}
+
+\subsection*{Hydraulic Properties and Soil}
+
+Solute uptake was analyzed using hydraulic data for three topsoils from the Dutch Staring series \citep{wosten} as listed in Table \ref{tab_soil}.
+The \cite{genuchten80} equation system was used to describe $K$--$\theta$--$h$ relations for these soils:
+
+\label{eq_theta}
+\begin{equation}
+\theta(h) = \theta_r + {\theta_s-\theta_r \over [1+|\alpha h|^n]^{1-(1/n)}}
+\end{equation}
+
+\label{eq_K}
+\begin{equation}
+K(\theta) = K_{s} \Theta^\lambda [1-(1-\Theta^{n/(n-1)})^{(1-(1/n)})]^2 
+\end{equation}
+%
+where $\theta$ \uwc is the water content, $K$ (m s$^{-1}$) and $K_s$ (m s$^{-1}$) are respectively the hydraulic conductivity and the saturated hydraulic conductivity, $h$ is the pressure head (m), $\Theta$ (--) is the effective saturation defined by ${(\theta - \theta_r) \over (\theta_s-\theta_r)}$; $\theta_s$ \uwc and $\theta_r$ \uwc are the saturated and residual water contents, respectively; and $\alpha$ (m$^{-1}$), $\lambda$ (--) and $n$ (--) are empirical parameters.
+
+\input{tables/soils}
+
+
+
+\subsection*{Model Description}
+
+The geometry of the soil-root system considers an uniformly distributed parallel cylindrical root of radius $r_0$ and length $z$. 
+To each root, a concentric cylinder of radius $r_m$ and length $z$ can be assigned to represent its extraction volume (Figure \ref{fig_rootzone}).
+
+The discretization needed for the numerical solution was performed at the single root scale. 
+As the extraction properties of the root are considered uniform along its length, and assuming no vertical differences in root density and fluxes, the cylinder can be represented by its cross-section, a circle. 
+The area of this circle, representing the extraction region, was subdivided into $n$ circular segments of variable size $\Delta r$~(m), small near the root and increasing with distance, according to the equation \cite{liersolute}:
+
+\label{eq_disc}
+\begin{equation}
+\Delta r = \Delta r_{min}+(\Delta r_{max}-\Delta r_{min}) \left( {r-r_0 \over r_m-r_0} \right)^S
+\end{equation}
+%
+where the subscripts 
+in $\Delta r$ 
+indicate the minimum and maximum segment sizes defined by the user, and $S$ gives the rate at which the segment size increases. 
+The parameter $r_0$ (m) represents the root radius, and $r_m$ (m) is the radius of the root extraction zone, equal to the half-distance between roots, which relates to the root density $R$ (m m$^{-3}$) according to Equation \ref{eq_rm}.
+This variable size discretization has the advantage to result in smaller segments in regions that need more detail in the calculations (near the root soil interface) due to the greater variation of expected fluxes. 
+Figure~\ref{fig_scheme} shows a schematic representation of the discretization as projected by Equation~\ref{eq_disc}.
+
+A fully implicit numerical treatment was given to the water and solute balance equations \ref{eq_Richards} and \ref{eq_sol}.
+The Richards equation \ref{eq_Richards} for one-dimensional axis-symmetric flow can be written as
+
+\label{eq_complete_richards}
+\begin{equation}
+{\partial \theta \over \partial t} = {\partial \theta \over \partial H} {\partial H \over \partial t} = C_w(H) {\partial H \over \partial t} = {1 \over r}{\partial \over \partial r} \left( r K(h) {\partial H \over \partial r} \right)
+\end{equation}
+%
+where the total hydraulic head ($H$) is the sum of pressure ($h$) and osmotic ($h_\pi$) heads and $C_w$ (m$^{-1}$) is the differential water capacity $\displaystyle{\partial H \over \partial\theta}$.
+Relations between $K$, $\theta$ and $h$ are described by the \cite{genuchten80} equation system (Equations \ref{eq_theta} and \ref{eq_K}).
+Analogous to \cite{vandam_feddes}, Equation \ref{eq_complete_richards} can be solved using an implicit scheme of finite differences with the Picard iterative process:
+
+\label{eq_disc_water}
+\begin{equation}
+\begin{split}
+  {C_w}_i^{j+1,p-1} (H_i^{j+1,p} - H_i^{j+1,p-1}) + \theta_i^{j+1,p-1}-\theta_i^j = {t^{j+1}-t^j \over r_i \Delta r_i} \times \\
+  \left[  
+  r_{i-1/2}K_{i-1/2}^j {H_{i-1}^{j+1,p}-H_i^{j+1,p} \over r_i-r_{i-1}}
+  -
+  r_{i+1/2}K_{i+1/2}^j {H_{i}^{j+1,p}-H_{i+1}^{j+1,p} \over r_{i+1}-r_{i}}
+  \right]
+\end{split}
+\end{equation}
+%
+where $i$ ($1 \leq i \leq n$) refers to the segment number, $j$ is the time step and $p$ the iteration level. 
+The Picard's method is used to reduce inaccuracies in the implicit numerical solution for the $h$-based Equation \ref{eq_complete_richards} \cite{celia}.
+
+The solution for Equation \ref{eq_disc_water} results in prediction of pressure head in soil as a function of time and distance from the root surface. 
+The boundary conditions considered relate the flux density entering the root to the transpiration rate for the inner segment; and considers zero flux for the outer segment:
+
+\begin{align}
+  \label{eq_bcw1}
+  K(h) {\partial h \over \partial r} &= q = 0\;{\rm ,} &r=r_m \\
+  \label{eq_bcw2}
+  K(h) {\partial h \over \partial r} &= q_0 = {T_p \over 2 \pi r_0 R z}\;{\rm ,} &r=r_0   
+\end{align}
+
+The computer algorithm that solves the Equation \ref{eq_disc_water} and applies boundary conditions \ref{eq_bcw1} and \ref{eq_bcw2} can be found in Appendix \ref{ap_water}.
+
+The convection-dispersion equation \ref{eq_sol} for one-dimensional axis-symmetric flow can be written as
+
+\label{eq_complete_solute}
+\begin{equation}
+r {\partial(\theta C) \over \partial t} = -{\partial \over \partial r} \biggl(r q C \biggr) + {\partial  \over \partial r} \left( r D {\partial C \over \partial r} \right).
+\end{equation}
+%
+with initial condition corresponding to constant solute concentration ($C_{ini}$) in all segments:
+
+\begin{equation}
+C = C_{ini}\;, \quad t=0,\; r=r_i,\; 1 \leq i \leq n.
+\end{equation}
+%
+Both boundary conditions are of the flux type, according to Equation \ref{eq_boundary_sol}.
+From the assumed geometry (Figure \ref{fig_scheme}) it follows that the boundary condition at the outer segment corresponds to zero solute flux ($q_s$):
+
+\begin{align}
+  \label{eq_bcrm}
+  D(\theta) {\partial C \over \partial r} - q C &= q_s = 0\;{\rm ,} &r=r_m.
+\end{align}
+
+The boundary condition for solute transport at the root surface represents the concentration dependent solute uptake, described by the MM equation \ref{eq_MM1}, with the following assumptions:
+\begin{itemize}
+\item  Solute uptake by mass flow of water is only controlled by the transpiration flow, a convective flow that is considered to be passive;
+\item  Plant regulated active uptake corresponds to diffusion;
+\item  Plant demand is equal to the $I_m$ parameter from the MM equation;
+\item  At a soil solution concentration value \clim, the solute flux limits the uptake. 
+\end{itemize}
+
+We assume that the plant demand for solute is constant in time.
+The uptake, however, can be higher or lower than the demand, depending on the concentration in the soil solution at the root surface (Figure \ref{fig_MM_mod}). 
+If the concentration is bellow a certain limiting value (\clim), the uptake is limited by the solute flux, {\it i.e.} solute flux can not attend plant demand even with potential values of active uptake.
+Additionally, solute uptake by mass flow of water can be higher than the plant demand in situations of high transpiration rate and/or for high soil water content. 
+In these cases, we assume that active uptake is zero and all uptake occurs by the passive process. A concentration \c2 (mol) for this situation is calculated.
+When the concentration is between \clim{} and \c2, the uptake is equal to the plant demand as a result of the sum of active and passive contributions to the uptake.
+Assumption 1 states that passive uptake is not controlled by any physiological plant mechanisms and, in order to optimize the use of metabolic energy, active uptake is regulated in such way that it works as a complementary mechanism of extraction to achieve plant demand (Assumption 2).
+This results in a lower active uptake contribution than that of its potential value.
+However, the effect of the solute concentration inside the plant on solute uptake and plant demand is not considered in the model.
+Consequently, a scenario for which the demand is reduced due to an excess of solute concentration in the plant is not considered.
+This might, in certain situations, lead to an overestimated prediction of uptake.
+
+A piecewise non-linear uptake function that considers these explicit boundary conditions was formulated as:
+\label{eq_MM_mod}
+\begin{numcases}
+  {F =}
+  {I_m C_0 \over K_m+C_0}+q_0 C_0,&if $C_0 < C_{lim}$ \label{eq_case1} \\
+  I_m, 				&if $C_{lim} \leq C_0 \leq C_2$ \label{eq_case2} \\
+  q_0 C_0, 				&if $C_0 > C_2$ \label{eq_case3}
+\end{numcases}
+%
+with \clim{} determined by the positive root of
+\label{eq_clim}
+\begin{equation}
+C_{lim} = -{K_m \pm \left( {K_m}^2 + 4{I_m K_m / q_0} \right)^{1/2} \over 2 }, 
+\end{equation}
+%
+and \c2 by
+\label{eq_c2}
+\begin{equation}
+C_2 = {I_m \over q_0}{\rm .}
+\end{equation}
+
+The non-linear part of the uptake function resides in Equation \ref{eq_case1}. 
+As implicit numerical implementations of non-linear functions may result in solutions with stability issues, a linearization of Equation \ref{eq_case1} was made, resulting in:
+\begin{equation}
+\label{eq_MM_linear}
+F = (\alpha + q_0)\,C_0,\,\,\,\,{\rm if }\, C_0 < C_{lim} 
+\end{equation}
+%
+where $\alpha$ (m s$^{-1}$) and $q_0$ (m s$^{-1}$) are the active and passive contributions for the solute uptake slope $(\alpha+q_0)$.
+This linearization is very similar to the one proposed by \cite{tinker}, but does not consider the solute concentration inside the plant.
+The derivation of Equations \ref{eq_clim} to \ref{eq_MM_linear} is shown in Appendix \ref{ap_clim}.
+
+Finally, the boundary condition at the inner segment refers to the concentration dependent solute flux at the root surface ($F$, mol m$^{-2}$ d$^{-1}$) in agreement to Equation \ref{eq_MM_mod} and \ref{eq_MM_linear} for the non-linear and linear case, respectively.
+The uptake of each root equals $-F/R$ (mol d$^{-1}$, the negative sign indicating solute depletion), thus, the condition at the root surface is described by:
+%$$
+%\eqalignno{
+%\label[eq_inner_bound]
+%-D(\theta) {\partial C \over \partial r} + q_0 C_0 = q_{s_0} &= -{F \over 2\pi r_0 R z}\;{\rm ,} \quad &r=r_0 \quad\quad\quad\quad\quad \eqmark
+%}
+%$$
+
