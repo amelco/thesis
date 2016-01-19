@@ -8,7 +8,7 @@
 
 \subsection*{Hydraulic Properties and Soil}
 
-Water uptake was analyzed using hydraulic data for three topsoils from the Dutch Staring series \citep{wosten} as listed in Table \ref{tab_soil}.
+Water uptake was analyzed using hydraulic data for three topsoils from the Dutch Staring series \citep{wosten} as listed in Table \ref{soils}.
 The \cite{genuchten80} equation system was used to describe $K$--$\theta$--$h$ relations for these soils:
 
 \begin{equation}
@@ -271,7 +271,7 @@ f_i = r_i \theta^j_ i C^j_i
 and $a_i\, \hbox{(m)}$, $b_i\, \hbox{(m)}$ and $c_i\, \hbox{(m)}$ defined for the respective segments as described in the following.
 
 \begin{enumerate} 
-  \item The intermediate nodes ($i = 2\hbox{ to }i = n-1$)
+  \item The intermediate nodes \textbf{(\pmb{$i = 2\hbox{ to }i = n-1$})}
 
     Rearrangement of Equation \ref{eq_disc_sol} to \ref{matrix} results in the coefficients:
 
@@ -287,7 +287,7 @@ b_i &= r_i \theta^{j+1}_i + {\Delta t \over 2 \Delta r_i}
 c_i &= -{r_{i+1/2} \Delta t \over 2 \Delta r_i (r_{i+1}-r_i)} (2D^{j+1}_{i+1/2} - q_{i+1/2} \Delta r_i) &  \numberthis \\
 \end{align*}
 
-\item The outer boundary ($i=n$)
+\item The outer boundary \textbf{(\pmb{$i=n$})}
 
   Applying boundary condition of zero solute flux, the third and fourth terms from the right hand side of Equation \ref{eq_disc_sol} are equal to zero. Thus, the solute balance for this segment is written as:
 
@@ -312,9 +312,9 @@ b_n &= r_n \theta^{j+1}_n + {\Delta t \over 2 \Delta r_n}
 \right] \numberthis
 \end{align*}
 
-\item The inner boundary ($i=1$)
+\item The inner boundary \textbf{(\pmb{$i=1$})}
   \begin{enumerate}
-    \item For \pmb{$C < C_{lim}$}
+    \item For \pmb{$C < C_{lim}$} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Applying boundary conditions of non-linear concentration dependent solute flux, the first and second term of the right-hand side of Equation \ref{eq_disc_sol} become 
 $\displaystyle{-\left({I_m \over 2 \pi r_0 R z(K_m +C^{j+1}_1)} + q_0\right)}C^{j+1}_1 \Delta r_1$:
@@ -345,9 +345,145 @@ b_1 &= r_1 \theta^{j+1}_1 + {\Delta t \over 2 \Delta r_1}
 c_1 &= -{r_{1+1/2} \Delta t \over 2 \Delta r_1 (r_2-r_1)} (2D^{j+1}_{1+1/2} - q_{1+1/2} \Delta r_1) & \numberthis
 \end{align*}
 
-  \item For \pmb{$C_{lim} < C < C_2$}
+  \item For \pmb{$C_{lim} < C < C_2$} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-  \item For \pmb{$C = 0$}
+    The constant uptake solution is based on the model proposed by \cite{willigen1}. 
+    The numerical discretization takes into consideration Equation \ref{eq_disc_sol}, whereas the intermediate nodes are analogous to Equations \ref{eq_int_nodes1} to \ref{eq_int_nodes3}. 
+    The boundary condition at the root surface (Equation~\ref{eq_inner_bound}) corresponds to constant solute flux:
+
+    \begin{equation}
+    q_{s0}=-{I_m \over 2\pi r_0 R z}.
+    \end{equation}
+
+    Applying boundary conditions of constant solute flux, the first and second term of the right-hand side of Equation \ref{eq_disc_sol} become 
+$\displaystyle{-{I_m \over 2 \pi r_0 R z}}\Delta r_1$ for $C > 0$:
+
+\begin{align*}
+\label{will}
+\theta^{j+1}_1 &C^{j+1}_1 - \theta^j_1 C^j_1 = {\Delta t \over 2 r_1 \Delta r_1} \times \\[2.5pt]
+& \left\{ \begin{array}{ll} 
+  \displaystyle{r_{1-1/2} \over r_{1}-r_{0}} \left(-{I_m \over 2 \pi r_0 R z}\right) \Delta r_1 - &  \\[10pt]
+  \displaystyle{r_{1+1/2} \over r_{2}-r_{1}} \left[ \begin{array}{ll}
+      q_{1+1/2}(C^{j+1}_{1}\Delta r_{2} + C^{j+1}_{2}\Delta r_{1}) - &\\[5pt]
+      2D^{j+1}_{1+1/2}(C^{j+1}_{2}-C^{j+1}_{1}) &
+  \end{array}\right] & \numberthis 
+\end{array}\right\}  
+\end{align*}
+
+When $C = 0$ the solute flux is set to zero and equation \ref{will} reduces to Equation \ref{lier}.
+Introduction of Equation \ref{will} in the tridiagonal matrix \ref{matrix} results in the following coefficients:
+
+\begin{align*}
+b_1 &= r_1 \theta^{j+1}_1 + {\Delta t \over 2 \Delta r_1} \left[ {r_{1+1/2} \over (r_2-r_1)} (2D^{j+1}_{1+1/2} + q_{1+1/2} \Delta r_2) \right] & \numberthis \\
+c_1 &= -{r_{1+1/2} \Delta t \over 2 \Delta r_1 (r_2-r_1)} (2D^{j+1}_{1+1/2} - q_{1+1/2} \Delta r_1) & \numberthis \\
+\end{align*}
+
+And the $f$ coefficient changes to:
+
+\begin{align*}
+f_1 &= r_1 \theta^j_1 C^j_1 - {r_{1-1/2} \over r_{1}-r_{0}} I_m {\Delta t \over 4 \pi r_0 R z} & \numberthis
+\end{align*}
+
+  \item For \pmb{$C = 0$} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    When $C=0$ the solute flux is set to zero and the equation is equal to Equation \ref{lier} (zero uptake). 
+    %While $C_{lim}~\leq~C~\leq~C_2$, the solute flux density is constant and the equation is equal to Equation \ref{will} (constant uptake).
+    The zero uptake solution is based on the model proposed by \cite{liersolute}. The numerical discretization is according to Equation \ref{eq_disc_sol} and the intermediate nodes are analogous to Equations \ref{eq_int_nodes1} to \ref{eq_int_nodes3}. 
+    The only difference is the boundary at the root surface (Equation~\ref{eq_inner_bound}), which is of zero solute flux:
+\begin{equation}
+q_{s0}=0 
+\end{equation}
+Applying boundary condition of zero solute flux, the first and second term of the right-hand side of Equation \ref{eq_disc_sol} are equal to zero:
+
+
+\begin{align*}
+\label{lier}
+\theta^{j+1}_1 &C^{j+1}_1 - \theta^j_1 C^j_1 = {\Delta t \over 2 r_1 \Delta r_1} \times \\
+& \left\{ 
+{r_{1+1/2} \over r_{2}-r_{1}} \left[\begin{array}{ll}
+    -q_{1+1/2}(C^{j+1}_{1}\Delta r_{2} + C^{j+1}_{2}\Delta r_{1}) + & \\[5pt]
+    2D^{j+1}_{1+1/2}(C^{j+1}_{2}-C^{j+1}_{1}) &
+  \end{array}\right] 
+\right\} & \numberthis
+\end{align*}
+
+Introduction of Equation \ref{lier} in the tridiagonal matrix \ref{matrix} results in the following coefficients:
+
+\begin{align*}
+b_1 &= r_1 \theta^{j+1}_1 + {\Delta t \over 2 \Delta r_1} \left[ {r_{1+1/2} \over (r_2-r_1)} (2D^{j+1}_{1+1/2} + q_{1+1/2} \Delta r_2) \right] & \numberthis \\
+c_1 &= -{r_{1+1/2} \Delta t \over 2 \Delta r_1 (r_2-r_1)} (2D^{j+1}_{1+1/2} - q_{1+1/2} \Delta r_1) & \numberthis 
+\end{align*}
+
 
   \end{enumerate}
 \end{enumerate}
+
+\subsection*{Simulation Scenarios}
+
+The simulations were performed using the hydraulic parameters from the Dutch Staring series \cite{wosten} for three different soils types, as listed in Table~\ref{soils}. 
+The general system parameters for the different scenarios are listed in Table \ref{general_param} and values for the Michaelis-Menten (MM) parameters in Table~\ref{MMparam}. 
+Values of root length density, initial solute concentration, relative transpiration, soil type, and ion species were chosen at several values, composing eight distinct scenarios as listed in Table \ref{tab_scenarios}. 
+Scenario 1 was considered as default, the other scenarios derive from scenario 1 by changing only one input parameter. 
+In this way, the effect of variation in soil hydraulic properties is exemplified by scenarios 1, 6 and 7; root length density by scenarios 1, 4 and 5; initial solute concentration by scenarios 1 and 3; and potential transpiration by scenarios 1 and 2.
+
+%\input tables/soils
+
+\input tables/general_param
+
+\input tables/MMparam
+
+\input tables/scenarios
+
+The default values of $\Delta r_{min}$, $\Delta r_{max}$ and $S$ in Equation \ref{eq_disc} were 10$^{-5}$ m, 5~10$^{-4}$ m and 0.5, resulting in 22, 68 and 213 segments for the high, medium and low root density simulations, respectively.
+To guarantee complete convergence for the non-linear model, a time step of 0.01 s was used when $C_0 < C_{lim}$.
+Parameters $h_{ini}$ and $C_{ini}$ were chosen such that the plant is in a no stress condition ($T_r=1$).
+All simulation scenarios ended when $T_r \leq 0.001$, at that point considering water uptake to be negligible.
+
+%\label[lu_nlu_comp]
+\subsection*{Analysis of linear and non-linear approaches}
+
+To analyze the differences between the two proposed models (linear and non-linear solutions), the relative differences in the predicted concentrations ($\delta_{C}$) and accumulated uptake ($\delta_{Ac}$), for both models, were calculated as follows:
+
+\begin{align}
+\label{error_C}
+\delta_C  &= {\displaystyle\sum_{x=1}^{x_{end}} C\!L_x - C\!N\!L_x \over \displaystyle\sum_{x=1}^{x_{end}} C\!L_x} & \numberthis \\
+\label{error_acc} 
+\delta_{Ac} &= {\displaystyle\sum_{t=1}^{t_{end}} AcL_t - AcN\!L_t \over \displaystyle\sum_{t=1}^{t_{end}} AcL_t} & \numberthis \\
+\end{align}
+%
+where $C\!L_x$ and $C\!N\!L_x$, are the solute concentration in soil water, and $AcL_t$ and $AcN\!L_t$ the accumulated uptake, for LU and NLU, respectively.  
+$x$ can be the time ($t$) or the distance from the axial center ($r$). 
+The relative difference between three outputs was computed: two relative to time -- concentration at the root surface $C_0(t)$ and accumulated solute uptake $Ac(t)$ -- and one relative to radial distance -- concentration $C(r)$.
+
+%The analysis of the results was made in order to choose one out of the two models in further simulations. 
+NLU solution uses the non-linear MM equation \ref{eq_MM_mod} and, due to an additional iterative process in the numerical implementation, more time is needed to compute the results when compared with the linear solution LU. 
+It is also susceptible to numerical stability issues, depending on selected time and space steps. 
+On the other hand, LU is a simplified version of the MM equation in a way that the solute uptake rate for $C_0 < C_{lim}$ is always smaller than that of the original non-linear equation.
+%(details in Appendix \ref[ap_l_nl_fluxes]). 
+It has no stability problems and needs less computational time because it is less sensitive to space and time steps. 
+In a first analysis, the objective was to check if the difference in the results generated by the linearization of the MM equation is sufficiently large to be properly analyzed.  
+To do so, four different scenarios were chosen (scenarios 1 to 4 as listed in Table \ref{tab_scenarios}).
+
+\subsection*{Sensitivity analysis}
+
+The relative partial sensitivity $\eta$ \cite{quirijn_sens} of model predictions 
+$Y$ as a function of the respective parameter value $P$ was calculated as
+
+\begin{equation}
+\label{eq_sens}
+\eta = {dY/Y \over dP/P}\; 
+\end{equation}
+
+\noindent
+where $P$ is the default value of the parameter, $dP$ is the in(de)crement applied to $P$, $Y$ is the output of a selected predicted variable and $dY$ is the variation over $Y$ when applied the new parameter value $P \pm dP$.
+
+To determine the sensitivity of the model to an input parameter, the magnitude of its derivative in respect of the model result is calculated. 
+If this derivative is close to zero, the model has a low sensitivity to the respective parameter. 
+The higher the derivative, the higher is the sensitivity and, therefore, the higher is the precision required when determining that parameter. 
+By making a relative analysis like in Equation \ref{eq_sens}, the sensitivity for distinct parameters can be compared. 
+
+To determine the sensitivity, a $dP/P$ of 0.01 (1\%) was used for the following selected parameters: 
+a) MM parameters $I_m$, $K_m$; and  
+b) soil hydraulic parameters $\alpha$, $n$, $\lambda$, $K_s$, $\theta_r$ and $\theta_s$.
+The analyzed predicted variables ($Y$) were: time to completion of simulation $t_{end}$, osmotic head at completion of simulation $h_{\pi}$, pressure head at completion of simulation $h$, average osmotic head in the soil profile at completion of simulation $\overline{h_{\pi}}$, average pressure head in soil profile at completion of simulation $\overline{h}$ and accumulated uptake at completion of simulation $Ac$.
+

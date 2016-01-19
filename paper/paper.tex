@@ -1,5 +1,6 @@
 \RequirePackage{lineno}
 \documentclass[10pt,a4paper,titlepage]{article}
+\usepackage[margin=2.5cm]{geometry}
 \usepackage{setspace}	% to use \doublespace
 \usepackage{amsmath}
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}	% to number a equation using \numberthis in a align* eviroment
@@ -14,6 +15,7 @@
 
 \usepackage{caption} 
 \captionsetup[table]{singlelinecheck=false}			% to left align table caption
+\usepackage{multirow}						% enable row cell spanning 
 
 \renewcommand*{\thefootnote}{\fnsymbol{footnote}}		% change footnote from number to symbol *
 %\renewcommand*{\thefootnote}{\arabic{footnote}}		% switch back to arabic number
