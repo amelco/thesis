@@ -1,22 +1,23 @@
 \def\clim{$C_{lim}$}
 \def\c2{$C_2$}
 \def\uwc{(m$^3$ m$^{-3}$) }
-
+\def\uhead{(m) }
+%\renewcommand{\arraystretch}{2.0}	% increasespace between elements of all arrays
 
 \section*{MATERIAL AND METHODS}
 
 \subsection*{Hydraulic Properties and Soil}
 
-Solute uptake was analyzed using hydraulic data for three topsoils from the Dutch Staring series \citep{wosten} as listed in Table \ref{tab_soil}.
+Water uptake was analyzed using hydraulic data for three topsoils from the Dutch Staring series \citep{wosten} as listed in Table \ref{tab_soil}.
 The \cite{genuchten80} equation system was used to describe $K$--$\theta$--$h$ relations for these soils:
 
-\label{eq_theta}
 \begin{equation}
+\label{eq_theta}
 \theta(h) = \theta_r + {\theta_s-\theta_r \over [1+|\alpha h|^n]^{1-(1/n)}}
 \end{equation}
 
-\label{eq_K}
 \begin{equation}
+\label{eq_K}
 K(\theta) = K_{s} \Theta^\lambda [1-(1-\Theta^{n/(n-1)})^{(1-(1/n)})]^2 
 \end{equation}
 %
@@ -28,6 +29,31 @@ where $\theta$ \uwc is the water content, $K$ (m s$^{-1}$) and $K_s$ (m s$^{-1}$
 
 \subsection*{Model Description}
 
+Microscopic root uptake models consider a single cylindrical root of radius $r_0$ \uhead with an extraction zone being represented by a concentric cylinder of radius $r_m$ (m) that bounds the half-distance between roots. The height of both cylinders is $z$ \uhead and represents the rooted soil depth. 
+The basic assumptions of this type of model is that the root density does not change with depth and there is no difference in intensity of extraction along the root surface. 
+Water and solute flows are axis-symmetric.
+
+It is common to report root length density $R$ (m m$^{-3}$) and $r_0$. These are related to $r_m$ and root length $L$ \uhead by the following equations:
+
+\begin{equation}
+\label{eq_rm}
+r_m = {1 \over \sqrt{\pi R}}
+\end{equation}
+
+\begin{equation}
+\label{eq_L}
+L = {A_p z \over \pi {r_m}^2}
+\end{equation}
+
+where $A_p$ (m$^2$) is the soil surface area occupied by the plant. For the case that there is no available data from literature, one can obtain the value of $L$ from relatively simple measurements of root and soil characteristics as soil mass ($m_s$, kg) and density ($d_s$, kg m$^{-3}$), and root average radius ($\overline{r_0}$, m)
+and $R$ by
+
+\begin{equation}
+\label{eq_R}
+R = {1 \over \pi {r_m}^2}\,.
+\end{equation}
+
+
 The geometry of the soil-root system considers an uniformly distributed parallel cylindrical root of radius $r_0$ and length $z$. 
 To each root, a concentric cylinder of radius $r_m$ and length $z$ can be assigned to represent its extraction volume (Figure \ref{fig_rootzone}).
 
@@ -35,8 +61,8 @@ The discretization needed for the numerical solution was performed at the single
 As the extraction properties of the root are considered uniform along its length, and assuming no vertical differences in root density and fluxes, the cylinder can be represented by its cross-section, a circle. 
 The area of this circle, representing the extraction region, was subdivided into $n$ circular segments of variable size $\Delta r$~(m), small near the root and increasing with distance, according to the equation \cite{liersolute}:
 
-\label{eq_disc}
 \begin{equation}
+\label{eq_disc}
 \Delta r = \Delta r_{min}+(\Delta r_{max}-\Delta r_{min}) \left( {r-r_0 \over r_m-r_0} \right)^S
 \end{equation}
 %
@@ -50,8 +76,8 @@ Figure~\ref{fig_scheme} shows a schematic representation of the discretization a
 A fully implicit numerical treatment was given to the water and solute balance equations \ref{eq_Richards} and \ref{eq_sol}.
 The Richards equation \ref{eq_Richards} for one-dimensional axis-symmetric flow can be written as
 
-\label{eq_complete_richards}
 \begin{equation}
+\label{eq_complete_richards}
 {\partial \theta \over \partial t} = {\partial \theta \over \partial H} {\partial H \over \partial t} = C_w(H) {\partial H \over \partial t} = {1 \over r}{\partial \over \partial r} \left( r K(h) {\partial H \over \partial r} \right)
 \end{equation}
 %
@@ -59,8 +85,8 @@ where the total hydraulic head ($H$) is the sum of pressure ($h$) and osmotic ($
 Relations between $K$, $\theta$ and $h$ are described by the \cite{genuchten80} equation system (Equations \ref{eq_theta} and \ref{eq_K}).
 Analogous to \cite{vandam_feddes}, Equation \ref{eq_complete_richards} can be solved using an implicit scheme of finite differences with the Picard iterative process:
 
-\label{eq_disc_water}
 \begin{equation}
+\label{eq_disc_water}
 \begin{split}
   {C_w}_i^{j+1,p-1} (H_i^{j+1,p} - H_i^{j+1,p-1}) + \theta_i^{j+1,p-1}-\theta_i^j = {t^{j+1}-t^j \over r_i \Delta r_i} \times \\
   \left[  
@@ -88,8 +114,8 @@ The computer algorithm that solves the Equation \ref{eq_disc_water} and applies 
 
 The convection-dispersion equation \ref{eq_sol} for one-dimensional axis-symmetric flow can be written as
 
-\label{eq_complete_solute}
 \begin{equation}
+\label{eq_complete_solute}
 r {\partial(\theta C) \over \partial t} = -{\partial \over \partial r} \biggl(r q C \biggr) + {\partial  \over \partial r} \left( r D {\partial C \over \partial r} \right).
 \end{equation}
 %
@@ -99,15 +125,35 @@ with initial condition corresponding to constant solute concentration ($C_{ini}$
 C = C_{ini}\;, \quad t=0,\; r=r_i,\; 1 \leq i \leq n.
 \end{equation}
 %
-Both boundary conditions are of the flux type, according to Equation \ref{eq_boundary_sol}.
+Both boundary conditions are of the flux type, according to 
+
+\begin{equation}
+  \label{eq_boundary_sol}
+  \left. -D(\theta) {\partial C \over \partial r} \right|_{r=r_i} + qC = F\;{\rm ,} \;\;\;\;\; t>0,\; r_i=\{r_0,r_m\}\,.
+\end{equation}
+
+%Equation \ref{eq_boundary_sol}.
+
 From the assumed geometry (Figure \ref{fig_scheme}) it follows that the boundary condition at the outer segment corresponds to zero solute flux ($q_s$):
 
 \begin{align}
   \label{eq_bcrm}
-  D(\theta) {\partial C \over \partial r} - q C &= q_s = 0\;{\rm ,} &r=r_m.
+%  D(\theta) {\partial C \over \partial r} - q C &= q_s = 0\;{\rm ,} &r=r_m.
+  F &= 0\;{\rm ,} &r=r_m.
 \end{align}
 
-The boundary condition for solute transport at the root surface represents the concentration dependent solute uptake, described by the MM equation \ref{eq_MM1}, with the following assumptions:
+The rate of solute uptake by plant roots can be described by the MM equation, as seen in Chapter \ref{literature}. 
+The uptake shape function $\alpha(C)$ can be supposed to follow the concentration dependent MM kinetics, and considering $k$ equal to $I_m$ leads to:
+\begin{equation}
+  \label{eq_MM1}
+\alpha(C) = {C \over K_m+C} \Rightarrow F = {C \over K_m+C}\, I_m
+\end{equation}
+%
+where $I_m$ is the maximum uptake rate, $C$ is the solute concentration in soil solution and $K_m$ the Michaelis-Menten constant. 
+$I_m$ can be found experimentally and $K_m$ is to be calibrated as the concentration at which $I_m$ assumes half of its value, being interpreted as the affinity of the plant for the solute. 
+
+
+The boundary condition for solute transport at the root surface ($r_0$) represents the concentration dependent solute uptake, described by the MM equation \ref{eq_MM1}, with the following assumptions:
 \begin{itemize}
 \item  Solute uptake by mass flow of water is only controlled by the transpiration flow, a convective flow that is considered to be passive;
 \item  Plant regulated active uptake corresponds to diffusion;
@@ -137,14 +183,14 @@ A piecewise non-linear uptake function that considers these explicit boundary co
 \end{numcases}
 %
 with \clim{} determined by the positive root of
-\label{eq_clim}
 \begin{equation}
+\label{eq_clim}
 C_{lim} = -{K_m \pm \left( {K_m}^2 + 4{I_m K_m / q_0} \right)^{1/2} \over 2 }, 
 \end{equation}
 %
 and \c2 by
-\label{eq_c2}
 \begin{equation}
+\label{eq_c2}
 C_2 = {I_m \over q_0}{\rm .}
 \end{equation}
 
@@ -161,10 +207,147 @@ The derivation of Equations \ref{eq_clim} to \ref{eq_MM_linear} is shown in Appe
 
 Finally, the boundary condition at the inner segment refers to the concentration dependent solute flux at the root surface ($F$, mol m$^{-2}$ d$^{-1}$) in agreement to Equation \ref{eq_MM_mod} and \ref{eq_MM_linear} for the non-linear and linear case, respectively.
 The uptake of each root equals $-F/R$ (mol d$^{-1}$, the negative sign indicating solute depletion), thus, the condition at the root surface is described by:
-%$$
-%\eqalignno{
-%\label[eq_inner_bound]
-%-D(\theta) {\partial C \over \partial r} + q_0 C_0 = q_{s_0} &= -{F \over 2\pi r_0 R z}\;{\rm ,} \quad &r=r_0 \quad\quad\quad\quad\quad \eqmark
-%}
-%$$
 
+\begin{align}
+  \label{eq_inner_bound}
+-D(\theta) {\partial C \over \partial r} + q_0 C_0 = q_{s_0} &= -{F \over 2\pi r_0 R z}\;{\rm ,} \quad &r=r_0
+\end{align}
+
+\subsection*{Numerical implementation}
+
+TELL THAT THERE IS ALSO A LINEAR SOLUTION BUT IT WONT BE SHOWN IN THE PAPER.
+ALSO, THAT IT WONT BE SHOWN THE SOLUTIONS FOR THE COMPARED MODELS. CITE THE THESIS.
+
+In the numerical solution, the combined water and solute movement is simulated iteratively. In a first step, the water movement towards the root is simulated, assuming salt concentrations from the previous time step. In a second step, the salt contents per segment are updated and new values for the osmotic head in all segments are calculated. The first step is then repeated with updated values for the osmotic heads. This process is repeated until the pressure head values and osmotic head values between iterations converge. 
+Flowcharts containing the algorithm structure are shown in the Appendix \ref{ap_flowchart}.
+
+The implicit numerical discretization of Equation \ref{eq_complete_solute} yields:
+
+\begin{align*}
+  \label{eq_disc_sol}
+  &\theta^{j+1}_i C^{j+1}_i - \theta^j_i C^j_i = {\Delta t \over 2 r_i \Delta r_i} \times \\
+& \left\{ 
+{r_{i-1/2} \over r_i-r_{i-1}} \left[ q_{i-1/2}(C^{j+1}_{i-1}\Delta r_i + C^{j+1}_{i}\Delta r_{i-1}) - 2D^{j+1}_{i-1/2}(C^{j+1}_i-C^{j+1}_{i-1}) \right]\right. -  \numberthis \\
+&\left. {r_{i+1/2} \over r_{i+1}-r_{i}} \left[ q_{i+1/2}(C^{j+1}_{i}\Delta r_{i+1} + C^{j+1}_{i+1}\Delta r_{i}) - 2D^{j+1}_{i+1/2}(C^{j+1}_{i+1}-C^{j+1}_{i}) \right] 
+\right\}
+\end{align*}
+
+Applying equation \ref{eq_disc_sol} to each segment, the concentrations for the next time step $C_i^{j+1}$ (mol m$^{-3}$) are obtained by solving the following tridiagonal matrix:
+
+\begin{equation}
+  \label{matrix}
+  \left [ \begin{matrix}
+ b_1 & c_1 & & & &  \\
+ a_2 & b_2 & c_2 & & &  \\
+  & a_3 & b_3 & c_3 & &  \\
+  &  & \ddots & \ddots & \ddots &  \\
+  &  & & a_{n-1} & b_{n-1} & c_{n-1}  \\
+  &  & & & a_{n} & b_{n}  \cr \end{matrix}  \right]
+  \left [ \begin{matrix}
+ C^{j+1}_1 \\
+ C^{j+1}_2 \\
+ C^{j+1}_3 \\
+ \vdots \\
+ C^{j+1}_{n-1} \\
+ C^{j+1}_n \\ \end{matrix} \right ]
+=
+\left [ \begin{matrix}
+ f_1 \\
+ f_2 \\
+ f_3 \\
+ \vdots \\
+ f_{n-1} \\
+ f_n \\ \end{matrix} \right ]
+\end{equation}
+
+\noindent
+with $f_i \hbox{(mol m$^{-2}$)}$ defined as
+
+\begin{equation}
+f_i = r_i \theta^j_ i C^j_i
+\end{equation}
+
+\noindent
+and $a_i\, \hbox{(m)}$, $b_i\, \hbox{(m)}$ and $c_i\, \hbox{(m)}$ defined for the respective segments as described in the following.
+
+\begin{enumerate} 
+  \item The intermediate nodes ($i = 2\hbox{ to }i = n-1$)
+
+    Rearrangement of Equation \ref{eq_disc_sol} to \ref{matrix} results in the coefficients:
+
+\begin{align*}
+\label{eq_int_nodes1}
+a_i &= -{r_{i-1/2} (2D^{j+1}_{i-1/2} + q_{i-1/2} \Delta r_i)\Delta t \over 2(r_{i}-r_{i-1})\Delta r_i} &  \numberthis \\[5pt]
+b_i &= r_i \theta^{j+1}_i + {\Delta t \over 2 \Delta r_i} 
+\left[ \begin{array}{ll}
+    \displaystyle{r_{i-1/2} \over (r_i-r_{i-1})} (2D^{j+1}_{i-1/2} - q_{i-1/2} \Delta r_{i-1}) + &\\[10pt]
+    \displaystyle{r_{i+1/2} \over (r_{i+1}-r_{i})} (2D^{j+1}_{i+1/2} + q_{i+1/2} \Delta r_{i+1}) &
+\end{array} \right] \numberthis  \\[4pt]
+\label{eq_int_nodes3}
+c_i &= -{r_{i+1/2} \Delta t \over 2 \Delta r_i (r_{i+1}-r_i)} (2D^{j+1}_{i+1/2} - q_{i+1/2} \Delta r_i) &  \numberthis \\
+\end{align*}
+
+\item The outer boundary ($i=n$)
+
+  Applying boundary condition of zero solute flux, the third and fourth terms from the right hand side of Equation \ref{eq_disc_sol} are equal to zero. Thus, the solute balance for this segment is written as:
+
+\begin{align*}
+\label{outer}
+\theta^{j+1}_n &C^{j+1}_n - \theta^j_n C^j_n = {\Delta t \over 2 r_n \Delta r_n} \times \\
+& \left\{ {r_{n-1/2} \over r_n-r_{n-1}} 
+\left[ \begin{array}{ll}
+    q_{n-1/2}(C^{j+1}_{n-1}\Delta r_n + C^{j+1}_{n}\Delta r_{n-1}) - & \\[5pt]
+    2D^{j+1}_{n-1/2}(C^{j+1}_n-C^{j+1}_{n-1}) &
+\end{array} \right]
+\right\} \numberthis
+\end{align*}
+
+Rearrangement of Equation \ref{outer} to \ref{matrix} results in the coefficients:
+
+\begin{align*}
+a_n &= -{r_{n-1/2} (2D^{j+1}_{n-1/2} + q_{n-1/2} \Delta r_n)\Delta t \over 2(r_{n}-r_{n-1})\Delta r_n} \numberthis \\
+b_n &= r_n \theta^{j+1}_n + {\Delta t \over 2 \Delta r_n} 
+\left[
+{r_{n-1/2} \over r_n-r_{n-1}} (2D^{j+1}_{n-1/2} + q_{n-1/2} \Delta r_{n-1})
+\right] \numberthis
+\end{align*}
+
+\item The inner boundary ($i=1$)
+  \begin{enumerate}
+    \item For \pmb{$C < C_{lim}$}
+
+Applying boundary conditions of non-linear concentration dependent solute flux, the first and second term of the right-hand side of Equation \ref{eq_disc_sol} become 
+$\displaystyle{-\left({I_m \over 2 \pi r_0 R z(K_m +C^{j+1}_1)} + q_0\right)}C^{j+1}_1 \Delta r_1$:
+%and $C > C_2$:
+
+\begin{align*}
+\label{NLU}
+&\theta^{j+1}_1 C^{j+1}_1 - \theta^j_1 C^j_1 = {\Delta t \over 2 r_1 \Delta r_1} \times \\
+& \left\{ \begin{array}{ll}
+\displaystyle{r_{1-1/2} \over r_{1}-r_{0}} \displaystyle\left[-\left({I_m \over 2 \pi r_0 R z (K_m +C^{j+1}_1)} + q_0\right)\right] C^{j+1}_1 \Delta r_1 - & \\[15pt]
+  \displaystyle{r_{1+1/2} \over r_{2}-r_{1}} 
+    \left[ \begin{array}{ll} 
+	q_{1+1/2}(C^{j+1}_{1}\Delta r_{2} + C^{j+1}_{2}\Delta r_{1}) - &\\[5pt]
+	2D^{j+1}_{1+1/2}(C^{j+1}_{2}-C^{j+1}_{1}) &
+    \end{array}\right] 
+\end{array}\right\} & \numberthis  
+\end{align*}
+
+Rearrangement of Equation \ref{NLU} to \ref{matrix} results in the following coefficients:
+
+\begin{align*}
+\label{b1}
+b_1 &= r_1 \theta^{j+1}_1 + {\Delta t \over 2 \Delta r_1} 
+\left[ \begin{array}{ll} 
+    \displaystyle{r_{1+1/2} \over (r_2-r_1)} (2D^{j+1}_{1+1/2} + q_{i+1/2} \Delta r_2) + & \\[10pt]
+    \displaystyle{r_{1-1/2} \over r_{1}-r_{0}} \left({I_m \over 2 \pi r_0 R z (K_m +C^{j+1}_1)} + q_0 \right) \Delta r_1 &
+\end{array}\right]\numberthis \\
+c_1 &= -{r_{1+1/2} \Delta t \over 2 \Delta r_1 (r_2-r_1)} (2D^{j+1}_{1+1/2} - q_{1+1/2} \Delta r_1) & \numberthis
+\end{align*}
+
+  \item For \pmb{$C_{lim} < C < C_2$}
+
+  \item For \pmb{$C = 0$}
+
+  \end{enumerate}
+\end{enumerate}
