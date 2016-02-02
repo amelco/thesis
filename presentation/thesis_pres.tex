@@ -1,13 +1,14 @@
 \documentclass[compress]{beamer}  % compress diminui o tamanho da barra de navegacao
 \mode<presentation>
 \graphicspath{ {../figuras/} }
-%\usetheme{Madrid}
-%\usetheme{Copenhagen}
 \usetheme{Dresden}
+
+\usepackage{natbib}     % citations
+  \bibpunct{(}{)}{;}{a}{,}{,}   % https://en.wikibooks.org/wiki/LaTeX/Bibliography_Management#Citations
 
 \setbeamertemplate{mini frames}[default]
 
-
+\usepackage{cases}
 \usepackage[utf8]{inputenc}
 \usepackage{ifthen}		% pacote usado no logo (mudar o logo apos o primeiro slide)
 \newboolean{front}
@@ -47,7 +48,7 @@ Metodologia
 
 Resultados
 
-Conclusão
+Conclusões
 \end{frame}
 
 \include{introduction}
@@ -58,5 +59,10 @@ Conclusão
 
 {\scriptsize 
 \include{conclusions}}
+
+\begin{frame}<beamer:0>		% <beamer:0> para nao mostrar o slide (frame)
+\bibliography{../mybib.bib}
+\end{frame}
+
 
 \end{document}
