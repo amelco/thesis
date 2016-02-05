@@ -16,16 +16,6 @@
 \end{tabular}
 \end{frame}
 
-\subsection{Soluções existentes}
-\begin{frame}
-  Revisão dos modelos existentes (inclusive o do Quirijn)
-\end{frame}
-
-\subsection{Solução proposta}
-\begin{frame}
-  Modelo proposto. Explicação de como funciona e caracterização.
-\end{frame}
-
 \subsection{Desafios da modelagem}
 \begin{frame}\frametitle{Introdução}
   \begin{itemize}
@@ -36,19 +26,108 @@
   \centering{Modelagem $\rightarrow$ entender/simular/prever os fenômenos \\ $\downarrow$ \\ melhorar práticas de manejo das culturas}
 \end{frame}
 
+\subsection{Revisão}
+\begin{frame}\frametitle{Extração de soluto}
+  \scriptsize 
+  \begin{block}{Modelos macroscópicos}
+    {\scriptsize 
+      Considera toda a zona radicular como um componente de extração uniforme.
+
+      A extração de água e soluto é um termo ``sumidouro'' nas equações de balanço de massa.
+    }
+  \end{block}
+  \begin{block}{Modelos microscópicos}
+    {\scriptsize 
+      Considera uma raiz singular cinlíndrica de raio e propriedades de extração uniformes.
+
+      A extração de água e solutos são determinadas pelas condições de contorno das equações de balanço de massa à superfície da raíz.
+    }
+  \end{block} \pause
+  \begin{block}{Solução numérica X Solução analítica}
+  \end{block}
+  \bgroup
+  \def\arraystretch{1.5}
+  \begin{tabular}{cc}
+    \scriptsize Numérica & \scriptsize Analítica \\
+    \tiny
+\(
+ \begin{bmatrix}
+ b_1 & c_1 & & & &  \\
+ a_2 & b_2 & c_2 & & &  \\
+  & a_3 & b_3 & c_3 & &  \\
+  &  & \ddots & \ddots & \ddots &  \\
+  &  & & a_{n-1} & b_{n-1} & c_{n-1}  \\
+  &  & & & a_{n} & b_{n}  \cr \end{bmatrix}
+ \begin{bmatrix}
+ C^{j+1}_1 \\
+ C^{j+1}_2 \\
+ C^{j+1}_3 \\
+ \vdots \\
+ C^{j+1}_{n-1} \\
+ C^{j+1}_n \\ \end{bmatrix}
+=
+ \begin{bmatrix}
+ f_1 \\
+ f_2 \\
+ f_3 \\
+ \vdots \\
+ f_{n-1} \\
+ f_n \\ \end{bmatrix}
+\)
+ & 
+\tiny\(
+\Theta(\mu,\eta) = \sum_{n=0}^\infty A_n \mu^v \beta_v(\mu,\tau,\alpha_n) \exp(-\alpha_n^2\eta)+1
+\)    \\
+  \end{tabular}
+  \egroup
+\end{frame}
+
+%\subsection{Revisão}
+\begin{frame}\frametitle{Soluções existentes}
+    \begin{itemize}
+    \item Início $\rightarrow$ soluções analíticas em regime estático para o fluxo de água e solutos
+    \item Computadores $\rightarrow$ soluções numéricas uni, bi e tridimensionais (regime transiente)
+      \begin{itemize}
+	\item soluções com extração de soluto linear ou não-linear
+      \end{itemize}
+  \end{itemize}
+  \centering
+  Possibilidade de prever o estresse hídrico e osmótico
+  \includegraphics[height=2.5cm]{tr_pres}\\
+\end{frame}
+
+%\subsection{Soluções existentes}
+%\begin{frame}
+%  Revisão dos modelos existentes (inclusive o do Quirijn)
+%\end{frame}
+
+
+\subsection{Solução proposta}
+\begin{frame}\frametitle{Solução proposta}
+  \begin{itemize}
+    \item Resolver a Equação de Convecção-Dispersão para o movimento de soluto no solo, considerando fluxos transientes de água e soluto e assumindo uma extração (não linear) de soluto sendo depende de sua concentração no solo.
+
+    \item Utilizou-se como base o modelo mechanístico de extração de água e fluxo de soluto proposto por \cite{liersolute},
+  que resolve numericamente as equações de balanço de massa, porém não considera a extração de soluto e somente o seu movimento em direção à raiz.
+
+    \item Buscando-se uma solução também mecanística para a extração de solutos, utilizou-se a equação de Michaelis-Menten como condição de fronteira à superfície da raiz.
+  \end{itemize}
+\end{frame}
+
 %\subsection{Importância da modelagem}
 %\begin{frame}\frametitle{Introdução}
 %  \centering{Modelagem $\rightarrow$ entender/simular/prever os fenômenos \\ $\downarrow$ \\ melhorar práticas de manejo das culturas}
 %\end{frame}
 
 \subsection{Objetivos}
-\begin{frame}
-  %\frametitle{Objetivos da Tese}
-  Os objetivos da tese são
+\begin{frame}\frametitle{Objetivos da Tese}
   \begin{itemize}
   \item Incorporar extração de soluto no modelo de \cite{liersolute};
   \item Diferenciar quantitativamente as componentes passiva e ativa da extração de solutos;
   \end{itemize}
+  \begin{block}{Importância}
+    Incorporar o modelo em uma modelo mais completo (SWAP)
+  \end{block}
 \end{frame}
 
 

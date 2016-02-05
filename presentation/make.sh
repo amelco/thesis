@@ -5,7 +5,7 @@ bibtex $fileN
 pdflatex $fileN.tex
 pdflatex $fileN.tex
 rm *.aux
-rm *.log
+#rm *.log
 rm *.nav
 rm *.out
 rm *.snm
