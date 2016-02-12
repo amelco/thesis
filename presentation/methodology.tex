@@ -93,15 +93,39 @@
 
 \subsection{Implementação numérica da ECD}
 \begin{frame}
+  \begin{block}{Discretização}
   \begin{itemize}
     \item Solução implícita (backward Euler method)
     \item Discretização do espaço $\rightarrow$ não-constante ($\delta_r$ crescente) $\rightarrow$ maior precisão (malha mais fina) na zona de maior variação de fluxos
     \item Discretização do tempo $\rightarrow$ variável (de acordo com o número de iterações)
   \end{itemize}
+  \end{block} \pause
+  
+  \begin{block}{Modelo proposto}
+    \begin{itemize}
+      \item Extração não-linear (MM Equation) e linear (beseada em MM) em $r_0$\\
+	\begin{tabular}{ll}
+	  \multirow{8}{*}{\includegraphics[height=3.cm]{MM_LNL}} & \\
+								  & \\
+								  & $F = \displaystyle{I_m C_0 \over K_m + C_0} + q_0 C_0 $ \\
+								  & \\
+								  & \\
+								  & $F = \beta C_0 = {2 I_m \over K_m \pm \left( {K_m}^2 + 4{I_m K_m / q_0} \right)^{1/2}} C_0 $ \\
+								  & \\
+								  & \\
+	\end{tabular}
+    \end{itemize}
+  \end{block}
 \end{frame}
 
-\subsection{Other solute uptake models}
-\begin{frame}
+\subsection{Implementação}
+\begin{frame}\frametitle{Outros modelos (comparação)}
+  Algoritmo numérico da solução analítica de \cite{willigen1} $\rightarrow$ Extração de soluto em taxa constante \\[0.5cm]
+
+  Algoritmo da solução numérica de \cite{liersolute} $\rightarrow$ Sem extração de soluto\\[.5cm]
+
+  Algoritmo da solução analítica de \cite{cushman} $\rightarrow$ Extração de soluto dependente da concentração no solo
+
 \end{frame}
 
 \subsection{Scenarios}

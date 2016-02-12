@@ -129,6 +129,8 @@ clim2=(-Km-(Km**2+4*Im*Km/q)**0.5)/2
 if ( clim1>0 ) clim=clim1
 if ( clim2>0 ) clim=clim2
 
+Lqs(x) = Im/clim*x
+
 print clim
 print c2
 set xtics ("0" 0, "C_{lim}" clim, "C_2" c2) nomirror
@@ -151,3 +153,18 @@ plot [0:100][0:1] \
 (x<clim?qs(x):x>clim&&x<c2?Im:q*x) lt 1 lc -1 lw 2, \
 (x<clim?A(x):x>clim&&x<c2?Im-P(x):0) lt 1 lc -1 lw 1, \
 P(x) lt 1 lc -1 lw 1
+
+################################################################################################
+
+set out '../figuras/MM_LNL.pdf'
+unset arrow
+unset label
+set arrow from clim,0 to clim,Im nohead dt 2 lw 1
+set arrow from c2,0 to c2,Im nohead dt 2 lw 1
+set xlabel "C_0" font ", 14"
+set ylabel "solute uptake rate" font ", 16"
+
+plot [0:100][0:1] \
+(x<clim?qs(x):x>clim&&x<c2?Im:q*x) lt 1 lc -1 lw 2, \
+(x<clim?Lqs(x):x>clim&&x<c2?Im:q*x) lt 1 lc -1 lw 2 dt 4
+
