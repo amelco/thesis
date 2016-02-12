@@ -85,7 +85,7 @@
 %\subsection{Revisão}
 \begin{frame}\frametitle{Soluções existentes}
     \begin{itemize}
-    \item Início $\rightarrow$ soluções analíticas em regime estático para o fluxo de água e solutos
+    \item Início $\rightarrow$ soluções analíticas em regime estacionário para o fluxo de água e solutos
     \item Computadores $\rightarrow$ soluções numéricas uni, bi e tridimensionais (regime transiente)
       \begin{itemize}
 	\item soluções com extração de soluto linear ou não-linear
@@ -114,7 +114,7 @@
   \begin{block}{Modelo mecanístico}
     \cite{liersolute}
 
-    Redução da transpiração $\rightarrow$ potencial hídrico limitante
+    Redução da transpiração $\rightarrow$ potencial hídrico limitante (LER TRABALHO DE QUIRIJN Q FALA COMO SE OBTER $h_lim$)
     
     \centering
     \includegraphics[height=2.5cm]{Qtr}
@@ -122,18 +122,19 @@
 \end{frame}
 
 
-\subsection{Solução proposta}
+\subsection{Solução proposta - REDUZIR TEXTO}
+  
 \begin{frame}\frametitle{Solução proposta}
+  Modelo microscópico, numérico e mecanístico com extração não-linear de soluto (dependente da concentração do solo) \\[0.2cm]
   \begin{itemize}
-    \item Resolver a Equação de Convecção-Dispersão para o movimento de soluto no solo, considerando fluxos transientes de água e soluto e assumindo uma extração (não linear) de soluto sendo depende de sua concentração no solo.
-
     \item Utilizou-se como base o modelo mechanístico de extração de água e fluxo de soluto proposto por \cite{liersolute},
-  que resolve numericamente as equações de balanço de massa, porém não considera a extração de soluto e somente o seu movimento em direção à raiz.
-
-    \item Buscando-se uma solução também mecanística para a extração de solutos, utilizou-se a equação de Michaelis-Menten como condição de fronteira à superfície da raiz.
+    \item Resolver a Equação de Convecção-Dispersão para o movimento de soluto no solo, considerando fluxos transientes de água e soluto e assumindo uma extração (não-linear) de soluto sendo depende de sua concentração no solo.
+          que resolve numericamente as equações de balanço de massa, porém não considera a extração de soluto e somente o seu movimento em direção à raiz.
+    \item\begin{tabular}{p{4.5cm} c}
+            Buscando-se uma solução também mecanística para a extração de solutos, utilizou-se a equação de Michaelis-Menten como condição de fronteira à superfície da raiz. &
+	    \raisebox{-.7\height}{\includegraphics[height=2.5cm]{orig_MM}} \\
+         \end{tabular}
   \end{itemize}
-
-  REDUZIR TEXTO
 \end{frame}
 
 %\subsection{Importância da modelagem}

@@ -38,8 +38,10 @@
 	Condições de contorno em $r_0$:
 
     \tiny{
-      Água:
-      $$ K(h) {\partial h \over \partial r} = q_0 = {T_p \over 2 \pi r_0 R z}$$
+      Água:\\
+      $T_p$ quando transpiração é potencial\\
+      Limitada por K($\theta$) quanto $T_r<1$ \\[0.1cm]
+      %$$ K(h) {\partial h \over \partial r} = q_0 = {T_p \over 2 \pi r_0 R z}$$
       Soluto:
       $$ -D(\theta) {\partial C \over \partial r} + q_0 C_0 = q_{s_0} = -{F \over 2\pi r_0 R z}$$
     }
@@ -57,7 +59,10 @@
     \includegraphics[height=3.5cm]{MM_c}
   \end{tabular} & 
   \begin{tabular}{l}
-    \parbox{0.4\linewidth}{ Extração de soluto dependente da concentração de soluto no solo (MM equation) }
+    \parbox{0.4\linewidth}{ 
+      Extração de soluto dependente da concentração de soluto no solo (MM equation) \\[0.1cm]
+      $C_{lim}$ e $C_2$ calculados analiticamente (não adiciona novos parâmetros)
+    }
   \end{tabular}  \\
   \begin{tabular}{l}
   \parbox{0.5\linewidth}{%  change the parbox width as appropiate
@@ -70,7 +75,17 @@
       \end{cases}
     $$
   }
-  \end{tabular} & \\
+  \end{tabular} & 
+  \begin{minipage}{5cm}
+  Premissas:
+    \begin{itemize}
+      \item Extração por fluxo de massa $\rightarrow$ passivo
+      \item Extração por difusão $\rightarrow$ ativo
+      \item Parâmetro $I_m$ $\rightarrow$ demanda da planta por soluto
+      \item Em $C_{lim}$ a extração é limitada pelo fluxo de soluto
+    \end{itemize}
+  \end{minipage}
+  \\
 
 \end{tabular}
 
@@ -78,6 +93,11 @@
 
 \subsection{Implementação numérica da ECD}
 \begin{frame}
+  \begin{itemize}
+    \item Solução implícita (backward Euler method)
+    \item Discretização do espaço $\rightarrow$ não-constante ($\delta_r$ crescente) $\rightarrow$ maior precisão (malha mais fina) na zona de maior variação de fluxos
+    \item Discretização do tempo $\rightarrow$ variável (de acordo com o número de iterações)
+  \end{itemize}
 \end{frame}
 
 \subsection{Other solute uptake models}
