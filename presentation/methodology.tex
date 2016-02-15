@@ -96,14 +96,14 @@
   \begin{block}{Discretização}
   \begin{itemize}
     \item Solução implícita (backward Euler method)
-    \item Discretização do espaço $\rightarrow$ não-constante ($\delta_r$ crescente) $\rightarrow$ maior precisão (malha mais fina) na zona de maior variação de fluxos
+    \item Discretização do espaço $\rightarrow$ não-constante ($\Delta_r$ crescente) $\rightarrow$ maior precisão (malha mais fina) na zona de maior variação de fluxos
     \item Discretização do tempo $\rightarrow$ variável (de acordo com o número de iterações)
   \end{itemize}
   \end{block} \pause
   
   \begin{block}{Modelo proposto}
     \begin{itemize}
-      \item Extração não-linear (MM Equation) e linear (beseada em MM) em $r_0$\\
+      \item Extração não-linear (MM Equation) e linear (baseada em MM) em $r_0$\\
 	\begin{tabular}{ll}
 	  \multirow{8}{*}{\includegraphics[height=3.cm]{MM_LNL}} & \\
 								  & \\
@@ -128,15 +128,68 @@
 
 \end{frame}
 
-\subsection{Scenarios}
-\begin{frame}
+\subsection{Cenários de simulação, entradas e saídas do modelo}
+\begin{frame}[fragile]
+\long\def\pmb#1{\setbox0=\hbox{#1}\copy0\kern-\wd0%
+\kern0.02em\raise0.02ex\copy0\kern-\wd0\kern0.02em\box0}
+\newcommand*{\myalign}[2]{\multicolumn{1}{#1}{#2}}	% change align of just one cell
+
+\begin{block}{Cenários}
+{\tiny
+\begin{tabular}{cccccc}
+\hline
+\myalign{l}{\bf Scenario} & \pmb{$R$} & \pmb{$C_{ini}$} & \pmb{$T_p$} & {\bf Soil} & {\bf Ion}  \\ \hline 
+1         & M                   & H            	                & H	                              &	Loam       &  K$^+$    \cr
+2         & M                   & H            	                & L                        &	Loam       & K$^+$     \cr
+3         & M                   & L           	                & H	                      &	Loam       & K$^+$     \cr
+4         & H                   & H            	                & H	                      &	Loam       & K$^+$     \cr
+5         & L                   & H            	                & H	                      &	Loam       & K$^+$     \cr
+6         & M                   & H            	                & H	                      &	Sand                & K$^+$     \cr
+7         & M                   & H            	                & H	                      &	Clay                & K$^+$     \cr
+8         & M                   & H            	                & H	                      &	Loam                &  NO$^-_3$   \\ \hline
+\end{tabular}\\[.2cm]
+$R$: densidade radicular\\
+$C_{ini}$: concentração inicial de soluto no solo\\
+$T_p$: transpiração potencial
+}
+\end{block}
+\begin{block}{Parametros de Entradas}
+  Solo, planta e atmosfera.
+\end{block}
+
+\begin{block}{Saídas}
+  Concentrações de soluto ($C(r)$, $C_0(t)$), potenciais ($h$, $h_pi$, $H$) e fluxos ($q(r)$, $q_0(t)$, $q_s(r)$, $q_{s_0}(t)$).
+\end{block}
+
 \end{frame}
 
-\subsection{Other analysis}
+\subsection{Outras análises}
 \begin{frame}
-\frametitle{Other analysis}
-Sensitivity analysis
+  \begin{block}{Diferença entre a solução linear e a não-linear}
+    $$
+    \delta_C  = {\sum_{x=1}^{x_{end}} C\!L_x - C\!N\!L_x \over \sum_{x=1}^{x_{end}} C\!L_x}
+    $$
+    $$
+    \delta_{Ac} = {\sum_{t=1}^{t_{end}} AcL_t - AcN\!L_t \over \sum_{t=1}^{t_{end}} AcL_t}
+    $$
 
-Statistical difference
+    Saídas Analisadas: $C(r)$, $C_0(t)$ e $Ac(t)$ (também no teste U).
+  \end{block}
+
+  \pause
+  \begin{block}{Análise de sensibilidade}
+    Sensibilidade parcial relativa.
+    $$
+    \eta = {dY/Y \over dP/P}\
+    $$
+    \\[.2cm]
+    Parâmetros que sofreram variação ($dP/P = 0.01$):\\
+    $I_m$, $K_m$\\
+    $\alpha$, $n$, $\lambda$, $K_s$, $\theta_r$, $\theta_s$\\[.2cm]
+
+    Saídas analisadas:\\
+    $t_{end}$, $h_\pi$, $h$, $\overline{h_\pi}$, $\overline{h}$, $Ac$ 
+
+  \end{block}
 \end{frame}
 
