@@ -31,16 +31,16 @@
   \scriptsize 
   \begin{block}{Modelos macroscópicos}
     {\scriptsize 
-      Considera toda a zona radicular como um componente de extração uniforme.
+      Zona radicular $\rightarrow$ componente de extração uniforme.
 
-      A extração de água e soluto é um termo ``sumidouro'' nas equações de balanço de massa.
+      Extração de água e soluto $\rightarrow$ termo ``sumidouro'' nas equações de balanço de massa.
     }
   \end{block}
   \begin{block}{Modelos microscópicos}
     {\scriptsize 
-      Considera uma raiz singular cinlíndrica de raio e propriedades de extração uniformes.
+      Raiz singular cinlíndrica de raio e propriedades de extração uniformes.
 
-      A extração de água e solutos são determinadas pelas condições de contorno das equações de balanço de massa à superfície da raíz.
+      A extração de água e soluto $\rightarrow$ condições de contorno à superfície da raíz.
     }
   \end{block} \pause
   \begin{block}{Solução numérica X Solução analítica}
@@ -114,7 +114,7 @@
   \begin{block}{Modelo mecanístico}
     \cite{liersolute}
 
-    Redução da transpiração $\rightarrow$ potencial hídrico limitante (LER TRABALHO DE QUIRIJN Q FALA COMO SE OBTER $h_lim$)
+    Redução da transpiração $\rightarrow$ parâmetros físicos
     
     \centering
     \includegraphics[height=2.5cm]{Qtr}
@@ -122,14 +122,14 @@
 \end{frame}
 
 
-\subsection{Solução proposta - REDUZIR TEXTO}
+\subsection{Solução proposta}
   
 \begin{frame}\frametitle{Solução proposta}
   Modelo microscópico, numérico e mecanístico com extração não-linear de soluto (dependente da concentração do solo) \\[0.2cm]
   \begin{itemize}
-    \item Utilizou-se como base o modelo mechanístico de extração de água e fluxo de soluto proposto por \cite{liersolute},
-    \item Resolver a Equação de Convecção-Dispersão para o movimento de soluto no solo, considerando fluxos transientes de água e soluto e assumindo uma extração (não-linear) de soluto sendo depende de sua concentração no solo.
-          que resolve numericamente as equações de balanço de massa, porém não considera a extração de soluto e somente o seu movimento em direção à raiz.
+    \item Base $\rightarrow$ modelo mechanístico de extração de água e movimento de soluto proposto por \cite{liersolute}
+%          que resolve numericamente as equações de balanço de massa, porém não considera a extração de soluto e somente o seu movimento em direção à raiz.
+    \item Resolver a Equação de Convecção-Dispersão para o movimento e extração de soluto no solo, considerando fluxos transientes de água e soluto e assumindo extração de soluto dependente da concentração no solo.
     \item\begin{tabular}{p{4.5cm} c}
             Buscando-se uma solução também mecanística para a extração de solutos, utilizou-se a equação de Michaelis-Menten como condição de fronteira à superfície da raiz. &
 	    \raisebox{-.7\height}{\includegraphics[height=2.5cm]{orig_MM}} \\
@@ -148,10 +148,9 @@
   \item Incorporar extração de soluto no modelo de \cite{liersolute};
   \item Diferenciar quantitativamente as componentes passiva e ativa da extração de solutos;
   \end{itemize}
-  \begin{block}{Finalidade}
-    Incorporar o modelo em uma modelo mais completo (SWAP)
-  \end{block}
-  MELHORAR O TEXTO (INFORMACOES)
+%  \begin{block}{Finalidade}
+%    Incorporar o modelo em uma modelo mais completo (SWAP)
+%  \end{block}
 \end{frame}
 
 
