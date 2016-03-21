@@ -1,0 +1,62 @@
+\section*{Text}
+
+% Must be introduction together with literature review
+Crop growth is directly related to plant transpiration, and the closer the cumulative transpiration over a growing season is to its potential value, the higher will be the crop yield. 
+Any stress occurring during crop development results in stomata closure and transpiration reduction, affecting productivity. 
+Therefore, knowing how plants respond to abiotic stresses like those related to water and salt, and predicting and quantifying them, is important not only to improve the understanding of plant-soil interactions, but also to propose better crop management practices.
+The interpretation of experimental data to analyze the combined water and salt stress on transpiration and yield has been shown to be difficult due to the great range of possible interactions between the factors determining the behavior of the soil-plant-atmosphere (SPA) system.
+Modeling has been shown to be an elucidative manner to analyze the involved processes and mechanisms, providing insight in the interaction of water and salt stress.
+
+Solute transport in soil and solute uptake by the plants have extensively been studied in the last half century.
+As a result, several simulation models have been developed to predict water and solute flows within the vadose zone. 
+They are usually classified as microscopic or macroscopic, according to the considered scale \citep{feddes}. 
+Microscopic models \citep{barber74,cushman,willigen1,roose} consider a single cylindrical root, of uniform radius and absorption properties \citep{gardner}, that extracts water and solute by an axis-symmetric flow according to the defined boundary condition at the root surface.
+The water flow is described using the Richards equation and the solute flow using the convection-dispersion equation (CDE), both formulated in radial coordinates.
+The flow towards the root is driven by hydraulic head and concentration gradients between the root and the surrounding soil, proportional to the hydraulic conductivity and solute diffusivity. 
+One of the advantages of the microscopic approach is that it implicitly simulates water uptake compensation, as the computed local water potential gradients control the uptake for the whole root system \citep{simunek}. 
+Despite the more realistic simulation of soil-root interactions, microscopic models require a large computational effort for the simulations and, therefore, are limited to applications of relatively small scale of a single plant.
+
+Analytical models describing transport of nutrients in soil towards plant roots usually consider steady state conditions with respect to water flow to deal with the high non-linearity of soil hydraulic functions. 
+Several simplifications (assumptions) are needed regarding the uptake of solutes by the roots, most of them also imposed by the non-linearity of the influx rate function. 
+Consequently, although analytical models describe the processes involved in transport and uptake of solutes, they are only capable of simulating water and solute flow just for specific boundary conditions.
+Therefore, applying these models in situations that do not exactly correspond to their boundary condition may lead to a rough approximation but may also result in erroneous predictions.
+Many of the available analytical solutions include special math functions (Bessels, Airys or infinite series, for example) that need, at some point, numerical algorithms to compute results.
+For the case of the convection-diffusion equation, even the fully analytical solutions are restricted by numerical procedures, although with computationally efficient and reliable results.
+
+Another classification of models, relates to the experimental approach of the phenomenon, distinguishing between empirical and mechanistic models. 
+Empirical models \citep{chanter,ross,yerokun} are based on the response of a set of experiments and attempt to describe the observed phenomenon without hypothesizing about underlying mechanisms. 
+They are usually of stochastic nature and have the advantage of being relatively simple, allowing to predict the results of the processes with a good certainty. 
+The main disadvantage of this kind of model is that the model parameters do not have a clear physical, physiological or biological meaning, limiting interpretation and substantial model improvement. 
+Furthermore, the application of these models is limited to boundary conditions corresponding to the experiments/observations that they were developed from, and they will probably lead to incorrect or inaccurate predictions in scenarios that were not used for their development.
+Mechanistic models \citep{barber74,cushman,willigen1,roose,simunekHYDRUS,somma,vandam} seek to explain the physical mechanisms that drive the phenomenon, requiring a better understanding and mathematical description of the underlying processes. 
+Although the parameters may be difficult to measure, they have a physical meaning -- they can be explained by the processes and their relationships, and they can be measured independently -- and, therefore, can be adapted to be used in a broad variety of scenarios.
+Good reviews of available root solute uptake models can be found in \cite{rengel}, \cite{feddes} and \cite{silberbush2013}.
+
+As a substitute to analytical solutions, numerical modeling allows more flexibility when dealing with non-linear equations, being an alternative to better cope with diverse boundary conditions. 
+The functions can be solved considering transient conditions for water and solute flow but with some pullbacks regarding numerical stability and more processing to perform calculations.
+In general, numerical models use empirical functions that relate osmotic stress to some electric conductivity of the soil solution. 
+The parameters of these empirical models depend on soil, plant and atmospheric conditions in a range covered by the experiments used to generate data for model calibration. 
+Using these models out of the measured range is not recommended and, in these cases, a new parameter calibration should be done.
+Physical/mechanistic models for the solute transport equations describe the involved processes in a wider range of situations since it is less dependent on experimental data, giving more reliable results.
+
+% Thesis objective
+%The objective of this thesis is to present a modification of the model of root water uptake and solute transport proposed by \cite{liersolute}.
+%This modification allows the model to take into account plant solute uptake.
+%To do so, a numerical mechanistic solution for the equation of convection-dispersion will be developed that considers transient flow of water and solute, as well as root competition.
+%A soil concentration dependent solute uptake function as boundary condition at the root surface was assumed.
+%In this way, the new model allows prediction of active and passive contributions to the solute uptake, which can be used to separate ionic and osmotic stresses by considering solute concentration inside the plant. 
+%The proposed model is compared with the original model, with a constant solute uptake numerical model and with an analytical model that uses a steady state condition for water content. 
+
+Some models treat the combined water and salt stress neither in an additive or in a multiplicative way. 
+\cite{homaee} developed a piecewise reduction function similar to the \cite{feddes78} and concluded that the function fitted his experimental data better than any additive or multiplicative model.
+\cite{liersolute} proposed a microscopic analytical model to estimate relative transpiration as a function of soil and plant parameters. 
+Their mechanistic approach reduces the need of empirical parameters and does not require any explicit assumption (additive or multiplicative) to derive the combined water and salt stress. 
+Results show good agreement with experimental data, although some discrepancies exist, especially under wet conditions. 
+Their model does not consider root solute uptake.
+Considering root solute uptake would interfere in solute concentrations estimative, leading to more realistic simulations and to a better prediction of the crop response to the combined water and osmotic stress.
+
+% Paper objective
+In this study, we develop a mechanistic based numerical scheme to solve the convection-dispersion equation for radial root solute extraction.
+The model uses the water uptake scheme from \cite{lierwater}.
+Assuming a boundary condition at root surface of concentration dependent solute uptake, the solution for the CDE considers transient flow of water and solute, as well as root competition.
+The model allows prediction of active and passive contributions to the solute uptake, which can be used to separate ionic and osmotic stresses by considering solute concentration inside the plant.

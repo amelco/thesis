@@ -1,36 +1,47 @@
-\section*{Text}
+\section*{Introduction}
 
 % Must be introduction together with literature review
-Crop growth is directly related to plant transpiration, and the closer the cumulative transpiration over a growing season is to its potential value, the higher will be the crop yield. 
-Any stress occurring during crop development results in stomata closure and transpiration reduction, affecting productivity. 
-Therefore, knowing how plants respond to abiotic stresses like those related to water and salt, and predicting and quantifying them, is important not only to improve the understanding of plant-soil interactions, but also to propose better crop management practices.
-The interpretation of experimental data to analyze the combined water and salt stress on transpiration and yield has been shown to be difficult due to the great range of possible interactions between the factors determining the behavior of the soil-plant-atmosphere (SPA) system.
-Modeling has been shown to be an elucidative manner to analyze the involved processes and mechanisms, providing insight in the interaction of water and salt stress.
 
-Analytical models describing transport of nutrients in soil towards plant roots usually consider steady state conditions with respect to water flow to deal with the high non-linearity of soil hydraulic functions. 
-Several simplifications (assumptions) are needed regarding the uptake of solutes by the roots, most of them also imposed by the non-linearity of the influx rate function. 
-Consequently, although analytical models describe the processes involved in transport and uptake of solutes, they are only capable of simulating water and solute flow just for specific boundary conditions.
-Therefore, applying these models in situations that do not exactly correspond to their boundary condition may lead to a rough approximation but may also result in erroneous predictions.
-Many of the available analytical solutions include special math functions (Bessels, Airys or infinite series, for example) that need, at some point, numerical algorithms to compute results.
-For the case of the convection-diffusion equation, even the fully analytical solutions are restricted by numerical procedures, although with computationally efficient and reliable results.
+Plant transpiration is directly affected by responses from abiotic stress like those related to excess or scarcity of water and solute in soil.
+Modeling arises as a relevant manner of predicting actual transpiration rates based on water and solute movement physical processes, improving predictions of crop growth and productivity.
+Models of water and solute uptakes are often classified as microscopic, which describe radial flow to single cylindrical roots \citep{gardner,barber74,cushman,willigen1,roose,liersolute}, and macroscopic, which describe flow by adding a layered sink term added to the mass balance equations, without considering root geometry \citep{simunekHYDRUS,somma,vandam}.
+Microscopic models have the advantage to implicit simulate water uptake compensation as the uptake is controlled by computed local water potential gradients, whereas macroscopic can simulate processes at greater (plot or field) scales.
+As of water uptake models, water stress equations also enter in this classification.
+Macroscopic models for water stress \citep{feddes78,homaee,li} are widely used but they fail when 
+have the disadvantage of being overall empirical, with parameters that does not have a clear physical meaning. 
+Microscopic models 
+%\citep{lierwater,liersolute} 
+better cope with the phenomena as their physical underlying processes are translated in mathematical formulations. 
+\cite{lierwater} proposed a microscopic root water uptake model that predicts the onset of the falling transpiration rate phase, according to a pressure head threshold value ($h_{lim}$) which is determined by the potential matric flux ($M$), function of potential transpiration and root length density. (SHOW EQUATION?) cite quirijn 2006 and everton 2016
+Their approach brought a physical meaning and reduced the number of parameters of the uptake reduction function. 
+In a later work, \cite{liersolute} introduced the osmotic component to generate a combined water and osmotic stress model.
 
-As a substitute to analytical solutions, numerical modeling allows more flexibility when dealing with non-linear equations, being an alternative to better cope with diverse boundary conditions. 
-The functions can be solved considering transient conditions for water and solute flow but with some pullbacks regarding numerical stability and more processing to perform calculations.
-In general, numerical models use empirical functions that relate osmotic stress to some electric conductivity of the soil solution. 
-The parameters of these empirical models depend on soil, plant and atmospheric conditions in a range covered by the experiments used to generate data for model calibration. 
-Using these models out of the measured range is not recommended and, in these cases, a new parameter calibration should be done.
-Physical/mechanistic models for the solute transport equations describe the involved processes in a wider range of situations since it is less dependent on experimental data, giving more reliable results.
+Solute mobility in soil is described by the processes of convective transport by water mass flow and movement driven by diffusion due to the concentration gradient caused by solute depletion (or accumulation) in the root surface \citep{barber62}.
+The earlier analytical solutions for the convection-dispersion equation were formulated considering a steady state condition to the water flow and a solute uptake governed by the solute concentration in the soil solution \citep{barber74,cushman,nye} or determined by a constant plant demand \citep{willigen81}.
+A solution considering a `pseudo-steady state' for water flow and a solute concentration dependent uptake was later proposed by \cite{roose}.
+The concentration limiting (or supply driven) approach may overestimate the uptake in scenarios where solute supply to the root is not limiting \citep{barraclough} whilst the constant plant demand (or demand driven) formulation may overestimate the uptake when the soil is very dry or at low solute concentration at the root surface, when the diffusive flow prevails.
+The more realistic model considers both the supply driven uptake when solute in soil is limiting and the demand driven uptake when solute in soil is abundant.
+As the model gains complexity analytical solutions becomes unfeasible.
+Numerical models then plays a important role to compute solutions for complex nonlinear models of water and solute uptake, and can be used to estimate water and solute movement under transient conditions (CITE MODELS).
 
-% Thesis objective
-%The objective of this thesis is to present a modification of the model of root water uptake and solute transport proposed by \cite{liersolute}.
-%This modification allows the model to take into account plant solute uptake.
-%To do so, a numerical mechanistic solution for the equation of convection-dispersion will be developed that considers transient flow of water and solute, as well as root competition.
-%A soil concentration dependent solute uptake function as boundary condition at the root surface was assumed.
-%In this way, the new model allows prediction of active and passive contributions to the solute uptake, which can be used to separate ionic and osmotic stresses by considering solute concentration inside the plant. 
-%The proposed model is compared with the original model, with a constant solute uptake numerical model and with an analytical model that uses a steady state condition for water content. 
+A nonlinear solute uptake boundary condition that can be used as a boundary condition at root surface and with a concentration dependent solute uptake is the Michaelis-Menten equation \citep{barber,barber81,schroder,simunek}.
+The MM equation is supposed to describe well the solute uptake for both anions \citep{epstein72,siddiqi,wang} and cations \citep{broadley,kelly,kochian,lux,sadana} in the low concentration range and, adding a linear component to the equation, it can properly estimates the uptake rate also for higher concentrations \citep{borstlap,broadley,epstein72,kochian,vallejo,wang}.
+Many authors agree that for low concentration in external medium, the uptake is driven by an active plant mechanism, as it occurs contrary the solute gradient between root and soil (Epstein's mechanism~I). 
+For the high concentration range, solutes are freely transported from soil to roots by diffusion and occasional convection. This passive transport is known as Epstein's mechanism~II \citep{kochian,siddiqi}. 
+Details on Epstein's mechanisms and its physiological mechanisms, as well as on active and passive uptake, are found in \cite{epstein60} and \cite{fried}.
 
-% Paper objective
-In this study, we develop a mechanistic based numerical scheme to solve the convection-dispersion equation for radial root solute extraction.
-The model uses the water uptake scheme from \cite{lierwater}.
-Assuming a boundary condition at root surface of concentration dependent solute uptake, the solution for the CDE considers transient flow of water and solute, as well as root competition.
-The model allows prediction of active and passive contributions to the solute uptake, which can be used to separate ionic and osmotic stresses by considering solute concentration inside the plant.
+The values of MM parameters are strongly dependent on the experimental methods used and vary with plant species, plant age, plant nutritional status, soil temperature and pH \citep{barber,shi}. 
+Therefore, they have to be determined for each particular experimental scenario.
+Some types of experiments to determine the kinetic parameters $I_m$, $K_m$ and $C_{min}$ include hydroponically-grown plants \citep{barber} and the use of radioisotopes to estimate them directly from soil \citep{nye77}. 
+The latter is more realistic since there is a large difference between a stirred nutrient solution and the complex and dynamic soil medium.
+Measuring $C_{min}$ is particularly difficult \citep{lambers,seeling} because it occurs at very low concentration levels that may be hard to be accurately measured. 
+\cite{seeling} show that $C_{min}$ can be neglected for the cases of high $K_m$ values.
+
+The objective of this thesis is to present a modification of the model of root water uptake and solute transport proposed by \cite{liersolute}.
+This modification allows the model to take into account plant solute uptake.
+To do so, a numerical mechanistic solution for the equation of convection-dispersion will be developed that considers transient flow of water and solute, as well as root competition.
+A soil concentration dependent solute uptake function as boundary condition at the root surface was assumed.
+In this way, the new model allows prediction of active and passive contributions to the solute uptake, which can be used to separate ionic and osmotic stresses by considering solute concentration inside the plant. 
+The proposed model is compared with the original model, with a constant solute uptake numerical model and with an analytical model that uses a steady state condition for water content. 
+
+The model here proposed considers a supply driven solute uptake and gives opportunity to add a demand driven uptake when considering solute concentration inside the plant when needed.
