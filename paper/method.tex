@@ -220,9 +220,9 @@ The uptake of each root equals $-F/R$ (mol d$^{-1}$, the negative sign indicatin
 TELL THAT THERE IS ALSO A LINEAR SOLUTION BUT IT WONT BE SHOWN IN THE PAPER.
 ALSO, THAT IT WONT BE SHOWN THE SOLUTIONS FOR THE COMPARED MODELS. CITE THE THESIS.
 
-A fully implicit numerical treatment was given to the water and solute balance equations \ref{eq_Richards} and \ref{eq_sol}.
+A fully implicit numerical treatment was given to the water and solute balance equations \ref{eq_complete_richards} and \ref{eq_complete_solute}.
 In the numerical solution, the combined water and solute movement is simulated iteratively. In a first step, the water movement towards the root is simulated, assuming salt concentrations from the previous time step. In a second step, the salt contents per segment are updated and new values for the osmotic head in all segments are calculated. The first step is then repeated with updated values for the osmotic heads. This process is repeated until the pressure head values and osmotic head values between iterations converge. 
-Flowcharts containing the algorithm structure are shown in the Appendix \ref{ap_flowchart}.
+%Flowcharts containing the algorithm structure are shown in the Appendix \ref{ap_flowchart}.
 
 The implicit numerical discretization of Equation \ref{eq_complete_solute} yields:
 
@@ -351,14 +351,15 @@ c_1 &= -{r_{1+1/2} \Delta t \over 2 \Delta r_1 (r_2-r_1)} (2D^{j+1}_{1+1/2} - q_
   \item For \pmb{$C_{lim} < C < C_2$} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     The constant uptake solution is based on the model proposed by \cite{willigen1}. 
-    The numerical discretization takes into consideration Equation \ref{eq_disc_sol}, whereas the intermediate nodes are analogous to Equations \ref{eq_int_nodes1} to \ref{eq_int_nodes3}. 
-    The boundary condition at the root surface (Equation~\ref{eq_inner_bound}) corresponds to constant solute flux:
+    %The numerical discretization takes into consideration Equation \ref{eq_disc_sol}, whereas the intermediate nodes are analogous to Equations \ref{eq_int_nodes1} to \ref{eq_int_nodes3}. 
+    The boundary condition at the root surface (Equation~\ref{eq_inner_bound}) corresponds to constant solute flux, considering $F = I_m$:
 
     \begin{equation}
+	\label{bc_constFlux}
     q_{s0}=-{I_m \over 2\pi r_0 R z}.
     \end{equation}
 
-    Applying boundary conditions of constant solute flux, the first and second term of the right-hand side of Equation \ref{eq_disc_sol} become 
+    Applying boundary conditions of constant solute flux (Equation \ref{bc_constFlux}), the first and second term of the right-hand side of Equation \ref{eq_disc_sol} become 
 $\displaystyle{-{I_m \over 2 \pi r_0 R z}}\Delta r_1$ for $C > 0$:
 
 \begin{align*}
@@ -373,15 +374,15 @@ $\displaystyle{-{I_m \over 2 \pi r_0 R z}}\Delta r_1$ for $C > 0$:
 \end{array}\right\}  
 \end{align*}
 
-When $C = 0$ the solute flux is set to zero and equation \ref{will} reduces to Equation \ref{lier}.
+%When $C = 0$ the solute flux is set to zero and equation \ref{will} reduces to Equation \ref{lier}.
 Introduction of Equation \ref{will} in the tridiagonal matrix \ref{matrix} results in the following coefficients:
 
 \begin{align*}
 b_1 &= r_1 \theta^{j+1}_1 + {\Delta t \over 2 \Delta r_1} \left[ {r_{1+1/2} \over (r_2-r_1)} (2D^{j+1}_{1+1/2} + q_{1+1/2} \Delta r_2) \right] & \numberthis \\
 c_1 &= -{r_{1+1/2} \Delta t \over 2 \Delta r_1 (r_2-r_1)} (2D^{j+1}_{1+1/2} - q_{1+1/2} \Delta r_1) & \numberthis \\
 \end{align*}
-
-And the $f$ coefficient changes to:
+%
+and the $f$ coefficient changes to:
 
 \begin{align*}
 f_1 &= r_1 \theta^j_1 C^j_1 - {r_{1-1/2} \over r_{1}-r_{0}} I_m {\Delta t \over 4 \pi r_0 R z} & \numberthis
@@ -389,10 +390,13 @@ f_1 &= r_1 \theta^j_1 C^j_1 - {r_{1-1/2} \over r_{1}-r_{0}} I_m {\Delta t \over 
 
   \item For \pmb{$C = 0$} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-    When $C=0$ the solute flux is set to zero and the equation is equal to Equation \ref{lier} (zero uptake). 
+    %When $C=0$ the solute flux is set to zero and the equation is equal to Equation \ref{lier} (zero uptake). 
     %While $C_{lim}~\leq~C~\leq~C_2$, the solute flux density is constant and the equation is equal to Equation \ref{will} (constant uptake).
-    The zero uptake solution is based on the model proposed by \cite{liersolute}. The numerical discretization is according to Equation \ref{eq_disc_sol} and the intermediate nodes are analogous to Equations \ref{eq_int_nodes1} to \ref{eq_int_nodes3}. 
-    The only difference is the boundary at the root surface (Equation~\ref{eq_inner_bound}), which is of zero solute flux:
+    The zero uptake solution is based on the model proposed by \cite{liersolute}. 
+    %The numerical discretization is according to Equation \ref{eq_disc_sol} and the intermediate nodes are analogous to Equations \ref{eq_int_nodes1} to \ref{eq_int_nodes3}. 
+    %The only difference is the boundary at the root surface (Equation~\ref{eq_inner_bound}), which is of zero solute flux:
+    The boundary condition at the root surface (Equation~\ref{eq_inner_bound}) corresponds to constant solute flux, considering $F = 0$:
+
 \begin{equation}
 q_{s0}=0 
 \end{equation}
