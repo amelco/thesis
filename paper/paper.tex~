@@ -9,7 +9,7 @@
   \bibpunct{(}{)}{;}{a}{,}{,}	% https://en.wikibooks.org/wiki/LaTeX/Bibliography_Management#Citations
 \graphicspath{ {../figuras/} }
 
-\usepackage[edtable,displaymath,mathlines]{lineno}		% for line numbering (including tables and equations)
+\usepackage[edtable,displaymath,mathlines]{lineno}		% for line numbering (inclusive in tables and equations)
 \renewcommand\linenumberfont{\normalfont\bfseries\small}	% change font of line number
 
 \usepackage{caption} 

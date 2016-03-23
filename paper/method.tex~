@@ -212,7 +212,7 @@ The uptake of each root equals $-F/R$ (mol d$^{-1}$, the negative sign indicatin
 
 \begin{equation}
   \label{eq_inner_bound}
--D(\theta) {\partial C \over \partial r} + q_0 C_0 = q_{s_0} = -{F \over 2\pi r_0 R z} {\rm ,} \;\; r=r_0.
+-D(\theta) {\partial C \over \partial r} + q_0 C_0 = q_{s_0} = -{F \over 2\pi r_0 R z} {\rm ,} \;\; r=r_0
 \end{equation}
 
 \subsection*{Numerical implementation}
