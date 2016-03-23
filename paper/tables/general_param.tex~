@@ -1,5 +1,5 @@
 \begin{table}[htbp]
-%\footnotesize
+\footnotesize
 \centering
 \caption{System parameters used in simulations scenarios}
 \begin{tabular}{lcccc}

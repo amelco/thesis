@@ -449,18 +449,22 @@ All simulation scenarios ended when $T_r \leq 0.001$, at that point considering 
 %\label[lu_nlu_comp]
 \subsection*{Analysis of linear and non-linear approaches}
 
-To analyze the differences between the two proposed models (linear and non-linear solutions), the relative differences in the predicted concentrations ($\delta_{C}$) and accumulated uptake ($\delta_{Ac}$), for both models, were calculated as follows:
+Relative and absolute differences, as well as the non-parametric Mann-Whitney U test, were calculated to quantify how similar both solutions are.
 
-\begin{align}
-\label{error_C}
-\delta_C  &= {\displaystyle\sum_{x=1}^{x_{end}} C\!L_x - C\!N\!L_x \over \displaystyle\sum_{x=1}^{x_{end}} C\!L_x} & \numberthis \\
-\label{error_acc} 
-\delta_{Ac} &= {\displaystyle\sum_{t=1}^{t_{end}} AcL_t - AcN\!L_t \over \displaystyle\sum_{t=1}^{t_{end}} AcL_t} & \numberthis \\
-\end{align}
+%To analyze the differences between the two proposed models (linear and non-linear solutions), the relative differences in the predicted concentrations ($\delta_{C}$) and accumulated uptake ($\delta_{Ac}$), for both models, were calculated as follows:
 %
-where $C\!L_x$ and $C\!N\!L_x$, are the solute concentration in soil water, and $AcL_t$ and $AcN\!L_t$ the accumulated uptake, for LU and NLU, respectively.  
-$x$ can be the time ($t$) or the distance from the axial center ($r$). 
-The relative difference between three outputs was computed: two relative to time -- concentration at the root surface $C_0(t)$ and accumulated solute uptake $Ac(t)$ -- and one relative to radial distance -- concentration $C(r)$.
+%\begin{equation}
+%\label{error_C}
+%\delta_C  = {\displaystyle\sum_{x=1}^{x_{end}} C\!L_x - C\!N\!L_x \over \displaystyle\sum_{x=1}^{x_{end}} C\!L_x}
+%\end{equation}
+%\begin{equation}
+%\label{error_acc} 
+%\delta_{Ac} = {\displaystyle\sum_{t=1}^{t_{end}} AcL_t - AcN\!L_t \over \displaystyle\sum_{t=1}^{t_{end}} AcL_t}
+%\end{equation}
+%%
+%where $C\!L_x$ and $C\!N\!L_x$, are the solute concentration in soil water, and $AcL_t$ and $AcN\!L_t$ the accumulated uptake, for LU and NLU, respectively.  
+%$x$ can be the time ($t$) or the distance from the axial center ($r$). 
+%The relative difference between three outputs was computed: two relative to time -- concentration at the root surface $C_0(t)$ and accumulated solute uptake $Ac(t)$ -- and one relative to radial distance -- concentration $C(r)$.
 
 %The analysis of the results was made in order to choose one out of the two models in further simulations. 
 NLU solution uses the non-linear MM equation \ref{eq_MM_mod} and, due to an additional iterative process in the numerical implementation, more time is needed to compute the results when compared with the linear solution LU. 
@@ -473,7 +477,7 @@ To do so, four different scenarios were chosen (scenarios 1 to 4 as listed in Ta
 
 \subsection*{Sensitivity analysis}
 
-The relative partial sensitivity $\eta$ \cite{quirijn_sens} of model predictions 
+The relative partial sensitivity $\eta$ \citep{quirijn_sens} of model predictions 
 $Y$ as a function of the respective parameter value $P$ was calculated as
 
 \begin{equation}

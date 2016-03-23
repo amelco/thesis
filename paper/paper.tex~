@@ -9,7 +9,7 @@
   \bibpunct{(}{)}{;}{a}{,}{,}	% https://en.wikibooks.org/wiki/LaTeX/Bibliography_Management#Citations
 \graphicspath{ {../figuras/} }
 
-\usepackage[edtable,displaymath,mathlines]{lineno}		% for line numbering (inclusive in tables and equations)
+\usepackage[edtable,displaymath,mathlines]{lineno}		% for line numbering (including tables and equations)
 \renewcommand\linenumberfont{\normalfont\bfseries\small}	% change font of line number
 
 \usepackage{caption} 
@@ -25,9 +25,9 @@
 \author{Andre Herman Freire Bezerra
   \thanks{
   Bezerra, A.H.F. and Q. de Jong van Lier, Exact Sciences Dep., ESALQ--Univ. of S\~ao Paulo, 13418-900 Piracicaba (SP), Brazil;
-  S.E.A.T.M. van der Zee and P. Willingen, Dep. of Environmental Sciences, Wageningen Univ., Droevendaalsesteeg 4, 6708 PB Wageningen, the Netherlands.
+  S.E.A.T.M. van der Zee, Dep. of Environmental Sciences, Wageningen Univ., Droevendaalsesteeg 4, 6708 PB Wageningen, the Netherlands.
   }
-\and Quirijn de Jong van Lier \and Sjoerd E.A.T.M van der Zee \and Peter de Willingen (acknowledgements?)}
+\and Quirijn de Jong van Lier \and Sjoerd E.A.T.M van der Zee}
 
 
 %% BEGIN DOCUMENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -49,6 +49,8 @@
 \input{intro}
 
 \input{method}
+
+\input{results}
 
 \input{acknowledgements}
 
