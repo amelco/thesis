@@ -1,0 +1,35 @@
+Dear Dr. Lazarovitch,
+
+we would like to contribute to the special issue of Vadose Zone Journal with the following paper:
+
+Title: A mechanistic solution for the combined water and solute uptake by plant roots
+Authors: Andre Herman Freire Bezerra, Quirijn de Jong van Lier and Sjoerd E.A.T.M. van der Zee
+
+Abstract:
+A modification in an existing water uptake and solute transport numerical model was implemented in
+order to allow the model to simulate solute uptake by the roots. The convection-dispersion equation
+(CDE) was solved numerically, using a complete implicit scheme, considering a transient state for water
+and solute fluxes and a soil solute concentration dependent boundary for the uptake at the root surface,
+based on the Michaelis-Menten (MM) equation. Additionally, a linear approximation was developed
+for the MM equation such that the CDE has a linear and a non-linear solution. A radial geometry
+was assumed, considering a single root with its surface acting as the uptake boundary and the outer
+boundary being the half distance between neighboring roots, a function of root density. The proposed
+solute transport model includes active and passive solute uptake and predicts solute concentration as a
+function of time and distance from the root surface. It also estimates the relative transpiration of the
+plant, on its turn directly affecting water and solute uptake and related to water and osmotic stress status
+of the plant. Performed simulations show that the linear and non-linear solutions result in significantly
+different solute uptake predictions when the soil solute concentration is below a limiting value (Clim). This
+reduction in uptake at low concentrations may result in a further reduction in the relative transpiration.
+The contributions of active and passive uptake vary with parameters related to the ion species, the plant,
+the atmosphere and the soil hydraulic properties. The model showed a good agreement with an analytical
+model that uses a linear concentration dependent equation as boundary condition for uptake at the root
+surface. The advantage of the numerical model is it allows simulation of transient solute and water
+uptake and, therefore, can be used in a wider range of situations. Simulation with different scenarios
+and comparison with experimental results are needed to verify model performance and possibly suggest
+improvements.
+
+
+We hope it suits in the scope of this special issue.
+
+Best regards,
+Andre Herman.
